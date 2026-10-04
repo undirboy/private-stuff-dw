@@ -40,6 +40,8 @@ unit before putting any multiple in writing.
 
 | | |
 |---|---|
+| `saarthi/boardingpass.py` | IATA BCBP barcode parser. The passenger scans; nothing else is asked of them |
+| `saarthi/flights.py` | The flight board — where the gate comes from, and how we hear that it moved |
 | `saarthi/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
 | `saarthi/router.py` | A* with time as the cost and a turn penalty, so routes are quick and comfortable rather than merely short |
 | `saarthi/fleet.py` | Dispatch, battery reserve, corridor reservations, mid-journey rerouting, unaccompanied return to charge |
@@ -48,26 +50,40 @@ unit before putting any multiple in writing.
 | `firmware/chair_controller/` | On-board reflexes. Skeleton |
 | `docs/hardware.md` | Retrofit rationale, floor-reading options, indicative BOM |
 | `docs/safety.md` | The layered stop, why braking is a passenger problem, failure modes |
+| `docs/privacy.md` | What the barcode contains, what is kept, and what is deliberately never recorded |
 | `docs/roadmap.md` | What to add next, and what to deliberately leave out |
 
 ## Running it
 
 ```sh
 python3 -m sim.demo     # a scripted shift, narrated
-python3 -m pytest -q    # 36 tests
+python3 -m pytest -q    # 68 tests
 ```
 
-The demo covers the four things that are hard to show with a model chair on a
-table: two chairs contending for a single-file corridor, a gate change while a
-passenger is already under way, a corridor closed under a moving chair, and
-chairs returning themselves to charge.
+The demo covers the things that are hard to show with a model chair on a table:
+a passenger who scans and says nothing else, a gate that is not announced yet, a
+gate that moves mid-journey, two chairs contending for a single-file corridor, a
+corridor closed under a moving chair, and chairs returning themselves to charge.
 
 ```
-[05:00] fleet    gate_change        AI-612 now boarding at g2
+[05:00] fleet    gate_change        AI612 now boarding at g2
 [05:00] CH-01    rerouting          Mrs Pereira was bound for g4, diverting at next junction
 [05:01] CH-01    replanned          sp1 -> g2
 [05:35] CH-01    delivered          Mrs Pereira at g2 (186s wait for a chair)
 ```
+
+## The boarding pass does not contain the gate
+
+This is the fact the whole scanning feature turns on, and it is usually assumed
+the other way round. The barcode is printed at check-in; the gate is assigned by
+the airport later and changes afterwards. So the scan names the *flight*, and the
+gate is looked up live.
+
+That is not a limitation, it is the argument. A passenger scans at the kerb
+before a gate exists, gets taken to the lounge, and a chair comes back for them
+the moment the gate is announced. Nobody has to remember they are sitting there.
+A human pushing a wheelchair cannot do this: they are committed the moment they
+set off, and nobody tells them the gate moved.
 
 ## Design split
 

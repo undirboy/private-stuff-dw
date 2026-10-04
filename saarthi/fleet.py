@@ -16,6 +16,9 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 
+from .boardingpass import BoardingPass, BoardingPassError
+from .boardingpass import parse as parse_boarding_pass
+from .flights import FlightBoard
 from .graph import NodeKind, TerminalMap
 from .router import Route, plan
 
@@ -76,10 +79,22 @@ class Request:
     assigned_to: str | None = None
     picked_up_s: float | None = None
     delivered_s: float | None = None
+    #: True while the passenger is bound for a holding area because the airport
+    #: has not announced a gate yet. Cleared when the gate appears.
+    awaiting_gate: bool = False
+    #: Keyed digest of the booking reference, kept so that a second scan of the
+    #: same pass is recognised. The reference itself is never stored.
+    pnr_digest: str | None = None
+    #: Set on the second leg of a journey that began before the gate was known.
+    follow_on_of: str | None = None
 
     @property
     def waiting(self) -> bool:
         return self.assigned_to is None
+
+    @property
+    def active(self) -> bool:
+        return self.delivered_s is None
 
     def wait_time_s(self, now: float) -> float:
         """How long the passenger waited, or has been waiting, for a chair."""
@@ -97,6 +112,19 @@ class Event:
         mins, secs = divmod(int(self.t), 60)
         who = self.chair or "fleet"
         return f"[{mins:02d}:{secs:02d}] {who:<8} {self.kind:<18} {self.detail}"
+
+
+class ScanRejected(Exception):
+    """A boarding pass was scanned but cannot be acted on.
+
+    ``message`` is written to be shown to the passenger on the chair's screen, so
+    it says what to do next rather than what went wrong internally.
+    """
+
+    def __init__(self, reason: str, message: str) -> None:
+        super().__init__(reason)
+        self.reason = reason
+        self.message = message
 
 
 class SegmentReservations:
@@ -202,7 +230,15 @@ class Chair:
 class Fleet:
     """The dispatcher and the world it drives."""
 
-    def __init__(self, tmap: TerminalMap, *, now_s: float = 0.0) -> None:
+    def __init__(
+        self,
+        tmap: TerminalMap,
+        *,
+        now_s: float = 0.0,
+        board: FlightBoard | None = None,
+        holding_area: str | None = None,
+        scan_secret: bytes = b"saarthi-dev-key-replace-in-deployment",
+    ) -> None:
         self.tmap = tmap
         self.now = now_s
         self.chairs: dict[str, Chair] = {}
@@ -211,6 +247,13 @@ class Fleet:
         self.blocked_segments: set[str] = set()
         self.reservations = SegmentReservations(tmap)
         self._request_seq = 0
+
+        #: Where a passenger goes when their gate has not been announced yet.
+        self.holding_area = holding_area
+        self._scan_secret = scan_secret
+        self.board = board
+        if board is not None:
+            board.subscribe(self._on_gate_assigned)
 
     # -- setup -----------------------------------------------------------
 
@@ -241,6 +284,82 @@ class Fleet:
         self.log("request", f"{request.id} {passenger} {flight} {pickup} -> {gate}")
         return request
 
+    def scan_boarding_pass(self, scan: str, pickup: str) -> Request:
+        """A passenger holds their boarding pass up to the reader.
+
+        This is the whole interaction. No typing, no screen to read, no shared
+        language needed. The pass names the flight; the flight board names the
+        gate; the dispatcher sends a chair.
+
+        Raises :class:`ScanRejected` when the scan cannot be acted on, with a
+        message written for the passenger rather than for a log file.
+        """
+        try:
+            boarding_pass = parse_boarding_pass(scan)
+        except BoardingPassError as exc:
+            raise ScanRejected(
+                str(exc), "That did not scan as a boarding pass. Please try again."
+            ) from exc
+
+        designator = boarding_pass.flight_designator
+        digest = boarding_pass.pnr_digest(self._scan_secret)
+
+        # Somebody scanning twice is impatient, not a second passenger.
+        for existing in self.requests:
+            if existing.pnr_digest == digest and existing.active:
+                self.log("rescan", f"{designator} already has {existing.id}")
+                return existing
+
+        if self.board is None:
+            raise ScanRejected(
+                "no flight board configured",
+                "The flight information system is unavailable. Please ask a member of staff.",
+            )
+
+        flight = self.board.get(designator)
+        if flight is None:
+            raise ScanRejected(
+                f"{designator} is not on the board",
+                f"We cannot find flight {designator} today. Please check with your airline.",
+            )
+        if not flight.status.accepts_passengers:
+            raise ScanRejected(
+                f"{designator} is {flight.status.value}",
+                f"Flight {designator} has already {flight.status.value}. "
+                "Please speak to a member of staff.",
+            )
+
+        destination, awaiting = flight.gate, False
+        if destination is None:
+            # The gate is genuinely not known yet. This is common for exactly the
+            # passengers who need a chair, because they are told to arrive early.
+            # Take them somewhere comfortable and come back for them.
+            if self.holding_area is None:
+                raise ScanRejected(
+                    f"{designator} has no gate and no holding area is configured",
+                    f"Flight {designator} has no gate yet. Please ask a member of staff.",
+                )
+            destination, awaiting = self.holding_area, True
+
+        request = self.request_assistance(
+            passenger=boarding_pass.display_name,
+            flight=designator,
+            pickup=pickup,
+            gate=destination,
+        )
+        request.pnr_digest = digest
+        request.awaiting_gate = awaiting
+        self.log(
+            "scanned",
+            f"{boarding_pass.display_name} on {designator}"
+            + (" — no gate yet, routing to the lounge" if awaiting else f" to {destination}"),
+        )
+        return request
+
+    def _on_gate_assigned(self, flight: str, gate: str) -> None:
+        """The flight board told us a gate was set or moved."""
+        self.gate_changed(flight, gate)
+
     def gate_changed(self, flight: str, new_gate: str) -> None:
         """The airline moved a flight. Chairs already under way are redirected.
 
@@ -248,9 +367,32 @@ class Fleet:
         handle badly, and it is the most convincing thing the system does.
         """
         self.log("gate_change", f"{flight} now boarding at {new_gate}")
-        for request in self.requests:
-            if request.flight != flight or request.delivered_s is not None:
+        for request in list(self.requests):
+            if request.flight != flight:
                 continue
+
+            if not request.active:
+                # Already dropped somewhere. If that somewhere was the holding
+                # area, because no gate existed when they scanned, they are still
+                # our responsibility: send a chair for the second leg.
+                if request.awaiting_gate:
+                    request.awaiting_gate = False
+                    follow_on = self.request_assistance(
+                        passenger=request.passenger,
+                        flight=flight,
+                        pickup=request.gate,
+                        gate=new_gate,
+                    )
+                    follow_on.pnr_digest = request.pnr_digest
+                    follow_on.follow_on_of = request.id
+                    self.log(
+                        "gate_announced",
+                        f"{request.passenger} waiting at {request.gate}, "
+                        f"sending a chair on to {new_gate}",
+                    )
+                continue
+
+            request.awaiting_gate = False
             old_gate, request.gate = request.gate, new_gate
             chair = self.chairs.get(request.assigned_to) if request.assigned_to else None
             if chair is not None and chair.state is ChairState.CARRYING:

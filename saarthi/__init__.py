@@ -18,21 +18,29 @@ the airports that have the longest wheelchair queues and the smallest budgets.
     fleet.run(duration_s=900)
 """
 
-from .fleet import Chair, ChairState, Event, Fleet, Request, SegmentReservations
+from .boardingpass import BoardingPass, BoardingPassError
+from .fleet import Chair, ChairState, Event, Fleet, Request, ScanRejected, SegmentReservations
+from .flights import Flight, FlightBoard, FlightStatus
 from .graph import Guide, Node, NodeKind, Segment, TerminalMap
 from .router import Route, plan
 from .terminal import build_example_terminal
 
 __all__ = [
+    "BoardingPass",
+    "BoardingPassError",
     "Chair",
     "ChairState",
     "Event",
     "Fleet",
+    "Flight",
+    "FlightBoard",
+    "FlightStatus",
     "Guide",
     "Node",
     "NodeKind",
     "Request",
     "Route",
+    "ScanRejected",
     "Segment",
     "SegmentReservations",
     "TerminalMap",

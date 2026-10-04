@@ -8,16 +8,23 @@ divided by what it costs to build.
 
 ## Build these before applying
 
-**1. Boarding-pass scan sets the destination.**
-A barcode reader on the armrest reads the PNR off the boarding pass, the
-dispatcher looks up the flight, and the chair already knows the gate. Nobody
-types anything and nobody has to read an English screen. This is a day of work
-and it is the single most convincing fifteen seconds of any demo.
+Items 1 and 2 are **built** — see `saarthi/boardingpass.py` and `saarthi/flights.py`.
 
-**2. Live gate changes from the flight feed.**
-Already modelled — `Fleet.gate_changed` diverts a chair mid-journey at the next
-junction. What is missing is the real feed from the airport's flight information
-system. This is the capability that a human pushing a wheelchair genuinely cannot
+**1. Boarding-pass scan sets the destination. — BUILT**
+A barcode reader reads the IATA BCBP header off the pass, the dispatcher looks up
+the flight on the board, and a chair is sent. Nobody types anything and nobody has
+to read an English screen.
+
+What remains is hardware: a 2D imager that will read both a printed PDF417 and an
+Aztec code off a phone screen behind glass, which is a different and harder optical
+problem than reading paper. Budget for a real imaging scanner, not a laser one —
+a laser barcode scanner cannot read either symbology.
+
+**2. Live gate changes from the flight feed. — BUILT against a stand-in**
+`FlightBoard` carries gate assignments and notifies the dispatcher, which diverts
+a carrying chair at the next junction, and sends a second chair for a passenger
+already parked in the lounge. What is missing is the real feed from the airport's
+operational database in place of the in-memory stand-in. This is the capability that a human pushing a wheelchair genuinely cannot
 match: they are committed once they set off, and nobody tells them the gate moved.
 Lead the application with this, not with autonomy.
 
