@@ -18,18 +18,32 @@ the airports that have the longest wheelchair queues and the smallest budgets.
     fleet.run(duration_s=900)
 """
 
+from .announce import announce, say
 from .boardingpass import BoardingPass, BoardingPassError
-from .fleet import Chair, ChairState, Event, Fleet, Request, ScanRejected, SegmentReservations
+from .dashboard import render_dashboard
+from .fleet import (
+    CallPoint,
+    Chair,
+    ChairState,
+    Event,
+    Fleet,
+    Request,
+    ScanRejected,
+    SegmentReservations,
+)
 from .flights import Flight, FlightBoard, FlightStatus
 from .graph import Guide, Node, NodeKind, Segment, TerminalMap
+from .prepositioning import DemandPoint, StagingMove, forecast_demand, plan_staging
 from .router import Route, plan
 from .terminal import build_example_terminal
 
 __all__ = [
     "BoardingPass",
     "BoardingPassError",
+    "CallPoint",
     "Chair",
     "ChairState",
+    "DemandPoint",
     "Event",
     "Fleet",
     "Flight",
@@ -43,7 +57,13 @@ __all__ = [
     "ScanRejected",
     "Segment",
     "SegmentReservations",
+    "StagingMove",
     "TerminalMap",
+    "announce",
     "build_example_terminal",
+    "forecast_demand",
     "plan",
+    "plan_staging",
+    "render_dashboard",
+    "say",
 ]

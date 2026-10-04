@@ -40,9 +40,12 @@ unit before putting any multiple in writing.
 
 | | |
 |---|---|
+| `saarthi/announce.py` | Everything the chair says, in Konkani, Marathi, Hindi and English |
 | `saarthi/boardingpass.py` | IATA BCBP barcode parser. The passenger scans; nothing else is asked of them |
+| `saarthi/dashboard.py` | The shift report an operator is held to: waits, utilisation, call-outs |
 | `saarthi/flights.py` | The flight board — where the gate comes from, and how we hear that it moved |
 | `saarthi/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
+| `saarthi/prepositioning.py` | Moving idle chairs towards demand before it arrives, from the flight schedule |
 | `saarthi/router.py` | A* with time as the cost and a turn penalty, so routes are quick and comfortable rather than merely short |
 | `saarthi/fleet.py` | Dispatch, battery reserve, corridor reservations, mid-journey rerouting, unaccompanied return to charge |
 | `saarthi/terminal.py` | A worked example terminal |
@@ -57,13 +60,19 @@ unit before putting any multiple in writing.
 
 ```sh
 python3 -m sim.demo     # a scripted shift, narrated
-python3 -m pytest -q    # 68 tests
+python3 -m pytest -q    # 120 tests
 ```
+
+It writes `shift.html` as well — the operator's view of the shift, which is the
+artefact that answers an airport's real question. Not "does the chair work" but
+"how would I run thirty of these and evidence that they met their obligations".
 
 The demo covers the things that are hard to show with a model chair on a table:
 a passenger who scans and says nothing else, a gate that is not announced yet, a
-gate that moves mid-journey, two chairs contending for a single-file corridor, a
-corridor closed under a moving chair, and chairs returning themselves to charge.
+gate that moves mid-journey, a family travelling as one caravan, a call button at
+a gate, chairs moving towards the kerb before a rush, two chairs contending for a
+single-file corridor, a corridor closed under a moving chair, and chairs
+returning themselves to charge.
 
 ```
 [05:00] fleet    gate_change        AI612 now boarding at g2
@@ -84,6 +93,19 @@ before a gate exists, gets taken to the lounge, and a chair comes back for them
 the moment the gate is announced. Nobody has to remember they are sitting there.
 A human pushing a wheelchair cannot do this: they are committed the moment they
 set off, and nobody tells them the gate moved.
+
+## Four languages, enforced
+
+Every message the chair shows or speaks is in `saarthi/announce.py` in Konkani,
+Marathi, Hindi and English, and the test suite fails the build if a message is
+added in English alone, if a translation drops a placeholder, or if the Konkani
+and Marathi copy is identical. Screens show the local languages first and English
+last, which is the opposite of the usual airport default and deliberate.
+
+**The translations are a working draft and need a native speaker before anybody
+sees them.** They exist so the plumbing can be built and tested. Budget an
+afternoon with a speaker of each; it is the cheapest quality improvement
+available to this project.
 
 ## Design split
 

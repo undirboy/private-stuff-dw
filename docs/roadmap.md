@@ -8,7 +8,7 @@ divided by what it costs to build.
 
 ## Build these before applying
 
-Items 1 and 2 are **built** — see `saarthi/boardingpass.py` and `saarthi/flights.py`.
+All four are **built**. What remains on each is hardware, a real feed, or a native speaker — noted inline.
 
 **1. Boarding-pass scan sets the destination. — BUILT**
 A barcode reader reads the IATA BCBP header off the pass, the dispatcher looks up
@@ -28,13 +28,13 @@ operational database in place of the in-memory stand-in. This is the capability 
 match: they are committed once they set off, and nobody tells them the gate moved.
 Lead the application with this, not with autonomy.
 
-**3. Marathi, Konkani, Hindi and English on screen and in voice.**
+**3. Marathi, Konkani, Hindi and English on screen and in voice. — BUILT, needs a native speaker**
 Cheap, and it maps directly onto the jurisdictions the challenge covers. A
 passenger who needs a wheelchair is disproportionately likely to be elderly and
 not an English speaker. This is not a garnish; it is most of why the current
 service fails people.
 
-**4. A call button at gates, lounges and accessible toilets.**
+**4. A call button at gates, lounges and accessible toilets. — BUILT**
 Today, the passenger dropped at a gate is stranded until somebody remembers them.
 A button that summons the nearest free chair closes the loop and makes this a
 service rather than a one-way ride. The dispatcher already handles the request
@@ -42,19 +42,21 @@ queue — this is a physical button and an endpoint.
 
 ## Build these for the December exhibition
 
-**5. A fleet dashboard.**
+Items 5 and 6 are **built**; 7 is built as a dispatcher behaviour.
+
+**5. A fleet dashboard. — BUILT**
 Chairs on a map, battery, current job, waiting passengers, wait times. It turns
 the pitch from "here is a robot" into "here is how you would run thirty of
 these", which is the question an airport operator actually has. The data is all
 there in `Fleet.summary()` and the event log.
 
-**6. Predictive pre-positioning.**
+**6. Predictive pre-positioning. — BUILT**
 Idle chairs drift to where demand is about to appear, from the flight schedule
 and the historic rate of assistance requests per flight. This is real algorithmic
 content, it is honest machine learning rather than decorative machine learning,
 and it attacks the number that matters — the wait.
 
-**7. Caravan mode.**
+**7. Caravan mode. — BUILT**
 Chairs follow one another in a train. A family travels together, and one
 attendant can shepherd three chairs instead of pushing one. The reservation logic
 needs a notion of a convoy holding a corridor as a unit.
@@ -67,6 +69,12 @@ Trivial, and the first thing an actual passenger will ask for.
 **9. Passing bays and one-way routing in the survey.**
 The deadlock escalation in `fleet.py` is an honest mitigation, not a fix. The fix
 is in the floor plan. See `docs/safety.md`.
+
+Building caravans sharpened this. A caravan passes a single-file corridor as one
+claim, which is the win — but as its members disperse at a single-file gate spur,
+one chair leaving collides with its siblings still arriving, and they queue. A
+passing bay at each gate spur removes it. This is a floor-plan decision that the
+simulation can now price before any tape is laid.
 
 **10. Service-level reporting.**
 Wait times, journeys completed, SLA breaches, exportable. This is what gets the

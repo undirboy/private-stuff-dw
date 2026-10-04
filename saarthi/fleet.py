@@ -56,6 +56,8 @@ class ChairState(Enum):
     BOARDING = "boarding"
     CARRYING = "carrying"
     ALIGHTING = "alighting"
+    AWAITING_DESTINATION = "awaiting_destination"
+    STAGING = "staging"
     RETURNING = "returning"
     BLOCKED = "blocked"
     ESTOP = "estop"
@@ -63,7 +65,14 @@ class ChairState(Enum):
 
 #: States in which a passenger is aboard. Used wherever the rules have to be
 #: stricter because a person would be the one thrown about.
-OCCUPIED_STATES = frozenset({ChairState.BOARDING, ChairState.CARRYING, ChairState.ALIGHTING})
+OCCUPIED_STATES = frozenset(
+    {
+        ChairState.BOARDING,
+        ChairState.CARRYING,
+        ChairState.ALIGHTING,
+        ChairState.AWAITING_DESTINATION,
+    }
+)
 
 
 @dataclass
@@ -74,7 +83,9 @@ class Request:
     passenger: str
     flight: str
     pickup: str
-    gate: str
+    #: Where the passenger is going. None when a call button was pressed and
+    #: nobody has said where yet — the chair collects them first and asks after.
+    gate: str | None
     created_s: float
     assigned_to: str | None = None
     picked_up_s: float | None = None
@@ -87,6 +98,11 @@ class Request:
     pnr_digest: str | None = None
     #: Set on the second leg of a journey that began before the gate was known.
     follow_on_of: str | None = None
+    #: Raised by a button on a wall rather than by a scan at the kerb.
+    from_call_point: bool = False
+    #: Shared by passengers travelling together, who are dispatched as one
+    #: caravan rather than as unrelated individuals.
+    group_id: str | None = None
 
     @property
     def waiting(self) -> bool:
@@ -112,6 +128,24 @@ class Event:
         mins, secs = divmod(int(self.t), 60)
         who = self.chair or "fleet"
         return f"[{mins:02d}:{secs:02d}] {who:<8} {self.kind:<18} {self.detail}"
+
+
+@dataclass(frozen=True)
+class CallPoint:
+    """A button on a wall that summons a chair.
+
+    The gap this closes: today a passenger delivered to a gate is stranded there
+    until somebody remembers them. A button at the gate, the lounge and the
+    accessible toilet turns a one-way ride into a service.
+
+    ``default_destination`` is for the places where the answer is always the
+    same — an arrivals gate button means "take me to the exit" — and is left
+    None where it is not, in which case the chair comes and then asks.
+    """
+
+    node: str
+    label: str = ""
+    default_destination: str | None = None
 
 
 class ScanRejected(Exception):
@@ -187,6 +221,10 @@ class Chair:
     held_segment: str | None = None
 
     request: Request | None = None
+    #: Caravan this chair is travelling in, if any. Members share a reservation
+    #: identity, so they occupy a corridor as one unit instead of queuing for it
+    #: one at a time.
+    caravan: str | None = None
     dwell_remaining_s: float = 0.0
     #: How long this chair has been unable to move. Accumulates across replans,
     #: and is only cleared when the chair actually enters a corridor — otherwise a
@@ -200,6 +238,17 @@ class Chair:
     pending_goal: str | None = None
 
     @property
+    def reservation_id(self) -> str:
+        """Who holds a corridor on this chair's behalf.
+
+        A caravan claims corridors as a unit: its members travel nose to tail in
+        one lane, so they must not block each other, and together they fill the
+        lane exactly once. Keeping the physical spacing between them is the
+        on-board follower's job, not the dispatcher's.
+        """
+        return self.caravan or self.id
+
+    @property
     def battery_fraction(self) -> float:
         return self.battery_wh / BATTERY_WH
 
@@ -209,10 +258,14 @@ class Chair:
 
     @property
     def available(self) -> bool:
-        return (
-            self.state in (ChairState.IDLE, ChairState.CHARGING)
-            and self.battery_fraction > BATTERY_RESERVE_FRACTION
-        )
+        if self.battery_fraction <= BATTERY_RESERVE_FRACTION:
+            return False
+        if self.state in (ChairState.IDLE, ChairState.CHARGING):
+            return True
+        # A chair on its way to a staging point is still free work, but it may
+        # only be redirected while it is sitting at a node: re-planning from
+        # part way along a corridor would teleport it back to the last junction.
+        return self.state is ChairState.STAGING and self.progress_m == 0.0
 
     @property
     def current_segment(self) -> str | None:
@@ -247,9 +300,16 @@ class Fleet:
         self.blocked_segments: set[str] = set()
         self.reservations = SegmentReservations(tmap)
         self._request_seq = 0
+        self._group_seq = 0
+
+        #: Every state change, as (time, chair id, state). Enough to draw a shift
+        #: on a timeline, and small enough to keep for a whole day.
+        self.history: list[tuple[float, str, ChairState]] = []
+        self._last_states: dict[str, ChairState] = {}
 
         #: Where a passenger goes when their gate has not been announced yet.
         self.holding_area = holding_area
+        self.call_points: dict[str, CallPoint] = {}
         self._scan_secret = scan_secret
         self.board = board
         if board is not None:
@@ -262,6 +322,7 @@ class Fleet:
             raise ValueError(f"{dock} is not a dock")
         chair = Chair(id=chair_id, node=dock, home_dock=dock, **kwargs)
         self.chairs[chair_id] = chair
+        self._record_state(chair)
         return chair
 
     def log(self, kind: str, detail: str, chair: str | None = None) -> None:
@@ -281,8 +342,90 @@ class Fleet:
             created_s=self.now,
         )
         self.requests.append(request)
-        self.log("request", f"{request.id} {passenger} {flight} {pickup} -> {gate}")
+        self.log(
+            "request",
+            f"{request.id} {passenger} {flight or '—'} {pickup} -> "
+            f"{gate if gate is not None else '(to be set)'}",
+        )
         return request
+
+    def request_group(
+        self, passengers: list[str], flight: str, pickup: str, gate: str
+    ) -> list[Request]:
+        """A family, or anyone travelling together, asks for chairs.
+
+        They are dispatched as one caravan: the chairs move together, share the
+        corridors they claim rather than queuing for them one at a time, and
+        arrive together. One attendant can shepherd the group instead of making
+        three separate trips, and nobody is separated from the people they are
+        travelling with.
+        """
+        if not passengers:
+            raise ValueError("a group needs at least one passenger")
+
+        self._group_seq += 1
+        group_id = f"G{self._group_seq:03d}"
+        requests = [
+            self.request_assistance(passenger=p, flight=flight, pickup=pickup, gate=gate)
+            for p in passengers
+        ]
+        for request in requests:
+            request.group_id = group_id
+        self.log("group", f"{group_id}: {len(requests)} travelling together to {gate}")
+        return requests
+
+    def register_call_point(
+        self, node: str, *, label: str = "", default_destination: str | None = None
+    ) -> CallPoint:
+        """Put a button on the wall at this node."""
+        for name in (node, default_destination):
+            if name is not None and name not in self.tmap.nodes:
+                raise ValueError(f"unknown node {name}")
+        call_point = CallPoint(node=node, label=label, default_destination=default_destination)
+        self.call_points[node] = call_point
+        return call_point
+
+    def press_call_button(self, node: str, passenger: str = "Passenger") -> Request:
+        """Somebody pressed the button. Send the nearest free chair.
+
+        Where the button has no fixed destination, the request is raised with
+        none: the chair goes, collects them, and waits to be told. It never
+        guesses where somebody wants to go.
+        """
+        call_point = self.call_points.get(node)
+        if call_point is None:
+            raise ValueError(f"no call point at {node}")
+
+        # One press is one chair. A second press while a chair is already coming
+        # is somebody impatient, not somebody else.
+        for existing in self.requests:
+            if existing.pickup == node and existing.active and existing.from_call_point:
+                self.log("call_repeat", f"{node} already has {existing.id}")
+                return existing
+
+        request = self.request_assistance(
+            passenger=passenger,
+            flight="",
+            pickup=node,
+            gate=call_point.default_destination,
+        )
+        request.from_call_point = True
+        self.log("call_button", f"{call_point.label or node} pressed")
+        return request
+
+    def set_destination(self, request: Request, node: str) -> None:
+        """Tell a waiting chair where its passenger is going.
+
+        Called by an attendant, or by the touchscreen. A boarding pass scan does
+        the same thing without anybody having to speak a shared language.
+        """
+        if node not in self.tmap.nodes:
+            raise ValueError(f"unknown node {node}")
+        request.gate = node
+
+        chair = self.chairs.get(request.assigned_to) if request.assigned_to else None
+        if chair is not None and chair.state is ChairState.AWAITING_DESTINATION:
+            self._depart(chair)
 
     def scan_boarding_pass(self, scan: str, pickup: str) -> Request:
         """A passenger holds their boarding pass up to the reader.
@@ -341,12 +484,21 @@ class Fleet:
                 )
             destination, awaiting = self.holding_area, True
 
-        request = self.request_assistance(
-            passenger=boarding_pass.display_name,
-            flight=designator,
-            pickup=pickup,
-            gate=destination,
-        )
+        # If a chair is already here with this passenger aboard, waiting to be
+        # told where to go, the scan is the answer to that question rather than a
+        # fresh call for a chair.
+        request = self._pending_destination_at(pickup)
+        if request is not None:
+            request.passenger = boarding_pass.display_name
+            request.flight = designator
+            self.set_destination(request, destination)
+        else:
+            request = self.request_assistance(
+                passenger=boarding_pass.display_name,
+                flight=designator,
+                pickup=pickup,
+                gate=destination,
+            )
         request.pnr_digest = digest
         request.awaiting_gate = awaiting
         self.log(
@@ -355,6 +507,17 @@ class Fleet:
             + (" — no gate yet, routing to the lounge" if awaiting else f" to {destination}"),
         )
         return request
+
+    def _pending_destination_at(self, node: str) -> Request | None:
+        """A passenger sitting in a chair at this node, waiting to say where to."""
+        for chair in self.chairs.values():
+            if (
+                chair.state is ChairState.AWAITING_DESTINATION
+                and chair.node == node
+                and chair.request is not None
+            ):
+                return chair.request
+        return None
 
     def _on_gate_assigned(self, flight: str, gate: str) -> None:
         """The flight board told us a gate was set or moved."""
@@ -419,13 +582,24 @@ class Fleet:
         self.log("cleared", f"{segment_id} back in service")
 
     def emergency_stop(self, chair_id: str, reason: str) -> None:
-        """Latch a chair stopped. Only an attendant clears it."""
+        """Latch a chair stopped. Only an attendant clears it.
+
+        A caravan stops as a whole. Its members travel nose to tail, so stopping
+        the front one and letting the rest drive on is exactly the collision the
+        emergency stop exists to prevent.
+        """
         chair = self.chairs[chair_id]
-        chair.state = ChairState.ESTOP
-        chair.route = None
-        self.reservations.release_all(chair_id)
-        chair.held_segment = None
-        self.log("estop", reason, chair_id)
+        group = [chair]
+        if chair.caravan is not None:
+            group = [c for c in self.chairs.values() if c.caravan == chair.caravan]
+
+        for member in group:
+            member.state = ChairState.ESTOP
+            member.route = None
+            member.held_segment = None
+            self.log("estop", reason if member is chair else "caravan sibling stopped", member.id)
+
+        self.reservations.release_all(chair.reservation_id)
 
     # -- the clock -------------------------------------------------------
 
@@ -434,6 +608,13 @@ class Fleet:
         self._dispatch()
         for chair in self.chairs.values():
             self._advance(chair, dt_s)
+            self._record_state(chair)
+
+    def _record_state(self, chair: Chair) -> None:
+        """Note a state change. Sampling only on change keeps the log small."""
+        if self._last_states.get(chair.id) is not chair.state:
+            self._last_states[chair.id] = chair.state
+            self.history.append((self.now, chair.id, chair.state))
 
     def run(self, duration_s: float, dt_s: float = 1.0) -> None:
         end = self.now + duration_s
@@ -444,39 +625,92 @@ class Fleet:
 
     def _dispatch(self) -> None:
         """Give every waiting passenger the chair that can reach them soonest."""
+        handled: set[str] = set()
         for request in self.requests:
             if not request.waiting:
                 continue
+            if request.group_id is not None:
+                if request.group_id not in handled:
+                    handled.add(request.group_id)
+                    self._dispatch_group(request.group_id)
+            else:
+                self._dispatch_one(request)
 
-            best: tuple[float, Chair, Route] | None = None
-            for chair in self.chairs.values():
-                if not chair.available:
-                    continue
-                approach = self._plan_for(chair, chair.node, request.pickup)
-                if approach is None:
-                    continue
-                journey = self._plan_for(chair, request.pickup, request.gate)
-                if journey is None:
-                    continue
-                if not self._has_battery_for(chair, approach, journey):
-                    continue
-                if best is None or approach.duration_s < best[0]:
-                    best = (approach.duration_s, chair, approach)
-
-            if best is None:
+    def _candidates_for(self, request: Request) -> list[tuple[float, Chair, Route]]:
+        """Every chair that could take this job, soonest first."""
+        candidates: list[tuple[float, Chair, Route]] = []
+        for chair in self.chairs.values():
+            if not chair.available:
                 continue
+            approach = self._plan_for(chair, chair.node, request.pickup)
+            if approach is None:
+                continue
+            journey = self._worst_case_journey(chair, request)
+            if journey is None:
+                continue
+            if not self._has_battery_for(chair, approach, journey):
+                continue
+            candidates.append((approach.duration_s, chair, approach))
+        candidates.sort(key=lambda item: (item[0], item[1].id))
+        return candidates
 
-            _, chair, approach = best
-            request.assigned_to = chair.id
-            chair.request = request
-            chair.state = ChairState.TO_PICKUP
-            self._set_route(chair, approach)
-            self.log(
-                "assigned",
-                f"{request.id} {request.passenger} -> pickup at {request.pickup} "
-                f"(eta {approach.duration_s:.0f}s)",
-                chair.id,
-            )
+    def _assign(self, request: Request, chair: Chair, approach: Route, caravan: str | None) -> None:
+        request.assigned_to = chair.id
+        chair.request = request
+        chair.caravan = caravan
+        chair.state = ChairState.TO_PICKUP
+        self._set_route(chair, approach)
+        self.log(
+            "assigned",
+            f"{request.id} {request.passenger} -> pickup at {request.pickup} "
+            f"(eta {approach.duration_s:.0f}s)",
+            chair.id,
+        )
+
+    def _dispatch_one(self, request: Request) -> None:
+        candidates = self._candidates_for(request)
+        if candidates:
+            _, chair, approach = candidates[0]
+            self._assign(request, chair, approach, caravan=None)
+
+    def _dispatch_group(self, group_id: str) -> None:
+        """Dispatch a caravan, or dispatch nothing.
+
+        A group is never split. Sending two chairs now and a third in ten minutes
+        separates a family and gives the airport three problems instead of one,
+        so the group waits until the whole caravan can go.
+        """
+        members = [r for r in self.requests if r.group_id == group_id and r.waiting]
+        if not members:
+            return
+
+        candidates = self._candidates_for(members[0])
+        if len(candidates) < len(members):
+            return
+
+        for request, (_, chair, approach) in zip(members, candidates):
+            self._assign(request, chair, approach, caravan=group_id)
+        self.log("caravan", f"{group_id}: {len(members)} chairs travelling as one")
+
+    def _worst_case_journey(self, chair: Chair, request: Request) -> Route | None:
+        """The onward journey, for sizing the battery reserve.
+
+        A call button raises a request with no destination yet, so there is
+        nothing to plan to. Reserve for the furthest gate on the map instead: a
+        chair that sets off and then cannot complete the journey it is given has
+        stranded somebody, which is far worse than a chair that declined the job.
+        """
+        if request.gate is not None:
+            return self._plan_for(chair, request.pickup, request.gate)
+
+        furthest: Route | None = None
+        for gate in self.tmap.nodes_of_kind(NodeKind.GATE):
+            candidate = self._plan_for(chair, request.pickup, gate.id)
+            if candidate is None:
+                continue
+            if furthest is None or candidate.distance_m > furthest.distance_m:
+                furthest = candidate
+        return furthest
 
     def _has_battery_for(self, chair: Chair, approach: Route, journey: Route) -> bool:
         """Can this chair do the job and still get home to a dock?"""
@@ -489,6 +723,38 @@ class Fleet:
     def _nearest_dock(self, from_node: str) -> str:
         docks = self.tmap.nodes_of_kind(NodeKind.DOCK)
         return min(docks, key=lambda d: self.tmap.distance(from_node, d.id)).id
+
+    def travel_time(self, start: str, goal: str) -> float | None:
+        """Seconds for an unencumbered chair to get from one node to another.
+
+        Used for planning where chairs should wait; takes closed corridors into
+        account but not corridors another chair happens to be in right now.
+        """
+        route = plan(self.tmap, start, goal, blocked_segments=frozenset(self.blocked_segments))
+        return None if route is None else route.duration_s
+
+    def send_to_staging(self, chair_id: str, node: str) -> bool:
+        """Park an idle chair somewhere more useful. Returns False if it cannot go."""
+        chair = self.chairs[chair_id]
+        if not chair.available:
+            return False
+        if chair.node == node:
+            chair.state = ChairState.IDLE
+            return True
+
+        route = self._plan_for(chair, chair.node, node)
+        if route is None:
+            self.log("unroutable", f"cannot stage at {node}", chair_id)
+            return False
+
+        chair.state = ChairState.STAGING
+        self._set_route(chair, route)
+        self.log("staging", f"moving to {node} to wait ({route.duration_s:.0f}s)", chair_id)
+        return True
+
+    def apply_staging(self, moves) -> int:
+        """Carry out a set of recommendations from :mod:`saarthi.prepositioning`."""
+        return sum(1 for move in moves if self.send_to_staging(move.chair_id, move.to_node))
 
     def _plan_for(self, chair: Chair, start: str, goal: str) -> Route | None:
         """Plan, honouring closed corridors and this chair's own speed cap."""
@@ -530,7 +796,18 @@ class Fleet:
                 self._dwell_finished(chair)
             return
 
-        if chair.state is ChairState.IDLE or chair.route is None:
+        if chair.state is ChairState.IDLE and chair.route is None:
+            if (
+                chair.battery_fraction <= BATTERY_RESERVE_FRACTION
+                and self.tmap.nodes[chair.node].kind is not NodeKind.DOCK
+            ):
+                # Staged away from a charger and running low. Go home while there
+                # is still enough charge to get there.
+                self.log("low_battery", f"{chair.battery_fraction:.0%}, returning", chair.id)
+                self._send_home(chair)
+            return
+
+        if chair.route is None:
             return
 
         if chair.leg >= len(chair.route.segments):
@@ -541,11 +818,13 @@ class Fleet:
 
         # Claim the corridor before entering it.
         if chair.held_segment != segment.id:
-            if not self.reservations.acquire(segment.id, chair.id):
+            if not self.reservations.acquire(segment.id, chair.reservation_id):
                 self._wait_for_corridor(chair, segment.id, dt_s)
                 return
-            if chair.held_segment is not None:
-                self.reservations.release(chair.held_segment, chair.id)
+            if chair.held_segment is not None and not self._caravan_still_in(
+                chair, chair.held_segment
+            ):
+                self.reservations.release(chair.held_segment, chair.reservation_id)
             chair.held_segment = segment.id
             if chair.state is ChairState.BLOCKED:
                 chair.state = self._moving_state(chair)
@@ -569,10 +848,36 @@ class Fleet:
             chair.leg += 1
             self._at_node(chair)
 
+    def _caravan_still_in(self, chair: Chair, segment_id: str) -> bool:
+        """Would releasing this corridor drop it while a caravan sibling is in it?"""
+        if chair.caravan is None:
+            return False
+        return any(
+            other is not chair
+            and other.caravan == chair.caravan
+            and other.held_segment == segment_id
+            for other in self.chairs.values()
+        )
+
     def _moving_state(self, chair: Chair) -> ChairState:
-        if chair.request is None:
-            return ChairState.RETURNING
-        return ChairState.CARRYING if chair.request.picked_up_s is not None else ChairState.TO_PICKUP
+        """What a chair goes back to after being held up.
+
+        An empty chair is told apart by where it is heading: towards a dock it is
+        going home, anywhere else it is moving into position. Guessing "going
+        home" for every empty chair is how a staging chair ends up reporting
+        itself docked at a junction.
+        """
+        if chair.request is not None:
+            return (
+                ChairState.CARRYING
+                if chair.request.picked_up_s is not None
+                else ChairState.TO_PICKUP
+            )
+        if chair.route is not None:
+            destination = self.tmap.nodes[chair.route.destination]
+            if destination.kind is not NodeKind.DOCK:
+                return ChairState.STAGING
+        return ChairState.RETURNING
 
     def _wait_for_corridor(self, chair: Chair, segment_id: str, dt_s: float) -> None:
         """Another chair holds the corridor we want. Wait, then look for a way round."""
@@ -591,7 +896,7 @@ class Fleet:
             unavailable = {
                 sid
                 for sid in self.tmap.segments
-                if not self.reservations.can_enter(sid, chair.id)
+                if not self.reservations.can_enter(sid, chair.reservation_id)
             }
             detour = plan(
                 self.tmap,
@@ -636,7 +941,8 @@ class Fleet:
 
     def _arrived(self, chair: Chair) -> None:
         if chair.held_segment is not None:
-            self.reservations.release(chair.held_segment, chair.id)
+            if not self._caravan_still_in(chair, chair.held_segment):
+                self.reservations.release(chair.held_segment, chair.reservation_id)
             chair.held_segment = None
         chair.route = None
 
@@ -658,6 +964,10 @@ class Fleet:
                     chair.id,
                 )
 
+        elif chair.state is ChairState.STAGING:
+            chair.state = ChairState.IDLE
+            self.log("staged", f"waiting at {chair.node}", chair.id)
+
         elif chair.state is ChairState.RETURNING:
             chair.state = ChairState.CHARGING
             self.log("docked", f"on charge at {chair.node} ({chair.battery_fraction:.0%})", chair.id)
@@ -667,23 +977,38 @@ class Fleet:
 
         if chair.state is ChairState.BOARDING and chair.request is not None:
             chair.request.picked_up_s = self.now
-            onward = self._plan_for(chair, chair.node, chair.request.gate)
-            if onward is None:
-                self.log("unroutable", f"no way to {chair.request.gate}", chair.id)
-                chair.state = ChairState.IDLE
+            if chair.request.gate is None:
+                # A call button summoned this chair and nobody has said where to.
+                # Wait, with the passenger aboard, until a scan or an attendant
+                # says. Never guess a destination for somebody.
+                chair.state = ChairState.AWAITING_DESTINATION
+                self.log("awaiting_destination", f"aboard at {chair.node}", chair.id)
                 return
-            chair.state = ChairState.CARRYING
-            self._set_route(chair, onward)
-            self.log(
-                "departing",
-                f"{chair.request.passenger} to {chair.request.gate} "
-                f"({onward.distance_m:.0f} m, eta {onward.duration_s:.0f}s)",
-                chair.id,
-            )
+            self._depart(chair)
 
         elif chair.state is ChairState.ALIGHTING:
             chair.request = None
+            chair.caravan = None
             self._send_home(chair)
+
+    def _depart(self, chair: Chair) -> None:
+        """Set off for the destination now that one is known."""
+        request = chair.request
+        if request is None or request.gate is None:
+            return
+        onward = self._plan_for(chair, chair.node, request.gate)
+        if onward is None:
+            self.log("unroutable", f"no way to {request.gate}", chair.id)
+            chair.state = ChairState.AWAITING_DESTINATION
+            return
+        chair.state = ChairState.CARRYING
+        self._set_route(chair, onward)
+        self.log(
+            "departing",
+            f"{request.passenger} to {request.gate} "
+            f"({onward.distance_m:.0f} m, eta {onward.duration_s:.0f}s)",
+            chair.id,
+        )
 
     def _send_home(self, chair: Chair) -> None:
         """Put the chair back on charge by itself. Nobody comes to fetch it."""

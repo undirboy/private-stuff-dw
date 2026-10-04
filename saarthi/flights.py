@@ -90,6 +90,10 @@ class FlightBoard:
     def get(self, designator: str) -> Flight | None:
         return self._flights.get(designator.upper())
 
+    def flights(self) -> list[Flight]:
+        """Everything on the board, for forecasting."""
+        return list(self._flights.values())
+
     def assign_gate(self, designator: str, gate: str) -> None:
         """The airport has assigned, or moved, a gate.
 
