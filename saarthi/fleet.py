@@ -38,6 +38,13 @@ CHARGE_W = 300.0
 #: Charge at which a docked chair is announced as ready for a full day's work.
 READY_FRACTION = 0.95
 
+#: A gate closes before the aircraft departs, and it is the closing time a
+#: passenger actually has to beat.
+GATE_CLOSES_BEFORE_DEPARTURE_S = 20 * 60
+#: Past this, a waiting passenger goes to the front of the queue whatever their
+#: flight is doing. No passenger is left behind by a rule meant to help them.
+MAX_WAIT_BEFORE_PRIORITY_S = 15 * 60
+
 #: Seconds spent stationary while the passenger gets on, with the attendant.
 BOARDING_DWELL_S = 45.0
 #: Seconds spent stationary at the gate while the passenger gets off.
@@ -623,18 +630,85 @@ class Fleet:
 
     # -- dispatch --------------------------------------------------------
 
+    def urgency(self, request: Request) -> tuple[int, float, float]:
+        """Sort key deciding who gets the next free chair. Lower is sooner.
+
+        First come, first served is the obvious rule and it is the wrong one. Two
+        people ask at the same moment; one is flying in twenty minutes and one in
+        three hours. Serving them in the order they arrived makes the first miss
+        their flight for no reason, and the airport carries the cost.
+
+        So the queue is ordered by how close each passenger is to their gate
+        closing. Everything about this is visible: the key is a public method, the
+        dispatcher logs whenever somebody is served ahead of an earlier arrival,
+        and an operator can therefore explain any decision to a passenger who
+        asks why the person behind them went first.
+
+        Nobody is starved. Past ``MAX_WAIT_BEFORE_PRIORITY_S`` a passenger goes to
+        the front regardless of their flight — a queue that can leave somebody
+        sitting indefinitely because other people keep being more urgent is not a
+        service, and an unbounded wait is the one failure a passenger will never
+        forgive.
+        """
+        waited_s = self.now - request.created_s
+        if waited_s >= MAX_WAIT_BEFORE_PRIORITY_S:
+            # Waited too long. Nothing outranks this but a longer wait.
+            return (0, -waited_s, request.created_s)
+
+        closes_in = float("inf")
+        if self.board is not None and request.flight:
+            flight = self.board.get(request.flight)
+            if flight is not None and flight.scheduled_departure_s is not None:
+                closes_in = (
+                    flight.scheduled_departure_s - GATE_CLOSES_BEFORE_DEPARTURE_S - self.now
+                )
+        return (1, closes_in, request.created_s)
+
     def _dispatch(self) -> None:
         """Give every waiting passenger the chair that can reach them soonest."""
+        waiting = [r for r in self.requests if r.waiting]
+        # Arrival order, which is what first come first served would have done.
+        # Position in the list rather than creation time, so that two people who
+        # ask in the same moment still have a defined order instead of neither
+        # counting as ahead of the other.
+        arrival_rank = {request.id: rank for rank, request in enumerate(waiting)}
+        queue = sorted(waiting, key=self.urgency)
+
         handled: set[str] = set()
-        for request in self.requests:
+        for request in queue:
             if not request.waiting:
-                continue
+                continue  # a group member assigned earlier in this pass
+
+            overtaken = [
+                other
+                for other in waiting
+                if other.waiting
+                and other is not request
+                and arrival_rank[other.id] < arrival_rank[request.id]
+                # Members of one caravan do not overtake each other; two
+                # ungrouped requests are not "the same group" just because
+                # neither has a group id.
+                and not (
+                    request.group_id is not None and other.group_id == request.group_id
+                )
+            ]
+
             if request.group_id is not None:
-                if request.group_id not in handled:
-                    handled.add(request.group_id)
-                    self._dispatch_group(request.group_id)
+                if request.group_id in handled:
+                    continue
+                handled.add(request.group_id)
+                self._dispatch_group(request.group_id)
             else:
                 self._dispatch_one(request)
+
+            if not request.waiting and overtaken:
+                # Say so. A queue that reorders itself silently is one an
+                # attendant cannot defend when a passenger asks why.
+                self.log(
+                    "prioritised",
+                    f"{request.id} {request.passenger} went ahead of "
+                    f"{len(overtaken)} earlier request(s): flight {request.flight} sooner",
+                )
 
     def _candidates_for(self, request: Request) -> list[tuple[float, Chair, Route]]:
         """Every chair that could take this job, soonest first."""

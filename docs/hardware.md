@@ -1,4 +1,9 @@
-# Hardware
+# Hardware — the production design
+
+> This is the **full-size retrofit module**, at roughly ₹54,000.
+> For the ₹4,760 table-top demonstrator built for the application and the
+> exhibition, see [`components.md`](components.md). The two are deliberately
+> different, and `components.md` discloses every difference.
 
 ## The decision that shapes everything else: retrofit, not a new wheelchair
 

@@ -16,6 +16,10 @@ the airports that have the longest wheelchair queues and the smallest budgets.
     fleet.add_chair("CH-01", "dock_w")
     fleet.request_assistance("Mrs Pereira", "AI-612", pickup="kerb", gate="g4")
     fleet.run(duration_s=900)
+
+The map tools live in :mod:`saarthi.mapfile` and are imported from there, so that
+``python3 -m saarthi.mapfile map.json --validate`` runs cleanly for somebody who
+is validating a map rather than writing code.
 """
 
 from .announce import announce, say

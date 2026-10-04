@@ -45,13 +45,16 @@ unit before putting any multiple in writing.
 | `saarthi/dashboard.py` | The shift report an operator is held to: waits, utilisation, call-outs |
 | `saarthi/flights.py` | The flight board — where the gate comes from, and how we hear that it moved |
 | `saarthi/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
+| `saarthi/mapfile.py` | The map as readable JSON the airport owns and can edit, with a validator |
 | `saarthi/prepositioning.py` | Moving idle chairs towards demand before it arrives, from the flight schedule |
 | `saarthi/router.py` | A* with time as the cost and a turn penalty, so routes are quick and comfortable rather than merely short |
 | `saarthi/fleet.py` | Dispatch, battery reserve, corridor reservations, mid-journey rerouting, unaccompanied return to charge |
 | `saarthi/terminal.py` | A worked example terminal |
 | `sim/demo.py` | A scripted shift, printed as a timeline |
 | `firmware/chair_controller/` | On-board reflexes. Skeleton |
-| `docs/hardware.md` | Retrofit rationale, floor-reading options, indicative BOM |
+| `docs/features.md` | **Everything the system does, and what is built vs. what is not** |
+| `docs/components.md` | **The ₹4,760 two-chair demonstrator: parts, disclosed shortcuts, build order** |
+| `docs/hardware.md` | The full-size production design: retrofit rationale, floor-reading, ~₹54k BOM |
 | `docs/safety.md` | The layered stop, why braking is a passenger problem, failure modes |
 | `docs/privacy.md` | What the barcode contains, what is kept, and what is deliberately never recorded |
 | `docs/roadmap.md` | What to add next, and what to deliberately leave out |
@@ -60,7 +63,7 @@ unit before putting any multiple in writing.
 
 ```sh
 python3 -m sim.demo     # a scripted shift, narrated
-python3 -m pytest -q    # 120 tests
+python3 -m pytest -q    # 149 tests
 ```
 
 It writes `shift.html` as well — the operator's view of the shift, which is the
@@ -106,6 +109,31 @@ last, which is the opposite of the usual airport default and deliberate.
 sees them.** They exist so the plumbing can be built and tested. Budget an
 afternoon with a speaker of each; it is the cheapest quality improvement
 available to this project.
+
+## Two things that are genuinely different
+
+**The queue is ordered by who will miss their flight, not who asked first.** Two
+people ask at the same moment; one is flying in twenty minutes, one in three
+hours. Serving them in arrival order makes the first miss their flight for no
+reason. Overtaking is logged so an attendant can explain it to anyone who asks,
+and nobody is starved — past fifteen minutes a passenger goes to the front
+whatever their flight is doing.
+
+**The airport owns its map.** The guide path is readable JSON with a validator
+the facilities team can run themselves:
+
+```sh
+python3 -m saarthi.mapfile terminal.json --validate
+```
+
+Renumber a gate, change a speed limit, close a corridor — without us. "What does
+it cost us to change the map" is a question that gets asked in a tender, and most
+answers to it are bad.
+
+The system also runs entirely on the premises: the package imports nothing but
+the Python standard library and makes no network calls at all. No cloud service,
+no vendor account, no passenger data leaving the airport — verifiable in one
+grep, which is the point.
 
 ## Design split
 
