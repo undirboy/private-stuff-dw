@@ -196,7 +196,7 @@ comes with a charger you already have. Check the label:
 | What the pack says | Verdict |
 |---|---|
 | **7.2 V NiMH** (older RC cars, stick pack) | **Ideal.** Right voltage, tolerant, charger included, no fire risk worth worrying about. Use it. |
-| **7.4 V 2S LiPo** | **Ideal on voltage**, with the LiPo caveats below. Use it. |
+| **7.4 V 2S LiPo** | **Ideal on voltage**, with the LiPo caveats below. Use it. *(This is what the build's own RC car turned out to have, so chair 1's battery is covered.)* |
 | **11.1 V 3S LiPo** | Usable but not as-is: the motor would see ~9 V and a 300 RPM motor runs nearer 450. Cap the PWM duty to about 65% in firmware and it is fine. |
 | **3.7 V 1S** | No. See the table above — the motor gets 1.2–2.4 V after the driver drop. |
 
@@ -215,11 +215,26 @@ anyway.
 
 **If it is a LiPo, three rules.** Charge it only on the balance charger it came
 with, never on a Li-ion charger and never unattended. Never let it go below about
-3.0 V per cell — an over-discharged LiPo is scrap at best. And fit either a ₹100
-low-voltage alarm or, better, a two-resistor divider into an ESP32 analog pin:
-the dispatcher already models battery level and sends a chair back to its dock on
-a low reserve, so making that reading real costs about ₹5 and turns an existing
-software behaviour into a demonstrated one.
+3.0 V per cell — an over-discharged LiPo is scrap at best. And measure the pack,
+which is worth doing properly because the software is already waiting for it.
+
+### Reading the pack on an ESP32 pin — about ₹5
+
+The dispatcher already models battery level and sends a chair back to its dock
+below a reserve fraction. A two-resistor divider makes that reading real rather
+than simulated, which turns an existing software behaviour into a demonstrated
+one, and doubles as the low-voltage protection a bare LiPo needs.
+
+A 2S pack swings 6.0–8.4 V and the ESP32's analog input tops out at 3.3 V, so:
+
+> **R1 = 100 kΩ (pack positive to the pin), R2 = 56 kΩ (pin to ground).**
+> Ratio 0.359, so 8.4 V reads 3.02 V and 6.0 V reads 2.15 V — inside range at
+> both ends, with 54 µA of drain, which is nothing.
+
+The ESP32's ADC is noticeably non-linear, so calibrate against a multimeter at
+two known voltages rather than trusting the raw counts. Treat anything below
+6.0 V as empty and stop the motors there: that is 3.0 V per cell, and a LiPo
+taken below it is scrap.
 
 **One thing you give up.** You cannot safely charge a LiPo through bare dock
 contacts without balancing, so the automatic charge-on-dock demonstration goes.
