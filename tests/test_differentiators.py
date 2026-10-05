@@ -158,6 +158,7 @@ def test_every_detail_that_matters_survives():
     for node_id, node in original.nodes.items():
         other = restored.nodes[node_id]
         assert (other.kind, other.label, other.tag_id) == (node.kind, node.label, node.tag_id)
+        assert (other.code, other.terminal) == (node.code, node.terminal)
         assert (other.x, other.y) == pytest.approx((node.x, node.y))
 
     for segment_id, segment in original.segments.items():
@@ -183,7 +184,9 @@ def test_the_file_is_something_a_person_can_read_and_edit():
     assert data["format"] == "saarthi.terminal-map"
     assert {"version", "name", "nodes", "segments"} <= set(data)
     # Plain keys, no encoded blobs, no identifiers only this software understands.
-    assert set(data["nodes"][0]) == {"id", "kind", "x", "y", "label", "tag"}
+    assert set(data["nodes"][0]) == {
+        "id", "kind", "x", "y", "label", "tag", "code", "terminal"
+    }
 
 
 def test_an_edited_speed_limit_takes_effect():

@@ -48,6 +48,8 @@ def to_dict(tmap: TerminalMap) -> dict:
                 "y": round(node.y, 3),
                 "label": node.label,
                 "tag": node.tag_id,
+                "code": node.code,
+                "terminal": node.terminal,
             }
             for node in tmap.nodes.values()
         ],
@@ -120,6 +122,8 @@ def from_dict(data: dict) -> TerminalMap:
                     y=float(_require(entry, "y", f"node {node_id!r}")),
                     label=entry.get("label", ""),
                     tag_id=entry.get("tag"),
+                    code=entry.get("code"),
+                    terminal=entry.get("terminal"),
                 )
             )
         except (TypeError, ValueError) as exc:

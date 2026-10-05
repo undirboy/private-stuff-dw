@@ -39,6 +39,7 @@ from .flights import Flight, FlightBoard, FlightStatus
 from .graph import Guide, Node, NodeKind, Segment, TerminalMap
 from .prepositioning import DemandPoint, StagingMove, forecast_demand, plan_staging
 from .router import Route, plan
+from .screen import ScreenContent, screen_for
 from .terminal import build_example_terminal
 
 __all__ = [
@@ -59,6 +60,7 @@ __all__ = [
     "Request",
     "Route",
     "ScanRejected",
+    "ScreenContent",
     "Segment",
     "SegmentReservations",
     "StagingMove",
@@ -70,4 +72,5 @@ __all__ = [
     "plan_staging",
     "render_dashboard",
     "say",
+    "screen_for",
 ]

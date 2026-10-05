@@ -21,6 +21,7 @@ Status words used below mean exactly this:
 | **The gate moves while they are travelling** | Built | The chair is diverted at the next junction. A human pushing a wheelchair is committed the moment they set off; nobody tells them the gate changed. |
 | **Call button** | Built / needs hardware | A button at a gate, lounge or accessible toilet summons a chair. Closes the gap where a passenger delivered to a gate is stranded until somebody remembers them. |
 | **Nobody guesses where you are going** | Built | A call-button chair collects the passenger and then waits to be told — by a scan or by an attendant. It never invents a destination. |
+| **The screen answers the scan** | Built / needs hardware | Gate, terminal and roughly how long left, the moment the pass is read. Two lines, cycling languages. Decided by the dispatcher, not the firmware. |
 | **Four languages** | Built / needs a native speaker | Konkani, Marathi, Hindi, English, with the local languages shown *before* English. The build fails if a message is added in English alone. |
 | **Families travel together** | Built | A group is dispatched as one caravan, moves as one unit, and is never split across separate trips. |
 | **A gentler chair** | Built | Per-chair speed cap, for a frail passenger, without editing the map. |
@@ -37,6 +38,7 @@ Status words used below mean exactly this:
 | **Pre-positioning** | Built / needs a measurement | Idle chairs move towards expected demand from the flight schedule. In the demo this halved one passenger's wait. The per-flight assistance rate is a placeholder until a pilot measures it. |
 | **Closed corridors** | Built | Take a corridor out of service; chairs already under way reroute at the next junction. |
 | **Deadlock escalation** | Built | Two chairs nose to nose with no way round call an attendant after 90 seconds. An honest mitigation, not a fix — the fix is passing bays in the floor plan. |
+| **A gate off this map is refused** | Built | If a flight boards somewhere the guide path does not reach, the scan is refused there and then. Finding out after the passenger is aboard strands them somewhere they cannot easily walk back from. A gate that moves off-map mid-journey diverts to the lounge and calls an attendant. |
 | **Map validation** | Built | Refuses a map with an unreachable gate or an untagged stopping point, before anybody sits in a chair. |
 | **Service-level export** | Not built | The numbers exist; a scheduled export for compliance reporting does not. |
 
@@ -78,7 +80,7 @@ Each of these is a decision, not a gap.
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,
 languages, caravans, pre-positioning, priority and reporting are working code
-with 149 tests behind them. Everything physical is unbuilt, and the regulatory
+with 169 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
 The build that demonstrates this at a table, for ₹4,818, is in

@@ -43,12 +43,18 @@ def build_example_terminal() -> TerminalMap:
     ]
 
     gates = [
-        Node("g1", NodeKind.GATE, 80, 42, "Gate 1", tag_id="G01"),
-        Node("g2", NodeKind.GATE, 100, 42, "Gate 2", tag_id="G02"),
-        Node("g3", NodeKind.GATE, 120, 42, "Gate 3", tag_id="G03"),
-        Node("g4", NodeKind.GATE, 140, 42, "Gate 4", tag_id="G04"),
-        Node("g5", NodeKind.GATE, 160, 42, "Gate 5", tag_id="G05"),
-        Node("lounge", NodeKind.PICKUP, 120, 58, "Assistance lounge", tag_id="L01"),
+        Node("g1", NodeKind.GATE, 80, 42, "Gate 1", tag_id="G01",
+             code="1", terminal="1"),
+        Node("g2", NodeKind.GATE, 100, 42, "Gate 2", tag_id="G02",
+             code="2", terminal="1"),
+        Node("g3", NodeKind.GATE, 120, 42, "Gate 3", tag_id="G03",
+             code="3", terminal="1"),
+        Node("g4", NodeKind.GATE, 140, 42, "Gate 4", tag_id="G04",
+             code="4", terminal="1"),
+        Node("g5", NodeKind.GATE, 160, 42, "Gate 5", tag_id="G05",
+             code="5", terminal="1"),
+        Node("lounge", NodeKind.PICKUP, 120, 58, "Assistance lounge", tag_id="L01",
+             terminal="1"),
     ]
 
     service = [

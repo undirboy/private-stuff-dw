@@ -479,6 +479,17 @@ class Fleet:
                 "Please speak to a member of staff.",
             )
 
+        if flight.gate is not None and flight.gate not in self.tmap.nodes:
+            # The board named a gate this map has never heard of — most likely
+            # another terminal, or a renumbering the map has not caught up with.
+            # Refuse now. Discovering it after the passenger is aboard strands
+            # them somewhere they cannot easily walk back from.
+            raise ScanRejected(
+                f"{designator} boards at {flight.gate}, which is not on this map",
+                f"Flight {designator} boards from a part of the airport this chair "
+                "does not serve. Please ask a member of staff.",
+            )
+
         destination, awaiting = flight.gate, False
         if destination is None:
             # The gate is genuinely not known yet. This is common for exactly the
@@ -536,6 +547,30 @@ class Fleet:
         This is the case that a printed sign and a human pushing a wheelchair
         handle badly, and it is the most convincing thing the system does.
         """
+        if new_gate not in self.tmap.nodes:
+            # The flight has moved somewhere this map does not cover — another
+            # terminal, most likely. We cannot drive there, and we must not
+            # quietly carry on to a gate the flight has left.
+            self.log(
+                "escalation",
+                f"{flight} moved to {new_gate}, which is not on this map; attendant needed",
+            )
+            for request in self.requests:
+                if request.flight != flight or not request.active:
+                    continue
+                if self.holding_area is None:
+                    continue
+                request.gate = self.holding_area
+                chair = self.chairs.get(request.assigned_to) if request.assigned_to else None
+                if chair is not None and chair.state is ChairState.CARRYING:
+                    chair.pending_goal = self.holding_area
+                    self.log(
+                        "rerouting",
+                        f"{request.passenger} to the lounge for a staff handover",
+                        chair.id,
+                    )
+            return
+
         self.log("gate_change", f"{flight} now boarding at {new_gate}")
         for request in list(self.requests):
             if request.flight != flight:

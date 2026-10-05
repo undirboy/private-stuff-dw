@@ -60,6 +60,11 @@ class Node:
     ``tag_id`` is the floor tag physically present at this node. The chair
     confirms arrival by reading it; a node with no tag is dead-reckoned to and is
     therefore never a stopping point for a passenger.
+
+    ``code`` and ``terminal`` are what a passenger is told: "Gate 4, Terminal 1".
+    Both are explicit rather than parsed out of ``label`` or ``id``, because a
+    cleverly derived gate number that is wrong sends somebody who cannot easily
+    walk back to the wrong end of a building.
     """
 
     id: str
@@ -68,6 +73,10 @@ class Node:
     y: float
     label: str = ""
     tag_id: str | None = None
+    #: The public identifier, as the departure board prints it: "4", "12A".
+    code: str | None = None
+    #: Which terminal this is in, where an airport has more than one.
+    terminal: str | None = None
 
 
 @dataclass(frozen=True)

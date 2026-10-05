@@ -47,6 +47,7 @@ unit before putting any multiple in writing.
 | `saarthi/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
 | `saarthi/mapfile.py` | The map as readable JSON the airport owns and can edit, with a validator |
 | `saarthi/prepositioning.py` | Moving idle chairs towards demand before it arrives, from the flight schedule |
+| `saarthi/screen.py` | What the chair's screen shows at any moment — gate, terminal, how long left |
 | `saarthi/router.py` | A* with time as the cost and a turn penalty, so routes are quick and comfortable rather than merely short |
 | `saarthi/fleet.py` | Dispatch, battery reserve, corridor reservations, mid-journey rerouting, unaccompanied return to charge |
 | `saarthi/terminal.py` | A worked example terminal |
@@ -63,7 +64,7 @@ unit before putting any multiple in writing.
 
 ```sh
 python3 -m sim.demo     # a scripted shift, narrated
-python3 -m pytest -q    # 149 tests
+python3 -m pytest -q    # 169 tests
 ```
 
 It writes `shift.html` as well — the operator's view of the shift, which is the
@@ -96,6 +97,26 @@ before a gate exists, gets taken to the lounge, and a chair comes back for them
 the moment the gate is announced. Nobody has to remember they are sitting there.
 A human pushing a wheelchair cannot do this: they are committed the moment they
 set off, and nobody tells them the gate moved.
+
+## Scan, and the screen answers
+
+That exchange is the whole interface. No menu, no typing, no app, nothing to read
+in a language the passenger may not have.
+
+```
+[kok] तुमकां टर्मिनल १ हांगाच्या गेट ४ कडेन व्हरतां.  /  सुमार २ मिनटां.
+[mr ] तुम्हाला टर्मिनल १ मधील गेट ४ कडे नेत आहे.  /  सुमारे २ मिनिटे.
+[hi ] आपको टर्मिनल १ के गेट ४ तक ले जा रहे हैं।  /  लगभग २ मिनट।
+[en ] Taking you to Gate 4, Terminal 1.  /  About 2 minutes.
+```
+
+`saarthi/screen.py` decides this, not the firmware, so the chair receives finished
+lines and draws them. Gate numbering, terminal layout and language all change
+without warning, and none of them should mean reflashing a chair.
+
+Two lines, because a screen an elderly passenger can read from a seated position
+holds two. The estimate never counts down second by second — a number that keeps
+changing reads as agitation to somebody who is already anxious.
 
 ## Four languages, enforced
 

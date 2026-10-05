@@ -30,13 +30,14 @@ from saarthi import (
     FlightBoard,
     FlightStatus,
     ScanRejected,
-    announce,
     build_example_terminal,
     forecast_demand,
     plan_staging,
     render_dashboard,
 )
+from saarthi.announce import DISPLAY_ORDER
 from saarthi.boardingpass import encode
+from saarthi.screen import screen_for
 
 HOUR = 60 * 60
 
@@ -109,9 +110,11 @@ def main() -> int:
         boarding_pass("NAIK", "SURESH", "MR", "XYZ789", "6E", "204"), pickup="kerb"
     )
 
-    banner("What the chair's screen shows, in the languages its passengers read")
-    for line in announce("taking_to_gate", gate=4).screen_lines:
-        print(f"  {line}")
+    banner("What the chair's screen shows after a scan")
+    fleet.run(duration_s=170)  # Mrs Pereira is aboard and under way
+    content = screen_for(fleet, fleet.chairs["CH-01"])
+    for language in DISPLAY_ORDER:
+        print(f"  [{language:3}] " + "  /  ".join(content.lines(language)))
 
     banner("A third scans, but her gate has not been announced yet")
     fleet.scan_boarding_pass(
@@ -128,8 +131,8 @@ def main() -> int:
         print(f"  logged as:    {rejected.reason}")
 
     banner("The airline moves a gate while a chair is already carrying someone")
-    fleet.run(duration_s=180)
     board.assign_gate("AI612", "g2")
+    print("  screen now reads: " + screen_for(fleet, fleet.chairs["CH-01"]).primary["en"])
     fleet.run(duration_s=480)
 
     banner("SG118 finally gets a gate. A chair goes back to the lounge for her")

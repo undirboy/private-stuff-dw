@@ -68,7 +68,7 @@ Each chair needs all of these.
 
 | Item | ₹ | | Why only one |
 |---|---|---|---|
-| 0.96" OLED display | 220 | est. | One screen demonstrates the four-language pipeline completely. A second adds nothing to the argument. |
+| 0.96" OLED display | 220 | est. | Shows the gate, terminal and time remaining the moment a pass is scanned — the single most convincing thing on the table. One screen demonstrates it completely; a second adds nothing to the argument. |
 | TP4056 charging module | 40 | est. | One chair demonstrating return-to-charge is the demonstration. |
 | **Chair 1 extras** | **₹260** | | |
 
