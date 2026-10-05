@@ -76,11 +76,34 @@ the sensor slots afterwards.
    until the readings are crisp between black tape and white board, then tighten.
 5. Everything else bolts to the grid wherever it fits.
 
-## The MDF alternative
+## Building it all in MDF instead
 
-The deck does not have to be printed. A 4 mm MDF or acrylic plate, cut by hand
-with the same hole pattern, is stiffer than PLA, cheaper, and a 20-minute job
-with a drill. The parts that genuinely want printing are the **sensor bracket**
-and the **castor riser**, which are awkward shapes to make by hand.
+You can make the whole thing from 4 mm MDF, and for the deck that is arguably the
+better choice: MDF is stiffer than PLA, cheaper, and cutting a flat plate is a
+20-minute job with a hand saw and a drill.
 
-If the printing quote comes back high, print those two and cut the deck.
+`mdf_template.pdf` is a **1:1 drilling template**. Print it at 100% with page
+scaling off, check the ruler on the sheet against a real one, glue it to the
+board with a pritt stick, and drill through the crosses. Run
+`generate_mdf_template.py` to rebuild it after changing any dimension; it reads
+them from `generate_chassis.py`, so the two versions cannot drift apart.
+
+Two things change against the printed version:
+
+- **Slots become pairs of round holes.** The printed deck uses slots for the
+  motor zip ties. A slot is awkward by hand, so the template gives two 4 mm holes
+  instead — the tie goes down one and up the other, and the result is identical.
+- **The bracket becomes two flat pieces.** MDF will not bend, so the arm and foot
+  are separate and joined at 90° with wood glue and two small angle brackets from
+  any hardware shop. Do not screw into the edge of 4 mm MDF; it splits.
+
+The **castor riser** is the one part that stays awkward. Easiest answer is not to
+make it at all: a stack of M3 nylon standoffs is a couple of rupees, comes in
+fixed heights, and is adjustable by swapping them.
+
+Practical notes: use a brad-point or sharp twist bit and back the board with
+scrap so the underside does not blow out, and **wear a mask** — MDF dust is
+genuinely unpleasant.
+
+If you do print, the parts worth printing are the **sensor bracket** and the
+**riser**, which are the awkward shapes. The deck is the easy bit either way.

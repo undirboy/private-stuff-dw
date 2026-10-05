@@ -65,10 +65,13 @@ WIRE_PORT_Y = 15.0
 
 BRACKET_T = 4.0
 BRACKET_FOOT_L = 22.0    # how far the bracket's foot reaches back over the deck
-BRACKET_DROP = 46.0      # how far the arm hangs below the deck's top face
-SENSOR_SLOT_Z = -30.0    # centre of the line-sensor slots, relative to the deck top
+BRACKET_DROP = 47.0      # how far the arm hangs below the deck's top face
+SENSOR_SLOT_Z = -29.0    # centre of the line-sensor slots, relative to the deck top
 SENSOR_SLOT_H = 16.0     # vertical adjustment range for the line sensor
-ULTRASONIC_Z = -10.0     # centre of the ultrasonic bores
+ULTRASONIC_Z = -7.5      # centre of the ultrasonic bores
+#: In MDF the two bores become one rectangular window, which is easier to cut and
+#: comes closer to the sensor slots than two circles do — hence its own check.
+MDF_WINDOW = (46.0, 17.0)
 HCSR04_BORE = 16.4       # ultrasonic transducer can diameter, plus clearance
 HCSR04_PITCH = 26.0      # centre to centre of the two cans
 
@@ -284,6 +287,19 @@ def check_geometry() -> list[str]:
         problems.append("the sensor slots run into the ultrasonic bores")
     if bore_top > BRACKET_T - 2:
         problems.append("the ultrasonic bores break out of the top of the arm")
+
+    # The MDF version cuts one rectangular window instead of two round bores, and
+    # a rectangle's corners reach closer to the holes below it. MDF with a
+    # millimetre of material left between two cuts tears out while you drill it.
+    window_bottom = ULTRASONIC_Z - MDF_WINDOW[1] / 2
+    hole_top = SENSOR_SLOT_Z + SENSOR_SLOT_H / 2 + M3_CLEAR / 2
+    if window_bottom - hole_top < 2.5:
+        problems.append(
+            f"MDF: only {window_bottom - hole_top:.1f} mm between the ultrasonic window "
+            f"and the sensor holes — it will tear out"
+        )
+    if ULTRASONIC_Z + MDF_WINDOW[1] / 2 > BRACKET_T - 2:
+        problems.append("MDF: the ultrasonic window breaks out of the top of the arm")
 
     return problems
 
