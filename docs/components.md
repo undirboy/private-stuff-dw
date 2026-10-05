@@ -9,10 +9,24 @@ full-size retrofit module at around ₹54,000. Keeping the two documents separat
 is deliberate: the differences between them are disclosed below, because a judge
 who finds an undisclosed shortcut stops believing the rest.
 
-> **All prices are planning estimates** from the Indian hobby-electronics market
-> (Robu, Amazon.in, a local shop) as a starting point. Verify before ordering and
-> before quoting any total. Prices move, and a figure in an application that
-> does not survive a search is worse than no figure.
+> Prices marked **✓** are real listings someone has checked. The rest are
+> planning estimates from the Indian hobby-electronics market and are still to be
+> verified. Replace each estimate with a checked figure as you go: a number in an
+> application that does not survive a search is worse than no number.
+
+## Two things that can take this over budget
+
+Neither is a component, and both are easy to miss until the order total appears.
+
+**GST.** The ESP32 line below is ₹429 *including* GST. Most of the remaining
+estimates were made without knowing either way. If the other ₹3,960 of parts turn
+out to be listed ex-GST, 18% on top is **about ₹713**, which takes the build to
+roughly **₹5,531 — over budget**. Check this first; it is worth more than
+shaving any single part.
+
+**Shipping.** Robu and similar charge delivery unless the order clears a free
+threshold. Order everything in one go rather than as you discover you need it:
+three separate deliveries can cost more than the part you forgot.
 
 ---
 
@@ -34,29 +48,29 @@ fleet, which is the actual product.
 
 Each chair needs all of these.
 
-| Item | Qty | ₹ | Why this part |
-|---|---|---|---|
-| ESP32 DevKit V1 | 1 | 400 | Wi-Fi is not optional: the link to the dispatcher is the architecture. An Arduino Nano at ₹250 cannot do it. |
-| L298N motor driver | 1 | 130 | Crude and entirely adequate at this scale. |
-| BO geared motor 100 RPM + wheel | 2 | 220 | Slow is correct. A fast model looks like a toy and overshoots the line. |
-| Castor wheel | 1 | 40 | Third point of contact. |
-| MDF chassis plate, cut locally | 1 | 120 | Acrylic looks better and costs more; MDF is fine. |
-| 5-channel IR line sensor array | 1 | 180 | See the disclosed differences below. |
-| HC-SR04 ultrasonic sensor | 1 | 90 | The obstacle stop. |
-| RC522 RFID reader + tags | 1 | 180 | Floor tags confirm arrival at a named node — the same mechanism as production. |
-| 18650 cells + holder | 2 | 320 | |
-| Buck converter (5 V) | 1 | 60 | |
-| Latching push button (stop) | 1 | 40 | Wired to cut the motor driver's enable pin, **not** read in software. |
-| Buzzer, LEDs, resistors | — | 60 | |
-| **Per chair** | | **₹1,840** | |
+| Item | Qty | ₹ | | Why this part |
+|---|---|---|---|---|
+| ESP-WROOM-32 dev board (SKU 835800) | 1 | 429 | ✓ | Incl. GST. Wi-Fi is not optional: the link to the dispatcher is the architecture. An Arduino Nano at ₹250 cannot do it, and an ESP8266 is a false economy — the RFID reader's SPI bus, the motor driver, the ultrasonic and five IR channels do not fit its usable GPIO. |
+| L298N motor driver | 1 | 130 | est. | Crude and entirely adequate at this scale. |
+| BO geared motor 100 RPM + wheel | 2 | 220 | est. | Slow is correct. A fast model looks like a toy and overshoots the line. |
+| Castor wheel | 1 | 40 | est. | Third point of contact. |
+| MDF chassis plate, cut locally | 1 | 120 | est. | Acrylic looks better and costs more; MDF is fine. |
+| 5-channel IR line sensor array | 1 | 180 | est. | See the disclosed differences below. |
+| HC-SR04 ultrasonic sensor | 1 | 90 | est. | The obstacle stop. |
+| RC522 RFID reader + tags | 1 | 180 | est. | Floor tags confirm arrival at a named node — the same mechanism as production. |
+| 18650 cells + holder | 2 | 320 | est. | |
+| Buck converter (5 V) | 1 | 60 | est. | |
+| Latching push button (stop) | 1 | 40 | est. | Wired to cut the motor driver's enable pin, **not** read in software. |
+| Buzzer, LEDs, resistors | — | 60 | est. | |
+| **Per chair** | | **₹1,869** | | |
 
 ## Chair 1 only
 
-| Item | ₹ | Why only one |
-|---|---|---|
-| 0.96" OLED display | 220 | One screen demonstrates the four-language pipeline completely. A second adds nothing to the argument. |
-| TP4056 charging module | 40 | One chair demonstrating return-to-charge is the demonstration. |
-| **Chair 1 extras** | **₹260** | |
+| Item | ₹ | | Why only one |
+|---|---|---|---|
+| 0.96" OLED display | 220 | est. | One screen demonstrates the four-language pipeline completely. A second adds nothing to the argument. |
+| TP4056 charging module | 40 | est. | One chair demonstrating return-to-charge is the demonstration. |
+| **Chair 1 extras** | **₹260** | | |
 
 ## Shared
 
@@ -73,12 +87,14 @@ Each chair needs all of these.
 
 | | ₹ |
 |---|---|
-| Chair 1 (1,840 + 260) | 2,100 |
-| Chair 2 | 1,840 |
+| Chair 1 (1,869 + 260) | 2,129 |
+| Chair 2 | 1,869 |
 | Shared | 820 |
-| **Total** | **₹4,760** |
+| **Total** | **₹4,818** |
 
-Under ₹5,000, with two working chairs and ₹240 of slack — which you will use.
+Under ₹5,000, with two working chairs and ₹182 of slack — which you will use.
+The slack was ₹240 until the ESP32 turned out to cost ₹429 rather than the ₹400
+estimated, which is a fair warning about the remaining estimates.
 
 If it does run over, cut in this order: the weighted figures, then the spares
 allowance, then chair 2's RFID reader (it can dead-reckon for a demo). Do **not**
