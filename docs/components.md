@@ -84,53 +84,89 @@ A real cart total, so these prices and the GST on them are settled.
 | 140-piece jumper wire kit | 28362 | 109 | 1 | One kit covers both chairs. |
 | **Cart total** | | **₹1,581** | | |
 
-## Still to buy — ₹2,878
+## The order list
 
-Two of these are show-stoppers: without them the model cannot follow a line and
-cannot move.
+Two stages, because the recommendation above is to build one chair and then
+decide. Stage 1 gets a complete working chair. Stage 2 is only worth ordering if
+chair 1 is driving reliably — but delivery is the risk, not the money, so if you
+would rather not wait, order both at once and accept ₹1,958 of parts that might
+sit in a box.
 
-| Item | ₹ | Qty | Line | |
+**Chair 1's battery is the RC car's 7.4 V pack**, so no cells, protection board or
+charger appear here.
+
+### Stage 1 — order now, from Robu — ₹770
+
+| ✓ | Item | ₹ | Qty | |
 |---|---|---|---|---|
-| **5-channel IR line sensor array** | 180 | 2 | 360 | **Show-stopper.** Nothing in the cart can see the guide path. This is the one part the whole project is about. |
-| **2S pack: 2 × 18650 + series holder** | 320 | 2 | 640 | **Show-stopper.** Nothing in the cart powers the motors. USB runs the ESP32 and little else. 7.4 V nominal — see *Power* below for why 2S and not 1S or 3S. |
-| **2S BMS protection board** | 60 | 2 | 120 | Over-discharge and short protection. Not optional on a Li-ion pack that sits on a table in front of people. |
-| 8.4 V 1 A charger + dock contacts | 180 | 1 | 180 | A 2S pack needs an 8.4 V charger. A TP4056 is **1S only** and will not charge this — a mistake in an earlier draft of this document. |
-| ESP-WROOM-32, second chair | 429 | 1 | 429 | The cart has four motors but one brain. |
-| L298N, second chair | 129 | 1 | 129 | And one driver. |
-| RC522 RFID reader + tags | 180 | 2 | 360 | Floor tags confirm arrival at a named node — the same mechanism as production. Chair 2's can be cut if the budget bites. |
-| MDF chassis plate | 120 | 2 | 240 | Cut locally. |
-| HC-SR04 ultrasonic | 90 | 2 | 180 | The hard stop. See the radar note below for why this is not optional. |
-| BO wheels to fit the motors | 35 | 4 | 140 | BO motors are usually sold without them. Check the listing before ordering. |
-| Buck converter, 5 V | 60 | 2 | 120 | Motors want 7–12 V, the ESP32 wants 5 V. |
-| Buzzer, LEDs, resistors | 60 | 2 | 120 | |
-| Castor wheel | 40 | 2 | 80 | Third point of contact. |
-| Latching stop button | 40 | 2 | 80 | Wired to cut the driver's enable pin, **not** read in software. |
-| **Still to buy** | | | **₹3,178** | Estimates, not yet checked |
+| ☐ | **5-channel IR line sensor array** | 180 | 1 | **Order this first.** Nothing in the cart can see the guide path, and the guide path is the entire project. |
+| ☐ | RC522 RFID reader + tags | 180 | 1 | Floor tags confirm arrival at a named node. |
+| ☐ | HC-SR04 ultrasonic | 90 | 1 | The obstacle stop. The radar cannot do this job — see below. |
+| ☐ | Buzzer + LED + resistor assortment | 60 | 1 | Make sure it includes **100 kΩ and 56 kΩ** for the battery divider. |
+| ☐ | Buck converter, 5 V | 60 | 1 | 7.4 V pack down to 5 V logic. |
+| ☐ | Battery connector pigtail | 50 | 1 | Match the RC car's plug — Tamiya, Deans, XT60 or JST. **Do not cut the battery's own lead.** |
+| ☐ | Castor wheel | 40 | 1 | Third point of contact. |
+| ☐ | Latching stop button | 40 | 1 | Wired to cut the driver's ENABLE pin, not read in software. |
+| ☐ | BO wheels | 35 | 2 | **Check the motor listing first** — some include them. |
+| | **Stage 1, Robu** | **₹770** | | |
+
+### Stage 1 — not from Robu — ₹370
+
+| ✓ | Item | ₹ | |
+|---|---|---|---|
+| ☐ | MDF chassis plate, cut to size | 120 | Any local timber or hardware shop. |
+| ☐ | Black electrical tape or printed vinyl | 200 | The track. Lay it on a light matt board. |
+| ☐ | Printed PDF417 boarding passes | 50 | Generate with `saarthi.boardingpass.encode`, render as PDF417, print at a shop. |
+
+### Stage 2 — chair 2, decide around the 11th — ₹1,958
+
+| ✓ | Item | ₹ | Qty |
+|---|---|---|---|
+| ☐ | ESP-WROOM-32 (SKU 835800) | 429 | 1 |
+| ☐ | 2S pack: 2 × 18650 + series holder | 320 | 1 |
+| ☐ | 8.4 V charger + dock contacts | 180 | 1 |
+| ☐ | 5-channel IR line sensor array | 180 | 1 |
+| ☐ | RC522 RFID + tags | 180 | 1 |
+| ☐ | L298N (SKU 43821) | 129 | 1 |
+| ☐ | MDF chassis plate | 120 | 1 |
+| ☐ | HC-SR04 ultrasonic | 90 | 1 |
+| ☐ | BO wheels | 35 | 2 |
+| ☐ | 2S BMS protection board | 60 | 1 |
+| ☐ | Buck converter | 60 | 1 |
+| ☐ | Buzzer/LED/resistors | 60 | 1 |
+| ☐ | Castor wheel | 40 | 1 |
+| ☐ | Latching stop button | 40 | 1 |
+| | **Stage 2** | **₹1,958** | |
+
+### Deliberately not ordering
+
+- **A spare ESP32.** At ₹429 it is the most expensive insurance on the list, and
+  the stage 2 board doubles as the spare if chair 1's dies.
+- **A second OLED, breadboard or jumper kit.** One of each covers both chairs.
+- **A second radar.** One, on chair 1, demonstrates the idea completely.
+- **A LiDAR, IMU or wheel encoders.** Production parts; see the disclosed
+  differences below.
+
+Check before ordering: that you have a **soldering iron**, and that the BO motor
+listing says whether wheels are included.
 
 ## Total
 
 | | ₹ |
 |---|---|
 | Already in the cart ✓ | 1,581 |
-| Still to buy (est.) | 3,178 |
-| **Total** | **₹4,759** |
+| Stage 1, Robu | 770 |
+| Stage 1, local | 370 |
+| **Chair 1, complete** | **₹2,721** |
+| Stage 2, chair 2 | 1,958 |
+| **Both chairs** | **₹4,679** |
 
-Under ₹5,000 with ₹241 of slack. The BO motors came in cheaper than estimated
-(₹67 against ₹110), and that gain went straight back out on the charging parts
-that were missing from the plan entirely.
-
-Costs at each scope:
-
-| | ₹ |
-|---|---|
-| Two chairs | 4,759 |
-| One chair | 2,981 |
-| One chair, reusing an RC battery | 2,421 |
-| Two chairs, one RC battery reused | 4,379 |
+Under ₹5,000 with ₹321 of slack, and chair 1 alone comes in at little over half
+the budget — which is the real argument for building it first and deciding later.
 
 If it runs over, cut in this order: chair 2's RFID reader (it can dead-reckon for
 a demo), then the buzzer and LEDs, then the prototype PCB and stay on the
-breadboard — and then the second chair entirely, per the decision above.
+breadboard — and then stage 2 entirely, per the decision above.
 
 ## Power
 
