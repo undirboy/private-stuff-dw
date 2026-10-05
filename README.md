@@ -53,6 +53,7 @@ unit before putting any multiple in writing.
 | `saarthi/terminal.py` | A worked example terminal |
 | `sim/demo.py` | A scripted shift, printed as a timeline |
 | `firmware/chair_controller/` | On-board reflexes. Skeleton |
+| `hardware/chassis/` | Printable deck, sensor bracket and castor riser, with the generator that makes them |
 | `docs/features.md` | **Everything the system does, and what is built vs. what is not** |
 | `docs/components.md` | **The ₹4,679 two-chair demonstrator: parts, disclosed shortcuts, build order** |
 | `docs/hardware.md` | The full-size production design: retrofit rationale, floor-reading, ~₹54k BOM |

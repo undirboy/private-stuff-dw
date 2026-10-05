@@ -114,7 +114,7 @@ charger appear here.
 
 | ✓ | Item | ₹ | |
 |---|---|---|---|
-| ☐ | MDF chassis plate, cut to size | 120 | Any local timber or hardware shop. |
+| ☐ | Chassis — 3D printed or MDF | 120 | STLs ready to upload in [`hardware/chassis/`](../hardware/chassis/); about 42 g of PLA for all three parts. The deck can equally be a hand-cut MDF plate — see that folder's README. |
 | ☐ | Black electrical tape or printed vinyl | 200 | The track. Lay it on a light matt board. |
 | ☐ | Printed PDF417 boarding passes | 50 | Generate with `saarthi.boardingpass.encode`, render as PDF417, print at a shop. |
 
