@@ -29,19 +29,44 @@ three separate deliveries can cost more than the part you forgot.
 
 ---
 
-## Build two chairs, not one
+## One chair or two
 
-The single most useful decision in this budget. Two chairs fit comfortably under
-₹5,000 and they unlock the two demonstrations that one chair cannot do at all:
+The second chair costs **₹1,778** — the motors for it are already bought, so it is
+another ESP32, driver, sensor set, battery and chassis. That is 37% of the budget
+and, more importantly, it doubles the longest job in the build: tuning the
+line-following loop.
+
+**What only two chairs can show, in the physical world:**
 
 - **Corridor contention** — two chairs meeting at a single-file corridor, one
-  waiting, one rerouting. This is the part of the system a visitor has never
-  seen before.
-- **Caravan mode** — two chairs travelling as one unit, sharing the corridor
-  rather than queuing for it.
+  waiting, one rerouting around it. This is the reservation system, and it is the
+  part of the project a visitor has genuinely never seen before.
+- **Caravan mode** — two chairs travelling as one unit.
+- **Dispatch choice** — "send the nearest chair" means nothing with one chair.
 
-With one chair you are showing a line follower. With two you are showing a
-fleet, which is the actual product.
+**What one chair shows perfectly well:** the scan, the gate and terminal on the
+screen, a gate changing mid-journey, the call button, four languages, the
+obstacle stop, and the return to the dock. That is most of the story.
+
+### The honest recommendation: build one, then decide
+
+The fleet behaviours are already demonstrable **in the simulator on the laptop**,
+with thirty chairs if you like, at no cost. The physical model's job is to prove
+the control loop runs on real hardware — and one chair proves that as well as two.
+
+So: **order the parts for two** (they are cheap and the delivery is the risk), but
+build chair 1 first and set a date — around the 11th — to decide. If chair 1 is
+driving reliably by then, build the second. If it is not, put everything into
+making chair 1 flawless and run the contention demo on screen beside it.
+
+One chair that works beats two that half-work, and with the deadline on the 17th
+the risk is time, not money.
+
+The counter-argument, which is real: judges discount simulation, and "anyone can
+write a simulator" is a fair thing for them to think. Two physical chairs
+resolving a corridor between them is qualitatively different from the same thing
+on a screen. If the build is going well, the second chair is the single best use
+of the remaining budget.
 
 ## Ordered so far — ₹1,581 ✓
 
@@ -94,10 +119,18 @@ Under ₹5,000 with ₹241 of slack. The BO motors came in cheaper than estimate
 (₹67 against ₹110), and that gain went straight back out on the charging parts
 that were missing from the plan entirely.
 
-If it does run over, cut in this order: chair 2's RFID reader (it can dead-reckon
-for a demo), then the buzzer and LEDs, then the prototype PCB and stay on the
-breadboard. Do **not** cut the second chair; without it you are showing a line
-follower rather than a fleet, and the fleet is the product.
+Costs at each scope:
+
+| | ₹ |
+|---|---|
+| Two chairs | 4,759 |
+| One chair | 2,981 |
+| One chair, reusing an RC battery | 2,421 |
+| Two chairs, one RC battery reused | 4,379 |
+
+If it runs over, cut in this order: chair 2's RFID reader (it can dead-reckon for
+a demo), then the buzzer and LEDs, then the prototype PCB and stay on the
+breadboard — and then the second chair entirely, per the decision above.
 
 ## Power
 
@@ -153,6 +186,39 @@ most of its day stationary.
   shorted by a dropped jumper wire, is a fire on a table in front of judges.
 - **A TP4056 cannot charge this.** It is a 1S charger. A 2S pack needs an 8.4 V
   charger — this document said otherwise in an earlier draft and was wrong.
+
+### Using an RC car battery you already own
+
+Very likely yes, and probably better than buying cells. An RC pack is built for
+far higher currents than this draws, so it will not sag under a stall, and it
+comes with a charger you already have. Check the label:
+
+| What the pack says | Verdict |
+|---|---|
+| **7.2 V NiMH** (older RC cars, stick pack) | **Ideal.** Right voltage, tolerant, charger included, no fire risk worth worrying about. Use it. |
+| **7.4 V 2S LiPo** | **Ideal on voltage**, with the LiPo caveats below. Use it. |
+| **11.1 V 3S LiPo** | Usable but not as-is: the motor would see ~9 V and a 300 RPM motor runs nearer 450. Cap the PWM duty to about 65% in firmware and it is fine. |
+| **3.7 V 1S** | No. See the table above — the motor gets 1.2–2.4 V after the driver drop. |
+
+Reusing one pack saves ₹320 on cells, ₹60 on the BMS and ₹180 on the charger.
+
+**If it is a LiPo, three rules.** Charge it only on the balance charger it came
+with, never on a Li-ion charger and never unattended. Never let it go below about
+3.0 V per cell — an over-discharged LiPo is scrap at best. And fit either a ₹100
+low-voltage alarm or, better, a two-resistor divider into an ESP32 analog pin:
+the dispatcher already models battery level and sends a chair back to its dock on
+a low reserve, so making that reading real costs about ₹5 and turns an existing
+software behaviour into a demonstrated one.
+
+**One thing you give up.** You cannot safely charge a LiPo through bare dock
+contacts without balancing, so the automatic charge-on-dock demonstration goes.
+Reframe it rather than faking it: the chair returns to the dock unaccompanied and
+an attendant swaps the pack. That is a legitimate operating model — plenty of
+real fleets swap rather than charge in place — and the valuable half of the
+behaviour, the chair taking itself back without anyone fetching it, is intact.
+
+Also check the connector. RC packs come with Tamiya, Deans, XT60 or JST plugs;
+buy the matching pigtail rather than cutting the battery's lead off.
 
 ### The dock
 
