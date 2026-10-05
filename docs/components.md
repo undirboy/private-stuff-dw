@@ -19,9 +19,9 @@ who finds an undisclosed shortcut stops believing the rest.
 Neither is a component, and both are easy to miss until the order total appears.
 
 **GST.** Settled for the ₹1,581 already in the cart: that is a real cart total at
-prices listed including GST. The remaining ₹2,878 is still estimated. If those
-parts turn out to be listed ex-GST, 18% on top is about **₹518**, which lands the
-build near **₹4,977** — still inside ₹5,000, but with nothing left over.
+prices listed including GST. The remaining ₹3,178 is still estimated. If those
+parts turn out to be listed ex-GST, 18% on top is about **₹572**, which lands the
+build at roughly **₹5,331 — over budget**. Worth settling before ordering.
 
 **Shipping.** Robu and similar charge delivery unless the order clears a free
 threshold. Order everything in one go rather than as you discover you need it:
@@ -67,7 +67,9 @@ cannot move.
 | Item | ₹ | Qty | Line | |
 |---|---|---|---|---|
 | **5-channel IR line sensor array** | 180 | 2 | 360 | **Show-stopper.** Nothing in the cart can see the guide path. This is the one part the whole project is about. |
-| **18650 cells ×2 + holder** | 320 | 2 | 640 | **Show-stopper.** Nothing in the cart powers the motors. USB will run the ESP32 and not much else. |
+| **2S pack: 2 × 18650 + series holder** | 320 | 2 | 640 | **Show-stopper.** Nothing in the cart powers the motors. USB runs the ESP32 and little else. 7.4 V nominal — see *Power* below for why 2S and not 1S or 3S. |
+| **2S BMS protection board** | 60 | 2 | 120 | Over-discharge and short protection. Not optional on a Li-ion pack that sits on a table in front of people. |
+| 8.4 V 1 A charger + dock contacts | 180 | 1 | 180 | A 2S pack needs an 8.4 V charger. A TP4056 is **1S only** and will not charge this — a mistake in an earlier draft of this document. |
 | ESP-WROOM-32, second chair | 429 | 1 | 429 | The cart has four motors but one brain. |
 | L298N, second chair | 129 | 1 | 129 | And one driver. |
 | RC522 RFID reader + tags | 180 | 2 | 360 | Floor tags confirm arrival at a named node — the same mechanism as production. Chair 2's can be cut if the budget bites. |
@@ -78,23 +80,85 @@ cannot move.
 | Buzzer, LEDs, resistors | 60 | 2 | 120 | |
 | Castor wheel | 40 | 2 | 80 | Third point of contact. |
 | Latching stop button | 40 | 2 | 80 | Wired to cut the driver's enable pin, **not** read in software. |
-| **Still to buy** | | | **₹2,878** | Estimates, not yet checked |
+| **Still to buy** | | | **₹3,178** | Estimates, not yet checked |
 
 ## Total
 
 | | ₹ |
 |---|---|
 | Already in the cart ✓ | 1,581 |
-| Still to buy (est.) | 2,878 |
-| **Total** | **₹4,459** |
+| Still to buy (est.) | 3,178 |
+| **Total** | **₹4,759** |
 
-Under ₹5,000 with ₹541 of slack, which is more than the earlier plan had because
-the BO motors came in at ₹67 each against ₹110 estimated.
+Under ₹5,000 with ₹241 of slack. The BO motors came in cheaper than estimated
+(₹67 against ₹110), and that gain went straight back out on the charging parts
+that were missing from the plan entirely.
 
 If it does run over, cut in this order: chair 2's RFID reader (it can dead-reckon
 for a demo), then the buzzer and LEDs, then the prototype PCB and stay on the
 breadboard. Do **not** cut the second chair; without it you are showing a line
 follower rather than a fleet, and the fleet is the product.
+
+## Power
+
+**Two 18650 cells in series — 7.4 V nominal, 2,000–2,600 mAh — per chair.**
+
+### Why 2S
+
+The L298N is an old bipolar driver and drops roughly **1.8 V** across its
+H-bridge. That drop decides the battery, and it is the thing most easily missed.
+
+| Pack | Range | What the motor actually sees |
+|---|---|---|
+| 1S (1 × 18650) | 3.0–4.2 V | 1.2–2.4 V — will barely turn, and stops as the cell sags |
+| **2S (2 × 18650)** | **6.0–8.4 V** | **4.2–6.6 V — right for a 6 V BO motor** |
+| 3S (3 × 18650) | 9.0–12.6 V | 7.2–10.8 V — a 300 RPM motor runs ~450 RPM and overshoots the line |
+
+2S it is. If you later swap the L298N for a MOSFET driver (TB6612, DRV8833) the
+drop almost disappears and the sums change — worth knowing, not worth doing yet.
+
+### Why that capacity
+
+Per chair, measured off the parts list:
+
+| | mA |
+|---|---|
+| Two BO motors, driving | 400 |
+| ESP32, Wi-Fi average | 150 |
+| IR line sensor array | 80 |
+| LD2420 radar (chair 1) | 100 |
+| RC522 RFID | 30 |
+| OLED (chair 1) | 20 |
+| HC-SR04 | 15 |
+| **Driving** | **~795** |
+| **Idle, motors off** | **~395** |
+
+Brief stall peaks reach 1.6–2 A with both motors, which the L298N handles and a
+cheap holder's spring contacts may not — solder the holder's leads rather than
+relying on the clips.
+
+At those figures a 2,000 mAh pack gives about **2.5 hours of continuous driving**
+or roughly **3.5–4 hours of realistic mixed use**, which covers an exhibition
+session with margin. 2,600 mAh takes it to about 5 hours. There is no reason to
+go larger: more capacity is more weight and more cost for a model that spends
+most of its day stationary.
+
+### Three things that will bite
+
+- **Cell capacity claims are routinely fraudulent.** A genuine 18650 tops out
+  around 3,500 mAh. Anything advertising 6,000 or 9,900 mAh is lying, and will
+  deliver a few hundred. Buy a known cell — Samsung, LG, Sony — or buy on brand
+  rather than on the number.
+- **Use the BMS.** An unprotected Li-ion pack that gets over-discharged, or
+  shorted by a dropped jumper wire, is a fire on a table in front of judges.
+- **A TP4056 cannot charge this.** It is a 1S charger. A 2S pack needs an 8.4 V
+  charger — this document said otherwise in an earlier draft and was wrong.
+
+### The dock
+
+For the return-to-charge demonstration the dock is two copper strips at 8.4 V and
+two sprung contacts on the chair. The BMS handles the rest. That is genuinely all
+it needs to be, and it is the same mechanism as the production design.
 
 ## A note on the 24 GHz radar
 

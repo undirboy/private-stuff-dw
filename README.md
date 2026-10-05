@@ -54,7 +54,7 @@ unit before putting any multiple in writing.
 | `sim/demo.py` | A scripted shift, printed as a timeline |
 | `firmware/chair_controller/` | On-board reflexes. Skeleton |
 | `docs/features.md` | **Everything the system does, and what is built vs. what is not** |
-| `docs/components.md` | **The ₹4,459 two-chair demonstrator: parts, disclosed shortcuts, build order** |
+| `docs/components.md` | **The ₹4,759 two-chair demonstrator: parts, disclosed shortcuts, build order** |
 | `docs/hardware.md` | The full-size production design: retrofit rationale, floor-reading, ~₹54k BOM |
 | `docs/safety.md` | The layered stop, why braking is a passenger problem, failure modes |
 | `docs/privacy.md` | What the barcode contains, what is kept, and what is deliberately never recorded |
