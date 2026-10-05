@@ -83,5 +83,5 @@ languages, caravans, pre-positioning, priority and reporting are working code
 with 169 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
-The build that demonstrates this at a table, for ₹4,818, is in
+The build that demonstrates this at a table, for ₹4,459, is in
 `components.md`.

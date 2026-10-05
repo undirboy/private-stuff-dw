@@ -18,11 +18,10 @@ who finds an undisclosed shortcut stops believing the rest.
 
 Neither is a component, and both are easy to miss until the order total appears.
 
-**GST.** The ESP32 line below is ₹429 *including* GST. Most of the remaining
-estimates were made without knowing either way. If the other ₹3,960 of parts turn
-out to be listed ex-GST, 18% on top is **about ₹713**, which takes the build to
-roughly **₹5,531 — over budget**. Check this first; it is worth more than
-shaving any single part.
+**GST.** Settled for the ₹1,581 already in the cart: that is a real cart total at
+prices listed including GST. The remaining ₹2,878 is still estimated. If those
+parts turn out to be listed ex-GST, 18% on top is about **₹518**, which lands the
+build near **₹4,977** — still inside ₹5,000, but with nothing left over.
 
 **Shipping.** Robu and similar charge delivery unless the order clears a free
 threshold. Order everything in one go rather than as you discover you need it:
@@ -44,62 +43,83 @@ The single most useful decision in this budget. Two chairs fit comfortably under
 With one chair you are showing a line follower. With two you are showing a
 fleet, which is the actual product.
 
-## Both chairs — the common parts
+## Ordered so far — ₹1,581 ✓
 
-Each chair needs all of these.
+A real cart total, so these prices and the GST on them are settled.
 
-| Item | Qty | ₹ | | Why this part |
+| Item | SKU | ₹ | Qty | |
 |---|---|---|---|---|
-| ESP-WROOM-32 dev board (SKU 835800) | 1 | 429 | ✓ | Incl. GST. Wi-Fi is not optional: the link to the dispatcher is the architecture. An Arduino Nano at ₹250 cannot do it, and an ESP8266 is a false economy — the RFID reader's SPI bus, the motor driver, the ultrasonic and five IR channels do not fit its usable GPIO. |
-| L298N motor driver | 1 | 130 | est. | Crude and entirely adequate at this scale. |
-| BO geared motor 100 RPM + wheel | 2 | 220 | est. | Slow is correct. A fast model looks like a toy and overshoots the line. |
-| Castor wheel | 1 | 40 | est. | Third point of contact. |
-| MDF chassis plate, cut locally | 1 | 120 | est. | Acrylic looks better and costs more; MDF is fine. |
-| 5-channel IR line sensor array | 1 | 180 | est. | See the disclosed differences below. |
-| HC-SR04 ultrasonic sensor | 1 | 90 | est. | The obstacle stop. |
-| RC522 RFID reader + tags | 1 | 180 | est. | Floor tags confirm arrival at a named node — the same mechanism as production. |
-| 18650 cells + holder | 2 | 320 | est. | |
-| Buck converter (5 V) | 1 | 60 | est. | |
-| Latching push button (stop) | 1 | 40 | est. | Wired to cut the motor driver's enable pin, **not** read in software. |
-| Buzzer, LEDs, resistors | — | 60 | est. | |
-| **Per chair** | | **₹1,869** | | |
+| ESP-WROOM-32 dev board | 835800 | 429 | 1 | Wi-Fi is not optional: the link to the dispatcher is the architecture. An ESP8266 is a false economy — the RFID reader's SPI bus, the motor driver, the ultrasonic and five IR channels do not fit its usable GPIO. |
+| 0.96" OLED 128×64 SPI/I2C | R190600 | 239 | 1 | The screen that answers the scan. One is enough; a second adds nothing to the argument. |
+| MB102 830-point breadboard | 24438 | 69 | 1 | Bench work before anything is soldered. |
+| L298N 2A motor driver | 43821 | 129 | 1 | Crude and entirely adequate at this scale. |
+| 300 RPM BO motor, straight | 103984 | 268 | 4 | **₹67 each** — the listing shows the line total, not the unit price. Four is two chairs' worth. 300 RPM is on the fast side for a model; gear it down or cap the duty cycle, or it will overshoot the line. |
+| Prototype copper PCB | R267841 | 59 | 1 | For the permanent build once the breadboard version works. |
+| HLK-LD2420 24 GHz human-motion radar | 1802881 | 279 | 1 | Interesting, and not a substitute for an obstacle sensor — see below. |
+| 140-piece jumper wire kit | 28362 | 109 | 1 | One kit covers both chairs. |
+| **Cart total** | | **₹1,581** | | |
 
-## Chair 1 only
+## Still to buy — ₹2,878
 
-| Item | ₹ | | Why only one |
-|---|---|---|---|
-| 0.96" OLED display | 220 | est. | Shows the gate, terminal and time remaining the moment a pass is scanned — the single most convincing thing on the table. One screen demonstrates it completely; a second adds nothing to the argument. |
-| TP4056 charging module | 40 | est. | One chair demonstrating return-to-charge is the demonstration. |
-| **Chair 1 extras** | **₹260** | | |
+Two of these are show-stoppers: without them the model cannot follow a line and
+cannot move.
 
-## Shared
-
-| Item | ₹ | Why |
-|---|---|---|
-| Jumper wires, standoffs, screws | 200 | One bulk set covers both chairs. Buy more than you think. |
-| Track: black electrical tape or printed vinyl | 200 | The guide path. Tape on a light matt board is enough. |
-| Two weighted figures (a doll, or 500 g each) | 120 | A chair carrying nothing reads as a toy. |
-| Printed boarding passes | 50 | Generate real IATA BCBP barcodes with `saarthi.boardingpass.encode`, render as PDF417, print. |
-| Spare parts allowance | 250 | Something will burn out the night before. It always does. |
-| **Shared** | **₹820** | |
+| Item | ₹ | Qty | Line | |
+|---|---|---|---|---|
+| **5-channel IR line sensor array** | 180 | 2 | 360 | **Show-stopper.** Nothing in the cart can see the guide path. This is the one part the whole project is about. |
+| **18650 cells ×2 + holder** | 320 | 2 | 640 | **Show-stopper.** Nothing in the cart powers the motors. USB will run the ESP32 and not much else. |
+| ESP-WROOM-32, second chair | 429 | 1 | 429 | The cart has four motors but one brain. |
+| L298N, second chair | 129 | 1 | 129 | And one driver. |
+| RC522 RFID reader + tags | 180 | 2 | 360 | Floor tags confirm arrival at a named node — the same mechanism as production. Chair 2's can be cut if the budget bites. |
+| MDF chassis plate | 120 | 2 | 240 | Cut locally. |
+| HC-SR04 ultrasonic | 90 | 2 | 180 | The hard stop. See the radar note below for why this is not optional. |
+| BO wheels to fit the motors | 35 | 4 | 140 | BO motors are usually sold without them. Check the listing before ordering. |
+| Buck converter, 5 V | 60 | 2 | 120 | Motors want 7–12 V, the ESP32 wants 5 V. |
+| Buzzer, LEDs, resistors | 60 | 2 | 120 | |
+| Castor wheel | 40 | 2 | 80 | Third point of contact. |
+| Latching stop button | 40 | 2 | 80 | Wired to cut the driver's enable pin, **not** read in software. |
+| **Still to buy** | | | **₹2,878** | Estimates, not yet checked |
 
 ## Total
 
 | | ₹ |
 |---|---|
-| Chair 1 (1,869 + 260) | 2,129 |
-| Chair 2 | 1,869 |
-| Shared | 820 |
-| **Total** | **₹4,818** |
+| Already in the cart ✓ | 1,581 |
+| Still to buy (est.) | 2,878 |
+| **Total** | **₹4,459** |
 
-Under ₹5,000, with two working chairs and ₹182 of slack — which you will use.
-The slack was ₹240 until the ESP32 turned out to cost ₹429 rather than the ₹400
-estimated, which is a fair warning about the remaining estimates.
+Under ₹5,000 with ₹541 of slack, which is more than the earlier plan had because
+the BO motors came in at ₹67 each against ₹110 estimated.
 
-If it does run over, cut in this order: the weighted figures, then the spares
-allowance, then chair 2's RFID reader (it can dead-reckon for a demo). Do **not**
-cut the second chair; without it you are showing a line follower rather than a
-fleet, and the fleet is the product.
+If it does run over, cut in this order: chair 2's RFID reader (it can dead-reckon
+for a demo), then the buzzer and LEDs, then the prototype PCB and stay on the
+breadboard. Do **not** cut the second chair; without it you are showing a line
+follower rather than a fleet, and the fleet is the product.
+
+## A note on the 24 GHz radar
+
+It is a genuinely interesting part and it is **not a replacement for the
+ultrasonic**. Two separate reasons, and the second may rule it out of this build
+entirely.
+
+**It only sees people.** That is the appealing part: it detects a human, including
+one standing still, in the dark, and would make the chair's "Someone is in the
+way" message honest rather than a guess. But it cannot see a suitcase, a baggage
+trolley, a pillar, a glass wall or a step down — and those are what will actually
+injure somebody. A chair that brakes for people and drives into luggage is worse
+than one that brakes for everything.
+
+**Its minimum range is probably longer than your whole track.** The LD2420 works
+in distance gates of roughly 0.7 m out to several metres, which is designed for
+sensing presence in a room. On a table-top model whose entire track might be
+1.5 m across, the nearest gate covers most of it, and a judge leaning over the
+table reads as an obstacle. **Check the gate configuration in the datasheet — the
+product page has a Docs link — before you rely on it.**
+
+Suggested use: keep it, fit it to chair 1 only, and demonstrate it as the
+human-aware layer in the *production* design, with the ultrasonic doing the
+actual stopping on the table. That is an honest story and a good one. Letting it
+be the only thing between the chair and a collision is not.
 
 ## Costing nothing
 
