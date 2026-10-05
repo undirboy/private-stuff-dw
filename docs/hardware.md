@@ -44,7 +44,7 @@ overhead lighting. **Do not demonstrate on an IR array and promise it scales.**
 | **Painted or taped stripe**, read by a downward camera | Carpet, back-of-house, trials | Low | Cheapest to lay and easiest to demo. Degrades with traffic, struggles on reflective floors. |
 | **Sparse RFID tags** plus dead reckoning | Where no continuous line is permitted — security archways, fire shutters, expansion joints | Medium | Position is known only at the tags; everything between is odometry. Keep these runs short. |
 
-The code models this per segment (`saarthi.graph.Guide`) because a real terminal
+The code models this per segment (`margadarshak.graph.Guide`) because a real terminal
 will be a mix of all three.
 
 Crowds will stand on the line. The chair needs wheel encoders and an IMU so it

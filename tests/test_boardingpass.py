@@ -6,7 +6,7 @@ import datetime as dt
 
 import pytest
 
-from saarthi import (
+from margadarshak import (
     BoardingPassError,
     ChairState,
     Fleet,
@@ -15,7 +15,7 @@ from saarthi import (
     ScanRejected,
     build_example_terminal,
 )
-from saarthi.boardingpass import HEADER_LENGTH, encode, parse
+from margadarshak.boardingpass import HEADER_LENGTH, encode, parse
 
 PEREIRA = encode(
     family_name="PEREIRA",

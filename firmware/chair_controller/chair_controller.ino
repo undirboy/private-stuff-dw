@@ -1,5 +1,5 @@
 /*
- * Saarthi chair controller — on-board reflexes only.
+ * Margadarshak chair controller — on-board reflexes only.
  *
  * This firmware deliberately knows nothing about the terminal. It cannot name a
  * gate, it holds no map, and it has no opinion about where it should be. It

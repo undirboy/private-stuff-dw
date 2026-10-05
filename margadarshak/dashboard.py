@@ -11,7 +11,7 @@ darkest for carrying a passenger, lightest for sitting available, with stopped
 called out separately. An operator reads utilisation off it without a legend
 lookup: more dark is better.
 
-    from saarthi.dashboard import render_dashboard
+    from margadarshak.dashboard import render_dashboard
     render_dashboard(fleet, "shift.html", title="Morning shift")
 """
 

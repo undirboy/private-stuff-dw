@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from saarthi import ChairState, Fleet, Node, NodeKind, TerminalMap, build_example_terminal, plan
-from saarthi.fleet import BATTERY_WH, SegmentReservations
+from margadarshak import ChairState, Fleet, Node, NodeKind, TerminalMap, build_example_terminal, plan
+from margadarshak.fleet import BATTERY_WH, SegmentReservations
 
 
 @pytest.fixture

@@ -25,7 +25,7 @@ from __future__ import annotations
 import pathlib
 import sys
 
-from saarthi import (
+from margadarshak import (
     Fleet,
     FlightBoard,
     FlightStatus,
@@ -35,9 +35,9 @@ from saarthi import (
     plan_staging,
     render_dashboard,
 )
-from saarthi.announce import DISPLAY_ORDER
-from saarthi.boardingpass import encode
-from saarthi.screen import screen_for
+from margadarshak.announce import DISPLAY_ORDER, announce
+from margadarshak.boardingpass import encode
+from margadarshak.screen import screen_for
 
 HOUR = 60 * 60
 

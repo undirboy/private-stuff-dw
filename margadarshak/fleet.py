@@ -297,7 +297,7 @@ class Fleet:
         now_s: float = 0.0,
         board: FlightBoard | None = None,
         holding_area: str | None = None,
-        scan_secret: bytes = b"saarthi-dev-key-replace-in-deployment",
+        scan_secret: bytes = b"margadarshak-dev-key-replace-in-deployment",
     ) -> None:
         self.tmap = tmap
         self.now = now_s
@@ -862,7 +862,7 @@ class Fleet:
         return True
 
     def apply_staging(self, moves) -> int:
-        """Carry out a set of recommendations from :mod:`saarthi.prepositioning`."""
+        """Carry out a set of recommendations from :mod:`margadarshak.prepositioning`."""
         return sum(1 for move in moves if self.send_to_staging(move.chair_id, move.to_node))
 
     def _plan_for(self, chair: Chair, start: str, goal: str) -> Route | None:

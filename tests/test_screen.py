@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from saarthi import (
+from margadarshak import (
     ChairState,
     Fleet,
     FlightBoard,
@@ -12,10 +12,10 @@ from saarthi import (
     ScanRejected,
     build_example_terminal,
 )
-from saarthi.announce import LANGUAGES
-from saarthi.boardingpass import encode
-from saarthi.graph import Node, NodeKind, TerminalMap
-from saarthi.screen import (
+from margadarshak.announce import LANGUAGES
+from margadarshak.boardingpass import encode
+from margadarshak.graph import Node, NodeKind, TerminalMap
+from margadarshak.screen import (
     ARRIVING_THRESHOLD_S,
     eta_message,
     place_message,

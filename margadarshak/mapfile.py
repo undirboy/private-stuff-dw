@@ -11,7 +11,7 @@ facilities team can open it, change a speed limit, add a gate or close a corrido
 with a text editor, validate it, and put it back — without this repository and
 without us.
 
-    python3 -m saarthi.mapfile terminal.json --validate
+    python3 -m margadarshak.mapfile terminal.json --validate
 
 This is a procurement argument as much as a technical one. "Who owns the map, and
 what does it cost us to change it" is a question that gets asked in a tender, and
@@ -37,7 +37,7 @@ class MapFileError(ValueError):
 def to_dict(tmap: TerminalMap) -> dict:
     """The map as plain data: dicts, lists, strings and numbers."""
     return {
-        "format": "saarthi.terminal-map",
+        "format": "margadarshak.terminal-map",
         "version": FORMAT_VERSION,
         "name": tmap.name,
         "nodes": [
@@ -184,7 +184,7 @@ load = load_map
 
 
 def main(argv: list[str] | None = None) -> int:
-    """``python3 -m saarthi.mapfile <file.json> [--validate]``
+    """``python3 -m margadarshak.mapfile <file.json> [--validate]``
 
     Gives the facilities team a way to check a map they have edited without
     writing any code: it loads the file, reports anything wrong in plain words,
@@ -193,7 +193,7 @@ def main(argv: list[str] | None = None) -> int:
     args = list(sys.argv[1:] if argv is None else argv)
     if not args:
         print(__doc__.strip().splitlines()[0])
-        print("usage: python3 -m saarthi.mapfile <file.json> [--validate]")
+        print("usage: python3 -m margadarshak.mapfile <file.json> [--validate]")
         return 2
 
     path = args[0]

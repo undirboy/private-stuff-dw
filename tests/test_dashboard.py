@@ -6,8 +6,8 @@ import re
 
 import pytest
 
-from saarthi import ChairState, Fleet, build_example_terminal, render_dashboard
-from saarthi.dashboard import BANDS, render, spans, utilisation
+from margadarshak import ChairState, Fleet, build_example_terminal, render_dashboard
+from margadarshak.dashboard import BANDS, render, spans, utilisation
 
 
 @pytest.fixture

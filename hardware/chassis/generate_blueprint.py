@@ -263,7 +263,7 @@ def front_elevation(d: Draw, ox: float, floor_y: float) -> None:
 def title_block(d: Draw, x: float, y: float, w: float, h: float) -> None:
     d.rect(x, y, w, h, INK, 0.5)
     d.line(x, y + 9, x + w, y + 9, INK, 0.35)
-    d.text(x + 2, y + 6.5, "SAARTHI — GUIDED ASSISTIVE CHAIR, SCALE DEMONSTRATOR", 3.4,
+    d.text(x + 2, y + 6.5, "MARGADARSHAK — GUIDED ASSISTIVE CHAIR, SCALE DEMONSTRATOR", 3.4,
            weight="bold")
 
     rows = [

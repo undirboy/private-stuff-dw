@@ -1,10 +1,12 @@
-# Saarthi
+# Margadarshak
 
 A guided assistive chair for airport terminals, and the dispatcher that runs a
 fleet of them.
 
-*Saarthi* (सारथी) is the charioteer — the one who drives so the passenger does
-not have to.
+*Margadarshak* (मार्गदर्शक) is the one who shows the way — a guide rather than a
+driver. That is the distinction the whole system turns on: the chair decides
+nothing about where to go. The guide path in the floor and the dispatcher decide,
+and the chair follows.
 
 ## The idea
 
@@ -40,17 +42,17 @@ unit before putting any multiple in writing.
 
 | | |
 |---|---|
-| `saarthi/announce.py` | Everything the chair says, in Konkani, Marathi, Hindi and English |
-| `saarthi/boardingpass.py` | IATA BCBP barcode parser. The passenger scans; nothing else is asked of them |
-| `saarthi/dashboard.py` | The shift report an operator is held to: waits, utilisation, call-outs |
-| `saarthi/flights.py` | The flight board — where the gate comes from, and how we hear that it moved |
-| `saarthi/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
-| `saarthi/mapfile.py` | The map as readable JSON the airport owns and can edit, with a validator |
-| `saarthi/prepositioning.py` | Moving idle chairs towards demand before it arrives, from the flight schedule |
-| `saarthi/screen.py` | What the chair's screen shows at any moment — gate, terminal, how long left |
-| `saarthi/router.py` | A* with time as the cost and a turn penalty, so routes are quick and comfortable rather than merely short |
-| `saarthi/fleet.py` | Dispatch, battery reserve, corridor reservations, mid-journey rerouting, unaccompanied return to charge |
-| `saarthi/terminal.py` | A worked example terminal |
+| `margadarshak/announce.py` | Everything the chair says, in Konkani, Marathi, Hindi and English |
+| `margadarshak/boardingpass.py` | IATA BCBP barcode parser. The passenger scans; nothing else is asked of them |
+| `margadarshak/dashboard.py` | The shift report an operator is held to: waits, utilisation, call-outs |
+| `margadarshak/flights.py` | The flight board — where the gate comes from, and how we hear that it moved |
+| `margadarshak/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
+| `margadarshak/mapfile.py` | The map as readable JSON the airport owns and can edit, with a validator |
+| `margadarshak/prepositioning.py` | Moving idle chairs towards demand before it arrives, from the flight schedule |
+| `margadarshak/screen.py` | What the chair's screen shows at any moment — gate, terminal, how long left |
+| `margadarshak/router.py` | A* with time as the cost and a turn penalty, so routes are quick and comfortable rather than merely short |
+| `margadarshak/fleet.py` | Dispatch, battery reserve, corridor reservations, mid-journey rerouting, unaccompanied return to charge |
+| `margadarshak/terminal.py` | A worked example terminal |
 | `sim/demo.py` | A scripted shift, printed as a timeline |
 | `firmware/chair_controller/` | On-board reflexes. Skeleton |
 | `hardware/chassis/` | Printable deck, sensor bracket and castor riser, with the generator that makes them |
@@ -111,7 +113,7 @@ in a language the passenger may not have.
 [en ] Taking you to Gate 4, Terminal 1.  /  About 2 minutes.
 ```
 
-`saarthi/screen.py` decides this, not the firmware, so the chair receives finished
+`margadarshak/screen.py` decides this, not the firmware, so the chair receives finished
 lines and draws them. Gate numbering, terminal layout and language all change
 without warning, and none of them should mean reflashing a chair.
 
@@ -121,7 +123,7 @@ changing reads as agitation to somebody who is already anxious.
 
 ## Four languages, enforced
 
-Every message the chair shows or speaks is in `saarthi/announce.py` in Konkani,
+Every message the chair shows or speaks is in `margadarshak/announce.py` in Konkani,
 Marathi, Hindi and English, and the test suite fails the build if a message is
 added in English alone, if a translation drops a placeholder, or if the Konkani
 and Marathi copy is identical. Screens show the local languages first and English
@@ -145,7 +147,7 @@ whatever their flight is doing.
 the facilities team can run themselves:
 
 ```sh
-python3 -m saarthi.mapfile terminal.json --validate
+python3 -m margadarshak.mapfile terminal.json --validate
 ```
 
 Renumber a gate, change a speed limit, close a corridor — without us. "What does

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from saarthi import ChairState, Fleet, FlightBoard, FlightStatus, build_example_terminal
-from saarthi.announce import (
+from margadarshak import ChairState, Fleet, FlightBoard, FlightStatus, build_example_terminal
+from margadarshak.announce import (
     CATALOGUE,
     DISPLAY_ORDER,
     LANGUAGES,
@@ -16,8 +16,8 @@ from saarthi.announce import (
     say,
     validate_catalogue,
 )
-from saarthi.boardingpass import encode
-from saarthi.prepositioning import (
+from margadarshak.boardingpass import encode
+from margadarshak.prepositioning import (
     DemandPoint,
     forecast_demand,
     plan_staging,

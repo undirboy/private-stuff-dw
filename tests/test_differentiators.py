@@ -10,10 +10,10 @@ import json
 
 import pytest
 
-from saarthi import ChairState, Fleet, FlightBoard, FlightStatus, build_example_terminal
-from saarthi.fleet import GATE_CLOSES_BEFORE_DEPARTURE_S, MAX_WAIT_BEFORE_PRIORITY_S
-from saarthi.graph import Guide, NodeKind
-from saarthi.mapfile import MapFileError, dumps, load, loads, main, save
+from margadarshak import ChairState, Fleet, FlightBoard, FlightStatus, build_example_terminal
+from margadarshak.fleet import GATE_CLOSES_BEFORE_DEPARTURE_S, MAX_WAIT_BEFORE_PRIORITY_S
+from margadarshak.graph import Guide, NodeKind
+from margadarshak.mapfile import MapFileError, dumps, load, loads, main, save
 
 HOUR = 60 * 60
 
@@ -181,7 +181,7 @@ def test_the_dogleg_length_is_not_silently_recomputed():
 
 def test_the_file_is_something_a_person_can_read_and_edit():
     data = json.loads(dumps(build_example_terminal()))
-    assert data["format"] == "saarthi.terminal-map"
+    assert data["format"] == "margadarshak.terminal-map"
     assert {"version", "name", "nodes", "segments"} <= set(data)
     # Plain keys, no encoded blobs, no identifiers only this software understands.
     assert set(data["nodes"][0]) == {

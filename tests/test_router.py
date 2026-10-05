@@ -6,9 +6,9 @@ import math
 
 import pytest
 
-from saarthi import NodeKind, build_example_terminal, plan
-from saarthi.graph import Node, NodeKind as NK, TerminalMap
-from saarthi.router import traverse_time
+from margadarshak import NodeKind, build_example_terminal, plan
+from margadarshak.graph import Node, NodeKind as NK, TerminalMap
+from margadarshak.router import traverse_time
 
 
 @pytest.fixture
