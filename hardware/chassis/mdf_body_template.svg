@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="210.0mm" height="297.0mm" viewBox="0 0 210.0 297.0">
+  <rect width="210.0" height="297.0" fill="white"/>
+  <path d="M12.00,82.00 L12.00,12.00 L82.00,12.00 L82.00,42.00 L132.00,42.00 L132.00,82.00 Z" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <text x="14.00" y="10.00" font-family="sans-serif" font-size="3.2" fill="#1c5cab">SIDE PANEL — CUT 2.  Armrest at the rear, seat step forward.</text>
+  <circle cx="27.00" cy="76.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M24.10,76.00 H29.90 M27.00,73.10 V78.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="67.00" cy="76.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M64.10,76.00 H69.90 M67.00,73.10 V78.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="112.00" cy="76.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M109.10,76.00 H114.90 M112.00,73.10 V78.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <path d="M12.00,156.00 L12.00,86.00 L82.00,86.00 L82.00,116.00 L132.00,116.00 L132.00,156.00 Z" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <circle cx="27.00" cy="150.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M24.10,150.00 H29.90 M27.00,147.10 V152.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="67.00" cy="150.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M64.10,150.00 H69.90 M67.00,147.10 V152.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="112.00" cy="150.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M109.10,150.00 H114.90 M112.00,147.10 V152.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <rect x="140.00" y="12.00" width="25.00" height="90.00" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <text x="142.00" y="10.00" font-family="sans-serif" font-size="3.5" fill="#1c5cab">FOOTPLATE</text>
+  <circle cx="152.50" cy="32.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M149.60,32.00 H155.40 M152.50,29.10 V34.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="152.50" cy="82.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M149.60,82.00 H155.40 M152.50,79.10 V84.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <text x="140.00" y="110.00" font-family="sans-serif" font-size="3.2" fill="#1c5cab">GUSSETS × 4</text>
+  <path d="M140.00,112.00 L160.00,112.00 L140.00,132.00 Z" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <circle cx="149.00" cy="116.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M146.10,116.00 H151.90 M149.00,113.10 V118.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="144.00" cy="121.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M141.10,121.00 H146.90 M144.00,118.10 V123.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <path d="M164.00,112.00 L184.00,112.00 L164.00,132.00 Z" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <circle cx="173.00" cy="116.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M170.10,116.00 H175.90 M173.00,113.10 V118.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="168.00" cy="121.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M165.10,121.00 H170.90 M168.00,118.10 V123.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <path d="M140.00,136.00 L160.00,136.00 L140.00,156.00 Z" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <circle cx="149.00" cy="140.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M146.10,140.00 H151.90 M149.00,137.10 V142.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="144.00" cy="145.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M141.10,145.00 H146.90 M144.00,142.10 V147.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <path d="M164.00,136.00 L184.00,136.00 L164.00,156.00 Z" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <circle cx="173.00" cy="140.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M170.10,140.00 H175.90 M173.00,137.10 V142.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="168.00" cy="145.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M165.10,145.00 H170.90 M168.00,142.10 V147.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <rect x="12.00" y="166.00" width="70.00" height="100.00" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <text x="14.00" y="164.00" font-family="sans-serif" font-size="3.5" fill="#1c5cab">SEAT PAN — 100 × 70</text>
+  <circle cx="26.00" cy="180.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M23.10,180.00 H28.90 M26.00,177.10 V182.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="26.00" cy="216.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M23.10,216.00 H28.90 M26.00,213.10 V218.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="26.00" cy="252.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M23.10,252.00 H28.90 M26.00,249.10 V254.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="68.00" cy="180.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M65.10,180.00 H70.90 M68.00,177.10 V182.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="68.00" cy="216.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M65.10,216.00 H70.90 M68.00,213.10 V218.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="68.00" cy="252.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M65.10,252.00 H70.90 M68.00,249.10 V254.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <rect x="96.00" y="166.00" width="66.00" height="100.00" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <text x="98.00" y="164.00" font-family="sans-serif" font-size="3.5" fill="#1c5cab">BACKREST — 100 × 66</text>
+  <circle cx="110.00" cy="182.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M107.10,182.00 H112.90 M110.00,179.10 V184.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="110.00" cy="250.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M107.10,250.00 H112.90 M110.00,247.10 V252.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="148.00" cy="182.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M145.10,182.00 H150.90 M148.00,179.10 V184.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <circle cx="148.00" cy="250.00" r="1.70" fill="none" stroke="#1c5cab" stroke-width="0.25"/>
+  <path d="M145.10,250.00 H150.90 M148.00,247.10 V252.90" stroke="#1c5cab" stroke-width="0.18"/>
+  <path d="M12.00,273.00 h100 M12.00,271.00 v4 M112.00,271.00 v4 M62.00,271.50 v3" stroke="#1c5cab" stroke-width="0.4"/>
+  <path d="M22.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <path d="M32.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <path d="M42.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <path d="M52.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <path d="M62.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <path d="M72.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <path d="M82.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <path d="M92.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <path d="M102.00,272.00 v2" stroke="#9ec5f4" stroke-width="0.3"/>
+  <text x="12.00" y="269.50" font-family="sans-serif" font-size="3.0" fill="#1c5cab">Check this measures exactly 100 mm — print at 100%, no page scaling</text>
+  <text x="12.00" y="279.00" font-family="sans-serif" font-size="2.8" fill="#1c5cab">Glue with the gussets inside the corners. Dry-fit the whole body before any glue.</text>
+</svg>

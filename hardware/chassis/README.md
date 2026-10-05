@@ -107,3 +107,56 @@ genuinely unpleasant.
 
 If you do print, the parts worth printing are the **sensor bracket** and the
 **riser**, which are the awkward shapes. The deck is the easy bit either way.
+
+## The wheelchair body — also MDF
+
+`mdf_body_template.pdf` is the second 1:1 sheet: the part that makes it read as a
+wheelchair rather than a box with wheels. That matters more than it sounds. A
+judge who has to be told what they are looking at has already stopped being
+impressed.
+
+Four shapes, six pieces, all flat:
+
+| Piece | Size | |
+|---|---|---|
+| Side panel × 2 | 120 × 70 | Stepped: armrest at the rear, seat ledge forward. One piece instead of a panel plus a separate armrest — two fewer glued joints to get out of square. |
+| Seat pan | 100 × 70 | |
+| Backrest | 100 × 66 | |
+| Footplate | 90 × 25 | |
+| Gusset × 4 | 20 mm triangles | Glue does the work; the bolts hold it square while it dries. |
+
+### Scale
+
+The deck is 110 mm wide and a wheelchair is about 650 mm across, so this is
+**1:6**, and every dimension is a real one divided by six. Assembled:
+
+| | Model | At 1:6 | A real wheelchair |
+|---|---|---|---|
+| Seat height | 90 mm | 540 mm | ~500 mm |
+| Armrest height | 116 mm | 696 mm | ~700 mm |
+| Backrest top | 156 mm | 936 mm | ~900 mm |
+
+Keeping the proportions true matters even where nobody would measure: a model
+whose proportions are right looks right, and nobody can say why.
+
+The **drive wheels are the wheelchair's rear wheels** — the 65 mm BO wheels sit
+just outboard of the side panels, where a wheelchair's wheels belong. The
+chassis castor shows at the front as the wheelchair's front castor. Nothing extra
+to make, and nothing cosmetic that does not also do a job.
+
+### Assembly
+
+1. **Dry-fit the entire body** before any glue. Every joint, with tape. This is
+   the step people skip and the one that saves the build.
+2. Side panels onto the deck, square, with gussets inside the corners.
+3. Seat pan onto the step. Backrest against the rear edge of the seat.
+4. Footplate last, on a gusset off the deck's front.
+
+### Material
+
+Everything on both sheets fits a single **300 × 300 mm piece of 4 mm MDF**,
+tightly. 400 × 300 gives room for the one you cut wrong.
+
+The body adds roughly **170 g**, so the loaded chair is around 600 g. The BO
+motors are geared and will not notice, but it is another reason to keep the top
+speed down.

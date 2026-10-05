@@ -114,7 +114,7 @@ charger appear here.
 
 | ✓ | Item | ₹ | |
 |---|---|---|---|
-| ☐ | Chassis — 3D printed or MDF | 120 | STLs ready to upload in [`hardware/chassis/`](../hardware/chassis/), about 42 g of PLA — or build it all from 4 mm MDF using the 1:1 drilling template in the same folder. |
+| ☐ | Chassis — 3D printed or MDF | 120 | STLs ready to upload in [`hardware/chassis/`](../hardware/chassis/), about 42 g of PLA — or build the whole chair — drive platform and wheelchair body — from one 300 × 300 mm piece of 4 mm MDF, using the two 1:1 templates in the same folder. |
 | ☐ | Black electrical tape or printed vinyl | 200 | The track. Lay it on a light matt board. |
 | ☐ | Printed PDF417 boarding passes | 50 | Generate with `saarthi.boardingpass.encode`, render as PDF417, print at a shop. |
 
