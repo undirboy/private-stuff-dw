@@ -46,8 +46,12 @@ SIDE_ARM_L = 70.0        # how far forward the raised armrest section runs
 
 SEAT_W, SEAT_D = 100.0, 70.0
 BACK_W, BACK_H = 100.0, 66.0
-FOOT_W, FOOT_D = 90.0, 25.0
+FOOT_W, FOOT_D = 90.0, 20.0
 GUSSET = 20.0
+#: Strips glued inside the side panels for the seat pan to rest on. Without
+#: these the seat has nothing to sit on: the side panels are full height where
+#: the seat goes, so it cannot rest on top of them.
+CLEAT_L, CLEAT_W = 70.0, 10.0
 
 OUT = pathlib.Path(__file__).resolve().parent
 
@@ -112,6 +116,18 @@ def main() -> int:
         sheet.hole(gx + GUSSET * 0.45, gyy + 4, C.M3_CLEAR)
         sheet.hole(gx + 4, gyy + GUSSET * 0.45, C.M3_CLEAR)
 
+    # ---- seat cleats, in the spare column -------------------------------
+    clx = MARGIN + SEAT_D + BACK_H + 20
+    sheet.note(clx, gy + 2 * (GUSSET + 4) + 10, "SEAT CLEATS × 2", 3.0)
+    for i in range(2):
+        sheet.outline(
+            clx + i * (CLEAT_W + 6),
+            gy + 2 * (GUSSET + 4) + 14,
+            CLEAT_W,
+            CLEAT_L,
+            "",
+        )
+
     # ---- seat and backrest, side by side at the bottom ------------------
     by = y + 6
     sheet.outline(MARGIN, by, SEAT_D, SEAT_W, f"SEAT PAN — {SEAT_W:.0f} × {SEAT_D:.0f}")
@@ -142,6 +158,7 @@ def main() -> int:
     print(f"backrest        {BACK_W:.0f} × {BACK_H:.0f} mm")
     print(f"footplate       {FOOT_W:.0f} × {FOOT_D:.0f} mm")
     print(f"gussets ×4      {GUSSET:.0f} mm right-angle triangles")
+    print(f"seat cleats ×2  {CLEAT_L:.0f} × {CLEAT_W:.0f} mm")
     print(f"\nassembled: seat {DECK_TOP + SIDE_SEAT_H + MDF_T:.0f} mm, "
           f"armrests {DECK_TOP + SIDE_ARM_H:.0f} mm, "
           f"backrest top {DECK_TOP + SIDE_SEAT_H + MDF_T + BACK_H:.0f} mm above the floor")

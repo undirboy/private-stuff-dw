@@ -1,4 +1,22 @@
-# Chassis — printable parts
+# Chassis and body
+
+`blueprint.pdf` is the assembly drawing: dimensioned side and front elevations of
+the whole chair, with a title block and the assembly order. A3, 1:1, though every
+figure that matters is written on it so printing it smaller loses nothing. That
+is the sheet to work from and the one to put in front of somebody.
+
+The other two PDFs are 1:1 cutting templates — shapes to glue onto the board and
+cut round. The STLs are the same parts for a printer. Everything is generated
+from `generate_chassis.py`, so no two of them can disagree.
+
+| File | |
+|---|---|
+| `blueprint.pdf` | The assembly drawing — read this first |
+| `mdf_template.pdf` | 1:1 cutting template, drive platform |
+| `mdf_body_template.pdf` | 1:1 cutting template, wheelchair body |
+| `deck.stl`, `sensor_bracket.stl`, `castor_riser_20mm.stl` | The printable alternative |
+
+## Printable parts
 
 Three STL files for one chair. Upload them as they are; they are already
 oriented to sit on the bed and print without supports.
@@ -120,10 +138,11 @@ Four shapes, six pieces, all flat:
 | Piece | Size | |
 |---|---|---|
 | Side panel × 2 | 120 × 70 | Stepped: armrest at the rear, seat ledge forward. One piece instead of a panel plus a separate armrest — two fewer glued joints to get out of square. |
-| Seat pan | 100 × 70 | |
+| Seat pan | 100 × 70 | Rests on cleats, not on the panels — see below. |
 | Backrest | 100 × 66 | |
 | Footplate | 90 × 25 | |
 | Gusset × 4 | 20 mm triangles | Glue does the work; the bolts hold it square while it dries. |
+| Seat cleat × 2 | 70 × 10 | Glued inside each side panel at the seat line. Without these the seat has nowhere to sit: the panels are full height where the seat goes, so it cannot rest on top of them. |
 
 ### Scale
 

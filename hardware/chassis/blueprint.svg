@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="420.0mm" height="297.0mm" viewBox="0 0 420.0 297.0">
+  <rect width="420.0" height="297.0" fill="white"/>
+  <rect x="8.00" y="8.00" width="404.00" height="281.00" fill="none" stroke="#1c5cab" stroke-width="0.5"/>
+  <path d="M15.00,172.00 L205.00,172.00" stroke="#1c5cab" stroke-width="0.6" fill="none"/>
+  <text x="16.00" y="177.00" font-family="sans-serif" font-size="2.6" fill="#86b6ef" text-anchor="start" font-weight="normal">FLOOR</text>
+  <circle cx="90.00" cy="139.50" r="32.50" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <circle cx="90.00" cy="139.50" r="5.00" fill="none" stroke="#86b6ef" stroke-width="0.3"/>
+  <path d="M53.50,139.50 L126.50,139.50" stroke="#86b6ef" stroke-width="0.22" fill="none" stroke-dasharray="3,2"/>
+  <path d="M90.00,103.00 L90.00,176.00" stroke="#86b6ef" stroke-width="0.22" fill="none" stroke-dasharray="3,2"/>
+  <circle cx="154.00" cy="163.00" r="9.00" fill="none" stroke="#1c5cab" stroke-width="0.4"/>
+  <rect x="144.00" y="130.00" width="20.00" height="24.00" fill="none" stroke="#86b6ef" stroke-width="0.3"/>
+  <rect x="30.00" y="126.00" width="160.00" height="4.00" fill="none" stroke="#1c5cab" stroke-width="0.5"/>
+  <path d="M40.00,126.00 L40.00,56.00 L110.00,56.00 L110.00,86.00 L160.00,86.00 L160.00,126.00 Z" fill="none" stroke="#1c5cab" stroke-width="0.5"/>
+  <rect x="40.00" y="82.00" width="70.00" height="4.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <rect x="36.00" y="82.00" width="4.00" height="4.00" fill="none" stroke="#86b6ef" stroke-width="0.3"/>
+  <rect x="36.00" y="16.00" width="4.00" height="66.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <rect x="160.00" y="144.00" width="20.00" height="4.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <path d="M160.00,126.00 L162.00,144.00" stroke="#86b6ef" stroke-width="0.3" fill="none"/>
+  <rect x="168.00" y="122.00" width="22.00" height="4.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <rect x="186.00" y="122.00" width="4.00" height="47.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <circle cx="184.00" cy="133.50" r="2.20" fill="none" stroke="#86b6ef" stroke-width="0.3"/>
+  <text x="179.00" y="134.50" font-family="sans-serif" font-size="2.3" fill="#86b6ef" text-anchor="end" font-weight="normal">ultrasonic</text>
+  <path d="M178.00,155.00 L186.00,155.00" stroke="#86b6ef" stroke-width="0.3" fill="none"/>
+  <text x="177.00" y="156.00" font-family="sans-serif" font-size="2.3" fill="#86b6ef" text-anchor="end" font-weight="normal">line sensor</text>
+  <path d="M30.00,172.00 L192.00,172.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M186.00,144.00 L192.00,144.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M190.00,172.00 L190.00,144.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M190.00,172.00 L189.10,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M190.00,172.00 L190.90,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M190.00,144.00 L190.90,141.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M190.00,144.00 L189.10,141.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="191.60" y="159.00" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">footplate 28</text>
+  <path d="M30.00,172.00 L200.00,172.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M186.00,139.50 L200.00,139.50" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M198.00,172.00 L198.00,139.50" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M198.00,172.00 L197.10,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M198.00,172.00 L198.90,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M198.00,139.50 L198.90,137.30" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M198.00,139.50 L197.10,137.30" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="199.60" y="156.75" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">axle 32</text>
+  <path d="M30.00,172.00 L208.00,172.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M186.00,130.00 L208.00,130.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M206.00,172.00 L206.00,130.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M206.00,172.00 L205.10,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M206.00,172.00 L206.90,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M206.00,130.00 L206.90,127.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M206.00,130.00 L205.10,127.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="207.60" y="152.00" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">deck underside 42</text>
+  <path d="M30.00,172.00 L216.00,172.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M186.00,82.00 L216.00,82.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M214.00,172.00 L214.00,82.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M214.00,172.00 L213.10,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M214.00,172.00 L214.90,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M214.00,82.00 L214.90,79.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M214.00,82.00 L213.10,79.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="215.60" y="128.00" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">seat 90</text>
+  <path d="M30.00,172.00 L224.00,172.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M186.00,56.00 L224.00,56.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M222.00,172.00 L222.00,56.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M222.00,172.00 L221.10,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M222.00,172.00 L222.90,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M222.00,56.00 L222.90,53.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M222.00,56.00 L221.10,53.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="223.60" y="115.00" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">armrest 116</text>
+  <path d="M30.00,172.00 L232.00,172.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M186.00,16.00 L232.00,16.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M230.00,172.00 L230.00,16.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M230.00,172.00 L229.10,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M230.00,172.00 L230.90,174.20" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M230.00,16.00 L230.90,13.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M230.00,16.00 L229.10,13.80" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="231.60" y="95.00" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">backrest top 156</text>
+  <path d="M30.00,172.00 L30.00,184.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M190.00,172.00 L190.00,184.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M30.00,186.00 L190.00,186.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M30.00,186.00 L32.20,186.90" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M30.00,186.00 L32.20,185.10" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M190.00,186.00 L187.80,185.10" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M190.00,186.00 L187.80,186.90" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="110.00" y="184.60" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="middle" font-weight="normal">deck 160</text>
+  <path d="M36.00,172.00 L36.00,194.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M180.00,172.00 L180.00,194.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M36.00,196.00 L180.00,196.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M36.00,196.00 L38.20,196.90" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M36.00,196.00 L38.20,195.10" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M180.00,196.00 L177.80,195.10" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M180.00,196.00 L177.80,196.90" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="108.00" y="194.60" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="middle" font-weight="normal">overall 144</text>
+  <text x="30.00" y="208.00" font-family="sans-serif" font-size="4.2" fill="#1c5cab" text-anchor="start" font-weight="bold">SIDE ELEVATION</text>
+  <text x="30.00" y="213.00" font-family="sans-serif" font-size="2.6" fill="#86b6ef" text-anchor="start" font-weight="normal">looking from the chair's left; forward to the right</text>
+  <path d="M240.00,172.00 L400.00,172.00" stroke="#1c5cab" stroke-width="0.6" fill="none"/>
+  <rect x="247.00" y="107.00" width="26.00" height="65.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <path d="M260.00,133.50 L260.00,145.50" stroke="#86b6ef" stroke-width="0.22" fill="none" stroke-dasharray="3,2"/>
+  <rect x="367.00" y="107.00" width="26.00" height="65.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <path d="M380.00,133.50 L380.00,145.50" stroke="#86b6ef" stroke-width="0.22" fill="none" stroke-dasharray="3,2"/>
+  <rect x="265.00" y="126.00" width="110.00" height="4.00" fill="none" stroke="#1c5cab" stroke-width="0.5"/>
+  <rect x="265.00" y="56.00" width="4.00" height="70.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <rect x="371.00" y="56.00" width="4.00" height="70.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <rect x="270.00" y="82.00" width="100.00" height="4.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <rect x="270.00" y="16.00" width="100.00" height="66.00" fill="none" stroke="#86b6ef" stroke-width="0.35"/>
+  <rect x="275.00" y="144.00" width="90.00" height="4.00" fill="none" stroke="#1c5cab" stroke-width="0.45"/>
+  <path d="M320.00,176.00 L320.00,10.00" stroke="#86b6ef" stroke-width="0.22" fill="none" stroke-dasharray="4,2,1,2"/>
+  <path d="M247.00,172.00 L247.00,184.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M393.00,172.00 L393.00,184.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M247.00,186.00 L393.00,186.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M247.00,186.00 L249.20,186.90" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M247.00,186.00 L249.20,185.10" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M393.00,186.00 L390.80,185.10" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M393.00,186.00 L390.80,186.90" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="320.00" y="184.60" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="middle" font-weight="normal">overall width 146</text>
+  <path d="M265.00,172.00 L265.00,194.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M375.00,172.00 L375.00,194.00" stroke="#86b6ef" stroke-width="0.22" fill="none"/>
+  <path d="M265.00,196.00 L375.00,196.00" stroke="#1c5cab" stroke-width="0.3" fill="none"/>
+  <path d="M265.00,196.00 L267.20,196.90" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M265.00,196.00 L267.20,195.10" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M375.00,196.00 L372.80,195.10" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <path d="M375.00,196.00 L372.80,196.90" stroke="#1c5cab" stroke-width="0.5" fill="none"/>
+  <text x="320.00" y="194.60" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="middle" font-weight="normal">deck 110</text>
+  <text x="240.00" y="208.00" font-family="sans-serif" font-size="4.2" fill="#1c5cab" text-anchor="start" font-weight="bold">FRONT ELEVATION</text>
+  <text x="240.00" y="213.00" font-family="sans-serif" font-size="2.6" fill="#86b6ef" text-anchor="start" font-weight="normal">backrest shown light, behind the seat</text>
+  <text x="18.00" y="222.00" font-family="sans-serif" font-size="3.0" fill="#1c5cab" text-anchor="start" font-weight="bold">CRITICAL DIMENSIONS</text>
+  <text x="18.00" y="225.90" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">Ride height is set by the wheel: 65 mm dia gives a 42 mm deck underside.</text>
+  <text x="18.00" y="229.80" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">A different wheel changes everything above it. Edit WHEEL_DIA and re-run both generators.</text>
+  <text x="18.00" y="233.70" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">Line sensor adjusts 9–25 mm above the floor, by sliding in its slots.</text>
+  <text x="18.00" y="237.60" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">Set it on the real track surface, not on the bench.</text>
+  <text x="18.00" y="245.40" font-family="sans-serif" font-size="3.0" fill="#1c5cab" text-anchor="start" font-weight="bold">ASSEMBLY</text>
+  <text x="18.00" y="249.30" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">1  Castor and riser first. Check the deck sits level on the wheels before anything else.</text>
+  <text x="18.00" y="253.20" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">2  Motors, zip-tied tight. A motor that can rotate in its mount makes the line following</text>
+  <text x="18.00" y="257.10" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">   untunable, and you will blame the PID for a week.</text>
+  <text x="18.00" y="261.00" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">3  Side panels with gussets inside the corners, square to the deck.</text>
+  <text x="18.00" y="264.90" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">4  Seat cleats inside the panels, then the seat pan, then the backrest.</text>
+  <text x="18.00" y="268.80" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">5  Sensor bracket last, screws left loose until the sensor height is set.</text>
+  <text x="18.00" y="276.60" font-family="sans-serif" font-size="2.7" fill="#86b6ef" text-anchor="start" font-weight="normal">Dry-fit the whole body with tape before any glue. MDF and wood glue give you ten seconds.</text>
+  <rect x="250.00" y="232.00" width="158.00" height="51.00" fill="none" stroke="#1c5cab" stroke-width="0.5"/>
+  <path d="M250.00,241.00 L408.00,241.00" stroke="#1c5cab" stroke-width="0.35" fill="none"/>
+  <text x="252.00" y="238.50" font-family="sans-serif" font-size="3.4" fill="#1c5cab" text-anchor="start" font-weight="bold">SAARTHI — GUIDED ASSISTIVE CHAIR, SCALE DEMONSTRATOR</text>
+  <text x="252.00" y="247.00" font-family="sans-serif" font-size="2.8" fill="#86b6ef" text-anchor="start" font-weight="normal">Scale</text>
+  <text x="276.00" y="247.00" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">1:1 on A3.  The model is 1:6 of a real wheelchair.</text>
+  <text x="252.00" y="252.20" font-family="sans-serif" font-size="2.8" fill="#86b6ef" text-anchor="start" font-weight="normal">Material</text>
+  <text x="276.00" y="252.20" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">4 mm MDF throughout, except the wheels and castor.</text>
+  <text x="252.00" y="257.40" font-family="sans-serif" font-size="2.8" fill="#86b6ef" text-anchor="start" font-weight="normal">Units</text>
+  <text x="276.00" y="257.40" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">Millimetres. Heights are above the floor.</text>
+  <text x="252.00" y="262.60" font-family="sans-serif" font-size="2.8" fill="#86b6ef" text-anchor="start" font-weight="normal">Drive</text>
+  <text x="276.00" y="262.60" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">2 × BO geared motor, 65 mm wheels, differential, castor at the front.</text>
+  <text x="252.00" y="267.80" font-family="sans-serif" font-size="2.8" fill="#86b6ef" text-anchor="start" font-weight="normal">Mass</text>
+  <text x="276.00" y="267.80" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">≈ 600 g loaded.</text>
+  <text x="252.00" y="273.00" font-family="sans-serif" font-size="2.8" fill="#86b6ef" text-anchor="start" font-weight="normal">Drawn from</text>
+  <text x="276.00" y="273.00" font-family="sans-serif" font-size="2.8" fill="#1c5cab" text-anchor="start" font-weight="normal">generate_chassis.py and generate_mdf_body_template.py</text>
+</svg>
