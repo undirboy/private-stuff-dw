@@ -202,6 +202,17 @@ comes with a charger you already have. Check the label:
 
 Reusing one pack saves ₹320 on cells, ₹60 on the BMS and ₹180 on the charger.
 
+**Check the capacity, not only the voltage.** A pack out of a small 1:18 or 1:24
+drift car is typically 400–700 mAh, which is right for a car that quotes half an
+hour of running and thin for a chair that also powers an ESP32, a screen and four
+sensors. At the current budget above that is roughly 30–50 minutes of driving —
+fine for bench work during the build, short for a day on an exhibition stand.
+
+The sensible split: **develop on the RC pack you already own, and buy 18650s only
+if the build reaches the exhibition.** That defers ₹560 to the point where you
+know it is worth spending, and bench testing is where a battery gets abused
+anyway.
+
 **If it is a LiPo, three rules.** Charge it only on the balance charger it came
 with, never on a Li-ion charger and never unattended. Never let it go below about
 3.0 V per cell — an over-discharged LiPo is scrap at best. And fit either a ₹100
