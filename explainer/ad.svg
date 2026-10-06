@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200.0mm" height="200.0mm" viewBox="0 0 200.0 200.0">
+  <rect width="200.0" height="200.0" fill="#ffffff"/>
+  <text x="16.00" y="33.00" font-family="FreeSans, DejaVu Sans, sans-serif" font-size="11.5" fill="#14161a" font-weight="bold" text-anchor="start">Scan. Sit.</text>
+  <text x="16.00" y="46.00" font-family="FreeSans, DejaVu Sans, sans-serif" font-size="11.5" fill="#14161a" font-weight="bold" text-anchor="start">It takes you to your gate.</text>
+  <text x="16.00" y="57.00" font-family="FreeSans, DejaVu Sans, sans-serif" font-size="5.0" fill="#1c5cab" font-weight="normal" text-anchor="start">And when the gate changes, it already knows.</text>
+  <rect x="55.96" y="74.88" width="3.64" height="34.32" rx="0" fill="#e8eef7" stroke="#14161a" stroke-width="0.45"/>
+  <path d="M59.60,132.08 L59.60,95.68 L96.00,95.68 L96.00,111.28 L122.00,111.28 L122.00,132.08 Z" fill="#f4f7fb" stroke="#14161a" stroke-width="0.5"/>
+  <path d="M59.60,109.20 L96.00,109.20" stroke="#c9d4e4" stroke-width="0.5" fill="none"/>
+  <rect x="54.40" y="132.08" width="83.20" height="2.08" rx="0" fill="#ffffff" stroke="#14161a" stroke-width="0.45"/>
+  <path d="M123.56,134.16 L123.56,141.44" stroke="#14161a" stroke-width="0.35" fill="none"/>
+  <rect x="122.00" y="141.44" width="10.40" height="2.08" rx="0" fill="#ffffff" stroke="#14161a" stroke-width="0.45"/>
+  <path d="M76.24,107.12 L71.56,79.04" fill="none" stroke="#5b6472" stroke-width="1.248" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M76.24,107.12 L107.44,107.12 L123.04,136.24" fill="none" stroke="#5b6472" stroke-width="1.248" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M72.60,86.32 L91.84,94.64" fill="none" stroke="#5b6472" stroke-width="0.936" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="70.00" cy="73.84" r="4.68" fill="#ffffff" stroke="#5b6472" stroke-width="0.5"/>
+  <circle cx="85.60" cy="139.10" r="16.90" fill="#ffffff" stroke="#14161a" stroke-width="0.6"/>
+  <path d="M71.07,139.10 L100.13,139.10" stroke="#c9d4e4" stroke-width="0.3" fill="none"/>
+  <path d="M73.01,131.83 L98.19,146.37" stroke="#c9d4e4" stroke-width="0.3" fill="none"/>
+  <path d="M78.33,126.51 L92.87,151.69" stroke="#c9d4e4" stroke-width="0.3" fill="none"/>
+  <path d="M85.60,124.57 L85.60,153.63" stroke="#c9d4e4" stroke-width="0.3" fill="none"/>
+  <path d="M92.87,126.51 L78.33,151.69" stroke="#c9d4e4" stroke-width="0.3" fill="none"/>
+  <path d="M98.19,131.83 L73.01,146.37" stroke="#c9d4e4" stroke-width="0.3" fill="none"/>
+  <circle cx="85.60" cy="139.10" r="2.70" fill="#ffffff" stroke="#14161a" stroke-width="0.4"/>
+  <circle cx="118.88" cy="151.32" r="4.68" fill="#ffffff" stroke="#14161a" stroke-width="0.45"/>
+  <rect x="135.52" y="130.00" width="2.08" height="24.44" rx="0" fill="#ffffff" stroke="#1c5cab" stroke-width="0.5"/>
+  <path d="M0.00,157.50 L200.00,157.50" stroke="#1c5cab" stroke-width="1.6" fill="none" stroke-dasharray="3,2"/>
+  <text x="16.00" y="174.00" font-family="FreeSans, DejaVu Sans, sans-serif" font-size="9.0" fill="#14161a" font-weight="bold" text-anchor="start" letter-spacing="0.5">MARGADARSHAK</text>
+  <text x="16.00" y="181.00" font-family="FreeSans, DejaVu Sans, sans-serif" font-size="4.2" fill="#5b6472" font-weight="normal" text-anchor="start">मार्गदर्शक — the one who shows the way</text>
+  <path d="M16.00,186.50 L184.00,186.50" stroke="#dfe4ea" stroke-width="0.35" fill="none"/>
+  <text x="16.00" y="192.00" font-family="FreeSans, DejaVu Sans, sans-serif" font-size="4.2" fill="#14161a" font-weight="normal" text-anchor="start">A guided wheelchair for Indian airports, built for ₹4,759.</text>
+  <text x="16.00" y="197.00" font-family="FreeSans, DejaVu Sans, sans-serif" font-size="3.4" fill="#5b6472" font-weight="normal" text-anchor="start">Prototype — nothing here has carried a passenger yet.</text>
+</svg>

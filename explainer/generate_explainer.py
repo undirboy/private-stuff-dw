@@ -93,7 +93,7 @@ class Sheet:
         )
 
 
-def draw_chair(s: Sheet, ox: float, floor_y: float, k: float) -> None:
+def draw_chair(s: Sheet, ox: float, floor_y: float, k: float, guide: bool = True) -> None:
     """The chair, side on, at scale ``k``, drawn from the real design.
 
     Painted far to near, which is the whole trick: the side panel is a solid, so
@@ -106,7 +106,8 @@ def draw_chair(s: Sheet, ox: float, floor_y: float, k: float) -> None:
     def P(y: float, z: float) -> tuple[float, float]:
         return ox + y * k, floor_y - z * k
 
-    s.line(*P(-96, 0), *P(104, 0), FAINT, 0.5)
+    if guide:
+        s.line(*P(-96, 0), *P(104, 0), FAINT, 0.5)
 
     # 1. Backrest, furthest back. Widened from the 4 mm board so it reads at this
     #    size; every other dimension here is true to the design.
@@ -161,10 +162,11 @@ def draw_chair(s: Sheet, ox: float, floor_y: float, k: float) -> None:
     # 6. The sensor bracket, and the line it is reading.
     s.rect(*P(B.BRACKET_ARM_Y, B.DECK_TOP + B.C.BRACKET_T), B.C.BRACKET_T * k,
            (B.DECK_TOP + B.C.BRACKET_T - B.ARM_BOTTOM_Z) * k, "#ffffff", BLUE, 0.5)
-    gx1, gy1 = P(-96, 0)
-    gx2, _ = P(104, 0)
-    s.line(gx1, gy1 + 1.5, gx2, gy1 + 1.5, BLUE, 1.2, "2.4,1.6")
-    s.text(gx1, gy1 + 6.0, "the guide line it follows, laid into the floor", 2.9, BLUE)
+    if guide:
+        gx1, gy1 = P(-96, 0)
+        gx2, _ = P(104, 0)
+        s.line(gx1, gy1 + 1.5, gx2, gy1 + 1.5, BLUE, 1.2, "2.4,1.6")
+        s.text(gx1, gy1 + 6.0, "the guide line it follows, laid into the floor", 2.9, BLUE)
 
 
 def main() -> int:
