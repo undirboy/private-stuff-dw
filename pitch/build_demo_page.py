@@ -25,8 +25,12 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from margadarshak import render_dashboard  # noqa: E402
 from sim.demo import run_shift  # noqa: E402
+from tools.testcount import count as _count  # noqa: E402
 
-INTRO = """
+#: Asked of pytest at generation time, never typed.
+TEST_COUNT = _count()
+
+INTRO = f"""
 <p><strong>This is the output of a working dispatcher, not a mock-up.</strong>
 Margadarshak is a wheelchair that takes airport passengers to their gate by
 following a guide line laid into the terminal floor. The chair itself stays
@@ -42,8 +46,8 @@ button at a gate, chairs moving towards the kerb before a rush, a corridor close
 under a moving chair, and chairs returning themselves to charge.</p>
 
 <p><strong>Nothing here has carried a real passenger.</strong> The dispatcher is
-built and covered by 226 automated tests. The hardware is designed, drawn to
-4&nbsp;mm MDF and costed at ₹4,679 for two chairs — and not yet cut. It is being
+built and covered by {TEST_COUNT} automated tests. The hardware is designed, drawn to
+4&nbsp;mm MDF and costed at ₹4,759 for two chairs — and not yet cut. It is being
 built for the December exhibition.</p>
 """
 

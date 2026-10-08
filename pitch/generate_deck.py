@@ -30,6 +30,13 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "explain
 import generate_explainer as E  # noqa: E402
 from generate_explainer import BLUE, FAINT, INK, MID, RULE, TINT  # noqa: E402
 
+import sys as _sys, pathlib as _pathlib
+_sys.path.insert(0, str(_pathlib.Path(__file__).resolve().parent.parent))
+from tools.testcount import count as _count
+
+#: Asked of pytest at generation time, never typed. See tools/testcount.py.
+TEST_COUNT = _count()
+
 W, H = 280.0, 157.5  # 16:9
 M = 18.0
 FOOTER_Y = H - 15  # the rule above the slide number; body text stays above it
@@ -214,7 +221,7 @@ def slide5() -> Slide:
 
     figures = [
         ("~1,00,000", "assistance journeys a year", "across Goa's two airports (estimated)"),
-        ("₹4,679", "the demonstrator fleet", "two working chairs, built from MDF"),
+        ("₹4,759", "the demonstrator fleet", "two working chairs, built from MDF"),
         ("4", "languages, enforced", "Konkani, Marathi, Hindi, English"),
         ("0", "passenger records kept", "nothing leaves the building"),
     ]
@@ -258,7 +265,7 @@ def slide6() -> Slide:
         "families, call buttons, pre-positioning, battery",
         "reserve, corridor safety, shift reporting.",
         "",
-        "226 automated tests. Runs on a laptop.",
+        f"{TEST_COUNT} automated tests. Runs on a laptop.",
     ], 3.9, MID, 5.2)
 
     s.rect(M + col + 10, 48, col, 52, "#fff5f5", "#f0d8d8", 0.4, rx=1.5)

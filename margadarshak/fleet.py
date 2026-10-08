@@ -20,6 +20,13 @@ from .boardingpass import BoardingPass, BoardingPassError
 from .boardingpass import parse as parse_boarding_pass
 from .flights import FlightBoard
 from .graph import NodeKind, TerminalMap
+from .manual import (
+    Command,
+    ControlMode,
+    ControlRefused,
+    ManualControl,
+    PairingBook,
+)
 from .router import Route, plan
 
 #: Usable battery capacity, watt-hours.
@@ -67,6 +74,7 @@ class ChairState(Enum):
     STAGING = "staging"
     RETURNING = "returning"
     BLOCKED = "blocked"
+    MANUAL = "manual"
     ESTOP = "estop"
 
 
@@ -239,6 +247,14 @@ class Chair:
     #: patience each time, and never admit that it is stuck.
     blocked_s: float = 0.0
     replan_attempts: int = 0
+    #: Who is driving by hand, if anyone. See :mod:`margadarshak.manual`.
+    manual: ManualControl = field(default_factory=ManualControl)
+    #: Does ``node`` still say where this chair actually is? Driving by hand
+    #: takes it off the guide path, and from that moment the dispatcher has no
+    #: idea where it is standing until a floor tag says so. A chair whose
+    #: position is unknown is not dispatchable — sending it along a route from a
+    #: node it is not at is how a guided system drives into a wall.
+    position_known: bool = True
     escalated: bool = False
     #: Set when the destination changes mid-journey. Applied at the next node,
     #: because a chair on a guide line between two junctions has nowhere to turn.
@@ -266,6 +282,8 @@ class Chair:
     @property
     def available(self) -> bool:
         if self.battery_fraction <= BATTERY_RESERVE_FRACTION:
+            return False
+        if self.manual.active or not self.position_known:
             return False
         if self.state in (ChairState.IDLE, ChairState.CHARGING):
             return True
@@ -317,6 +335,8 @@ class Fleet:
         #: Where a passenger goes when their gate has not been announced yet.
         self.holding_area = holding_area
         self.call_points: dict[str, CallPoint] = {}
+        #: Devices allowed to drive a chair by hand. Paired at the chair.
+        self.pairings = PairingBook()
         self._scan_secret = scan_secret
         self.board = board
         if board is not None:
@@ -623,6 +643,126 @@ class Fleet:
         self.blocked_segments.discard(segment_id)
         self.log("cleared", f"{segment_id} back in service")
 
+    # -- driving by hand -------------------------------------------------
+
+    def pair_device(self, device_id: str, chair_id: str, mode: ControlMode):
+        """Register a handset or phone against one chair.
+
+        In a deployment this is the result of somebody pressing the pair button
+        on the chair itself. It is modelled here so the rules around it can be
+        tested; the dispatcher must never be able to do this on its own.
+        """
+        if chair_id not in self.chairs:
+            raise KeyError(f"no chair {chair_id}")
+        device = self.pairings.pair(device_id, chair_id, mode, self.now)
+        self.log("paired", f"{device_id} may drive this chair ({mode.value})", chair_id)
+        return device
+
+    def take_manual_control(
+        self, chair_id: str, *, device_id: str, operator: str
+    ) -> ManualControl:
+        """Hand a chair over to a joystick or a phone.
+
+        Refuses while somebody is aboard unless the mode is passenger control:
+        an attendant taking the stick on an occupied chair without the passenger
+        expecting it is how somebody gets tipped out of a seat.
+        """
+        chair = self.chairs[chair_id]
+        device = self.pairings.check(device_id, chair_id, self.now)
+
+        if chair.state is ChairState.ESTOP:
+            raise ControlRefused(
+                "estopped", "The stop button is latched. Release it at the chair first."
+            )
+        if self._carrying_somebody(chair) and device.mode is not ControlMode.PASSENGER:
+            raise ControlRefused(
+                "occupied",
+                "Somebody is in this chair. Use the armrest control, or let them get out.",
+            )
+
+        # It is leaving the guide path, so it gives up its claim on the corridor
+        # and its route. Both would be wrong the moment it is steered anywhere.
+        self.reservations.release_all(chair.reservation_id)
+        chair.held_segment = None
+        chair.route = None
+        chair.blocked_s = 0.0
+        chair.replan_attempts = 0
+        chair.escalated = False
+
+        chair.manual = ManualControl(
+            mode=device.mode, operator=operator, device=device_id,
+            last_command_s=self.now, since_s=self.now,
+        )
+        chair.state = ChairState.MANUAL
+        self.log("manual_taken", f"{operator} driving ({device.mode.value})", chair_id)
+        return chair.manual
+
+    def manual_command(
+        self, chair_id: str, throttle: float = 0.0, steer: float = 0.0, *,
+        device_id: str | None = None,
+    ) -> None:
+        """One instant of stick. Keep sending these or the chair stops.
+
+        This is the dead man, and it is deliberately the only thing holding the
+        chair in motion: nothing has to notice that the operator let go, walked
+        away or lost signal. The commands simply stop arriving.
+        """
+        chair = self.chairs[chair_id]
+        if not chair.manual.active:
+            raise ControlRefused("not_in_manual", "Take control of this chair first.")
+        if device_id is not None:
+            if device_id != chair.manual.device:
+                raise ControlRefused("wrong_device", "Another device is driving this chair.")
+            self.pairings.check(device_id, chair_id, self.now)
+
+        chair.manual.command = Command(throttle=throttle, steer=steer)
+        chair.manual.last_command_s = self.now
+
+    def release_manual_control(self, chair_id: str, *, at_node: str | None = None) -> None:
+        """Give the chair back to the dispatcher.
+
+        ``at_node`` is the floor tag it is standing on. Without one the chair is
+        parked but not dispatchable, because nobody — including the chair — knows
+        where it is. :meth:`confirm_position` is how that gets resolved later.
+        """
+        chair = self.chairs[chair_id]
+        if not chair.manual.active:
+            return
+
+        operator = chair.manual.operator or "someone"
+        driven_s = self.now - chair.manual.since_s
+        chair.manual = ManualControl()
+
+        if at_node is not None:
+            self.confirm_position(chair_id, at_node)
+            chair.state = ChairState.IDLE
+            self.log(
+                "manual_released",
+                f"{operator} handed it back at {at_node} after {driven_s:.0f}s",
+                chair_id,
+            )
+        else:
+            chair.position_known = False
+            chair.state = ChairState.IDLE
+            self.log(
+                "manual_released",
+                f"{operator} handed it back after {driven_s:.0f}s, position unknown "
+                f"— needs a floor tag before it can be dispatched",
+                chair_id,
+            )
+
+    def confirm_position(self, chair_id: str, node: str) -> None:
+        """The chair has read a floor tag. It knows where it is again."""
+        if node not in self.tmap.nodes:
+            raise ValueError(f"unknown node {node}")
+        chair = self.chairs[chair_id]
+        was_lost = not chair.position_known
+        chair.node = node
+        chair.progress_m = 0.0
+        chair.position_known = True
+        if was_lost:
+            self.log("position_found", f"read the tag at {node}", chair_id)
+
     def emergency_stop(self, chair_id: str, reason: str) -> None:
         """Latch a chair stopped. Only an attendant clears it.
 
@@ -886,6 +1026,13 @@ class Fleet:
         chair.battery_wh = max(0.0, chair.battery_wh - IDLE_W * dt_s / 3600.0)
 
         if chair.state is ChairState.ESTOP:
+            # The stick does not outrank the stop button, and releasing the stop
+            # does not hand control back to whoever was driving.
+            chair.manual = ManualControl()
+            return
+
+        if chair.manual.active:
+            self._drive_by_hand(chair, dt_s)
             return
 
         if chair.state is ChairState.CHARGING:
@@ -956,6 +1103,23 @@ class Fleet:
             chair.node = segment.other_end(chair.node)
             chair.leg += 1
             self._at_node(chair)
+
+    def _drive_by_hand(self, chair: Chair, dt_s: float) -> None:
+        """A chair under a joystick or a phone, for one tick.
+
+        No route, no corridor reservation and no node arithmetic: once somebody
+        is steering, the chair is off the graph and the dispatcher's model of
+        where it is no longer holds. All that is tracked is the battery it is
+        spending and whether the operator is still there.
+        """
+        speed = abs(chair.manual.velocity_mps(self.now))
+        if speed > 0.0:
+            chair.position_known = False
+            chair.battery_wh = max(0.0, chair.battery_wh - speed * dt_s * WH_PER_M)
+        elif chair.manual.expired(self.now):
+            if not chair.manual.command.is_stop:
+                chair.manual.command = Command()
+                self.log("deadman", "no command for 0.5 s; stopped", chair.id)
 
     def _caravan_still_in(self, chair: Chair, segment_id: str) -> bool:
         """Would releasing this corridor drop it while a caravan sibling is in it?"""

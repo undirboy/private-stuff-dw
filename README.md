@@ -48,6 +48,7 @@ unit before putting any multiple in writing.
 | `margadarshak/dashboard.py` | The shift report an operator is held to: waits, utilisation, call-outs |
 | `margadarshak/flights.py` | The flight board — where the gate comes from, and how we hear that it moved |
 | `margadarshak/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
+| `margadarshak/manual.py` | Driving a chair by hand — attendant joystick, armrest joystick, paired phone. Dead man, speed caps, and why the dispatcher still cannot drive |
 | `margadarshak/mapfile.py` | The map as readable JSON the airport owns and can edit, with a validator |
 | `margadarshak/prepositioning.py` | Moving idle chairs towards demand before it arrives, from the flight schedule |
 | `margadarshak/screen.py` | What the chair's screen shows at any moment — gate, terminal, how long left |
@@ -59,8 +60,8 @@ unit before putting any multiple in writing.
 | `firmware/chair_controller/` | On-board reflexes. Skeleton |
 | `hardware/chassis/` | Printable deck, sensor bracket and castor riser, with the generator that makes them |
 | `docs/features.md` | **Everything the system does, and what is built vs. what is not** |
-| `docs/components.md` | **The ₹4,679 two-chair demonstrator: parts, disclosed shortcuts, build order** |
-| `docs/hardware.md` | The full-size production design: retrofit rationale, floor-reading, ~₹54k BOM |
+| `docs/components.md` | **The ₹4,759 two-chair demonstrator: parts, disclosed shortcuts, build order** |
+| `docs/hardware.md` | The full-size production design: retrofit rationale, floor-reading, ~₹57k BOM |
 | `docs/safety.md` | The layered stop, why braking is a passenger problem, failure modes |
 | `docs/privacy.md` | What the barcode contains, what is kept, and what is deliberately never recorded |
 | `docs/ai.md` | **The one model in the system, what it measured, and why nothing learned goes near the brakes** |
@@ -71,7 +72,7 @@ unit before putting any multiple in writing.
 ```sh
 python3 -m sim.demo     # a scripted shift, narrated
 python3 -m sim.backtest # does the learned demand forecast help? (measured: barely)
-python3 -m pytest -q    # 226 tests
+python3 -m pytest -q    # the test suite
 ```
 
 It writes `shift.html` as well — the operator's view of the shift, which is the

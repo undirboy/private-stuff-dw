@@ -5,7 +5,7 @@ floor tags, stops for obstacles and is driven by the real dispatcher — built f
 under ₹5,000.
 
 This is **not** the production design. That is `hardware.md`, which is a
-full-size retrofit module at around ₹54,000. Keeping the two documents separate
+full-size retrofit module at around ₹57,000. Keeping the two documents separate
 is deliberate: the differences between them are disclosed below, because a judge
 who finds an undisclosed shortcut stops believing the rest.
 
@@ -95,7 +95,7 @@ sit in a box.
 **Chair 1's battery is the RC car's 7.4 V pack**, so no cells, protection board or
 charger appear here.
 
-### Stage 1 — order now, from Robu — ₹770
+### Stage 1 — order now, from Robu — ₹850
 
 | ✓ | Item | ₹ | Qty | |
 |---|---|---|---|---|
@@ -108,7 +108,8 @@ charger appear here.
 | ☐ | Castor wheel | 40 | 1 | Third point of contact. |
 | ☐ | Latching stop button | 40 | 1 | Wired to cut the driver's ENABLE pin, not read in software. |
 | ☐ | BO wheels | 35 | 2 | **Check the motor listing first** — some include them. |
-| | **Stage 1, Robu** | **₹770** | | |
+| ☐ | Analog thumb joystick module | 80 | 1 | Attendant control, and the one place the demonstrator shows a chair being driven by hand. Sprung to centre, so letting go is the stop. The ESP32's own Bluetooth covers the paired phone at no extra cost. |
+| | **Stage 1, Robu** | **₹850** | | |
 
 ### Stage 1 — not from Robu — ₹370
 
@@ -143,6 +144,9 @@ charger appear here.
 - **A spare ESP32.** At ₹429 it is the most expensive insurance on the list, and
   the stage 2 board doubles as the spare if chair 1's dies.
 - **A second OLED, breadboard or jumper kit.** One of each covers both chairs.
+- **A second joystick.** Chair 1 carries the only one. Driving a chair by hand is
+  a thing you show once, and the ESP32's built-in Bluetooth covers the paired
+  phone on both chairs at no extra cost.
 - **A second radar.** One, on chair 1, demonstrates the idea completely.
 - **A LiDAR, IMU or wheel encoders.** Production parts; see the disclosed
   differences below.
@@ -155,13 +159,13 @@ listing says whether wheels are included.
 | | ₹ |
 |---|---|
 | Already in the cart ✓ | 1,581 |
-| Stage 1, Robu | 770 |
+| Stage 1, Robu | 850 |
 | Stage 1, local | 370 |
-| **Chair 1, complete** | **₹2,721** |
+| **Chair 1, complete** | **₹2,801** |
 | Stage 2, chair 2 | 1,958 |
-| **Both chairs** | **₹4,679** |
+| **Both chairs** | **₹4,759** |
 
-Under ₹5,000 with ₹321 of slack, and chair 1 alone comes in at little over half
+Under ₹5,000 with ₹241 of slack, and chair 1 alone comes in at little over half
 the budget — which is the real argument for building it first and deciding later.
 
 If it runs over, cut in this order: chair 2's RFID reader (it can dead-reckon for
@@ -375,9 +379,13 @@ what turn it into an exhibit.
 
 The figures above are the only authority for what this costs. Everything that
 quotes a price — the explainer, the poster, the application deck — takes it from
-here by hand, and a hand-copied number drifts: the deck said ₹4,759 for several
-commits while the table said ₹4,679, which is the kind of error a judge finds by
-adding up the parts list.
+here by hand, and a hand-copied number drifts. It did: for several commits the
+deck quoted a total eighty rupees above what this table added up to, which is
+exactly the kind of error a judge finds by adding up the parts list themselves.
+
+The joystick that arrived later put the real total back on the figure the deck
+had been wrong to use, which is funny but not reassuring — it is the second time
+the same number has been right or wrong for reasons nobody tracked.
 
 `tests/test_costs.py` re-adds the tables and fails the build if any file quotes a
 total this page does not support.

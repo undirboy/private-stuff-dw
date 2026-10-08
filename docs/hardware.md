@@ -1,7 +1,7 @@
 # Hardware — the production design
 
-> This is the **full-size retrofit module**, at roughly ₹54,000.
-> For the ₹4,679 table-top demonstrator built for the application and the
+> This is the **full-size retrofit module**, at roughly ₹57,000.
+> For the ₹4,759 table-top demonstrator built for the application and the
 > exhibition, see [`components.md`](components.md). The two are deliberately
 > different, and `components.md` discloses every difference.
 
@@ -71,9 +71,12 @@ or a costing claim.
 | IMU | 1,500 | Heading hold through line gaps |
 | Wheel encoders × 2 | 1,200 | Odometry for dead reckoning |
 | 7" touchscreen, speaker | 4,000 | Destination, ETA, voice prompts |
+| Attendant joystick on the handle | 1,200 | Hall-effect, sprung to centre. Sprung so that letting go is the stop |
+| Armrest joystick (optional) | 1,800 | Only where a passenger is to drive. See the regulatory note in `safety.md` |
+| BLE module for a paired phone | 400 | Short range on purpose; and a pair button wired to the chair itself |
 | E-stop, contactor, safety relay | 2,000 | Must cut motor power in hardware, not in software |
 | Chassis, clamp, enclosure, fasteners | 6,000 | The part that varies most by chair model |
-| **Total** | **≈ 53,700** | Expect 60–70k with wastage and rework |
+| **Total** | **≈ 57,100** | Expect 60–70k with wastage and rework |
 
 At volume the LiDAR and the sensor bar are where the cost comes out. A cost-down
 version swaps the 2D LiDAR for a fixed array of ToF sensors, which is cheaper and

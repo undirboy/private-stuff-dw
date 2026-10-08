@@ -45,6 +45,34 @@ through a crowded security hall and is safe to run faster down an empty pier.
 
 The lap belt is a comfort and posture aid. Do not rely on it being fastened.
 
+## Driving it by hand
+
+A guided chair that can only follow a line is not finished — it has to be moved
+off the line sometimes, and "the attendant pushes it" gets *worse* once there are
+geared motors in the way. So there is a joystick on the handle, an armrest
+joystick where one is fitted, and a phone that can be paired to a chair.
+
+Four rules make that safe rather than merely convenient, and they are enforced in
+`margadarshak/manual.py` rather than left to the operator:
+
+1. **The link is local.** The chair's own short-range radio to a device standing
+   next to it, paired by a button on the chair. Not the dispatcher's network. The
+   dispatcher cannot pair a device, so compromising it does not move anything.
+2. **Dead man.** Motion lasts only while commands keep arriving — half a second
+   of silence and the chair stops. Letting go, walking out of range and losing
+   signal are the same event, and none of them needs detecting.
+3. **Manual does not outrank a stop.** The emergency stop and the proximity stop
+   keep their authority over the stick, and clearing a latched stop does not hand
+   control back to whoever was driving.
+4. **Nobody is steered out from under.** An attendant cannot take the controls of
+   a chair with somebody seated in it. The person in the seat can drive it; the
+   person behind it cannot, until they get out.
+
+**The armrest joystick is a regulatory decision, not only an engineering one.** A
+chair a passenger drives is a powered wheelchair, and that is a different product
+in front of an assessor from a guided chair that carries them along a fixed path.
+Fit it knowing that is the conversation it starts.
+
 ## What the chair decides, and what it does not
 
 The chair decides: am I on the line, is something in front of me, am I about to

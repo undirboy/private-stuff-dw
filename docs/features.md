@@ -25,7 +25,8 @@ Status words used below mean exactly this:
 | **Four languages** | Built / needs a native speaker | Konkani, Marathi, Hindi, English, with the local languages shown *before* English. The build fails if a message is added in English alone. |
 | **Families travel together** | Built | A group is dispatched as one caravan, moves as one unit, and is never split across separate trips. |
 | **A gentler chair** | Built | Per-chair speed cap, for a frail passenger, without editing the map. |
-| **Stop button** | Built / needs hardware | Latches. Only an attendant clears it. In a caravan it stops every chair, because they travel nose to tail. |
+| **Stop button** | Built / needs hardware | Latches. Only an attendant clears it. In a caravan it stops every chair, because they travel nose to tail. The stop outranks every control, including a joystick. |
+| **Armrest joystick** | Built / needs hardware | The passenger drives the chair themselves, capped at 1.0 m/s. Note the consequence: a chair a passenger drives is a powered wheelchair, which is a different product in front of a regulator. |
 | **Voice as well as screen** | Not built | The message text exists in all four languages; speech synthesis does not. |
 
 ## What an operator gets
@@ -38,6 +39,9 @@ Status words used below mean exactly this:
 | **Pre-positioning** | Built / needs a measurement | Idle chairs move towards expected demand from the flight schedule, and no more chairs go out than passengers expected — half the fleet always stays on charge. In the demo this halved one passenger's wait. |
 | **Demand learned per route** | Built / measured, and it did not pay | `margadarshak/demand.py` learns the per-flight assistance rate from departures already flown, instead of assuming 1.5 for everything. A third more accurate; worth 2.2 s off the mean wait against a 5.1 s day-to-day spread, which is noise. Built so a pilot can settle it with real numbers. See [`ai.md`](ai.md). |
 | **Closed corridors** | Built | Take a corridor out of service; chairs already under way reroute at the next junction. |
+| **Attendant joystick or paired phone** | Built / needs hardware | For repositioning and recovery: out of a jam, into a lift, round a works area, onto a stand. Capped at 0.6 m/s, refused while somebody is seated, and paired by pressing a button on the chair rather than over the network. |
+| **Dead man on every manual control** | Built | Motion lasts only while commands keep arriving. Let go, pocket the phone, walk out of range or drop the link and the chair stops within half a second. Nothing has to notice the operator left. |
+| **Driving by hand loses the chair's place** | Built | Steered off the guide path, the chair no longer knows where it is, so it is not dispatchable until it reads a floor tag. Routing from a node a chair is not standing at is how a guided system drives into a wall. |
 | **An empty chair gives way** | Built | A jam between two chairs with nobody in them needs no attendant — it needs one of them to leave. It drops the corridor, hands back any passenger it was going to collect, and goes home. Without this, one jam between repositioning chairs stopped an entire simulated fleet for a whole day. |
 | **Deadlock escalation** | Built | Only when somebody is actually aboard: a passenger is not reversed out of a corridor. Two occupied chairs nose to nose call an attendant after 90 seconds. An honest mitigation, not a fix — the fix is passing bays in the floor plan. |
 | **A gate off this map is refused** | Built | If a flight boards somewhere the guide path does not reach, the scan is refused there and then. Finding out after the passenger is aboard strands them somewhere they cannot easily walk back from. A gate that moves off-map mid-journey diverts to the lounge and calls an attendant. |
@@ -70,10 +74,18 @@ Each of these is a decision, not a gap.
 - **Health telemetry** (pulse, SpO2 on the armrest). It would let us claim the
   Health sector too, and it drags the entire product into medical-device
   regulation for very little demonstrable value.
-- **Remote driving.** The dispatcher issues destinations, never throttle or
-  steering. There is no path by which a network intrusion becomes a moving chair.
-- **Passenger-facing route override.** A passenger can stop the chair and call for
-  help. They cannot send it somewhere.
+- **Driving a chair from the dispatcher, over the network.** A joystick and a
+  paired phone *can* drive a chair (see the manual-control rows above), but only
+  over the chair's own short-range link, paired by pressing a button on the chair
+  itself. The dispatcher issues destinations and never throttle or steering, and
+  it has no way to introduce a device to a chair — so there is still no path by
+  which somebody who reaches the dispatcher makes a chair move with a person in
+  it. That is the property worth keeping, and it is narrower than "no remote
+  control".
+- **Passenger-facing route override.** A passenger can stop the chair, call for
+  help, and — where an armrest joystick is fitted — drive it themselves. What
+  they cannot do is send a chair somewhere by naming a destination: the
+  guided route is the dispatcher's, and manual is manual.
 - **Outdoor and kerbside operation.** Weather, ramps, vehicle traffic, no guide
   path — a different problem wearing the same clothes.
 - **Profiling across visits.** No identifier survives the journey.
@@ -82,8 +94,8 @@ Each of these is a decision, not a gap.
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,
 languages, caravans, pre-positioning, priority and reporting are working code
-with 226 tests behind them. Everything physical is unbuilt, and the regulatory
+with 251 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
-The build that demonstrates this at a table, for ₹4,679 (₹2,721 for one chair), is in
+The build that demonstrates this at a table, for ₹4,759 (₹2,801 for one chair), is in
 `components.md`.

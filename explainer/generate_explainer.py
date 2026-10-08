@@ -24,6 +24,13 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "hardwar
 
 import generate_blueprint as B  # noqa: E402
 
+import sys as _sys, pathlib as _pathlib
+_sys.path.insert(0, str(_pathlib.Path(__file__).resolve().parent.parent))
+from tools.testcount import count as _count
+
+#: Asked of pytest at generation time, never typed. See tools/testcount.py.
+TEST_COUNT = _count()
+
 PAGE_W, PAGE_H = 297.0, 210.0  # A4 landscape
 
 INK = "#14161a"
@@ -188,7 +195,7 @@ def main() -> int:
     draw_chair(s, ox=M + 46, floor_y=146, k=0.56)
     s.text(M, 163, "The demonstrator", 3.6, INK, "bold")
     s.lines(M, 169, [
-        "1:6 scale, 4 mm MDF, two chairs for ₹4,679.",
+        "1:6 scale, 4 mm MDF, two chairs for ₹4,759.",
         "Drive wheels double as the wheelchair's own.",
     ], 3.2)
 
@@ -228,10 +235,10 @@ def main() -> int:
     # ---- footer strip --------------------------------------------------
     s.line(M, 182, PAGE_W - M, 182, RULE, 0.4)
     facts = [
-        ("₹4,679", "two working chairs"),
+        ("₹4,759", "two working chairs"),
         ("4 languages", "Konkani first, English last"),
         ("No cloud", "nothing leaves the airport"),
-        ("226 tests", "the dispatcher runs today"),
+        (f"{TEST_COUNT} tests", "the dispatcher runs today"),
     ]
     step = (PAGE_W - 2 * M) / len(facts)
     for i, (big, small) in enumerate(facts):

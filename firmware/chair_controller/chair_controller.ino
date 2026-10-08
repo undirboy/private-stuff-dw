@@ -32,6 +32,18 @@ static const uint32_t LINK_TIMEOUT_MS = 3000;    // dispatcher silent this long 
 static const float SPEED_MAX_MPS = 1.4f;
 static const float SPEED_CREEP_MPS = 0.3f;
 
+// Driving by hand. Both caps are below the guided speed on purpose: somebody
+// steering with a thumb has less warning than the sensors do. See
+// docs/safety.md and margadarshak/manual.py, which hold the same numbers.
+static const float SPEED_ATTENDANT_MPS = 0.6f;
+static const float SPEED_PASSENGER_MPS = 1.0f;
+
+// The dead man. Motion lasts only while commands keep arriving, so letting go of
+// the stick, pocketing the phone, walking out of range and losing the radio are
+// all the same event and none of them has to be detected. Keep this short; it is
+// the only thing holding the chair in motion.
+static const uint32_t MANUAL_DEADMAN_MS = 500;
+
 // Braking. Normal deceleration is gentle because the passenger is very likely
 // unrestrained and may have poor trunk control; a hard stop is its own injury
 // risk. The hard rate is reserved for an imminent collision.

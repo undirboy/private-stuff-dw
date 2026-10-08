@@ -4,9 +4,19 @@ Every claim here is one the project can defend. Where a number is an estimate it
 says so on the slide, because a figure a judge can disprove is worse than no
 figure at all.
 """
+
+import pathlib
+import sys
+
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent.parent))
+from tools.testcount import count as _count  # noqa: E402
+
+#: Asked of pytest at generation time, never typed.
+TEST_COUNT = _count()
 
 NAVY, ORANGE = RGBColor(0x1B, 0x2A, 0x5C), RGBColor(0xF2, 0x8C, 0x28)
 
@@ -52,8 +62,8 @@ TEXT = {
   21: "ESP32 controller, IR line sensors, ultrasonic obstacle stop, 2S lithium pack, 4 mm MDF "
       "chassis. Dispatcher in Python on one laptop — standard library only, no cloud and no "
       "network calls.",
-  24: "₹4,679 for two demonstrator chairs (₹2,721 for one). The production retrofit module is "
-      "designed at about ₹54,000 per chair. A terminal pilot needs chairs, floor marking and "
+  24: "₹4,759 for two demonstrator chairs (₹2,801 for one). The production retrofit module is "
+      "designed at about ₹57,000 per chair. A terminal pilot needs chairs, floor marking and "
       "a survey.",
   27: "3 months: two chairs running a taped guide path at the December exhibition. 6 months: "
       "a supervised trial in one terminal zone. 12 months: a measured pilot with an airport "
@@ -145,7 +155,7 @@ def main():
     # --- slide 3: the comparison table -----------------------------------
     table = next(sh for sh in slides[2].shapes if sh.has_table).table
     rows = [
-        ("Cost", "Attendant per trip", "₹54,000 per chair"),
+        ("Cost", "Attendant per trip", "₹57,000 per chair"),
         ("Speed / time", "Unpredictable wait", "Pre-positioned; wait reported"),
         ("Reach / access", "English signage", "4 languages, Konkani first"),
         ("Ease of use", "Ask, then depend", "Scan, then sit"),
@@ -180,8 +190,8 @@ def main():
     frame.word_wrap = True
     for index, (text, colour, bold) in enumerate([
         ("Proof of concept", RGBColor(0xF2, 0x8C, 0x28), True),
-        ("Dispatcher built and tested — 226 automated tests. Demonstrator fleet "
-         "costed at ₹4,679. Nothing has yet carried a passenger.",
+        (f"Dispatcher built and tested — {TEST_COUNT} automated tests. Demonstrator fleet "
+         "costed at ₹4,759. Nothing has yet carried a passenger.",
          RGBColor(0xC3, 0xCA, 0xE0), False),
     ]):
         para = frame.paragraphs[0] if index == 0 else frame.add_paragraph()
