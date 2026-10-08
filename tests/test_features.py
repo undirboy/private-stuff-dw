@@ -619,3 +619,59 @@ def test_a_gap_survives_the_round_trip_through_a_map_file():
     tmap.connect("dock", "gate", length_m=8.0, gap_m=0.45)
 
     assert from_dict(to_dict(tmap)).segments["dock~gate"].gap_m == 0.45
+
+
+# -- who has actually read the copy --------------------------------------
+
+
+def test_the_review_record_covers_every_language():
+    from margadarshak.announce import LANGUAGES, NATIVE_REVIEW
+
+    assert set(NATIVE_REVIEW) == set(LANGUAGES), (
+        "a language with no entry in NATIVE_REVIEW is a language nobody has "
+        "said anything about, which reads as reviewed and is not"
+    )
+
+
+def test_the_docs_do_not_claim_a_language_is_reviewed_when_it_is_not():
+    """The claim and the fact are in different files, so they are checked together.
+
+    "Needs a native speaker" was written in six places. The moment one of them
+    became untrue the other five were wrong, and nothing would have caught it.
+    """
+    import pathlib
+
+    from margadarshak.announce import NATIVE_REVIEW
+
+    unreviewed = {
+        language for language, note in NATIVE_REVIEW.items() if note is None
+    }
+    names = {"hi": "Hindi", "kok": "Konkani", "mr": "Marathi", "en": "English"}
+    root = pathlib.Path(__file__).resolve().parent.parent
+
+    for relative in ("README.md", "docs/features.md", "docs/roadmap.md"):
+        text = (root / relative).read_text(encoding="utf-8")
+        for language in unreviewed:
+            claim = f"{names[language]} has been read"
+            assert claim not in text, (
+                f"{relative} says {names[language]} has been read, but "
+                f"NATIVE_REVIEW says nobody has"
+            )
+
+
+def test_a_reviewed_language_is_not_still_called_a_working_draft():
+    import pathlib
+
+    from margadarshak.announce import NATIVE_REVIEW
+
+    reviewed = {
+        language for language, note in NATIVE_REVIEW.items()
+        if note and "native speaker" in note
+    }
+    assert reviewed, "this test is pointless if nothing has been reviewed"
+
+    root = pathlib.Path(__file__).resolve().parent.parent
+    announce = (root / "margadarshak" / "announce.py").read_text(encoding="utf-8")
+    assert "These translations need a native speaker" not in announce, (
+        "the module still says all the copy is unread; some of it has been read"
+    )

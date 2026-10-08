@@ -24,7 +24,7 @@ Status words used below mean exactly this:
 | **The screen answers the scan** | Built / needs hardware | Gate, terminal and roughly how long left, the moment the pass is read. Cycling languages, decided by the dispatcher rather than the firmware. |
 | **Devanagari on the panel** | Built | The chair never handles a character. Konkani, Marathi and Hindi need a shaping engine for matras and conjuncts, which a microcontroller font library does not have; so shaping happens once at build time and the chair is sent finished pixels it blits. That also means a chair physically cannot display text the atlas has no glyphs for. |
 | **Lines that fit** | Built | Messages wrap at spaces — the only place a Devanagari line may be broken — and the test suite fails if any message in any language overruns the panel. This is what chose a 128×64 module over the cheaper 128×32: 15 of the 88 message-and-language combinations need three lines and one needs four. |
-| **Four languages** | Built / needs a native speaker | Konkani, Marathi, Hindi, English, with the local languages shown *before* English. The build fails if a message is added in English alone. |
+| **Four languages** | Built / Marathi reviewed, Konkani and Hindi not | Konkani, Marathi, Hindi, English, with the local languages shown *before* English. The build fails if a message is added in English alone. Marathi has been read in full by a native speaker on the team; Konkani and Hindi are still a working draft, and `NATIVE_REVIEW` in `announce.py` is the record. |
 | **Families travel together** | Built | A group is dispatched as one caravan, moves as one unit, and is never split across separate trips. |
 | **A gentler chair** | Built | Per-chair speed cap, for a frail passenger, without editing the map. |
 | **Stop button** | Built / needs hardware | Latches. Only an attendant clears it. In a caravan it stops every chair, because they travel nose to tail. The stop outranks every control, including a joystick. |
@@ -65,7 +65,7 @@ a differentiator that turns out to be wrong costs more credibility than it buys.
 | **The airport owns its map** | Built | The guide path is readable JSON with a validator the facilities team can run (`python3 -m margadarshak.mapfile map.json --validate`). Renumber a gate, change a speed limit, close a corridor — without us. "What does it cost us to change the map" is a tender question, and most answers to it are bad. |
 | **Runs entirely on the premises** | Built | The package imports nothing but the Python standard library and makes no network calls of any kind. No cloud service, no vendor account, no passenger data leaving the airport. Verifiable in one grep, which is the point. |
 | **The booking reference is never stored** | Built | Used transiently, kept only as a keyed digest to recognise a repeat scan. The system also never records *why* somebody needs a chair, because it never needs to know. See `privacy.md`. |
-| **Local languages first** | Built / needs a native speaker | English last, not first. |
+| **Local languages first** | Built | English last, not first. |
 | **Cost** | Needs a quote | The central claim, and the one with no evidence behind it yet. Get a written quote for an imported unit before stating any multiple. |
 
 ## Deliberately not built
@@ -98,7 +98,7 @@ Each of these is a decision, not a gap.
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,
 languages, caravans, pre-positioning, priority and reporting are working code
-with 277 tests behind them. Everything physical is unbuilt, and the regulatory
+with 280 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
 The build that demonstrates this at a table, for ₹4,759 (₹2,801 for one chair), is in

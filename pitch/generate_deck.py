@@ -286,7 +286,7 @@ def slide6() -> Slide:
     ], 4.0, MID, 5.4)
     s.lines(M, 134, [
         "Open questions we are not pretending to have answered: regulatory classification, airport operator",
-        "approval, and a native speaker's review of the four translations.",
+        "approval, and a Konkani speaker's review of the copy. Marathi has been read.",
     ], 4.0, MID, 5.4)
     s.footer(6)
     return s

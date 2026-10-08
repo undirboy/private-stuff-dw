@@ -8,7 +8,7 @@ divided by what it costs to build.
 
 ## Build these before applying
 
-All four are **built**. What remains on each is hardware, a real feed, or a native speaker — noted inline.
+All four are **built**. What remains on each is hardware, a real feed, or a native speaker of Konkani or Hindi — noted inline.
 
 **1. Boarding-pass scan sets the destination. — BUILT**
 A barcode reader reads the IATA BCBP header off the pass, the dispatcher looks up
@@ -28,7 +28,7 @@ operational database in place of the in-memory stand-in. This is the capability 
 match: they are committed once they set off, and nobody tells them the gate moved.
 Lead the application with this, not with autonomy.
 
-**3. Marathi, Konkani, Hindi and English on screen and in voice. — BUILT, needs a native speaker**
+**3. Marathi, Konkani, Hindi and English on screen and in voice. — BUILT; Marathi reviewed, Konkani and Hindi not**
 Cheap, and it maps directly onto the jurisdictions the challenge covers. A
 passenger who needs a wheelchair is disproportionately likely to be elderly and
 not an English speaker. This is not a garnish; it is most of why the current

@@ -135,10 +135,15 @@ added in English alone, if a translation drops a placeholder, or if the Konkani
 and Marathi copy is identical. Screens show the local languages first and English
 last, which is the opposite of the usual airport default and deliberate.
 
-**The translations are a working draft and need a native speaker before anybody
-sees them.** They exist so the plumbing can be built and tested. Budget an
-afternoon with a speaker of each; it is the cheapest quality improvement
-available to this project.
+**Marathi has been read in full by a native speaker on the team and passed
+without change. Hindi and Konkani have not been read by anybody.** Which is
+which is recorded in `NATIVE_REVIEW` rather than in prose, and the docs are
+tested against it.
+
+Konkani is the one that matters most and is still outstanding: the target
+airports are in Goa, and the register that suits a public announcement to an
+elderly stranger is not something to guess at. An afternoon with a Goan speaker
+is the cheapest quality improvement left.
 
 ## Two things that are genuinely different
 

@@ -14,14 +14,19 @@ defaulting to the local language rather than to English.
 
 ----
 
-**These translations need a native speaker before they are shown to anybody.**
+**Which of these have been read by a native speaker is recorded in
+:data:`NATIVE_REVIEW`, and it is not all of them.**
 
-They are a working draft so the plumbing can be built and tested, not finished
-copy. The Konkani in particular should be checked by a Goan speaker: it is
-written here in Devanagari, which is the official script in Goa, but Konkani has
-real dialect variation and the register that suits a public announcement is not
-something to guess at. Budget an afternoon with a native speaker of each
-language; it is the cheapest quality improvement available to this project.
+Marathi has: every message was read in full by a native speaker on the team and
+passed without change. The rest are a working draft written so the plumbing could
+be built and tested, and they should not be described as finished copy.
+
+Konkani is the one that matters most and is still unread. The target airports are
+in Goa, it is written here in Devanagari — the official script there — and the
+language has real dialect variation, so the register that suits a public
+announcement addressed to an elderly stranger is not something to guess at. An
+afternoon with a Goan speaker remains the cheapest quality improvement available
+to this project.
 
 Numerals are a decision, not an oversight: Devanagari digits (४) are used in the
 Devanagari-script messages because that is what a reader of those scripts expects
@@ -36,6 +41,19 @@ from dataclasses import dataclass, field
 
 #: The languages the chair speaks. ``kok`` is Konkani, ISO 639-3.
 LANGUAGES: tuple[str, ...] = ("en", "hi", "mr", "kok")
+
+#: Who has read each language's copy, or None if nobody has.
+#:
+#: Here rather than in prose because "needs a native speaker" was written in six
+#: files, and the moment one of them became untrue the other five were wrong. The
+#: documentation is checked against this (``tests/test_features.py``), so the
+#: claim and the fact cannot drift apart.
+NATIVE_REVIEW: dict[str, str | None] = {
+    "en": "written in English",
+    "mr": "read in full by a native speaker on the team, 2026-10-09; no changes",
+    "hi": None,
+    "kok": None,
+}
 
 #: Order in which a screen cycles. Local language first, English last — the
 #: opposite of the usual airport default, and deliberate.
