@@ -1,0 +1,3902 @@
+{
+ "panel": {
+  "w": 128,
+  "h": 64,
+  "line_h": 16
+ },
+ "font": {
+  "file": "/usr/share/fonts/truetype/freefont/FreeSans.ttf",
+  "px": 13,
+  "shaped_with": "libraqm"
+ },
+ "runs": {
+  "welcome|kok|0|0": {
+   "text": "तुमकां",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA//3/4ASIEEB8iNxARIkaQEX5EkBEiTJAJAj0QBQIEEAHAAAAIQAAAA=="
+  },
+  "welcome|kok|0|1": {
+   "text": "येवकार,",
+   "w": 36,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAACAAAAAAEAAAAAAIAAAAAAQAAAAA//n/3wAkEBCCACTQ3JIA5REangDNERKIAHzxMoQABBD0hgAEEBCCQAAAAABAAAAAAEA="
+  },
+  "welcome|kok|1|0": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "welcome|mr|0|0": {
+   "text": "आपले",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAIAAAABAAAAAIAAAABAM//f4EkkgEAJJIBAOSSOwEckkUBlI5JAPSCIQAEghEAAAAAAAAAAAA=="
+  },
+  "welcome|mr|0|1": {
+   "text": "स्वागत",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/f/+AgiJBBJoiXwfiJlECIiJRAR4gUQCCIEkAAiBFAAAAAAAAAAAA=="
+  },
+  "welcome|mr|0|2": {
+   "text": "आहे,",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGQAAAQ"
+  },
+  "welcome|mr|1|0": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "welcome|hi|0|0": {
+   "text": "आपका",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM//f/kkkgQQJJI3EOSSRpEckkSRlI5MkPSCPRAEggQQAAAAAAAAAAA=="
+  },
+  "welcome|hi|0|1": {
+   "text": "स्वागत",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/f/+AgiJBBJoiXwfiJlECIiJRAR4gUQCCIEkAAiBFAAAAAAAAAAAA=="
+  },
+  "welcome|hi|0|2": {
+   "text": "है,",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAACAAEABwABgA/AAIAHgAQAA4AEQATABhABkAAQA="
+  },
+  "welcome|hi|1|0": {
+   "text": "।",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAIAAgACAAIAAgACAAIAAgACAAAAAAA="
+  },
+  "welcome|en|0|0": {
+   "text": "Welcome,",
+   "w": 56,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMYQCAAAAADGMAgAAAAARiAIAAAAAE8ni8eLe8BJLM4szM5gaWhMCEiMIClPzAhIj+AwyAwISIwAMMxOLMiOIDDHi8eIi8QAAAAAAAAEAAAAAAAABA=="
+  },
+  "welcome|en|1|0": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "starting|kok|0|0": {
+   "text": "उपकार",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3//wJIEEICSNxSTEkaXiJJEkgiOTJEEgj0RgwIEEIAAAAAAAAAAA=="
+  },
+  "starting|kok|0|1": {
+   "text": "करून",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf9//4AQCAEA3E8BARo0nwESJIkBMhCBAPQJgQAQAAEAAAAAAAAAAAA=="
+  },
+  "starting|kok|0|2": {
+   "text": "घट्ट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//xCCEI4MkBCREY4OggCOABAAEQ="
+  },
+  "starting|kok|0|3": {
+   "text": "धरात.",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ3/+AEIKBABCSnwAOnpEACIiRAAmEkQAGhokAAIKFEAAAAAAAAAAAA=="
+  },
+  "starting|kok|0|4": {
+   "text": "आतां",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAEM//8SSBICSfIOSRIRyRIZSRIPSJIASFIAAAAAAAA"
+  },
+  "starting|kok|0|5": {
+   "text": "वता.",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//uACBEAafEAiREAiREAeREACJEACFEgAAAAAAAA"
+  },
+  "starting|mr|0|0": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "starting|mr|0|1": {
+   "text": "घट्ट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//xCCEI4MkBCREY4OggCOABAAEQ="
+  },
+  "starting|mr|0|2": {
+   "text": "धरा.",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAZ38AQgoAQkoAOnoAIiIAJhIAGhoAAgpAAAAAAAAA"
+  },
+  "starting|mr|0|3": {
+   "text": "आता",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAM//8SSBICSfIOSRIRyRIZSRIPSJIASFIAAAAAAAA"
+  },
+  "starting|mr|0|4": {
+   "text": "निघत",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAA7///gEBQgQBAUJ8AR8yRAEJQkQBAUZEAQE6JAEBAhQAAAAAAAAAAAA=="
+  },
+  "starting|mr|0|5": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "starting|hi|0|0": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "starting|hi|0|1": {
+   "text": "पकड़कर",
+   "w": 39,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/f/+f95IEAQEAkjcPDcSSRogRp5JEp5EiDkyQkyECPQiPQYIEBwEAgAAgAAAAAAAAAA="
+  },
+  "starting|hi|0|2": {
+   "text": "बैठें।",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAIIAAEEAAcDAAGBAAf/AQBCAQNCAQZOAQXSAQPRAQBRAQBOAQAAAQAAAA"
+  },
+  "starting|hi|0|3": {
+   "text": "अब",
+   "w": 16,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAM79JAgkaOTJHLmUePQIBAgAAAAA="
+  },
+  "starting|hi|0|4": {
+   "text": "चल",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/3+AAgEAegEAEjsAIkUAJkkAOiEAAhEAAAAAAAAA"
+  },
+  "starting|hi|0|5": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "starting|hi|0|6": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "starting|en|0|0": {
+   "text": "Please",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB+IAAAAEMgAAAAQSAAAABBLx4c8EM5oSOYfjCBIQhAP58d+EAwIQMAQDijI4hALx2c8AAAAAAAAAAAAAA="
+  },
+  "starting|en|0|1": {
+   "text": "hold",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQAEEQAEEQAEEWPF8ZZnMRQmERQmERQmERZnMRPF0AAAAAAAA"
+  },
+  "starting|en|0|2": {
+   "text": "on.",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAeLAAzMgAhIgAhIgAhIgAzIgAeIkAAAAAAAAA"
+  },
+  "starting|en|0|3": {
+   "text": "Starting",
+   "w": 44,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPgAACAAAYQAAAAAAQCAAQAAAQHeK6WOgcChMSZZgHiBISRQgAyfISRQgQShISRQgYSjISRZgPjdoaROgAAAAAAAgAAAAAARg"
+  },
+  "starting|en|0|4": {
+   "text": "now.",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFjyIgBlmTIARQlWAEUJVABFCVQARZjMAETwiIAAAAAAAAAAAA=="
+  },
+  "taking_to_gate|kok|0|0": {
+   "text": "तुमकां",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA//3/4ASIEEB8iNxARIkaQEX5EkBEiTJAJAj0QBQIEEAHAAAAIQAAAA=="
+  },
+  "taking_to_gate|kok|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "taking_to_gate|kok|1|1": {
+   "text": "कडेन",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAACAAAAAQAAAACAAAAAQAAf/+fgAQBAIA3DwCARogPgESnhIBMkICAPQiAgAQHAIAAAAAAAAAAAA=="
+  },
+  "taking_to_gate|kok|1|2": {
+   "text": "व्हरतां.",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA/z/7gAIEEQB+JfEAkD0RAI4REQBxCREAEwyRABgEUSAGAAAAAAAAAA=="
+  },
+  "taking_to_gate|mr|0|0": {
+   "text": "तुम्हाला",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9/3/wSBIBJ8jyASRIgjskXnJFJEiKSSJAmiEhQMIRIHAwAAIQAAAA=="
+  },
+  "taking_to_gate|mr|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "taking_to_gate|mr|1|1": {
+   "text": "कडे",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAgAAAQAAAIAAAEAf/+ABAEANw8ARogARKeATJCAPQiABAcAAAAAAAAA"
+  },
+  "taking_to_gate|mr|1|2": {
+   "text": "नेत",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQAf/wCCAL4PogSiAKIAkgCKAAAAAA="
+  },
+  "taking_to_gate|mr|1|3": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "taking_to_gate|hi|0|0": {
+   "text": "आपको",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAgAAAAMAAAABgAAAAMM//f/kkkgQQJJI3EOSSRpEckkSRlI5MkPSCPRAEggQQAAAAAAAAAAA=="
+  },
+  "taking_to_gate|hi|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "taking_to_gate|hi|1|1": {
+   "text": "तक",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/v+ABAgAfG4ARI0ARIkARJkAJHoAFAgAAAAAAAAA"
+  },
+  "taking_to_gate|hi|1|2": {
+   "text": "ले",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAgABAACAAEAf4ABAAEAOwBFAEkAIQARAAAAAAA="
+  },
+  "taking_to_gate|hi|1|3": {
+   "text": "जा",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAf/ABIE8gRSAlIDUgGSABIAAAAAA="
+  },
+  "taking_to_gate|hi|1|4": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "taking_to_gate|hi|1|5": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "taking_to_gate|en|0|0": {
+   "text": "Taking",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB/AIIAAAgAgAAACACAAAAIeJpY6AiEsmWYCATiRQgIfPJFCAiEkkUICIyaRZgIdopE6AAAAAAIAAAAARg="
+  },
+  "taking_to_gate|en|0|1": {
+   "text": "you",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAheIgTzIgShIgShIgOhIgMzJgMeGgIAAAIAAA"
+  },
+  "taking_to_gate|en|0|2": {
+   "text": "to",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQADngEzASEBIQEhATMBngAAAAAA="
+  },
+  "taking_to_gate|en|0|3": {
+   "text": "Gate",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAB4AAAAxAAAAIIAgAEAed4BAISzAQ4EoQECfL8BgoSgAIaMsQB6dt4AAAAAAAAAAAA=="
+  },
+  "taking_to_gate|en|1|0": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "taking_to_lounge|kok|0|0": {
+   "text": "तुमकां",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA//3/4ASIEEB8iNxARIkaQEX5EkBEiTJAJAj0QBQIEEAHAAAAIQAAAA=="
+  },
+  "taking_to_lounge|kok|0|1": {
+   "text": "आदार",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM//74EkgUEAJI9JAOSQTwEckEQBlJlCAPSPQwAEgUEAAAAAAAAAAAA=="
+  },
+  "taking_to_lounge|kok|0|2": {
+   "text": "कक्षाकडेन",
+   "w": 46,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAEAAAAAAACAAAAAAABAAAAAAAAgAf9n7//n8BCSQIBAINzSRuPAIRp+SNID4RKCSJnhITKSSZQgIPRyR6IgIBASQIHAIAAAAAAAAAAAAAAAA"
+  },
+  "taking_to_lounge|kok|0|3": {
+   "text": "व्हरतां.",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA/z/7gAIEEQB+JfEAkD0RAI4REQBxCREAEwyRABgEUSAGAAAAAAAAAA=="
+  },
+  "taking_to_lounge|mr|0|0": {
+   "text": "तुम्हाला",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9/3/wSBIBJ8jyASRIgjskXnJFJEiKSSJAmiEhQMIRIHAwAAIQAAAA=="
+  },
+  "taking_to_lounge|mr|0|1": {
+   "text": "मदत",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA///wRAggRHvgRIIg/IIgRMogBHkgBAigAAAAAAAA"
+  },
+  "taking_to_lounge|mr|0|2": {
+   "text": "कक्षाकडे",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAABAAAAAACAAAAAAEAAAAAAIf9n7//gEJJAgEDc0kbjwRp+SNIBEoJImeEykkmUIPRyR6IgEBJAgcAAAAAAAAAAAAAA="
+  },
+  "taking_to_lounge|mr|0|3": {
+   "text": "नेत",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQAf/wCCAL4PogSiAKIAkgCKAAAAAA="
+  },
+  "taking_to_lounge|mr|0|4": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "taking_to_lounge|hi|0|0": {
+   "text": "आपको",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAgAAAAMAAAABgAAAAMM//f/kkkgQQJJI3EOSSRpEckkSRlI5MkPSCPRAEggQQAAAAAAAAAAA=="
+  },
+  "taking_to_lounge|hi|0|1": {
+   "text": "सहायता",
+   "w": 35,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf////+AJBIkCQEk8iT5AfyC5IkAhHLMiQBEinyJAGSaBEkAJMIEKQAAMAAAAAAAAAAA="
+  },
+  "taking_to_lounge|hi|0|2": {
+   "text": "कक्ष",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf9nABCSANzSARp+ARKCATKSAPRyABASAAAAAAAAA"
+  },
+  "taking_to_lounge|hi|0|3": {
+   "text": "तक",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/v+ABAgAfG4ARI0ARIkARJkAJHoAFAgAAAAAAAAA"
+  },
+  "taking_to_lounge|hi|0|4": {
+   "text": "ले",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAgABAACAAEAf4ABAAEAOwBFAEkAIQARAAAAAAA="
+  },
+  "taking_to_lounge|hi|0|5": {
+   "text": "जा",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAf/ABIE8gRSAlIDUgGSABIAAAAAA="
+  },
+  "taking_to_lounge|hi|0|6": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "taking_to_lounge|hi|0|7": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "taking_to_lounge|en|0|0": {
+   "text": "Taking",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB/AIIAAAgAgAAACACAAAAIeJpY6AiEsmWYCATiRQgIfPJFCAiEkkUICIyaRZgIdopE6AAAAAAIAAAAARg="
+  },
+  "taking_to_lounge|en|0|1": {
+   "text": "you",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAheIgTzIgShIgShIgOhIgMzJgMeGgIAAAIAAA"
+  },
+  "taking_to_lounge|en|0|2": {
+   "text": "to",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQADngEzASEBIQEhATMBngAAAAAA="
+  },
+  "taking_to_lounge|en|0|3": {
+   "text": "the",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAABAAABAAARAAA5Z4ARnMARGEARH8ARGAARHEAZF4AAAAAAAAA"
+  },
+  "taking_to_lounge|en|0|4": {
+   "text": "assistance",
+   "w": 60,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAgAAAAB4ccTneLHjwISKJRKEyxZgBIIFAgSKBCB8ccTifIoH4IQIJBKEigQAjIolEoyLFiB2ccTjdonjwAAAAAAAAAAAAAAAAAAAAAA="
+  },
+  "taking_to_lounge|en|0|5": {
+   "text": "lounge.",
+   "w": 41,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAATxFY6eAAWZFlmzAAUJFFChAAUJFFC/AAUJFFCgAAWZNFmxAATw1E6eIAAAAACAAAAAABGAAA"
+  },
+  "no_gate_yet|kok|0|0": {
+   "text": "तुमचो",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAgAAAAMAAAABgAAAAMA////gASICQB8iekARIhJAEX4iQBEiJkAJAjpABQICQAHAAAAIQAAAA=="
+  },
+  "no_gate_yet|kok|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "no_gate_yet|kok|0|2": {
+   "text": "अजून",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM7/fwEkAgIAJJ4CAOSKPgEcShIBlGoCAPQyAgAEAgIAAAAAAAADwAA=="
+  },
+  "no_gate_yet|kok|0|3": {
+   "text": "जाहीर",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAADgAAABEAAAARAAf//74AEgkEBPJ5JARSQTwCUjkQA1JFCAGSTQwAEmAEAAAYAAAAAAAA=="
+  },
+  "no_gate_yet|kok|0|4": {
+   "text": "जाल्लो",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAACAAAAAwAAAAGAAAAAwf//f+AEgAFBPI6BQRSTO0CUkkVA1JBJQGSIIUAEhBFAAAAAAAAAAAA=="
+  },
+  "no_gate_yet|kok|0|5": {
+   "text": "ना.",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAf8ACgAKAPoASgAKAAoACkAAAAAA="
+  },
+  "no_gate_yet|kok|0|6": {
+   "text": "आमी",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAABwAACIAACIM//8SSRICSRIOSRIRy/IZSRIPSBIASBAAAAAAAAA"
+  },
+  "no_gate_yet|kok|0|7": {
+   "text": "तुमकां",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA//3/4ASIEEB8iNxARIkaQEX5EkBEiTJAJAj0QBQIEEAHAAAAIQAAAA=="
+  },
+  "no_gate_yet|kok|0|8": {
+   "text": "व्हरूंक",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA/z//8AIEAQB+J43AkBpRoI4SUSBxCFMgEwTPQBgAAQAGAAAAAAAAAA=="
+  },
+  "no_gate_yet|kok|0|9": {
+   "text": "परत",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/f/gSCBASSfASeRASIRAOERACGJACCFAAAAAAAAA"
+  },
+  "no_gate_yet|kok|0|10": {
+   "text": "येतले.",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAgACAAEAAQAAgACAAEAAQA//z/ACQIAgAk+AIA5Ih2AMyIigB8iJIABEhCAAQoIoAAAAAAAAAAAA=="
+  },
+  "no_gate_yet|mr|0|0": {
+   "text": "तुमचा",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////gASICQB8iekARIhJAEX4iQBEiJkAJAjpABQICQAHAAAAIQAAAA=="
+  },
+  "no_gate_yet|mr|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "no_gate_yet|mr|0|2": {
+   "text": "अजून",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM7/fwEkAgIAJJ4CAOSKPgEcShIBlGoCAPQyAgAEAgIAAAAAAAADwAA=="
+  },
+  "no_gate_yet|mr|0|3": {
+   "text": "जाहीर",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAADgAAABEAAAARAAf//74AEgkEBPJ5JARSQTwCUjkQA1JFCAGSTQwAEmAEAAAYAAAAAAAA=="
+  },
+  "no_gate_yet|mr|0|4": {
+   "text": "झालेला",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAIAAAABAAAAAIAAAABAA//f//wkgEBJ5IBASQSOzsj8kVFIFJJSSBSISEmkhERIYAAAADAAAAA=="
+  },
+  "no_gate_yet|mr|0|5": {
+   "text": "नाही.",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAHAAAIgAAIgf/9wAoIgAp4gPpAgEo4gApEgApMgApgEAAYAAAAA"
+  },
+  "no_gate_yet|mr|0|6": {
+   "text": "आम्ही",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAOAAAAEQAAABEAM/7/gEkkCQAJJHkAOSRBAEcvOQBlJEUAPSBNAAEgYAAAABgAAAAAAA=="
+  },
+  "no_gate_yet|mr|0|7": {
+   "text": "तुम्हाला",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9/3/wSBIBJ8jyASRIgjskXnJFJEiKSSJAmiEhQMIRIHAwAAIQAAAA=="
+  },
+  "no_gate_yet|mr|0|8": {
+   "text": "न्यायला",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///z/wAEkSAKAASRIAoA/Jch2gDZlmIqAA+T4koAAJAhCgAAkCCKAAAAAAAAAAAAAAA="
+  },
+  "no_gate_yet|mr|0|9": {
+   "text": "परत",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/f/gSCBASSfASeRASIRAOERACGJACCFAAAAAAAAA"
+  },
+  "no_gate_yet|mr|0|10": {
+   "text": "येऊ.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAIAAAEAAACAAABAAA/v+AJAQAJAQA5JsAzESAfESABCUABBkQAAAAAAAA"
+  },
+  "no_gate_yet|hi|0|0": {
+   "text": "आपका",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM//f/kkkgQQJJI3EOSSRpEckkSRlI5MkPSCPRAEggQQAAAAAAAAAAA=="
+  },
+  "no_gate_yet|hi|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "no_gate_yet|hi|0|2": {
+   "text": "अभी",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAHAAAIgAAIgM/PwSVEgCREgOREgRz8gZREgPQEgAQEAAAAAAAAA"
+  },
+  "no_gate_yet|hi|0|3": {
+   "text": "घोषित",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAACAAAAAwcAAAGIwAAAyGAA////4EJJoEBCSafAMklkQEJJJEBGSORAOkgiQAJIIUAAAAAAAAAAAA=="
+  },
+  "no_gate_yet|hi|0|4": {
+   "text": "नहीं",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAA4AABEAABEAf/uAAhEAAvEAPoEAEnEAAokAApkAAsAAADAAAAAA"
+  },
+  "no_gate_yet|hi|0|5": {
+   "text": "हुआ",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/M/ACSSAeCSAQOSAORyARZSATPSAYASAGAAAHAAA"
+  },
+  "no_gate_yet|hi|0|6": {
+   "text": "है।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEABwABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "no_gate_yet|hi|0|7": {
+   "text": "हम",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//gJEHkQQRA78EUQTBBgEBgAAAA="
+  },
+  "no_gate_yet|hi|0|8": {
+   "text": "आपको",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAgAAAAMAAAABgAAAAMM//f/kkkgQQJJI3EOSSRpEckkSRlI5MkPSCPRAEggQQAAAAAAAAAAA=="
+  },
+  "no_gate_yet|hi|0|9": {
+   "text": "लेने",
+   "w": 16,
+   "h": 16,
+   "bits": "AAAAAAgQBAgCBAECf78BAQEBOx9FCUkBIQERAQAAAAA="
+  },
+  "no_gate_yet|hi|0|10": {
+   "text": "वापस",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//5/CSQJaSRJiSR/iSQheRwRCQQZCQQJAAAAAAAA"
+  },
+  "no_gate_yet|hi|0|11": {
+   "text": "आएंगे।",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAEAAAAAAIAAAAAIQAAAAAAgAAM///ggBJJIkCAAkkiQIAOSSZAgBHJYkCAGUmAQIAPSMBAgABIYECAAAAgAIAAACAAAA="
+  },
+  "no_gate_yet|en|0|0": {
+   "text": "Your",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAEEAAABjAAAAIgAAADZ4iUAUzImACISJAAiEiQAIhIkACMyZAAh4aQAAAAAAAAAAAA=="
+  },
+  "no_gate_yet|en|0|1": {
+   "text": "gate",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAEAdPO8zQlmhAlChPl+hQlAzRlidO28BAAAjAAA"
+  },
+  "no_gate_yet|en|0|2": {
+   "text": "has",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQAAAQAAAQAAAWPDgZQkQRAkARPjgRQgQRRkQROzgAAAAAAAA"
+  },
+  "no_gate_yet|en|0|3": {
+   "text": "not",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAEAWPOAZZkARQkARQkARQkARZkARPGAAAAAAAAA"
+  },
+  "no_gate_yet|en|0|4": {
+   "text": "been",
+   "w": 28,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAQAAAAFzx4sBnmzMgQwoSIEP78iBDAgIgZ4sSIFzx4iAAAAAAAAAAAA=="
+  },
+  "no_gate_yet|en|0|5": {
+   "text": "announced",
+   "w": 62,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAh4sWPEVjx4+ITJlmRZYs2YBIkUJFFAhQh8iRQkUUD9CISJFCRRQIEIjIkWZNFixZh2iRPDUTx46AAAAAAAAAAAAAAAAAAAAAA="
+  },
+  "no_gate_yet|en|0|6": {
+   "text": "yet.",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAIAhecATzIAShIAS/IAOgIAMxIAMeMgIAAAIAAA"
+  },
+  "no_gate_yet|en|0|7": {
+   "text": "We",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAxhAAxjAARiAATyeASSzAaWhAKU/AMMgAMMxAMMeAAAAAAAAA"
+  },
+  "no_gate_yet|en|0|8": {
+   "text": "will",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAACSAAASAAASAiKSATKSAVaSAVSSAVSSAMySAIiSAAAAAAAAA"
+  },
+  "no_gate_yet|en|0|9": {
+   "text": "come",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHjy3njFmzLMgQoihIEKIvyBCiKAxZoixHjyIngAAAAAAAAAAA=="
+  },
+  "no_gate_yet|en|0|10": {
+   "text": "back",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAEAAAgBAAAIAQAACAFzx4mBnCxLAQgoDgEL6A8BDCgJAZxsSYFzt4iAAAAAAAAAAAA=="
+  },
+  "no_gate_yet|en|0|11": {
+   "text": "for",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAABgAEAAQADnlEzYSFBIUEhQTNBHkAAAAAA="
+  },
+  "no_gate_yet|en|0|12": {
+   "text": "you.",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAheIgTzIgShIgShIgOhIgMzJgMeGkIAAAIAAA"
+  },
+  "gate_changed|kok|0|0": {
+   "text": "तुमचो",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAgAAAAMAAAABgAAAAMA////gASICQB8iekARIhJAEX4iQBEiJkAJAjpABQICQAHAAAAIQAAAA=="
+  },
+  "gate_changed|kok|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "gate_changed|kok|0|2": {
+   "text": "बदल्ला.",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf////AAEEABIADTx0EgAZQJuyABdAlFIAD2SEkgABPEISAAEEIRJAAAAAAAAAAAAAAA="
+  },
+  "gate_changed|kok|0|3": {
+   "text": "आतां",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAEM//8SSBICSfIOSRIRyRIZSRIPSJIASFIAAAAAAAA"
+  },
+  "gate_changed|kok|0|4": {
+   "text": "आमी",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAABwAACIAACIM//8SSRICSRIOSRIRy/IZSRIPSBIASBAAAAAAAAA"
+  },
+  "gate_changed|kok|0|5": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "gate_changed|kok|1|1": {
+   "text": "कडेन",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAACAAAAAQAAAACAAAAAQAAf/+fgAQBAIA3DwCARogPgESnhIBMkICAPQiAgAQHAIAAAAAAAAAAAA=="
+  },
+  "gate_changed|kok|1|2": {
+   "text": "वतांव.",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA//v+AAgRBABp8TQAiRFEAIkRRAB5ETwACJEEAAhRBIAAAAAAAAAAAA=="
+  },
+  "gate_changed|mr|0|0": {
+   "text": "तुमचा",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////gASICQB8iekARIhJAEX4iQBEiJkAJAjpABQICQAHAAAAIQAAAA=="
+  },
+  "gate_changed|mr|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "gate_changed|mr|0|2": {
+   "text": "बदलला",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/v//4AEEAgJADTwCAkAZQHZ2QBdAiopAD2SSkkABPEJCQAEEIiJAAAAAAAAAAAAAAA="
+  },
+  "gate_changed|mr|0|3": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "gate_changed|mr|0|4": {
+   "text": "आता",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAM//8SSBICSfIOSRIRyRIZSRIPSJIASFIAAAAAAAA"
+  },
+  "gate_changed|mr|0|5": {
+   "text": "आपण",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM///wEkklIAJJJSAOSSUgEcknIBlI4CAPSCAgAEggIAAAAAAAAAAAA=="
+  },
+  "gate_changed|mr|0|6": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "gate_changed|mr|1|1": {
+   "text": "कडे",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAgAAAQAAAIAAAEAf/+ABAEANw8ARogARKeATJCAPQiABAcAAAAAAAAA"
+  },
+  "gate_changed|mr|1|2": {
+   "text": "जात",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf//gASBATyfARSRAJSRANSRAGSJAASFAAAAAAAAA"
+  },
+  "gate_changed|mr|1|3": {
+   "text": "आहोत.",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAIAAAADAAAAAYAAAADAAM///8EkgkCAJJ5PgOSQSIEcjkiBlJFIgPSTRIAEmEKQAAYAAAAAAAA=="
+  },
+  "gate_changed|hi|0|0": {
+   "text": "आपका",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM//f/kkkgQQJJI3EOSSRpEckkSRlI5MkPSCPRAEggQQAAAAAAAAAAA=="
+  },
+  "gate_changed|hi|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "gate_changed|hi|0|2": {
+   "text": "बदल",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf/v4BBAINPAIZQHYXQIoPZJIBPEIBBCIAAAAAAAA"
+  },
+  "gate_changed|hi|0|3": {
+   "text": "गया",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//+AJEkAJEkAZckAJZkABPkABAkABAkAAAAAAAAA"
+  },
+  "gate_changed|hi|0|4": {
+   "text": "है।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEABwABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "gate_changed|hi|0|5": {
+   "text": "अब",
+   "w": 16,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAM79JAgkaOTJHLmUePQIBAgAAAAA="
+  },
+  "gate_changed|hi|0|6": {
+   "text": "हम",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//gJEHkQQRA78EUQTBBgEBgAAAA="
+  },
+  "gate_changed|hi|0|7": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "gate_changed|hi|1|1": {
+   "text": "जा",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAf/ABIE8gRSAlIDUgGSABIAAAAAA="
+  },
+  "gate_changed|hi|1|2": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "gate_changed|hi|1|3": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "gate_changed|en|0|0": {
+   "text": "Your",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAEEAAABjAAAAIgAAADZ4iUAUzImACISJAAiEiQAIhIkACMyZAAh4aQAAAAAAAAAAAA=="
+  },
+  "gate_changed|en|0|1": {
+   "text": "gate",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAEAdPO8zQlmhAlChPl+hQlAzRlidO28BAAAjAAA"
+  },
+  "gate_changed|en|0|2": {
+   "text": "has",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQAAAQAAAQAAAWPDgZQkQRAkARPjgRQgQRRkQROzgAAAAAAAA"
+  },
+  "gate_changed|en|0|3": {
+   "text": "changed.",
+   "w": 52,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAgABAAAAAAIAAQAAAAACAHljxY6ePgDFlCZZs2YAgRAkUKFCAIET5FC/QgCBFCRQoEIAxRRkWbFmAHkTtE6eOiAAAAAAgAAAAAAAEYAAAA=="
+  },
+  "gate_changed|en|0|4": {
+   "text": "We",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAxhAAxjAARiAATyeASSzAaWhAKU/AMMgAMMxAMMeAAAAAAAAA"
+  },
+  "gate_changed|en|0|5": {
+   "text": "are",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAeK8AhNmABJCAfJ+AhJAAjJiAdo8AAAAAAAAA"
+  },
+  "gate_changed|en|0|6": {
+   "text": "now",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAWPIiZZkyRQlWRQlURQlURZjMRPCIAAAAAAAA"
+  },
+  "gate_changed|en|0|7": {
+   "text": "going",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAHTxLHTNmTLMhQkihIUJIoSFCSKEzZkizHTxInQEAAAEjAAAjA=="
+  },
+  "gate_changed|en|0|8": {
+   "text": "to",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQADngEzASEBIQEhATMBngAAAAAA="
+  },
+  "gate_changed|en|0|9": {
+   "text": "Gate",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAB4AAAAxAAAAIIAgAEAed4BAISzAQ4EoQECfL8BgoSgAIaMsQB6dt4AAAAAAAAAAAA=="
+  },
+  "gate_changed|en|1|0": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "arrived_at_gate|kok|0|0": {
+   "text": "आमी",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAABwAACIAACIM//8SSRICSRIOSRIRy/IZSRIPSBIASBAAAAAAAAA"
+  },
+  "arrived_at_gate|kok|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "arrived_at_gate|kok|1|1": {
+   "text": "हांगा",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAIAA///gCRJAeRJAQTJAORJARQJATQJAYQJAGAAAAAAA"
+  },
+  "arrived_at_gate|kok|1|2": {
+   "text": "पावले.",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAABAAAAAIAAAABAAAAAIA//5/gEkEAQBJNAEASUQ7AElERQA5PEkACQQhAAkEEUAAAAAAAAAAAA=="
+  },
+  "arrived_at_gate|mr|0|0": {
+   "text": "आपण",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM///wEkklIAJJJSAOSSUgEcknIBlI4CAPSCAgAEggIAAAAAAAAAAAA=="
+  },
+  "arrived_at_gate|mr|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "arrived_at_gate|mr|1|1": {
+   "text": "येथे",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAgEBAICAQE/84lJCWk5GTNxHyMBHQEBAAAAAA="
+  },
+  "arrived_at_gate|mr|1|2": {
+   "text": "पोहोचलो",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAgEAABADAYAAGAGAwAAMAMBgAAY////3/xJBICASEk8noBISSCEjshJHIiRSDkiiZJICSaOiEgJMICESAAMAAAAAAAAAAA="
+  },
+  "arrived_at_gate|mr|1|3": {
+   "text": "आहोत.",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAIAAAADAAAAAYAAAADAAM///8EkgkCAJJ5PgOSQSIEcjkiBlJFIgPSTRIAEmEKQAAYAAAAAAAA=="
+  },
+  "arrived_at_gate|hi|0|0": {
+   "text": "हम",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//gJEHkQQRA78EUQTBBgEBgAAAA="
+  },
+  "arrived_at_gate|hi|0|1": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "arrived_at_gate|hi|1|1": {
+   "text": "पर",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/fBIIEkgSeBIgDhACGAIIAAAAAA="
+  },
+  "arrived_at_gate|hi|1|2": {
+   "text": "पहुँच",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAFQAADgAAAAA//f4SCAQSePQSQCQSOEQOREwCTHQCYAQAGAAAHAA"
+  },
+  "arrived_at_gate|hi|1|3": {
+   "text": "गए",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//AkkCSQZJAksATABGAEMAAQABA="
+  },
+  "arrived_at_gate|hi|1|4": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "arrived_at_gate|en|0|0": {
+   "text": "We",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAxhAAxjAARiAATyeASSzAaWhAKU/AMMgAMMxAMMeAAAAAAAAA"
+  },
+  "arrived_at_gate|en|0|1": {
+   "text": "have",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAQAAAAFjzF4BlCRzARAkoQET5L8BFCKgARRjMQETsx4AAAAAAAAAAAA=="
+  },
+  "arrived_at_gate|en|0|2": {
+   "text": "arrived",
+   "w": 39,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAEAAAAAAR4qnE8fITMUWbMBIhSQoR8iFJ+hISISkCEjIhMYsx2iEw8dAAAAAAAAAAAAAA="
+  },
+  "arrived_at_gate|en|0|3": {
+   "text": "at",
+   "w": 11,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAIB5wISABIB8gISAjIB2wAAAAAA="
+  },
+  "arrived_at_gate|en|0|4": {
+   "text": "Gate",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAB4AAAAxAAAAIIAgAEAed4BAISzAQ4EoQECfL8BgoSgAIaMsQB6dt4AAAAAAAAAAAA=="
+  },
+  "arrived_at_gate|en|1|0": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "arrived_at_lounge|kok|0|0": {
+   "text": "आमी",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAABwAACIAACIM//8SSRICSRIOSRIRy/IZSRIPSBIASBAAAAAAAAA"
+  },
+  "arrived_at_lounge|kok|0|1": {
+   "text": "आदार",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM//74EkgUEAJI9JAOSQTwEckEQBlJlCAPSPQwAEgUEAAAAAAAAAAAA=="
+  },
+  "arrived_at_lounge|kok|0|2": {
+   "text": "कक्षांत",
+   "w": 28,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAf9n/8AQkkCA3NJPgRp+SIESgkiBMpJIgPRyRIAQEkKAAAAAAAAAAAA=="
+  },
+  "arrived_at_lounge|kok|0|3": {
+   "text": "पावले.",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAABAAAAAIAAAABAAAAAIA//5/gEkEAQBJNAEASUQ7AElERQA5PEkACQQhAAkEEUAAAAAAAAAAAA=="
+  },
+  "arrived_at_lounge|mr|0|0": {
+   "text": "आपण",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM///wEkklIAJJJSAOSSUgEcknIBlI4CAPSCAgAEggIAAAAAAAAAAAA=="
+  },
+  "arrived_at_lounge|mr|0|1": {
+   "text": "मदत",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA///wRAggRHvgRIIg/IIgRMogBHkgBAigAAAAAAAA"
+  },
+  "arrived_at_lounge|mr|0|2": {
+   "text": "कक्षात",
+   "w": 28,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf9n/8AQkkCA3NJPgRp+SIESgkiBMpJIgPRyRIAQEkKAAAAAAAAAAAA=="
+  },
+  "arrived_at_lounge|mr|0|3": {
+   "text": "पोहोचलो",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAgEAABADAYAAGAGAwAAMAMBgAAY////3/xJBICASEk8noBISSCEjshJHIiRSDkiiZJICSaOiEgJMICESAAMAAAAAAAAAAA="
+  },
+  "arrived_at_lounge|mr|0|4": {
+   "text": "आहोत.",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAIAAAADAAAAAYAAAADAAM///8EkgkCAJJ5PgOSQSIEcjkiBlJFIgPSTRIAEmEKQAAYAAAAAAAA=="
+  },
+  "arrived_at_lounge|hi|0|0": {
+   "text": "हम",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//gJEHkQQRA78EUQTBBgEBgAAAA="
+  },
+  "arrived_at_lounge|hi|0|1": {
+   "text": "सहायता",
+   "w": 35,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf////+AJBIkCQEk8iT5AfyC5IkAhHLMiQBEinyJAGSaBEkAJMIEKQAAMAAAAAAAAAAA="
+  },
+  "arrived_at_lounge|hi|0|2": {
+   "text": "कक्ष",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf9nABCSANzSARp+ARKCATKSAPRyABASAAAAAAAAA"
+  },
+  "arrived_at_lounge|hi|0|3": {
+   "text": "पहुँच",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAFQAADgAAAAA//f4SCAQSePQSQCQSOEQOREwCTHQCYAQAGAAAHAA"
+  },
+  "arrived_at_lounge|hi|0|4": {
+   "text": "गए",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//AkkCSQZJAksATABGAEMAAQABA="
+  },
+  "arrived_at_lounge|hi|0|5": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "arrived_at_lounge|en|0|0": {
+   "text": "We",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAxhAAxjAARiAATyeASSzAaWhAKU/AMMgAMMxAMMeAAAAAAAAA"
+  },
+  "arrived_at_lounge|en|0|1": {
+   "text": "have",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAQAAAAFjzF4BlCRzARAkoQET5L8BFCKgARRjMQETsx4AAAAAAAAAAAA=="
+  },
+  "arrived_at_lounge|en|0|2": {
+   "text": "arrived",
+   "w": 39,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAEAAAAAAR4qnE8fITMUWbMBIhSQoR8iFJ+hISISkCEjIhMYsx2iEw8dAAAAAAAAAAAAAA="
+  },
+  "arrived_at_lounge|en|0|3": {
+   "text": "at",
+   "w": 11,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAIB5wISABIB8gISAjIB2wAAAAAA="
+  },
+  "arrived_at_lounge|en|0|4": {
+   "text": "the",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAABAAABAAARAAA5Z4ARnMARGEARH8ARGAARHEAZF4AAAAAAAAA"
+  },
+  "arrived_at_lounge|en|0|5": {
+   "text": "assistance",
+   "w": 60,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAgAAAAB4ccTneLHjwISKJRKEyxZgBIIFAgSKBCB8ccTifIoH4IQIJBKEigQAjIolEoyLFiB2ccTjdonjwAAAAAAAAAAAAAAAAAAAAAA="
+  },
+  "arrived_at_lounge|en|0|6": {
+   "text": "lounge.",
+   "w": 41,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAATxFY6eAAWZFlmzAAUJFFChAAUJFFC/AAUJFFCgAAWZNFmxAATw1E6eIAAAAACAAAAAABGAAA"
+  },
+  "chair_on_the_way|kok|0|0": {
+   "text": "एक",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/f5IEEjcSRpZEmEyMPQYEAgACAA="
+  },
+  "chair_on_the_way|kok|0|1": {
+   "text": "कदेल",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAEAAAAAgAAAAEAAAAAgAAf///gAQBAQA3DwEARpA7AESQRQBMmUkAPQ8hAAQBEQAAAAAAAAAAAA=="
+  },
+  "chair_on_the_way|kok|0|2": {
+   "text": "येता.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAIAAAEAAACAAABAAA//3AJAiAJPiA5IiAzIiAfIiABEiABCiQAAAAAAAA"
+  },
+  "chair_on_the_way|kok|0|3": {
+   "text": "सुमार",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf//fCSKCSSKSfyKeIX6IESKEGQKGCQKCAcAACEAA"
+  },
+  "chair_on_the_way|kok|1|1": {
+   "text": "मिनटां.",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAg/9//4EiAgkBIgJ5ASI+gQF+EoEBIgKBAQICRQECAjkgAAAAAAAAAAA=="
+  },
+  "chair_on_the_way|mr|0|0": {
+   "text": "एक",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/f5IEEjcSRpZEmEyMPQYEAgACAA="
+  },
+  "chair_on_the_way|mr|0|1": {
+   "text": "खुर्ची",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAYAADwAAEQAAEQf//4EICQFp6QdISQR4iQIImQM46QHoCQAOAABCAA"
+  },
+  "chair_on_the_way|mr|0|2": {
+   "text": "येत",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCT45IjMiHyIBEgEKAAAAAA="
+  },
+  "chair_on_the_way|mr|0|3": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "chair_on_the_way|mr|0|4": {
+   "text": "सुमारे",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAQAAAIAAAEAAACf//fCSKCSSKSfyKeIX6IESKEGQKGCQKCAcAACEAA"
+  },
+  "chair_on_the_way|mr|1|1": {
+   "text": "मिनिटे.",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAIAOA4BAEYRgIBDEMBA//v/4EiQEEBIkBPASJH0AF+QlABIkBQAQJASIECQEcgAAAAAAAAAAA=="
+  },
+  "chair_on_the_way|hi|0|0": {
+   "text": "एक",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/f5IEEjcSRpZEmEyMPQYEAgACAA="
+  },
+  "chair_on_the_way|hi|0|1": {
+   "text": "कुर्सी",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAYAADwAAEQAAEQf9/4BAJQNxJQRp/QRIhQTIRQPQZQBAJQDgAAQgAA"
+  },
+  "chair_on_the_way|hi|0|2": {
+   "text": "आ",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAM/BJIAkgOSBHIGUgPSABIAAAAAA="
+  },
+  "chair_on_the_way|hi|0|3": {
+   "text": "रही",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAADgARABEf/4IJEnkeQQg5BEUGTQJgABgAAA="
+  },
+  "chair_on_the_way|hi|0|4": {
+   "text": "है।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEABwABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "chair_on_the_way|hi|0|5": {
+   "text": "लगभग",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//P/AETREgBEkRIOzJEyEUS/EhJAkQIIQIECBECBAgAAAAAAAAAAA=="
+  },
+  "chair_on_the_way|hi|1|1": {
+   "text": "मिनट।",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAOAAAAABGAAAAAEMAAAAA/9//AgBIgIICAEiAngIASI+gAgBfhKACAEiAoAIAQICRAgBAgI4CAAAAAAIAAAAAAAA="
+  },
+  "chair_on_the_way|en|0|0": {
+   "text": "A",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAAYABwAFAA0ACYAIgB+AEMAQQDBAAAAAAA="
+  },
+  "chair_on_the_way|en|0|1": {
+   "text": "chair",
+   "w": 28,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAEABAABAAAAAQAAAHljxKDFlCTAgRAkgIET5ICBFCSAxRRkgHkTtIAAAAAAAAAAAA=="
+  },
+  "chair_on_the_way|en|0|2": {
+   "text": "is",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAABAAAAAAABHAEiASABHAECASIBHAAAAAAA="
+  },
+  "chair_on_the_way|en|0|3": {
+   "text": "on",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAB4sMzIhIiEiISIzIh4iAAAAAA="
+  },
+  "chair_on_the_way|en|0|4": {
+   "text": "its",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAAAAAABAAAAACABc4EkQSQBI4EgQSRBM4AAAAAA="
+  },
+  "chair_on_the_way|en|0|5": {
+   "text": "way.",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIi8hABMwkwAVYJIAFU+SABVQjgAM0YwACI7MQAAACAAAAAgAA=="
+  },
+  "chair_on_the_way|en|0|6": {
+   "text": "About",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAYIAAAABwgAAAAFCAAAQA0LniLgCYzzIkAIiGEiQB+IYSJAEMhhIkAQTPMmQDBLnhpgAAAAAAAAAAAAAA="
+  },
+  "chair_on_the_way|en|1|1": {
+   "text": "minutes.",
+   "w": 47,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAACAAAW9LEXPDgZlMkSZkQRFIkSQkARFIkSfjgRFIkSQAQRFIkyYkQRFIjTPDkAAAAAAAAAAAAAAAA"
+  },
+  "obstacle_pausing|kok|0|0": {
+   "text": "रावतां.",
+   "w": 28,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAf///gAkECQBJNPkAeUSJACFEiQARPIkAGQRJAAkEKSAAAAAAAAAAAA=="
+  },
+  "obstacle_pausing|kok|0|1": {
+   "text": "कोण",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAIAAAMAAAGAAADAAf//4BBKQNxKQRpKQRJOQTJAQPRAQBBAQAAAAAAAA"
+  },
+  "obstacle_pausing|kok|0|2": {
+   "text": "तरी",
+   "w": 16,
+   "h": 16,
+   "bits": "AAAAAAAAABwAIgAi/v8EEnySRPJEQkQiJDIUEAAAAAA="
+  },
+  "obstacle_pausing|kok|0|3": {
+   "text": "वाटेर",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAABAAAAgAAAQAAAIA//88CQIEaR4kiSA8iSAQeSAICREMCQ4EAAAAAAAA"
+  },
+  "obstacle_pausing|kok|0|4": {
+   "text": "आसा.",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM/f/AEkgkgAJJJIAOSfyAEciEgBlIRIAPSGSAAEgkoAAAAAAAAAAAA=="
+  },
+  "obstacle_pausing|mr|0|0": {
+   "text": "थांबत",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAz9/+ACSBBACkjXwAZJlEAMSXRACMj0QAdIEkAASBFAAAAAAAAAAAAA=="
+  },
+  "obstacle_pausing|mr|0|1": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "obstacle_pausing|mr|0|2": {
+   "text": "कोणीतरी",
+   "w": 39,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAACAAAAAAMAcABwAYCIAIgAwIgAif////v4EEpIEEjcSknySRpKSRPJEk5JEQkyQEkQiPRASJDIEEBAUEAAAAAAAAAAAAAA="
+  },
+  "obstacle_pausing|mr|0|3": {
+   "text": "वाटेत",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAABAAAAgAAAQAAAIA//9/CQICaR4+iSAiiSAieSAiCRESCQ4KAAAAAAAA"
+  },
+  "obstacle_pausing|mr|0|4": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "obstacle_pausing|hi|0|0": {
+   "text": "रुक",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf3/ACAQATjcAeUaAIUSAEkyACD0ACAQAAAAAAAAA"
+  },
+  "obstacle_pausing|hi|0|1": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "obstacle_pausing|hi|0|2": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "obstacle_pausing|hi|0|3": {
+   "text": "कोई",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAIDgAMCAAGCAADBAf//gBBBANxPARpIARJHgTJAgPRAgBBNAAADAAABg"
+  },
+  "obstacle_pausing|hi|0|4": {
+   "text": "रास्ते",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAABAAAAgAAAQAAAIf7/8CQQISST4eT+IIRCIEQiIGQRICQAoAAAAAAAA"
+  },
+  "obstacle_pausing|hi|0|5": {
+   "text": "में",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAgEAwE/kRERPxEBAQAAA=="
+  },
+  "obstacle_pausing|hi|0|6": {
+   "text": "है।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEABwABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "obstacle_pausing|en|0|0": {
+   "text": "Pausing.",
+   "w": 49,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH4AAAQAAABDAAAAAAAAQQAAAAAAAEF4iOSx0ABDhIkUyzAAfgSJBIoQAEB8iOSKEABAhIgUihAAQIyZFIswAEB2aOSJ0gAAAAAAABAAAAAAAAIwAA=="
+  },
+  "obstacle_pausing|en|0|1": {
+   "text": "Someone",
+   "w": 53,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AAAAAAABhAAAAAAAAQAAAAAAAAEA8t548WPBwZsyzZmWYHkKIoUJFCANCiL9CRfhBQoigQkUAYWaIsWZFiD48iJ48RPAAAAAAAAAAAAAAAAAAAA=="
+  },
+  "obstacle_pausing|en|0|2": {
+   "text": "is",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAABAAAAAAABHAEiASABHAECASIBHAAAAAAA="
+  },
+  "obstacle_pausing|en|0|3": {
+   "text": "in",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAABAAAAAAABLAEyASIBIgEiASIBIgAAAAAA="
+  },
+  "obstacle_pausing|en|0|4": {
+   "text": "the",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAABAAABAAARAAA5Z4ARnMARGEARH8ARGAARHEAZF4AAAAAAAAA"
+  },
+  "obstacle_pausing|en|0|5": {
+   "text": "way.",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIi8hABMwkwAVYJIAFU+SABVQjgAM0YwACI7MQAAACAAAAAgAA=="
+  },
+  "resuming|kok|0|0": {
+   "text": "रावल्ल्या",
+   "w": 36,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/////AJBAAJIEk0d6kgeUSc+SAhRJSzIBE8hB8gGQRCASAJBCEBIAAAAAAAAAAAAAA="
+  },
+  "resuming|kok|0|1": {
+   "text": "खातीर",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAA4AAAARAAAAEQAf//++BCQJBAWk+SQdJIk8EeSJEAgkiQgM5EkMB6QoBAAAAAAAAAAAA=="
+  },
+  "resuming|kok|0|2": {
+   "text": "देव",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//gEEDzQQRBBEGTwPBAEEAAAAAA="
+  },
+  "resuming|kok|0|3": {
+   "text": "बरें",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAUAAgf/AEIDUgZeBcgDxABGAEIAAAAAA="
+  },
+  "resuming|kok|0|4": {
+   "text": "करूं.",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAQAAAAAf9/wBAIANxPARo0gRIkgTIQgPQJgBAAIAAAAAAAA"
+  },
+  "resuming|kok|0|5": {
+   "text": "परत",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/f/gSCBASSfASeRASIRAOERACGJACCFAAAAAAAAA"
+  },
+  "resuming|kok|0|6": {
+   "text": "वतां.",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAEA//uACBEAafEAiREAiREAeREACJEACFEgAAAAAAAA"
+  },
+  "resuming|mr|0|0": {
+   "text": "वाट",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//8ACQIAaR4AiSAAiSAAeSAACREACQ4AAAAAAAAA"
+  },
+  "resuming|mr|0|1": {
+   "text": "पाहिल्याबद्दल",
+   "w": 55,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAjAAAAAAAAIYAAAAAA/////9/9/kkggCSBCARJJ46kjXgESSQT5JlA7EkjksyXcRQ5JFB8jyEkCSTIBIEohAkmBASBOEQAAYAAAAgAAAAAAAAAAA=="
+  },
+  "resuming|mr|0|2": {
+   "text": "धन्यवाद.",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ////+BCAkEgQEICTSPAOn5RJAAibNEkACYHzyZAGgBBI8ACAEEgSAAAAAAAAAAAAAA="
+  },
+  "resuming|mr|0|3": {
+   "text": "पुन्हा",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//9wSAIgSB4gSfAgSY4gOBEgCBMgCBggDgYAQgAA"
+  },
+  "resuming|mr|0|4": {
+   "text": "निघत",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAA7///gEBQgQBAUJ8AR8yRAEJQkQBAUZEAQE6JAEBAhQAAAAAAAAAAAA=="
+  },
+  "resuming|mr|0|5": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "resuming|hi|0|0": {
+   "text": "प्रतीक्षा",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAA4AAAARAAAAEQAA//uz4EgRSUBJ8WlASRE/QEkRQUA5EUlAaJE5QIhQCUAAAAAAAAAAAA=="
+  },
+  "resuming|hi|0|1": {
+   "text": "के",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAEAAIAAQAAgAf8AEADcARoBEgEyAPQAEAAAAAAA="
+  },
+  "resuming|hi|0|2": {
+   "text": "लिए",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAOAAARgAAQwAA7/+AQCkAQCkAR2kASKsASSwARCYAQiMAAAEAAAEA"
+  },
+  "resuming|hi|0|3": {
+   "text": "धन्यवाद।",
+   "w": 44,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ////+BAQgJBIEBAQgJNI8BAOn5RJABAImzRJABAJgfPJkBAGgBBI8BAAgBBIEBAAAAAAABAAAAAAAAAAAAAAAAA"
+  },
+  "resuming|hi|0|4": {
+   "text": "फिर",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAOAAARgAAQwAA//fASQCASeSASZeASRIARxEAQSGAQQCAAAAAAAAA"
+  },
+  "resuming|hi|0|5": {
+   "text": "से",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAgABAACAAEAf4AJAEkAfwAhABEAGQAJAAAAAAA="
+  },
+  "resuming|hi|0|6": {
+   "text": "चल",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/3+AAgEAegEAEjsAIkUAJkkAOiEAAhEAAAAAAAAA"
+  },
+  "resuming|hi|0|7": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "resuming|hi|0|8": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "resuming|en|0|0": {
+   "text": "Thank",
+   "w": 36,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB/QAACAAhAAAIACEAAAgAIWPFiYAhlCZLACEQJE4AIRPkTwAhFCRJACEUZEmAIRO0SIAAAAAAAAAAAAAA="
+  },
+  "resuming|en|0|1": {
+   "text": "you",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAheIgTzIgShIgShIgOhIgMzJgMeGgIAAAIAAA"
+  },
+  "resuming|en|0|2": {
+   "text": "for",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAABgAEAAQADnlEzYSFBIUEhQTNBHkAAAAAA="
+  },
+  "resuming|en|0|3": {
+   "text": "waiting.",
+   "w": 43,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBAAAAAAAAAAAAAAAIAAAAiLxdLHQATMJJMswAVYJJIoQAVT5JIoQAVUJJIoQAM0ZJIswAIjtNInSAAAAAAAQAAAAAAIwA"
+  },
+  "resuming|en|0|4": {
+   "text": "Moving",
+   "w": 41,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYMAAQAAAYMAAAAAAYMAAAAAAUU8xSx0AUVmRTLMAUVCSSKEASlCSSKEASlCKSKEASlmMSLMARE8MSJ0AAAAAAAEAAAAAACMA"
+  },
+  "resuming|en|0|5": {
+   "text": "again.",
+   "w": 34,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAB46eJYAIWaEmQABQgSRAB9CfJEAIUKEkQAjZoyRAB26dpEgAAIAAAAARgAAAA="
+  },
+  "stopped_for_staff|kok|0|0": {
+   "text": "रावलां.",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAf/7/4AkEAkBJNAJAeUR2QCFEikARPJJAGQRCQAkEIlAAAAAAAAAAAA=="
+  },
+  "stopped_for_staff|kok|0|1": {
+   "text": "उपकार",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3//wJIEEICSNxSTEkaXiJJEkgiOTJEEgj0RgwIEEIAAAAAAAAAAA=="
+  },
+  "stopped_for_staff|kok|0|2": {
+   "text": "करून",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf9//4AQCAEA3E8BARo0nwESJIkBMhCBAPQJgQAQAAEAAAAAAAAAAAA=="
+  },
+  "stopped_for_staff|kok|0|3": {
+   "text": "कर्मचाऱ्याची",
+   "w": 52,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAABwAAAAAAAAQAAAABwAAEAAAAAiAAAgAAAAIgf///f/v/8AQRAiCRASA3EXogkT0gRpESM5EJIES/Ii8xESBMkSYh8RMgPQE6IBEdIAQBAiARAQAAAAAAAAAAAAAAAAAAAA=="
+  },
+  "stopped_for_staff|kok|0|4": {
+   "text": "वाट",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//8ACQIAaR4AiSAAiSAAeSAACREACQ4AAAAAAAAA"
+  },
+  "stopped_for_staff|kok|0|5": {
+   "text": "पळयात.",
+   "w": 36,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/f///wBICEkCAEjcST4ASSXJIgBJJZkiADkk+SIACNgJEgAIAAkKQAAAAAAAAAAAAAA="
+  },
+  "stopped_for_staff|mr|0|0": {
+   "text": "थांबलो",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAEAAAABgAAAAMAAQABgz9//8CSBASCkjQEgZJk7IMSXRSCMj0kgdIEhIASBESAAAAAAAAAAAA=="
+  },
+  "stopped_for_staff|mr|0|1": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "stopped_for_staff|mr|0|2": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "stopped_for_staff|mr|0|3": {
+   "text": "कर्मचाऱ्याची",
+   "w": 52,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAABwAAAAAAAAQAAAABwAAEAAAAAiAAAgAAAAIgf///f/v/8AQRAiCRASA3EXogkT0gRpESM5EJIES/Ii8xESBMkSYh8RMgPQE6IBEdIAQBAiARAQAAAAAAAAAAAAAAAAAAAA=="
+  },
+  "stopped_for_staff|mr|0|4": {
+   "text": "वाट",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//8ACQIAaR4AiSAAiSAAeSAACREACQ4AAAAAAAAA"
+  },
+  "stopped_for_staff|mr|0|5": {
+   "text": "पहा.",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//cASCIASeIASQIASOIAORIACTIACYKAAGAAAAAA"
+  },
+  "stopped_for_staff|hi|0|0": {
+   "text": "रुक",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf3/ACAQATjcAeUaAIUSAEkyACD0ACAQAAAAAAAAA"
+  },
+  "stopped_for_staff|hi|0|1": {
+   "text": "गए",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//AkkCSQZJAksATABGAEMAAQABA="
+  },
+  "stopped_for_staff|hi|0|2": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "stopped_for_staff|hi|0|3": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "stopped_for_staff|hi|0|4": {
+   "text": "कर्मचारी",
+   "w": 36,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAHAAAAAAQAAcAABAACIAACAAIgf///f/AEEQIhIDcReikgRpESLyBEvyIkIEyRJiIgPQE6IyAEAQIhAAAAAAAAAAAAAAA="
+  },
+  "stopped_for_staff|hi|0|5": {
+   "text": "की",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAAAAAOABEAEQf/gEEDcQRpBEkEyQPRAEAAAAAAA="
+  },
+  "stopped_for_staff|hi|0|6": {
+   "text": "प्रतीक्षा",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAA4AAAARAAAAEQAA//uz4EgRSUBJ8WlASRE/QEkRQUA5EUlAaJE5QIhQCUAAAAAAAAAAAA=="
+  },
+  "stopped_for_staff|hi|0|7": {
+   "text": "करें।",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAACAAABAAAAoAAAQAf98EBAIENxIERp4ERIgETIQEPQYEBAIEAAAEAAAA"
+  },
+  "stopped_for_staff|en|0|0": {
+   "text": "Stopped.",
+   "w": 51,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AAAAABABhAAAAAAQAQCAAAAAEAEB3i5cefABwLMzZs8wAHihIUKGEAAMoSFC/hABBKEhQoIQAYSzM2bHMAD43i5cedEAAAAgQAAAAAAAIEAAAAA=="
+  },
+  "stopped_for_staff|en|0|1": {
+   "text": "Please",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB+IAAAAEMgAAAAQSAAAABBLx4c8EM5oSOYfjCBIQhAP58d+EAwIQMAQDijI4hALx2c8AAAAAAAAAAAAAA="
+  },
+  "stopped_for_staff|en|0|2": {
+   "text": "wait",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAABAAAAAAAAIiLxcTMJIVYJIVT5IVUJIM0ZIIjtMAAAAAAAA"
+  },
+  "stopped_for_staff|en|0|3": {
+   "text": "for",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAABgAEAAQADnlEzYSFBIUEhQTNBHkAAAAAA="
+  },
+  "stopped_for_staff|en|0|4": {
+   "text": "a",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHiEBHyEjHYAAA=="
+  },
+  "stopped_for_staff|en|0|5": {
+   "text": "member",
+   "w": 46,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAAW94t5c8UZnMzJnmYRGEiJDCQRH8iJD+QRGAiJDAQRHEiJniQRF4iJc8QAAAAAAAAAAAAAAAA"
+  },
+  "stopped_for_staff|en|0|6": {
+   "text": "of",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAwACAAIB5wMyAhICEgISAzIB4gAAAAAA="
+  },
+  "stopped_for_staff|en|0|7": {
+   "text": "staff.",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAANgAAACQAAQAkADuefgBFISQAQQEkADkfJAAFISQARSMkADmdpIAAAAAAAAAAAA=="
+  },
+  "scan_failed|kok|0|0": {
+   "text": "हें",
+   "w": 6,
+   "h": 16,
+   "bits": "AABAIBQI/Ah4QDhETGAYAA=="
+  },
+  "scan_failed|kok|0|1": {
+   "text": "स्कॅन",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAEQAADgAAAAAff9+CBACSNwCfxo+IRISETICCPQCABACAAAAAAAA"
+  },
+  "scan_failed|kok|0|2": {
+   "text": "जालें",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAACAAABAAAAwAAAQf/f4ASAQTyAQRSOwJSRQNSSQGSIQASEQAAAAAAAA"
+  },
+  "scan_failed|kok|0|3": {
+   "text": "ना.",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAf8ACgAKAPoASgAKAAoACkAAAAAA="
+  },
+  "scan_failed|kok|0|4": {
+   "text": "उपकार",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3//wJIEEICSNxSTEkaXiJJEkgiOTJEEgj0RgwIEEIAAAAAAAAAAA=="
+  },
+  "scan_failed|kok|0|5": {
+   "text": "करून",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf9//4AQCAEA3E8BARo0nwESJIkBMhCBAPQJgQAQAAEAAAAAAAAAAAA=="
+  },
+  "scan_failed|kok|0|6": {
+   "text": "तुमचो",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAgAAAAMAAAABgAAAAMA////gASICQB8iekARIhJAEX4iQBEiJkAJAjpABQICQAHAAAAIQAAAA=="
+  },
+  "scan_failed|kok|0|7": {
+   "text": "बोर्डिंग",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAIAHAADBxAAAYjSAADIaAAf//v4AUgQkA1I8JAZSIGQF0p4kA9JCBABSIgQAUhwEAAAAAAAAAAAA=="
+  },
+  "scan_failed|kok|0|8": {
+   "text": "पास",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/7/ASQSASSSAST+ASRCAOQiACQyACQSAAAAAAAAA"
+  },
+  "scan_failed|kok|0|9": {
+   "text": "परत",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/f/gSCBASSfASeRASIRAOERACGJACCFAAAAAAAAA"
+  },
+  "scan_failed|kok|0|10": {
+   "text": "रीडरामुखार",
+   "w": 51,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAABEAAAAAAAARAAAAAAAAf/8//3/74AkCBSIQkEBJHiUiFpJAeRA9InSTwCFPEX5HkQARIQkiIJCAGRENAjOQwAgOBQIekEAAAAADgAAAAAAAEIAAAA=="
+  },
+  "scan_failed|kok|0|11": {
+   "text": "धरात.",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ3/+AEIKBABCSnwAOnpEACIiRAAmEkQAGhokAAIKFEAAAAAAAAAAAA=="
+  },
+  "scan_failed|mr|0|0": {
+   "text": "हे",
+   "w": 6,
+   "h": 16,
+   "bits": "AABAIBAI/Ah4QDhETGAYAA=="
+  },
+  "scan_failed|mr|0|1": {
+   "text": "स्कॅन",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAEQAADgAAAAAff9+CBACSNwCfxo+IRISETICCPQCABACAAAAAAAA"
+  },
+  "scan_failed|mr|0|2": {
+   "text": "झाले",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAACAAABAAAAgAAAQ//fwCSAQeSAQQSOwPyRQBSSQBSIQaSEQGAAADAAA"
+  },
+  "scan_failed|mr|0|3": {
+   "text": "नाही.",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAHAAAIgAAIgf/9wAoIgAp4gPpAgEo4gApEgApMgApgEAAYAAAAA"
+  },
+  "scan_failed|mr|0|4": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "scan_failed|mr|0|5": {
+   "text": "तुमचा",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////gASICQB8iekARIhJAEX4iQBEiJkAJAjpABQICQAHAAAAIQAAAA=="
+  },
+  "scan_failed|mr|0|6": {
+   "text": "बोर्डिंग",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAIAHAADBxAAAYjSAADIaAAf//v4AUgQkA1I8JAZSIGQF0p4kA9JCBABSIgQAUhwEAAAAAAAAAAAA=="
+  },
+  "scan_failed|mr|0|7": {
+   "text": "पास",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/7/ASQSASSSAST+ASRCAOQiACQyACQSAAAAAAAAA"
+  },
+  "scan_failed|mr|0|8": {
+   "text": "पुन्हा",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA//9wSAIgSB4gSfAgSY4gOBEgCBMgCBggDgYAQgAA"
+  },
+  "scan_failed|mr|0|9": {
+   "text": "रीडरसमोर",
+   "w": 46,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAgADgAAAAwAEQAAAAYAEQAAAAMAf/8///+8CQIEJIkESR4lJIkkeRA9/Ik8IU8QhfkQESEIRIkIGREMZAkMCA4EJAkEAAAAAAAAAAAAAAAA"
+  },
+  "scan_failed|mr|0|10": {
+   "text": "धरा.",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAZ38AQgoAQkoAOnoAIiIAJhIAGhoAAgpAAAAAAAAA"
+  },
+  "scan_failed|hi|0|0": {
+   "text": "यह",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//gkECTw5IDMcHyIBJgEwAAwAAA="
+  },
+  "scan_failed|hi|0|1": {
+   "text": "स्कैन",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAEAAACAAAOAAADAAff9+CBACSNwCfxo+IRISETICCPQCABACAAAAAAAA"
+  },
+  "scan_failed|hi|0|2": {
+   "text": "नहीं",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAA4AABEAABEAf/uAAhEAAvEAPoEAEnEAAokAApkAAsAAADAAAAAA"
+  },
+  "scan_failed|hi|0|3": {
+   "text": "हुआ।",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAD8z8CACSSAgHgkgIBA5ICAORyAgEWUgIBM9ICAYASAgBgAAIAcAAAAhAAAAA=="
+  },
+  "scan_failed|hi|0|4": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "scan_failed|hi|0|5": {
+   "text": "अपना",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM/5/wEkkAoAJJAKAOSQ+gEckEoBlHAKAPQQCgAEEAoAAAAAAAAAAAA=="
+  },
+  "scan_failed|hi|0|6": {
+   "text": "बोर्डिंग",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAIAHAADBxAAAYjSAADIaAAf//v4AUgQkA1I8JAZSIGQF0p4kA9JCBABSIgQAUhwEAAAAAAAAAAAA=="
+  },
+  "scan_failed|hi|0|7": {
+   "text": "पास",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/7/ASQSASSSAST+ASRCAOQiACQyACQSAAAAAAAAA"
+  },
+  "scan_failed|hi|0|8": {
+   "text": "फिर",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAOAAARgAAQwAA//fASQCASeSASZeASRIARxEAQSGAQQCAAAAAAAAA"
+  },
+  "scan_failed|hi|0|9": {
+   "text": "से",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAgABAACAAEAf4AJAEkAfwAhABEAGQAJAAAAAAA="
+  },
+  "scan_failed|hi|0|10": {
+   "text": "रीडर",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAADgAAEQAAEQAAf/88CQIESR4keRA8IU8QESEIGREMCA4EAAAAAAAA"
+  },
+  "scan_failed|hi|0|11": {
+   "text": "के",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAEAAIAAQAAgAf8AEADcARoBEgEyAPQAEAAAAAAA="
+  },
+  "scan_failed|hi|0|12": {
+   "text": "सामने",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAQAAAACAAAAAQAAAACAf///wAkkQIBJJECAfyRPgCEvxIARJECAGSBAgAkgQIAAAAAAAAAAAA=="
+  },
+  "scan_failed|hi|0|13": {
+   "text": "रखें।",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAEAAAAAgAAAAGAAAAAgAAff8CAAhCAgBIWgIAedICACEeAgAQggIAGM4CAAh6AgAAAAIAAAAAAA=="
+  },
+  "scan_failed|en|0|0": {
+   "text": "That",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAH9AAAAIQAAACEABAAhY84AIZQkACEQJAAhE+QAIRQkACEUZAAhE7YAAAAAAAAAAAA=="
+  },
+  "scan_failed|en|0|1": {
+   "text": "did",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAABIEABAEABAEAfJ8AzLMAhKEAhKEAhKEAzLMAdJ0AAAAAAAAA"
+  },
+  "scan_failed|en|0|2": {
+   "text": "not",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAEAWPOAZZkARQkARQkARQkARZkARPGAAAAAAAAA"
+  },
+  "scan_failed|en|0|3": {
+   "text": "scan.",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADnjxYBHFCZAQgAkQDoD5EAGBCRARxRkQDnjtEgAAAAAAAAAAA=="
+  },
+  "scan_failed|en|0|4": {
+   "text": "Please",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB+IAAAAEMgAAAAQSAAAABBLx4c8EM5oSOYfjCBIQhAP58d+EAwIQMAQDijI4hALx2c8AAAAAAAAAAAAAA="
+  },
+  "scan_failed|en|0|5": {
+   "text": "hold",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQAEEQAEEQAEEWPF8ZZnMRQmERQmERQmERZnMRPF0AAAAAAAA"
+  },
+  "scan_failed|en|0|6": {
+   "text": "your",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAheIlTzImShIkShIkOhIkMzJkMeGkIAAAIAAA"
+  },
+  "scan_failed|en|0|7": {
+   "text": "boarding",
+   "w": 49,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAJAAABAAAACAAAAQAAAAgAAAFzx4r5LHQBnmhNmTLMAQwgSQkihAEMJ8kJIoQBDChJCSKEAZ5oyZkizAFzx2jpInQAAAAAAAAEAAAAAAAAjAA=="
+  },
+  "scan_failed|en|0|8": {
+   "text": "pass",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFzw4cBnCRIgQgkCAEL44cBDCBAgZxkSIFzs4cBAAAAAQAAAAA=="
+  },
+  "scan_failed|en|0|9": {
+   "text": "to",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQADngEzASEBIQEhATMBngAAAAAA="
+  },
+  "scan_failed|en|0|10": {
+   "text": "the",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAABAAABAAARAAA5Z4ARnMARGEARH8ARGAARHEAZF4AAAAAAAAA"
+  },
+  "scan_failed|en|0|11": {
+   "text": "reader",
+   "w": 36,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAQAAAAABAABXjx88UGzQs2ZgSEChQkBPz6F+QEgQoUBATFGzYkBHjt08QAAAAAAAAAAAAAA="
+  },
+  "scan_failed|en|0|12": {
+   "text": "again.",
+   "w": 34,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAB46eJYAIWaEmQABQgSRAB9CfJEAIUKEkQAjZoyRAB26dpEgAAIAAAAARgAAAA="
+  },
+  "taking_to_gate_terminal|kok|0|0": {
+   "text": "तुमकां",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA//3/4ASIEEB8iNxARIkaQEX5EkBEiTJAJAj0QBQIEEAHAAAAIQAAAA=="
+  },
+  "taking_to_gate_terminal|kok|0|1": {
+   "text": "टर्मिनल",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAADgAAAAHIAAAAAjgAAAACHAAAA//+//4AEkQEBADyRAQEAQJEfOwBAvwlFAECRAUkAIoEBIQAcgQERAAAAAAAAAAAAAAA="
+  },
+  "taking_to_gate_terminal|kok|1|1": {
+   "text": "हांगाच्या",
+   "w": 34,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA/////8AJEkAkgHkSTySAQTJC5IA5EkTMgEUCRPyATQJDBIBhAkAEgBgAAAAAAAAAAAA="
+  },
+  "taking_to_gate_terminal|kok|1|2": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "taking_to_gate_terminal|kok|2|1": {
+   "text": "कडेन",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAACAAAAAQAAAACAAAAAQAAf/+fgAQBAIA3DwCARogPgESnhIBMkICAPQiAgAQHAIAAAAAAAAAAAA=="
+  },
+  "taking_to_gate_terminal|kok|2|2": {
+   "text": "व्हरतां.",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA/z/7gAIEEQB+JfEAkD0RAI4REQBxCREAEwyRABgEUSAGAAAAAAAAAA=="
+  },
+  "taking_to_gate_terminal|mr|0|0": {
+   "text": "तुम्हाला",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9/3/wSBIBJ8jyASRIgjskXnJFJEiKSSJAmiEhQMIRIHAwAAIQAAAA=="
+  },
+  "taking_to_gate_terminal|mr|0|1": {
+   "text": "टर्मिनल",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAADgAAAAHIAAAAAjgAAAACHAAAA//+//4AEkQEBADyRAQEAQJEfOwBAvwlFAECRAUkAIoEBIQAcgQERAAAAAAAAAAAAAAA="
+  },
+  "taking_to_gate_terminal|mr|1|1": {
+   "text": "मधील",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAA4AAAARAAAAEQAA/s+/wESFAIBEhQCARHUdgPxFIoBETSSABDUQgAQECIAAAAAAAAAAAA=="
+  },
+  "taking_to_gate_terminal|mr|1|2": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "taking_to_gate_terminal|mr|2|1": {
+   "text": "कडे",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAgAAAQAAAIAAAEAf/+ABAEANw8ARogARKeATJCAPQiABAcAAAAAAAAA"
+  },
+  "taking_to_gate_terminal|mr|2|2": {
+   "text": "नेत",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQAf/wCCAL4PogSiAKIAkgCKAAAAAA="
+  },
+  "taking_to_gate_terminal|mr|2|3": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "taking_to_gate_terminal|hi|0|0": {
+   "text": "आपको",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAgAAAAMAAAABgAAAAMM//f/kkkgQQJJI3EOSSRpEckkSRlI5MkPSCPRAEggQQAAAAAAAAAAA=="
+  },
+  "taking_to_gate_terminal|hi|0|1": {
+   "text": "टर्मिनल",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAADgAAAAHIAAAAAjgAAAACHAAAA//+//4AEkQEBADyRAQEAQJEfOwBAvwlFAECRAUkAIoEBIQAcgQERAAAAAAAAAAAAAAA="
+  },
+  "taking_to_gate_terminal|hi|1|1": {
+   "text": "के",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAEAAIAAQAAgAf8AEADcARoBEgEyAPQAEAAAAAAA="
+  },
+  "taking_to_gate_terminal|hi|1|2": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "taking_to_gate_terminal|hi|2|1": {
+   "text": "तक",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/v+ABAgAfG4ARI0ARIkARJkAJHoAFAgAAAAAAAAA"
+  },
+  "taking_to_gate_terminal|hi|2|2": {
+   "text": "ले",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAgABAACAAEAf4ABAAEAOwBFAEkAIQARAAAAAAA="
+  },
+  "taking_to_gate_terminal|hi|2|3": {
+   "text": "जा",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAf/ABIE8gRSAlIDUgGSABIAAAAAA="
+  },
+  "taking_to_gate_terminal|hi|2|4": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "taking_to_gate_terminal|hi|2|5": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "taking_to_gate_terminal|en|0|0": {
+   "text": "Taking",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB/AIIAAAgAgAAACACAAAAIeJpY6AiEsmWYCATiRQgIfPJFCAiEkkUICIyaRZgIdopE6AAAAAAIAAAAARg="
+  },
+  "taking_to_gate_terminal|en|0|1": {
+   "text": "you",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAheIgTzIgShIgShIgOhIgMzJgMeGgIAAAIAAA"
+  },
+  "taking_to_gate_terminal|en|0|2": {
+   "text": "to",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQADngEzASEBIQEhATMBngAAAAAA="
+  },
+  "taking_to_gate_terminal|en|0|3": {
+   "text": "Gate",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAB4AAAAxAAAAIIAgAEAed4BAISzAQ4EoQECfL8BgoSgAIaMsQB6dt4AAAAAAAAAAAA=="
+  },
+  "taking_to_gate_terminal|en|1|0": {
+   "text": ",",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEBAQA=="
+  },
+  "taking_to_gate_terminal|en|1|1": {
+   "text": "Terminal",
+   "w": 49,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAAIAAQAIAAAAAAEACAAAAAABAAh4q3pY8QAIzMzKZQkACISIikQJAAj8iIpE+QAIgIiKRQkACMSIikUZAAh4iIpE7QAAAAAAAAAAAAAAAAAAAA=="
+  },
+  "taking_to_gate_terminal|en|2|0": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "arrived_at_gate_terminal|kok|0|0": {
+   "text": "आमी",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAABwAACIAACIM//8SSRICSRIOSRIRy/IZSRIPSBIASBAAAAAAAAA"
+  },
+  "arrived_at_gate_terminal|kok|0|1": {
+   "text": "टर्मिनल",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAADgAAAAHIAAAAAjgAAAACHAAAA//+//4AEkQEBADyRAQEAQJEfOwBAvwlFAECRAUkAIoEBIQAcgQERAAAAAAAAAAAAAAA="
+  },
+  "arrived_at_gate_terminal|kok|1|1": {
+   "text": "हांगाच्या",
+   "w": 34,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA/////8AJEkAkgHkSTySAQTJC5IA5EkTMgEUCRPyATQJDBIBhAkAEgBgAAAAAAAAAAAA="
+  },
+  "arrived_at_gate_terminal|kok|1|2": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "arrived_at_gate_terminal|kok|2|1": {
+   "text": "पावले.",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAABAAAAAIAAAABAAAAAIA//5/gEkEAQBJNAEASUQ7AElERQA5PEkACQQhAAkEEUAAAAAAAAAAAA=="
+  },
+  "arrived_at_gate_terminal|mr|0|0": {
+   "text": "आपण",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM///wEkklIAJJJSAOSSUgEcknIBlI4CAPSCAgAEggIAAAAAAAAAAAA=="
+  },
+  "arrived_at_gate_terminal|mr|0|1": {
+   "text": "टर्मिनल",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAADgAAAAHIAAAAAjgAAAACHAAAA//+//4AEkQEBADyRAQEAQJEfOwBAvwlFAECRAUkAIoEBIQAcgQERAAAAAAAAAAAAAAA="
+  },
+  "arrived_at_gate_terminal|mr|1|1": {
+   "text": "मधील",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAA4AAAARAAAAEQAA/s+/wESFAIBEhQCARHUdgPxFIoBETSSABDUQgAQECIAAAAAAAAAAAA=="
+  },
+  "arrived_at_gate_terminal|mr|1|2": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "arrived_at_gate_terminal|mr|2|1": {
+   "text": "येथे",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAgEBAICAQE/84lJCWk5GTNxHyMBHQEBAAAAAA="
+  },
+  "arrived_at_gate_terminal|mr|2|2": {
+   "text": "पोहोचलो",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAgEAABADAYAAGAGAwAAMAMBgAAY////3/xJBICASEk8noBISSCEjshJHIiRSDkiiZJICSaOiEgJMICESAAMAAAAAAAAAAA="
+  },
+  "arrived_at_gate_terminal|mr|2|3": {
+   "text": "आहोत.",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAIAAAADAAAAAYAAAADAAM///8EkgkCAJJ5PgOSQSIEcjkiBlJFIgPSTRIAEmEKQAAYAAAAAAAA=="
+  },
+  "arrived_at_gate_terminal|hi|0|0": {
+   "text": "हम",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//gJEHkQQRA78EUQTBBgEBgAAAA="
+  },
+  "arrived_at_gate_terminal|hi|0|1": {
+   "text": "टर्मिनल",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAADgAAAAHIAAAAAjgAAAACHAAAA//+//4AEkQEBADyRAQEAQJEfOwBAvwlFAECRAUkAIoEBIQAcgQERAAAAAAAAAAAAAAA="
+  },
+  "arrived_at_gate_terminal|hi|1|1": {
+   "text": "के",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAEAAIAAQAAgAf8AEADcARoBEgEyAPQAEAAAAAAA="
+  },
+  "arrived_at_gate_terminal|hi|1|2": {
+   "text": "गेट",
+   "w": 14,
+   "h": 16,
+   "bits": "AAAAACAAEAAIAAQA//wkCCR4ZIAkgASABEQEOAAAAAA="
+  },
+  "arrived_at_gate_terminal|hi|2|1": {
+   "text": "पर",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/fBIIEkgSeBIgDhACGAIIAAAAAA="
+  },
+  "arrived_at_gate_terminal|hi|2|2": {
+   "text": "पहुँच",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAFQAADgAAAAA//f4SCAQSePQSQCQSOEQOREwCTHQCYAQAGAAAHAA"
+  },
+  "arrived_at_gate_terminal|hi|2|3": {
+   "text": "गए",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA//AkkCSQZJAksATABGAEMAAQABA="
+  },
+  "arrived_at_gate_terminal|hi|2|4": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "arrived_at_gate_terminal|en|0|0": {
+   "text": "We",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAxhAAxjAARiAATyeASSzAaWhAKU/AMMgAMMxAMMeAAAAAAAAA"
+  },
+  "arrived_at_gate_terminal|en|0|1": {
+   "text": "have",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAQAAAAFjzF4BlCRzARAkoQET5L8BFCKgARRjMQETsx4AAAAAAAAAAAA=="
+  },
+  "arrived_at_gate_terminal|en|0|2": {
+   "text": "arrived",
+   "w": 39,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAEAAAAAAR4qnE8fITMUWbMBIhSQoR8iFJ+hISISkCEjIhMYsx2iEw8dAAAAAAAAAAAAAA="
+  },
+  "arrived_at_gate_terminal|en|0|3": {
+   "text": "at",
+   "w": 11,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAIB5wISABIB8gISAjIB2wAAAAAA="
+  },
+  "arrived_at_gate_terminal|en|0|4": {
+   "text": "Gate",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAB4AAAAxAAAAIIAgAEAed4BAISzAQ4EoQECfL8BgoSgAIaMsQB6dt4AAAAAAAAAAAA=="
+  },
+  "arrived_at_gate_terminal|en|1|0": {
+   "text": ",",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEBAQA=="
+  },
+  "arrived_at_gate_terminal|en|1|1": {
+   "text": "Terminal",
+   "w": 49,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAAIAAQAIAAAAAAEACAAAAAABAAh4q3pY8QAIzMzKZQkACISIikQJAAj8iIpE+QAIgIiKRQkACMSIikUZAAh4iIpE7QAAAAAAAAAAAAAAAAAAAA=="
+  },
+  "arrived_at_gate_terminal|en|2|0": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "eta_minutes|kok|0|0": {
+   "text": "सुमार",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf//fCSKCSSKSfyKeIX6IESKEGQKGCQKCAcAACEAA"
+  },
+  "eta_minutes|kok|1|1": {
+   "text": "मिनटां.",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAg/9//4EiAgkBIgJ5ASI+gQF+EoEBIgKBAQICRQECAjkgAAAAAAAAAAA=="
+  },
+  "eta_minutes|mr|0|0": {
+   "text": "सुमारे",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAQAAAIAAAEAAACf//fCSKCSSKSfyKeIX6IESKEGQKGCQKCAcAACEAA"
+  },
+  "eta_minutes|mr|1|1": {
+   "text": "मिनिटे.",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAIAOA4BAEYRgIBDEMBA//v/4EiQEEBIkBPASJH0AF+QlABIkBQAQJASIECQEcgAAAAAAAAAAA=="
+  },
+  "eta_minutes|hi|0|0": {
+   "text": "लगभग",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//P/AETREgBEkRIOzJEyEUS/EhJAkQIIQIECBECBAgAAAAAAAAAAA=="
+  },
+  "eta_minutes|hi|1|1": {
+   "text": "मिनट।",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAOAAAAABGAAAAAEMAAAAA/9//AgBIgIICAEiAngIASI+gAgBfhKACAEiAoAIAQICRAgBAgI4CAAAAAAIAAAAAAAA="
+  },
+  "eta_minutes|en|0|0": {
+   "text": "About",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAYIAAAABwgAAAAFCAAAQA0LniLgCYzzIkAIiGEiQB+IYSJAEMhhIkAQTPMmQDBLnhpgAAAAAAAAAAAAAA="
+  },
+  "eta_minutes|en|1|1": {
+   "text": "minutes.",
+   "w": 47,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAACAAAW9LEXPDgZlMkSZkQRFIkSQkARFIkSfjgRFIkSQAQRFIkyYkQRFIjTPDkAAAAAAAAAAAAAAAA"
+  },
+  "eta_one_minute|kok|0|0": {
+   "text": "सुमार",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf//fCSKCSSKSfyKeIX6IESKEGQKGCQKCAcAACEAA"
+  },
+  "eta_one_minute|kok|0|1": {
+   "text": "एक",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/f5IEEjcSRpZEmEyMPQYEAgACAA="
+  },
+  "eta_one_minute|kok|0|2": {
+   "text": "मिनट.",
+   "w": 28,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAA/9//AEiAggBIgJ4ASI+gAF+EoABIgKAAQICRAECAjkAAAAAAAAAAAA=="
+  },
+  "eta_one_minute|mr|0|0": {
+   "text": "सुमारे",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAQAAAIAAAEAAACf//fCSKCSSKSfyKeIX6IESKEGQKGCQKCAcAACEAA"
+  },
+  "eta_one_minute|mr|0|1": {
+   "text": "एक",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/f5IEEjcSRpZEmEyMPQYEAgACAA="
+  },
+  "eta_one_minute|mr|0|2": {
+   "text": "मिनिट.",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOA4AAEYRgABDEMAA//v/4EiQEEBIkBPASJH0AF+QlABIkBQAQJASIECQEcgAAAAAAAAAAA=="
+  },
+  "eta_one_minute|hi|0|0": {
+   "text": "लगभग",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//P/AETREgBEkRIOzJEyEUS/EhJAkQIIQIECBECBAgAAAAAAAAAAA=="
+  },
+  "eta_one_minute|hi|0|1": {
+   "text": "एक",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/f5IEEjcSRpZEmEyMPQYEAgACAA="
+  },
+  "eta_one_minute|hi|0|2": {
+   "text": "मिनट।",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAOAAAAABGAAAAAEMAAAAA/9//AgBIgIICAEiAngIASI+gAgBfhKACAEiAoAIAQICRAgBAgI4CAAAAAAIAAAAAAAA="
+  },
+  "eta_one_minute|en|0|0": {
+   "text": "About",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAYIAAAABwgAAAAFCAAAQA0LniLgCYzzIkAIiGEiQB+IYSJAEMhhIkAQTPMmQDBLnhpgAAAAAAAAAAAAAA="
+  },
+  "eta_one_minute|en|0|1": {
+   "text": "a",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHiEBHyEjHYAAA=="
+  },
+  "eta_one_minute|en|0|2": {
+   "text": "minute.",
+   "w": 41,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAACAAAW9LEXPAAZlMkSZgARFIkSQgARFIkSfgARFIkSQAARFIkyYgARFIjTPEAAAAAAAAAAAAAAAAA"
+  },
+  "arriving_now|kok|0|0": {
+   "text": "आतां",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAEM//8SSBICSfIOSRIRyRIZSRIPSJIASFIAAAAAAAA"
+  },
+  "arriving_now|kok|0|1": {
+   "text": "पावतां.",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA//7/wEkEBIBJNHyASUREgElERIA5PESACQQkgAkEFJAAAAAAAAAAAA=="
+  },
+  "arriving_now|mr|0|0": {
+   "text": "आता",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAM//8SSBICSfIOSRIRyRIZSRIPSJIASFIAAAAAAAA"
+  },
+  "arriving_now|mr|0|1": {
+   "text": "पोहोचत",
+   "w": 34,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAgEAAAADAYAAAAGAwAAAAMBgAAA/////4BJBICBAEk8np8ASSCEkQBJHIiRADkiiZEACSaOiQAJMICFAAAMAAAAAAAAAAA="
+  },
+  "arriving_now|mr|0|2": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "arriving_now|hi|0|0": {
+   "text": "अभी",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAHAAAIgAAIgM/PwSVEgCREgOREgRz8gZREgPQEgAQEAAAAAAAAA"
+  },
+  "arriving_now|hi|0|1": {
+   "text": "पहुँच",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAFQAADgAAAAA//f4SCAQSePQSQCQSOEQOREwCTHQCYAQAGAAAHAA"
+  },
+  "arriving_now|hi|0|2": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "arriving_now|hi|0|3": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "arriving_now|en|0|0": {
+   "text": "Arriving",
+   "w": 43,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAgEAAAHAAAAAAAFAAAAAAANFKsUsdAJmMkUyzAIkIkkihAfkIkkihAQ0IikihAQUIjEizAwUIjEidAAAAAAABAAAAAAAjA"
+  },
+  "arriving_now|en|0|1": {
+   "text": "now.",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFjyIgBlmTIARQlWAEUJVABFCVQARZjMAETwiIAAAAAAAAAAAA=="
+  },
+  "scan_your_pass|kok|0|0": {
+   "text": "उपकार",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3//wJIEEICSNxSTEkaXiJJEkgiOTJEEgj0RgwIEEIAAAAAAAAAAA=="
+  },
+  "scan_your_pass|kok|0|1": {
+   "text": "करून",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf9//4AQCAEA3E8BARo0nwESJIkBMhCBAPQJgQAQAAEAAAAAAAAAAAA=="
+  },
+  "scan_your_pass|kok|0|2": {
+   "text": "तुमचो",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAgAAAAMAAAABgAAAAMA////gASICQB8iekARIhJAEX4iQBEiJkAJAjpABQICQAHAAAAIQAAAA=="
+  },
+  "scan_your_pass|kok|0|3": {
+   "text": "बोर्डिंग",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAIAHAADBxAAAYjSAADIaAAf//v4AUgQkA1I8JAZSIGQF0p4kA9JCBABSIgQAUhwEAAAAAAAAAAAA=="
+  },
+  "scan_your_pass|kok|0|4": {
+   "text": "पास",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/7/ASQSASSSAST+ASRCAOQiACQyACQSAAAAAAAAA"
+  },
+  "scan_your_pass|kok|0|5": {
+   "text": "रीडरामुखार",
+   "w": 51,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAABEAAAAAAAARAAAAAAAAf/8//3/74AkCBSIQkEBJHiUiFpJAeRA9InSTwCFPEX5HkQARIQkiIJCAGRENAjOQwAgOBQIekEAAAAADgAAAAAAAEIAAAA=="
+  },
+  "scan_your_pass|kok|0|6": {
+   "text": "धरात.",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ3/+AEIKBABCSnwAOnpEACIiRAAmEkQAGhokAAIKFEAAAAAAAAAAAA=="
+  },
+  "scan_your_pass|mr|0|0": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "scan_your_pass|mr|0|1": {
+   "text": "तुमचा",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////gASICQB8iekARIhJAEX4iQBEiJkAJAjpABQICQAHAAAAIQAAAA=="
+  },
+  "scan_your_pass|mr|0|2": {
+   "text": "बोर्डिंग",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAIAHAADBxAAAYjSAADIaAAf//v4AUgQkA1I8JAZSIGQF0p4kA9JCBABSIgQAUhwEAAAAAAAAAAAA=="
+  },
+  "scan_your_pass|mr|0|3": {
+   "text": "पास",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/7/ASQSASSSAST+ASRCAOQiACQyACQSAAAAAAAAA"
+  },
+  "scan_your_pass|mr|0|4": {
+   "text": "रीडरसमोर",
+   "w": 46,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAgADgAAAAwAEQAAAAYAEQAAAAMAf/8///+8CQIEJIkESR4lJIkkeRA9/Ik8IU8QhfkQESEIRIkIGREMZAkMCA4EJAkEAAAAAAAAAAAAAAAA"
+  },
+  "scan_your_pass|mr|0|5": {
+   "text": "धरा.",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAZ38AQgoAQkoAOnoAIiIAJhIAGhoAAgpAAAAAAAAA"
+  },
+  "scan_your_pass|hi|0|0": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "scan_your_pass|hi|0|1": {
+   "text": "अपना",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM/5/wEkkAoAJJAKAOSQ+gEckEoBlHAKAPQQCgAEEAoAAAAAAAAAAAA=="
+  },
+  "scan_your_pass|hi|0|2": {
+   "text": "बोर्डिंग",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAIAHAADBxAAAYjSAADIaAAf//v4AUgQkA1I8JAZSIGQF0p4kA9JCBABSIgQAUhwEAAAAAAAAAAAA=="
+  },
+  "scan_your_pass|hi|0|3": {
+   "text": "पास",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/7/ASQSASSSAST+ASRCAOQiACQyACQSAAAAAAAAA"
+  },
+  "scan_your_pass|hi|0|4": {
+   "text": "रीडर",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAADgAAEQAAEQAAf/88CQIESR4keRA8IU8QESEIGREMCA4EAAAAAAAA"
+  },
+  "scan_your_pass|hi|0|5": {
+   "text": "के",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAEAAIAAQAAgAf8AEADcARoBEgEyAPQAEAAAAAAA="
+  },
+  "scan_your_pass|hi|0|6": {
+   "text": "सामने",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAQAAAACAAAAAQAAAACAf///wAkkQIBJJECAfyRPgCEvxIARJECAGSBAgAkgQIAAAAAAAAAAAA=="
+  },
+  "scan_your_pass|hi|0|7": {
+   "text": "रखें।",
+   "w": 25,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAEAAAAAgAAAAGAAAAAgAAff8CAAhCAgBIWgIAedICACEeAgAQggIAGM4CAAh6AgAAAAIAAAAAAA=="
+  },
+  "scan_your_pass|en|0|0": {
+   "text": "Please",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB+IAAAAEMgAAAAQSAAAABBLx4c8EM5oSOYfjCBIQhAP58d+EAwIQMAQDijI4hALx2c8AAAAAAAAAAAAAA="
+  },
+  "scan_your_pass|en|0|1": {
+   "text": "hold",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQAEEQAEEQAEEWPF8ZZnMRQmERQmERQmERZnMRPF0AAAAAAAA"
+  },
+  "scan_your_pass|en|0|2": {
+   "text": "your",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAheIlTzImShIkShIkOhIkMzJkMeGkIAAAIAAA"
+  },
+  "scan_your_pass|en|0|3": {
+   "text": "boarding",
+   "w": 49,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAJAAABAAAACAAAAQAAAAgAAAFzx4r5LHQBnmhNmTLMAQwgSQkihAEMJ8kJIoQBDChJCSKEAZ5oyZkizAFzx2jpInQAAAAAAAAEAAAAAAAAjAA=="
+  },
+  "scan_your_pass|en|0|4": {
+   "text": "pass",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFzw4cBnCRIgQgkCAEL44cBDCBAgZxkSIFzs4cBAAAAAQAAAAA=="
+  },
+  "scan_your_pass|en|0|5": {
+   "text": "to",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQADngEzASEBIQEhATMBngAAAAAA="
+  },
+  "scan_your_pass|en|0|6": {
+   "text": "the",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAABAAABAAARAAA5Z4ARnMARGEARH8ARGAARHEAZF4AAAAAAAAA"
+  },
+  "scan_your_pass|en|0|7": {
+   "text": "reader.",
+   "w": 40,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAQAAAAABAABXjx88UGzQs2ZgSEChQkBPz6F+QEgQoUBATFGzYkBHjt08RAAAAAAAAAAAAAA="
+  },
+  "on_my_way|kok|0|0": {
+   "text": "एका",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/f/ASBCASNyASRqAWRKAYTKAMPSAGBCACAAACAAA"
+  },
+  "on_my_way|kok|0|1": {
+   "text": "प्रवाशाक",
+   "w": 37,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//f/7/hIIkpAgEmiekbgSiIKSNBKInJIkDniYkmQaCIyR6CIIhpAgAAAAAAAAAAAAAA="
+  },
+  "on_my_way|kok|0|2": {
+   "text": "व्हरूंक",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA/z//8AIEAQB+J43AkBpRoI4SUSBxCFMgEwTPQBgAAQAGAAAAAAAAAA=="
+  },
+  "on_my_way|kok|0|3": {
+   "text": "वतां.",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAEA//uACBEAafEAiREAiREAeREACJEACFEgAAAAAAAA"
+  },
+  "on_my_way|mr|0|0": {
+   "text": "एका",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA/f/ASBCASNyASRqAWRKAYTKAMPSAGBCACAAACAAA"
+  },
+  "on_my_way|mr|0|1": {
+   "text": "प्रवाशाला",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//f/7/xIIkpAKEmiekAoSiIKR2hKInJIqDniYkkoaCIyRCiIIhpCKAAAAAAAAAAAAAA="
+  },
+  "on_my_way|mr|0|2": {
+   "text": "न्यायला",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA///z/wAEkSAKAASRIAoA/Jch2gDZlmIqAA+T4koAAJAhCgAAkCCKAAAAAAAAAAAAAAA="
+  },
+  "on_my_way|mr|0|3": {
+   "text": "जात",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf//gASBATyfARSRAJSRANSRAGSJAASFAAAAAAAAA"
+  },
+  "on_my_way|mr|0|4": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "on_my_way|hi|0|0": {
+   "text": "एक",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAA/f5IEEjcSRpZEmEyMPQYEAgACAA="
+  },
+  "on_my_way|hi|0|1": {
+   "text": "यात्री",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAADgAAEQAAEQ/9/4JICQJI6Q5JOQzIGQfI6QBICQBIAAAAAAAAAA"
+  },
+  "on_my_way|hi|0|2": {
+   "text": "को",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAACAAMAAYAAwf/gEEDcQRpBEkEyQPRAEEAAAAAA="
+  },
+  "on_my_way|hi|0|3": {
+   "text": "लेने",
+   "w": 16,
+   "h": 16,
+   "bits": "AAAAAAgQBAgCBAECf78BAQEBOx9FCUkBIQERAQAAAAA="
+  },
+  "on_my_way|hi|0|4": {
+   "text": "जा",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAf/ABIE8gRSAlIDUgGSABIAAAAAA="
+  },
+  "on_my_way|hi|0|5": {
+   "text": "रहे",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAEAAIAAQAAgf/AIIEngeQAg4BEQGTAJgABgAAA="
+  },
+  "on_my_way|hi|0|6": {
+   "text": "हैं।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEAB0ABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "on_my_way|en|0|0": {
+   "text": "On",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAHgAAIQAAYYAAQJYAQJkAQJEAQJEAYZEAIREAHhEAAAAAAAAA"
+  },
+  "on_my_way|en|0|1": {
+   "text": "my",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAW+EAZlMARFIARFIARE4AREwAREwAAAgAAAgA"
+  },
+  "on_my_way|en|0|2": {
+   "text": "way",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAiLyETMJMVYJIVT5IVUI4M0YwIjswAAAgAAAg"
+  },
+  "on_my_way|en|0|3": {
+   "text": "to",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAQADngEzASEBIQEhATMBngAAAAAA="
+  },
+  "on_my_way|en|0|4": {
+   "text": "collect",
+   "w": 36,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAAACQAAAAAJAAEB48k8e4MWaWbFAgQpQoECBCl+gQIEKUCBAxZpYsUB48k8eYAAAAAAAAAAAAAA="
+  },
+  "on_my_way|en|0|5": {
+   "text": "a",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHiEBHyEjHYAAA=="
+  },
+  "on_my_way|en|0|6": {
+   "text": "passenger.",
+   "w": 62,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABc8OHPFjp4oGcJEjmZZszAQgkCEJFChIBC+OHfkUL8gEMIEDARQoCAZxkSOJFmxIBc7OHPETp4iEAAAAAAAgAAQAAAAABGAAA="
+  },
+  "available_here|kok|0|0": {
+   "text": "उपलब्ध.",
+   "w": 37,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3/2cACSAQQgAJIBNCATEjtjoAiSRVogCI5JOmAEgiEBoAMCEQAoAAAAAAAAAAAAAA="
+  },
+  "available_here|kok|0|1": {
+   "text": "आदारा",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM//7/EkgUEgJI9JIOSQTyEckEQhlJlCIPSPQyAEgUEgAAAAAAAAAAA=="
+  },
+  "available_here|kok|0|2": {
+   "text": "खातीर",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAA4AAAARAAAAEQAf//++BCQJBAWk+SQdJIk8EeSJEAgkiQgM5EkMB6QoBAAAAAAAAAAAA=="
+  },
+  "available_here|kok|0|3": {
+   "text": "बटण",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf/v8BBFINPFIZQFIXQHIPQAIBIgIBHAIAAAAAAAA"
+  },
+  "available_here|kok|0|4": {
+   "text": "दामात.",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////wASiQIA8ok+AQKJIgED+SIBkokiAPIJEgASCQpAAAAAAAAAAAA=="
+  },
+  "available_here|mr|0|0": {
+   "text": "उपलब्ध.",
+   "w": 37,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3/2cACSAQQgAJIBNCATEjtjoAiSRVogCI5JOmAEgiEBoAMCEQAoAAAAAAAAAAAAAA="
+  },
+  "available_here|mr|0|1": {
+   "text": "मदतीसाठी",
+   "w": 45,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAcAADgAAAiAAEQAAAiAAEQ///3f/+4RAgiCUEQRHviSUEQRIIif0cQ/IIiIUkQRMoiEUiQBHkiGUiQBAigCUcAAAAAAAAAAAAAAAAA"
+  },
+  "available_here|mr|0|2": {
+   "text": "बटण",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf/v8BBFINPFIZQFIXQHIPQAIBIgIBHAIAAAAAAAA"
+  },
+  "available_here|mr|0|3": {
+   "text": "दाबा.",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAA///gBIJAPJpAQLJAQK5AZJ5APIJABIJIAAAAAAAA"
+  },
+  "available_here|hi|0|0": {
+   "text": "उपलब्ध।",
+   "w": 42,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3/2cEAAkgEEIEAAkgE0IEATEjtjoEAIkkVaIEAIjkk6YEAEgiEBoEADAhEAIEAAAAAAAEAAAAAAAAAAAAAAAAA"
+  },
+  "available_here|hi|0|1": {
+   "text": "सहायता",
+   "w": 35,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf////+AJBIkCQEk8iT5AfyC5IkAhHLMiQBEinyJAGSaBEkAJMIEKQAAMAAAAAAAAAAA="
+  },
+  "available_here|hi|0|2": {
+   "text": "के",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAEAAIAAQAAgAf8AEADcARoBEgEyAPQAEAAAAAAA="
+  },
+  "available_here|hi|0|3": {
+   "text": "लिए",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAOAAARgAAQwAA7/+AQCkAQCkAR2kASKsASSwARCYAQiMAAAEAAAEA"
+  },
+  "available_here|hi|0|4": {
+   "text": "बटन",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf/n4BBAINPAIZQD4XQBIPQAIBIgIBHAIAAAAAAAA"
+  },
+  "available_here|hi|0|5": {
+   "text": "दबाएँ।",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAqAAAAHAAAAAAA/v/8EAQKSBA8akgQQMpIEEC6WBBkemAQPAowEAQKGBAAAAgQAAAIAA=="
+  },
+  "available_here|en|0|0": {
+   "text": "Available.",
+   "w": 54,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAASAQIAAcAAAgECAAFAAAIBAgADTE8S8XJ4AmRQkwmazAIkgJIJCoQH5I+S+Qr8BDKQkwkKgAQTEZMZmsQMEw7S7XJ4gAAAAAAAAAAAAAAAAAAA=="
+  },
+  "available_here|en|0|1": {
+   "text": "Press",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAH4AAABDAAAAQQAAAEFTxw5DZmiRfkQoEEBH5w5ARACBQEYokUBDxw4AAAAAAAAAAA=="
+  },
+  "available_here|en|0|2": {
+   "text": "the",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAABAAABAAARAAA5Z4ARnMARGEARH8ARGAARHEAZF4AAAAAAAAA"
+  },
+  "available_here|en|0|3": {
+   "text": "button",
+   "w": 35,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAAAAQAEQAABci7vFgGaJFmZAQokUJEBCiRQkQEKJFCRAZpkWZEBcaZvEQAAAAAAAAAAAAAA="
+  },
+  "available_here|en|0|4": {
+   "text": "for",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAAAAAAABgAEAAQADnlEzYSFBIUEhQTNBHkAAAAAA="
+  },
+  "available_here|en|0|5": {
+   "text": "assistance.",
+   "w": 63,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAgAAAAB4ccTneLHjwISKJRKEyxZgBIIFAgSKBCB8ccTifIoH4IQIJBKEigQAjIolEoyLFiB2ccTjdonjxAAAAAAAAAAAAAAAAAAAAAA="
+  },
+  "flight_not_found|kok|0|0": {
+   "text": "आयज",
+   "w": 28,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM//v8EkiQCAJIkngOS5IoEcsxKBlJ8agPSBDIAEgQCAAAAAAAAAAAA=="
+  },
+  "flight_not_found|kok|0|1": {
+   "text": "आमकां",
+   "w": 31,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACM//v/kkkQIQJJEbkOSRI1EcvyJRlJEmUPSBHpAEgQIQAAAAAAAAAAA=="
+  },
+  "flight_not_found|kok|0|2": {
+   "text": "विमान",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAA///vwEEiQEBNIkBAUSJHwFF+QkBPIkBAQQJAQEECQEAAAAAAAAAAAA=="
+  },
+  "flight_not_found|kok|1|1": {
+   "text": "मेळना.",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAgAAAAEAAAAAgAAAAEAAAA/v//wEQEBIBEbgSARJJ8gPySJIBEkgSABGwEgAQABJAAAAAAAAAAAA=="
+  },
+  "flight_not_found|kok|1|2": {
+   "text": "उपकार",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3//wJIEEICSNxSTEkaXiJJEkgiOTJEEgj0RgwIEEIAAAAAAAAAAA=="
+  },
+  "flight_not_found|kok|1|3": {
+   "text": "करून",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf9//4AQCAEA3E8BARo0nwESJIkBMhCBAPQJgQAQAAEAAAAAAAAAAAA=="
+  },
+  "flight_not_found|kok|1|4": {
+   "text": "तुमच्या",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////+ASIBJB8ieSQRIhckEX4mZBEiJ+QJAhgkBQIAJAHAAAAIQAAAA=="
+  },
+  "flight_not_found|kok|1|5": {
+   "text": "विमान",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAA///vwEEiQEBNIkBAUSJHwFF+QkBPIkBAQQJAQEECQEAAAAAAAAAAAA=="
+  },
+  "flight_not_found|kok|1|6": {
+   "text": "कंपनीकडेन",
+   "w": 51,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAHAACAAAQACIAAQAAAAAiAACAAf/9/3//n4AQSAoEAQCA3EgKNw8AgRpI+kaID4ESSEpEp4SBMjgKTJCAgPQICj0IgIAQCAgEBwCAAAAAAAAAAAAAAAAAAAA=="
+  },
+  "flight_not_found|kok|1|7": {
+   "text": "विचारात.",
+   "w": 40,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAOAAAAABGAAAAAEMAAAAA///3//BBASCQIE09JJPgUQknkiBRESISIE8TIRIgQR0hkSBBASCQpAAAAAAAAAAAAAA="
+  },
+  "flight_not_found|mr|0|0": {
+   "text": "आज",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAM/f4SSAQCSTwOSRQRyJQZSNQPSGQASAQAAAAAAAA"
+  },
+  "flight_not_found|mr|0|1": {
+   "text": "आम्हाला",
+   "w": 36,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM/7/v/BJJAkAoAkkeQCgOSRBHaBHLzkioGUkRSSgPSBNEKABIGEIoAAAGAAAAAAAAAA="
+  },
+  "flight_not_found|mr|0|2": {
+   "text": "उड्डाण",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAIElIACPJSATCCUgCKenIAiYoCAEjyAgAyegIAAwgAAAGIAAA=="
+  },
+  "flight_not_found|mr|1|1": {
+   "text": "सापडत",
+   "w": 33,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///v4AJJIEBAEkkjx8AfySIEQAhJKeRABEjkJEAGSCIiQAJIIcFAAAAAAAAAAAAAAA="
+  },
+  "flight_not_found|mr|1|2": {
+   "text": "नाही.",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAHAAAIgAAIgf/9wAoIgAp4gPpAgEo4gApEgApMgApgEAAYAAAAA"
+  },
+  "flight_not_found|mr|1|3": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "flight_not_found|mr|1|4": {
+   "text": "तुमच्या",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////+ASIBJB8ieSQRIhckEX4mZBEiJ+QJAhgkBQIAJAHAAAAIQAAAA=="
+  },
+  "flight_not_found|mr|1|5": {
+   "text": "विमान",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAA///vwEEiQEBNIkBAUSJHwFF+QkBPIkBAQQJAQEECQEAAAAAAAAAAAA=="
+  },
+  "flight_not_found|mr|1|6": {
+   "text": "कंपनीकडे",
+   "w": 44,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAEAAAAHAACABAAIgABAAAAIgAAgf/9/3//gBBICgQBANxICjcPARpI+kaIARJISkSngTI4CkyQgPQICj0IgBAICAQHAAAAAAAAAAAAAAAAA"
+  },
+  "flight_not_found|mr|1|7": {
+   "text": "विचारा.",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAOAAAAEYAAABDAAAA///3+EEBIJBNPSSQUQknkFERIhBPEyEQQR0hkEEBIJIAAAAAAAAAAA=="
+  },
+  "flight_not_found|hi|0|0": {
+   "text": "आज",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAM/f4SSAQCSTwOSRQRyJQZSNQPSGQASAQAAAAAAAA"
+  },
+  "flight_not_found|hi|0|1": {
+   "text": "हमें",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAAACAAEAAKAAQ//gJEHkQQRA78EUQTBBgEBgAAAA="
+  },
+  "flight_not_found|hi|0|2": {
+   "text": "उड़ान",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/7/wAIEQIACPECATCBPgCKeRIAiQkCAEiJAgAwcQIAAgAAAAAAAAA=="
+  },
+  "flight_not_found|hi|1|1": {
+   "text": "नहीं",
+   "w": 17,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAA4AABEAABEAf/uAAhEAAvEAPoEAEnEAAokAApkAAsAAADAAAAAA"
+  },
+  "flight_not_found|hi|1|2": {
+   "text": "मिल",
+   "w": 18,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAOAAARgAAQwAA/9/ASIBASIBASI7AX5FASJJAQIhAQIRAAAAAAAAA"
+  },
+  "flight_not_found|hi|1|3": {
+   "text": "रही।",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAADgAAEQAAEQAf/4ECCQESeQEeQQEIOQEERQEGTQECYAEAGAEAAAA"
+  },
+  "flight_not_found|hi|1|4": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "flight_not_found|hi|1|5": {
+   "text": "अपनी",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAHAAAACIAAAAiAM/5/wEkkAoAJJAKAOSQ+gEckEoBlHAKAPQQCgAEEAgAAAAAAAAAAAA=="
+  },
+  "flight_not_found|hi|1|6": {
+   "text": "एयरलाइन",
+   "w": 43,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//vv//fgSJBAKCAgSJJAKeAgS5PHaQPgWzEIqPEgYfCJKBAgMBDEKBAgGBBCKaAgCAAAAGAACAAAADAA"
+  },
+  "flight_not_found|hi|1|7": {
+   "text": "से",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAgABAACAAEAf4AJAEkAfwAhABEAGQAJAAAAAAA="
+  },
+  "flight_not_found|hi|1|8": {
+   "text": "पूछें।",
+   "w": 23,
+   "h": 16,
+   "bits": "AAAAAAAAAEAAACAAABgAAAgA//4ESQgESQgESNQESNQEOJQECIgECHAEAAAEDwAA"
+  },
+  "flight_not_found|en|0|0": {
+   "text": "We",
+   "w": 19,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAxhAAxjAARiAATyeASSzAaWhAKU/AMMgAMMxAMMeAAAAAAAAA"
+  },
+  "flight_not_found|en|0|1": {
+   "text": "cannot",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABB48WWPOMUJllmQgAkUUJCA+RRQkIEJFFCQxRkUWZB47RRPGAAAAAAAAAAAAAA="
+  },
+  "flight_not_found|en|0|2": {
+   "text": "find",
+   "w": 20,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAeAAgQAAgQAAg+WPgSZZgSRQgSRQgSRQgSRZgSROgAAAAAAAA"
+  },
+  "flight_not_found|en|0|3": {
+   "text": "flight",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAHkAQABIAEAASABAgPk6WcBJZmSASUJEgElCRIBJQkSASWZEgEk6RMAAAgAAAEYAAA=="
+  },
+  "flight_not_found|en|1|1": {
+   "text": "today.",
+   "w": 34,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAABAAAAQAEAAADnnx5CAEzzISYASGEBJABIYR8kAEhhIRwATPMjGABnnR2YgAAAABAAAAAAEAA="
+  },
+  "flight_not_found|en|1|2": {
+   "text": "Please",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB+IAAAAEMgAAAAQSAAAABBLx4c8EM5oSOYfjCBIQhAP58d+EAwIQMAQDijI4hALx2c8AAAAAAAAAAAAAA="
+  },
+  "flight_not_found|en|1|3": {
+   "text": "check",
+   "w": 34,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAIAAEAAAgAAQAACAB5Y8eJgMWWbEsAgRQoDgCBF+gPAIEUCAkAxRYsSYB5E8eIgAAAAAAAAAAAAAA="
+  },
+  "flight_not_found|en|1|4": {
+   "text": "with",
+   "w": 22,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAACBAAABAAARAiK5YTKRkVaREVSREVSREMyREIiZEAAAAAAAA"
+  },
+  "flight_not_found|en|1|5": {
+   "text": "your",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAheIlTzImShIkShIkOhIkMzJkMeGkIAAAIAAA"
+  },
+  "flight_not_found|en|1|6": {
+   "text": "airline.",
+   "w": 37,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAgSAAAAABAAAAAAEAAAB4lSWPAISZJlmABJEkUIB8kSRfgISRJFAAjJEkWIB2kSRPEAAAAAAAAAAAAAA="
+  },
+  "space": {
+   "text": " ",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAA=="
+  },
+  "char|0": {
+   "text": "0",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAA4bEREREREbDgAAA=="
+  },
+  "char|1": {
+   "text": "1",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAQMHAQEBAQEBAAAA=="
+  },
+  "char|2": {
+   "text": "2",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAA4REQECDBgwPwAAA=="
+  },
+  "char|3": {
+   "text": "3",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAA4RAQEGAQERDgAAA=="
+  },
+  "char|4": {
+   "text": "4",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAIGDgoSIj8CAgAAA=="
+  },
+  "char|5": {
+   "text": "5",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAB8QEB4RAQERDgAAA=="
+  },
+  "char|6": {
+   "text": "6",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAA4JEB4REREZDgAAA=="
+  },
+  "char|7": {
+   "text": "7",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAB8BAgIEBAgICAAAA=="
+  },
+  "char|8": {
+   "text": "8",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAB8xoLGfIKCxnwAAA=="
+  },
+  "char|9": {
+   "text": "9",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAA4RERERDwESDgAAA=="
+  },
+  "char|०": {
+   "text": "०",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAADhEREREOAAAAA=="
+  },
+  "char|१": {
+   "text": "१",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAOEREPAQEBAQAAA=="
+  },
+  "char|२": {
+   "text": "२",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAPCYCAgY4CAQEAA=="
+  },
+  "char|३": {
+   "text": "३",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAcAgIcAwEBHgQCA=="
+  },
+  "char|४": {
+   "text": "४",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAZkJmGBgkJBgAAA=="
+  },
+  "char|५": {
+   "text": "५",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAIEBISDwEBAIAAA=="
+  },
+  "char|६": {
+   "text": "६",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAECAgECAoKBgIAA=="
+  },
+  "char|७": {
+   "text": "७",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAIySkppGRDgAAA=="
+  },
+  "char|८": {
+   "text": "८",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAABAQECAgJBgAAA=="
+  },
+  "char|९": {
+   "text": "९",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAGCQkGBAICAQEAA=="
+  },
+  "char|A": {
+   "text": "A",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAAYABwAFAA0ACYAIgB+AEMAQQDBAAAAAAA="
+  },
+  "char|B": {
+   "text": "B",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAB+AEEAQQBBAH4AQwBBAEEAQwB+AAAAAAA="
+  },
+  "char|C": {
+   "text": "C",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAAeACMAQQBAAEAAQABAAEEAIwAeAAAAAAA="
+  },
+  "char|D": {
+   "text": "D",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAB8AEIAQQBBAEEAQQBBAEEAQgB8AAAAAAA="
+  },
+  "char|E": {
+   "text": "E",
+   "w": 8,
+   "h": 16,
+   "bits": "AAAAAH5AQEB+QEBAQH4AAA=="
+  },
+  "char|F": {
+   "text": "F",
+   "w": 8,
+   "h": 16,
+   "bits": "AAAAAH5AQEB8QEBAQEAAAA=="
+  },
+  "char|G": {
+   "text": "G",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAeADEAIIBAAEAAQ4BAgGCAIYAegAAAAAA="
+  },
+  "char|H": {
+   "text": "H",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAABBAEEAQQBBAH8AQQBBAEEAQQBBAAAAAAA="
+  },
+  "char|I": {
+   "text": "I",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAAEBAQEBAQEBAQEAAAA=="
+  },
+  "char|J": {
+   "text": "J",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAQEBAQEBASEhHgAAA=="
+  },
+  "char|K": {
+   "text": "K",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAABDAEYATABYAFgAaABEAEYAQgBBAAAAAAA="
+  },
+  "char|L": {
+   "text": "L",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAEBAQEBAQEBAQHwAAA=="
+  },
+  "char|M": {
+   "text": "M",
+   "w": 11,
+   "h": 16,
+   "bits": "AAAAAAAAAABgwGDAYMBRQFFAUUBKQEpASkBEQAAAAAA="
+  },
+  "char|N": {
+   "text": "N",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAABBAGEAcQBRAEkASQBFAEcAQwBDAAAAAAA="
+  },
+  "char|O": {
+   "text": "O",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAeACEAYYBAgECAQIBAgGGAIQAeAAAAAAA="
+  },
+  "char|P": {
+   "text": "P",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAB+AEMAQQBBAEMAfgBAAEAAQABAAAAAAAA="
+  },
+  "char|Q": {
+   "text": "Q",
+   "w": 10,
+   "h": 16,
+   "bits": "AAAAAAAAAAAeACEAYYBAgECAQIBAgGOAIwAfAACAAAA="
+  },
+  "char|R": {
+   "text": "R",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAB+AEEAQQBBAEEAfgBBAEEAQQBBgAAAAAA="
+  },
+  "char|S": {
+   "text": "S",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAA+AGEAQABAAHAAHgADAEEAYQA+AAAAAAA="
+  },
+  "char|T": {
+   "text": "T",
+   "w": 8,
+   "h": 16,
+   "bits": "AAAAAH8ICAgICAgICAgAAA=="
+  },
+  "char|U": {
+   "text": "U",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAABBAEEAQQBBAEEAQQBBAEEAYwA+AAAAAAA="
+  },
+  "char|V": {
+   "text": "V",
+   "w": 8,
+   "h": 16,
+   "bits": "AAAAAMFDQmIiJDQUGBgAAA=="
+  },
+  "char|W": {
+   "text": "W",
+   "w": 12,
+   "h": 16,
+   "bits": "AAAAAAAAAADGEMYwRiBPIEkgaWApQDDAMMAwwAAAAAA="
+  },
+  "char|X": {
+   "text": "X",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAABDAGIAJgAUABgAGAA0ACYAYgBBAAAAAAA="
+  },
+  "char|Y": {
+   "text": "Y",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAABBAGMAIgA2ABQACAAIAAgACAAIAAAAAAA="
+  },
+  "char|Z": {
+   "text": "Z",
+   "w": 8,
+   "h": 16,
+   "bits": "AAAAAH8CBgwIEDBgQP8AAA=="
+  },
+  "char|a": {
+   "text": "a",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHiEBHyEjHYAAA=="
+  },
+  "char|b": {
+   "text": "b",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAEBAQFxmQkJCZlwAAA=="
+  },
+  "char|c": {
+   "text": "c",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHjEgICAxHgAAA=="
+  },
+  "char|d": {
+   "text": "d",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAQEBHzMhISEzHQAAA=="
+  },
+  "char|e": {
+   "text": "e",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHjMhPyAxHgAAA=="
+  },
+  "char|f": {
+   "text": "f",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAAGBAQOBAQEBAQEAAAA=="
+  },
+  "char|g": {
+   "text": "g",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHTMhISEzHQEjA=="
+  },
+  "char|h": {
+   "text": "h",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAEBAQFhkREREREQAAA=="
+  },
+  "char|i": {
+   "text": "i",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAEAAAEBAQEBAQEAAAA=="
+  },
+  "char|j": {
+   "text": "j",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAIAAAICAgICAgICAgA=="
+  },
+  "char|k": {
+   "text": "k",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAEBAQExYcHhITEQAAA=="
+  },
+  "char|l": {
+   "text": "l",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAEBAQEBAQEBAQEAAAA=="
+  },
+  "char|m": {
+   "text": "m",
+   "w": 11,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAABbwGZAREBEQERAREBEQAAAAAA="
+  },
+  "char|n": {
+   "text": "n",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAFhkREREREQAAA=="
+  },
+  "char|o": {
+   "text": "o",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHjMhISEzHgAAA=="
+  },
+  "char|p": {
+   "text": "p",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAFxmQkJCZlxAQA=="
+  },
+  "char|q": {
+   "text": "q",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHTMhISEzHQEBA=="
+  },
+  "char|r": {
+   "text": "r",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAAAAAAFBgQEBAQEAAAA=="
+  },
+  "char|s": {
+   "text": "s",
+   "w": 6,
+   "h": 16,
+   "bits": "AAAAAAAAADhEQDgERDgAAA=="
+  },
+  "char|t": {
+   "text": "t",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAAAAAQOBAQEBAQGAAAA=="
+  },
+  "char|u": {
+   "text": "u",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAERERERETDQAAA=="
+  },
+  "char|v": {
+   "text": "v",
+   "w": 6,
+   "h": 16,
+   "bits": "AAAAAAAAAMRESEgoMDAAAA=="
+  },
+  "char|w": {
+   "text": "w",
+   "w": 9,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAACIgEyAVYBVAFUAMwAiAAAAAAA="
+  },
+  "char|x": {
+   "text": "x",
+   "w": 6,
+   "h": 16,
+   "bits": "AAAAAAAAAExIMDAwSMwAAA=="
+  },
+  "char|y": {
+   "text": "y",
+   "w": 6,
+   "h": 16,
+   "bits": "AAAAAAAAAIRMSEg4MDAgIA=="
+  },
+  "char|z": {
+   "text": "z",
+   "w": 6,
+   "h": 16,
+   "bits": "AAAAAAAAAHwIGDAgQPwAAA=="
+  },
+  "char| ": {
+   "text": " ",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAA=="
+  },
+  "char|.": {
+   "text": ".",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
+  },
+  "char|,": {
+   "text": ",",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAEBAQA=="
+  },
+  "char|:": {
+   "text": ":",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAAAAAEAAAAAAAEAAAA=="
+  },
+  "char|-": {
+   "text": "-",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAHAAAAAAAA=="
+  },
+  "char|/": {
+   "text": "/",
+   "w": 4,
+   "h": 16,
+   "bits": "AAAAABAQICAgQEBAgIAAAA=="
+  },
+  "char|'": {
+   "text": "'",
+   "w": 3,
+   "h": 16,
+   "bits": "AAAAAABAQEAAAAAAAAAAAA=="
+  }
+ }
+}

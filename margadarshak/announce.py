@@ -32,7 +32,7 @@ and nothing else.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 #: The languages the chair speaks. ``kok`` is Konkani, ISO 639-3.
 LANGUAGES: tuple[str, ...] = ("en", "hi", "mr", "kok")
@@ -202,6 +202,12 @@ class Announcement:
 
     message_id: str
     by_language: dict[str, str]
+    #: The values the placeholders were filled with. Kept because the panel is
+    #: drawn from pre-shaped pixels rather than from text, and
+    #: :mod:`margadarshak.display` has to put the same gate number back into the
+    #: same gap. Rendering the finished string would mean shaping Devanagari on
+    #: the chair, which is the thing that cannot be done there.
+    params: dict = field(default_factory=dict)
 
     def __getitem__(self, language: str) -> str:
         return self.by_language[language]
@@ -246,6 +252,7 @@ def announce(message_id: str, **params: object) -> Announcement:
     return Announcement(
         message_id=message_id,
         by_language={lang: say(message_id, lang, **params) for lang in LANGUAGES},
+        params=dict(params),
     )
 
 

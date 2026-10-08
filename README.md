@@ -48,6 +48,7 @@ unit before putting any multiple in writing.
 | `margadarshak/dashboard.py` | The shift report an operator is held to: waits, utilisation, call-outs |
 | `margadarshak/flights.py` | The flight board — where the gate comes from, and how we hear that it moved |
 | `margadarshak/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
+| `margadarshak/display.py` | Screen messages as pixels, so the chair never has to shape Devanagari |
 | `margadarshak/manual.py` | Driving a chair by hand — attendant joystick, armrest joystick, paired phone. Dead man, speed caps, and why the dispatcher still cannot drive |
 | `margadarshak/mapfile.py` | The map as readable JSON the airport owns and can edit, with a validator |
 | `margadarshak/prepositioning.py` | Moving idle chairs towards demand before it arrives, from the flight schedule |

@@ -144,6 +144,11 @@ charger appear here.
 - **A spare ESP32.** At ₹429 it is the most expensive insurance on the list, and
   the stage 2 board doubles as the spare if chair 1's dies.
 - **A second OLED, breadboard or jumper kit.** One of each covers both chairs.
+  **The OLED must be 128×64, not 128×32.** That is measured rather than preferred:
+  at the type size Devanagari stays legible, 15 of the 88 message-and-language
+  combinations wrap onto three lines and one onto four, so a two-line panel clips
+  them. The two modules cost much the same. `tests/test_display.py` fails the
+  build if a message stops fitting.
 - **A second joystick.** Chair 1 carries the only one. Driving a chair by hand is
   a thing you show once, and the ESP32's built-in Bluetooth covers the paired
   phone on both chairs at no extra cost.

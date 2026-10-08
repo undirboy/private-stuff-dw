@@ -21,6 +21,38 @@
 #include <stdint.h>
 
 // ---------------------------------------------------------------------------
+// The panel
+// ---------------------------------------------------------------------------
+//
+// The chair never handles a character. Devanagari is an abugida: matras attach
+// above, below and either side of the consonant they modify, and consonants
+// join into conjunct ligatures. Turning code points into the right pixels needs
+// a shaping engine, and the bitmap-font libraries that run here (U8g2,
+// Adafruit_GFX) index glyphs by byte and have no notion of any of it. Marathi
+// passed to one comes out as disconnected marks and empty boxes.
+//
+// So the dispatcher sends a finished frame and this blits it. Shaping happened
+// once, at build time, in tools/render_display.py — see margadarshak/display.py
+// for the composing side.
+//
+// Wire format: PANEL_W * PANEL_H / 8 bytes, rows top to bottom, most significant
+// bit leftmost. No header, no escaping, no parsing. That is the entire protocol.
+
+static const uint16_t PANEL_W = 128;
+static const uint16_t PANEL_H = 64;   // 64 rather than 32: measured, not guessed.
+                                      // At 13 px, 15 of the 88 message-and-language
+                                      // combinations need three lines and one needs
+                                      // four. See tests/test_display.py.
+static const uint16_t PANEL_BYTES = PANEL_W * PANEL_H / 8;
+
+static uint8_t panel_frame[PANEL_BYTES];
+
+// Draw whatever was last received. If nothing has been received the buffer is
+// zeroed, which is a blank screen — the right failure, because a stale gate
+// number is worse than no gate number.
+void panel_blit(void);
+
+// ---------------------------------------------------------------------------
 // Tuning
 // ---------------------------------------------------------------------------
 

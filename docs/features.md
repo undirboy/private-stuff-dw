@@ -21,7 +21,9 @@ Status words used below mean exactly this:
 | **The gate moves while they are travelling** | Built | The chair is diverted at the next junction. A human pushing a wheelchair is committed the moment they set off; nobody tells them the gate changed. |
 | **Call button** | Built / needs hardware | A button at a gate, lounge or accessible toilet summons a chair. Closes the gap where a passenger delivered to a gate is stranded until somebody remembers them. |
 | **Nobody guesses where you are going** | Built | A call-button chair collects the passenger and then waits to be told — by a scan or by an attendant. It never invents a destination. |
-| **The screen answers the scan** | Built / needs hardware | Gate, terminal and roughly how long left, the moment the pass is read. Two lines, cycling languages. Decided by the dispatcher, not the firmware. |
+| **The screen answers the scan** | Built / needs hardware | Gate, terminal and roughly how long left, the moment the pass is read. Cycling languages, decided by the dispatcher rather than the firmware. |
+| **Devanagari on the panel** | Built | The chair never handles a character. Konkani, Marathi and Hindi need a shaping engine for matras and conjuncts, which a microcontroller font library does not have; so shaping happens once at build time and the chair is sent finished pixels it blits. That also means a chair physically cannot display text the atlas has no glyphs for. |
+| **Lines that fit** | Built | Messages wrap at spaces — the only place a Devanagari line may be broken — and the test suite fails if any message in any language overruns the panel. This is what chose a 128×64 module over the cheaper 128×32: 15 of the 88 message-and-language combinations need three lines and one needs four. |
 | **Four languages** | Built / needs a native speaker | Konkani, Marathi, Hindi, English, with the local languages shown *before* English. The build fails if a message is added in English alone. |
 | **Families travel together** | Built | A group is dispatched as one caravan, moves as one unit, and is never split across separate trips. |
 | **A gentler chair** | Built | Per-chair speed cap, for a frail passenger, without editing the map. |
@@ -94,7 +96,7 @@ Each of these is a decision, not a gap.
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,
 languages, caravans, pre-positioning, priority and reporting are working code
-with 251 tests behind them. Everything physical is unbuilt, and the regulatory
+with 271 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
 The build that demonstrates this at a table, for ₹4,759 (₹2,801 for one chair), is in
