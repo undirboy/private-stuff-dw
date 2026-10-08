@@ -135,7 +135,12 @@ def screen_for(fleet: Fleet, chair: Chair) -> ScreenContent:
         return ScreenContent(announce("scan_your_pass"))
 
     if chair.state is ChairState.BOARDING and request is not None:
-        primary = announce("welcome", name=request.passenger)
+        # No name here, deliberately. The panel faces a crowded terminal and is
+        # readable from across it; a name beside a wheelchair tells a passer-by
+        # both who somebody is and that they are not able to walk away. Checking
+        # that an attendant has the right passenger is the handset's job, where
+        # the name is visible to one person who needs it.
+        primary = announce("welcome_aboard")
         secondary = (
             place_message(fleet.tmap, request.gate, arriving=False)
             if request.gate is not None

@@ -21,6 +21,17 @@ from enum import Enum
 # without either driver flinching, so we call a lane 0.9 m.
 LANE_WIDTH_M = 0.9
 
+#: The furthest a chair may travel with no guide line under it, crossing a
+#: surveyed break on heading and odometry alone.
+#:
+#: Short on purpose. Heading drifts and wheels slip, so the error grows with the
+#: distance, and a chair that has quietly rotated a few degrees over two metres
+#: arrives at the far side pointing past the line rather than at it. Two metres
+#: covers an expansion joint, a fire-shutter track and a security threshold,
+#: which is what this is for. A longer break is a floor-plan problem to fix with
+#: tape, not a number to raise here.
+MAX_DEAD_RECKONING_M = 2.0
+
 
 class NodeKind(Enum):
     JUNCTION = "junction"
@@ -90,6 +101,21 @@ class Segment:
     max_speed_mps: float = 1.2
     width_m: float = 1.8
     guide: Guide = Guide.MAGNETIC
+    #: Longest break in the guide line on this segment, in metres.
+    #:
+    #: Real terminal floors are not continuous. Expansion joints, fire-shutter
+    #: tracks and stainless security thresholds interrupt the line, and a chair
+    #: that stopped dead at every one would be useless. So a chair is allowed to
+    #: coast straight across a gap on heading and odometry alone.
+    #:
+    #: It is a property of the segment, surveyed, and not a global timeout, which
+    #: is the distinction that matters. A blanket "coast two metres whenever the
+    #: line disappears" cannot tell a surveyed expansion joint from a chair that
+    #: has genuinely wandered off the path — and in the second case it coasts two
+    #: metres further into whatever it wandered towards. Here the floor plan says
+    #: where a gap is and how long it is, and a chair that loses the line
+    #: anywhere else stops.
+    gap_m: float = 0.0
 
     @property
     def capacity(self) -> int:
@@ -100,6 +126,11 @@ class Segment:
         is a routing input and not just a note on a drawing.
         """
         return max(1, int(self.width_m // LANE_WIDTH_M))
+
+    @property
+    def may_dead_reckon(self) -> bool:
+        """Is there a surveyed break in the line here at all?"""
+        return self.gap_m > 0.0
 
     def other_end(self, node_id: str) -> str:
         if node_id == self.a:
@@ -136,6 +167,7 @@ class TerminalMap:
         width_m: float = 1.8,
         guide: Guide = Guide.MAGNETIC,
         length_m: float | None = None,
+        gap_m: float = 0.0,
     ) -> Segment:
         """Lay a guide line between two nodes.
 
@@ -159,6 +191,7 @@ class TerminalMap:
             max_speed_mps=max_speed_mps,
             width_m=width_m,
             guide=guide,
+            gap_m=gap_m,
         )
         self.segments[segment.id] = segment
         self._adjacency[a].append(segment.id)
@@ -215,6 +248,27 @@ class TerminalMap:
             if node.tag_id is None:
                 problems.append(
                     f"{node.kind.value} {node.id} has no floor tag, so arrival cannot be confirmed"
+                )
+
+        for segment in self.segments.values():
+            if segment.gap_m <= 0.0:
+                continue
+            if segment.gap_m > MAX_DEAD_RECKONING_M:
+                problems.append(
+                    f"segment {segment.id} declares a {segment.gap_m:.1f} m break in the "
+                    f"guide line, beyond the {MAX_DEAD_RECKONING_M:.1f} m a chair may "
+                    f"cross on heading and odometry alone"
+                )
+            if segment.gap_m >= segment.length_m:
+                problems.append(
+                    f"segment {segment.id} is {segment.length_m:.1f} m long and declares a "
+                    f"{segment.gap_m:.1f} m break, so there is no line on it to reacquire"
+                )
+            if segment.guide is Guide.RFID:
+                problems.append(
+                    f"segment {segment.id} is marked by sparse RFID, which is already "
+                    f"dead reckoning between tags; declaring a gap on top of it is "
+                    f"double-counting the distance travelled blind"
                 )
 
         docks = self.nodes_of_kind(NodeKind.DOCK)

@@ -45,6 +45,37 @@ through a crowded security hall and is safe to run faster down an empty pier.
 
 The lap belt is a comfort and posture aid. Do not rely on it being fastened.
 
+## When the controller reboots mid-journey
+
+Twelve-volt motors starting or reversing under load pull a surge, and a surge on
+a shared rail sags the supply. Below about 3 V the ESP32's brownout detector
+fires and the board restarts. It takes a fraction of a second and it happens
+while somebody is sitting in the chair.
+
+The electrical half is ordinary and should be done: star ground rather than a
+daisy chain, bulk capacitance across the driver's own rail (470 µF or so, placed
+at the driver and not at the battery), a separate buck for the logic, and flyback
+protection so inductive kick does not get back onto the rail. **Do not disable
+the brownout detector to make the symptom go away.** It is the thing standing
+between a sagging rail and a controller executing nonsense.
+
+The half that protects the passenger is what the firmware does on the way back
+up, and it is a software decision rather than an electrical one:
+
+- **Come up stopped.** Motors off, brake applied. Never resume the command the
+  chair was executing before it reset, because nothing survived to say how far it
+  got through it.
+- **Come up lost.** A reset means the odometry is gone and the line may not be
+  under the sensor any more. The chair has no position until it reads a floor
+  tag, and the dispatcher must not route it until it has — the same rule that
+  applies after somebody drives it by hand (`position_known` in `fleet.py`).
+- **Say so.** A reset is logged and surfaced on the shift report. A chair that
+  quietly reboots twice an hour is a fault report, and the only way anybody finds
+  out is if it is counted.
+
+A chair that comes back up and carries on from memory is the dangerous version:
+it believes a position it cannot have, and drives confidently from it.
+
 ## Driving it by hand
 
 A guided chair that can only follow a line is not finished — it has to be moved

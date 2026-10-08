@@ -61,6 +61,7 @@ def to_dict(tmap: TerminalMap) -> dict:
                 "max_speed_mps": segment.max_speed_mps,
                 "width_m": segment.width_m,
                 "guide": segment.guide.value,
+                "gap_m": segment.gap_m,
             }
             for segment in tmap.segments.values()
         ],
@@ -153,6 +154,7 @@ def from_dict(data: dict) -> TerminalMap:
                 max_speed_mps=float(entry.get("max_speed_mps", 1.2)),
                 width_m=float(entry.get("width_m", 1.8)),
                 guide=guide,
+                gap_m=float(entry.get("gap_m", 0.0)),
             )
         except ValueError as exc:
             raise MapFileError(f"segment {a}-{b}: {exc}") from exc

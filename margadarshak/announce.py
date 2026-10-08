@@ -67,6 +67,17 @@ CATALOGUE: dict[str, dict[str, str]] = {
         "mr": "आपले स्वागत आहे, {name}.",
         "kok": "तुमकां येवकार, {name}.",
     },
+    # Shown on the chair's panel when somebody is getting in. Deliberately has no
+    # {name}: the panel faces a crowded terminal, and a name beside a wheelchair
+    # tells any passer-by both who somebody is and that they are vulnerable.
+    # Identity belongs on the attendant's handset. "welcome" keeps the name and
+    # is for the attendant and for speech close to the passenger, not the panel.
+    "welcome_aboard": {
+        "en": "Welcome. Please take a seat.",
+        "hi": "स्वागत है। कृपया बैठ जाइए।",
+        "mr": "स्वागत आहे. कृपया बसा.",
+        "kok": "येवकार. उपकार करून बसात.",
+    },
     "starting": {
         "en": "Please hold on. Starting now.",
         "hi": "कृपया पकड़कर बैठें। अब चल रहे हैं।",

@@ -87,6 +87,46 @@ Compare this against an imported autonomous wheelchair. **Get a real quote for
 one before claiming a multiple**: an unverified cost comparison is the fastest
 way to lose credibility with a technical judge.
 
+## Power, and the reboot it causes
+
+Motors starting or reversing under load pull a surge; a surge on a shared rail
+sags the supply; below about 3 V the ESP32 resets. Mid-transit, with a passenger
+in the seat.
+
+- **Star ground.** One point where the motor return and the logic return meet,
+  rather than a daisy chain in which the logic ground moves every time the motors
+  draw.
+- **Bulk capacitance at the driver**, not at the battery — 470 µF electrolytic
+  across the driver's supply, with a 100 nF ceramic beside it for the fast edges.
+  Capacitance is only useful where the current is drawn.
+- **A separate buck for the logic**, fed from the pack rather than from the
+  motor rail downstream of the driver.
+- **Flyback and TVS protection** so inductive kickback on switch-off does not end
+  up on the rail.
+- **Leave the brownout detector enabled.** Disabling it does not fix a sagging
+  rail; it removes the thing that stops the controller executing nonsense while
+  the rail is sagging.
+
+The firmware half — coming back up stopped, lost, and noisy about it — is in
+[`safety.md`](safety.md), and it matters more than the capacitors.
+
+## Sound, and how little of it to make
+
+A terminal is already loud: announcements, alarms, trolleys, people. A chair that
+beeps on every start and every obstacle adds to the noise a passenger is already
+struggling with, and the people most likely to be in this chair are the ones
+least able to filter it.
+
+- **The buzzer is for the emergency stop and nothing else.** Not arrival, not
+  departure, not an obstacle it handled by slowing down.
+- **The panel carries everything else**, which is the reason it is four languages
+  and high contrast rather than an indicator LED.
+- **Ramp the motors.** Smooth acceleration and deceleration is a comfort
+  requirement before it is a control one — see the braking note in `safety.md`.
+- **The estimate does not tick down second by second.** A number that keeps
+  changing reads as agitation to somebody already anxious; `screen.py` rounds it
+  and leaves it alone.
+
 ## What to build for the application, and what to build for the exhibition
 
 The application deadline and the exhibition are different bars.

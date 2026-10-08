@@ -44,6 +44,8 @@ Status words used below mean exactly this:
 | **Attendant joystick or paired phone** | Built / needs hardware | For repositioning and recovery: out of a jam, into a lift, round a works area, onto a stand. Capped at 0.6 m/s, refused while somebody is seated, and paired by pressing a button on the chair rather than over the network. |
 | **Dead man on every manual control** | Built | Motion lasts only while commands keep arriving. Let go, pocket the phone, walk out of range or drop the link and the chair stops within half a second. Nothing has to notice the operator left. |
 | **Driving by hand loses the chair's place** | Built | Steered off the guide path, the chair no longer knows where it is, so it is not dispatchable until it reads a floor tag. Routing from a node a chair is not standing at is how a guided system drives into a wall. |
+| **Surveyed breaks in the line** | Built | Expansion joints, fire-shutter tracks and security thresholds interrupt the guide line. A chair may coast across one on heading and odometry — but only where the survey declares a gap, and only up to 2 m. A blanket timeout cannot tell a joint from a chair that has wandered off the path, and would coast it 2 m further into whatever it wandered towards. |
+| **It comes back from a reset stopped and lost** | Built / needs firmware | A motor surge can brown out the controller mid-journey. On the way back up the chair stays stopped, treats its position as unknown until it reads a floor tag, and reports the reset. A chair that resumes from memory believes a position it cannot have. |
 | **An empty chair gives way** | Built | A jam between two chairs with nobody in them needs no attendant — it needs one of them to leave. It drops the corridor, hands back any passenger it was going to collect, and goes home. Without this, one jam between repositioning chairs stopped an entire simulated fleet for a whole day. |
 | **Deadlock escalation** | Built | Only when somebody is actually aboard: a passenger is not reversed out of a corridor. Two occupied chairs nose to nose call an attendant after 90 seconds. An honest mitigation, not a fix — the fix is passing bays in the floor plan. |
 | **A gate off this map is refused** | Built | If a flight boards somewhere the guide path does not reach, the scan is refused there and then. Finding out after the passenger is aboard strands them somewhere they cannot easily walk back from. A gate that moves off-map mid-journey diverts to the lounge and calls an attendant. |
@@ -96,7 +98,7 @@ Each of these is a decision, not a gap.
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,
 languages, caravans, pre-positioning, priority and reporting are working code
-with 271 tests behind them. Everything physical is unbuilt, and the regulatory
+with 277 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
 The build that demonstrates this at a table, for ₹4,759 (₹2,801 for one chair), is in

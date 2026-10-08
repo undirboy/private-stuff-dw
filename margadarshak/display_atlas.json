@@ -88,6 +88,114 @@
    "h": 16,
    "bits": "AAAAAAAAAAAAAAAAAEAAAA=="
   },
+  "welcome_aboard|kok|0|0": {
+   "text": "येवकार.",
+   "w": 35,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAACAAAAAAEAAAAAAIAAAAAAQAAAAA//n/3wAkEBCCACTQ3JIA5REangDNERKIAHzxMoQABBD0hgAEEBCCQAAAAAAAAAAAAAA="
+  },
+  "welcome_aboard|kok|0|1": {
+   "text": "उपकार",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/3//wJIEEICSNxSTEkaXiJJEkgiOTJEEgj0RgwIEEIAAAAAAAAAAA=="
+  },
+  "welcome_aboard|kok|0|2": {
+   "text": "करून",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf9//4AQCAEA3E8BARo0nwESJIkBMhCBAPQJgQAQAAEAAAAAAAAAAAA=="
+  },
+  "welcome_aboard|kok|0|3": {
+   "text": "बसात.",
+   "w": 29,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///gAQkgQA1JJ8AZfyRAFyEkQA8RJEABGSJAAQkhSAAAAAAAAAAAA=="
+  },
+  "welcome_aboard|mr|0|0": {
+   "text": "स्वागत",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/f/+AgiJBBJoiXwfiJlECIiJRAR4gUQCCIEkAAiBFAAAAAAAAAAAA=="
+  },
+  "welcome_aboard|mr|0|1": {
+   "text": "आहे.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAQAAAIAAAEAAACAM//ASSCACSeAOSQARyOAZSRAPSTAASYQAAGAAAAA"
+  },
+  "welcome_aboard|mr|0|2": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "welcome_aboard|mr|0|3": {
+   "text": "बसा.",
+   "w": 21,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAf//ABCSANSSAZfyAXISAPESABGSABCSQAAAAAAAA"
+  },
+  "welcome_aboard|hi|0|0": {
+   "text": "स्वागत",
+   "w": 30,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/f/+AgiJBBJoiXwfiJlECIiJRAR4gUQCCIEkAAiBFAAAAAAAAAAAA=="
+  },
+  "welcome_aboard|hi|0|1": {
+   "text": "है।",
+   "w": 15,
+   "h": 16,
+   "bits": "AAAAACAAEABwABgA/AgICHgIQAg4CEQITAhgCBgIAAA="
+  },
+  "welcome_aboard|hi|0|2": {
+   "text": "कृपया",
+   "w": 26,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf///wAQSJIA3EiSARpLkgESSzIBMjnyAPQIEgBwCBIAQAAAAHgAAAA=="
+  },
+  "welcome_aboard|hi|0|3": {
+   "text": "बैठ",
+   "w": 13,
+   "h": 16,
+   "bits": "AAAAACAAEABwABgAf/AEIDQgZOBdID0QBRAE4AAAAAA="
+  },
+  "welcome_aboard|hi|0|4": {
+   "text": "जाइए।",
+   "w": 32,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB///8CASCSAk8nkgJFJBICJSPWAjUgWAIZIEwCASaGAgABggIAAMIAAAAAAA=="
+  },
+  "welcome_aboard|en|0|0": {
+   "text": "Welcome.",
+   "w": 55,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMYQCAAAAADGMAgAAAAARiAIAAAAAE8ni8eLe8BJLM4szM5gaWhMCEiMIClPzAhIj+AwyAwISIwAMMxOLMiOIDDHi8eIi8QAAAAAAAAAAAAAAAAAAA=="
+  },
+  "welcome_aboard|en|0|1": {
+   "text": "Please",
+   "w": 38,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAB+IAAAAEMgAAAAQSAAAABBLx4c8EM5oSOYfjCBIQhAP58d+EAwIQMAQDijI4hALx2c8AAAAAAAAAAAAAA="
+  },
+  "welcome_aboard|en|0|2": {
+   "text": "take",
+   "w": 24,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAgAAAgAQAgA54m8SEtmQE5CR89+SElASMniZ2i8AAAAAAAA"
+  },
+  "welcome_aboard|en|0|3": {
+   "text": "a",
+   "w": 7,
+   "h": 16,
+   "bits": "AAAAAAAAAHiEBHyEjHYAAA=="
+  },
+  "welcome_aboard|en|0|4": {
+   "text": "seat.",
+   "w": 27,
+   "h": 16,
+   "bits": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEADnjzgBHNCQAQhAkADvz5AAGBCQARxRkADnjtkAAAAAAAAAAAA=="
+  },
   "starting|kok|0|0": {
    "text": "उपकार",
    "w": 32,

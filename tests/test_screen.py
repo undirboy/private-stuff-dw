@@ -154,15 +154,46 @@ def test_scanning_puts_the_gate_and_terminal_on_the_screen(fleet):
     assert "minute" in content.secondary["en"]
 
 
-def test_the_screen_greets_the_passenger_while_they_board(fleet):
+def test_the_screen_greets_without_naming_the_passenger(fleet):
+    """The panel welcomes them and says where they are going. Not who they are.
+
+    It faces a crowded terminal and is readable across it, so a name next to a
+    wheelchair tells a passer-by both who somebody is and that they cannot walk
+    away from attention they did not ask for.
+    """
     fleet.scan_boarding_pass(PEREIRA, pickup="kerb")
     fleet.run(duration_s=160)
 
     content = screen(fleet)
     assert fleet.chairs["CH-01"].state is ChairState.BOARDING
-    assert "Mrs Pereira" in content.primary["en"]
+    assert "Welcome" in content.primary["en"]
+    assert "Pereira" not in content.primary["en"]
     assert content.secondary is not None
     assert "Gate 4" in content.secondary["en"]
+
+
+def test_no_screen_in_any_state_or_language_shows_a_passengers_name(fleet):
+    """The invariant, checked across the whole journey rather than one moment.
+
+    A name reaching the panel through some state nobody thought about is exactly
+    how this sort of rule gets broken, so the run is driven end to end and every
+    screenful in every language is checked.
+    """
+    request = fleet.scan_boarding_pass(PEREIRA, pickup="kerb")
+    seen = 0
+    while fleet.now < 1500:
+        fleet.step()
+        content = screen(fleet)
+        for language in content.primary.by_language:
+            for line in content.lines(language):
+                assert "Pereira" not in line, f"a name reached the panel in {language}"
+        assert "name" not in content.primary.params
+        if content.secondary is not None:
+            assert "name" not in content.secondary.params
+        seen += 1
+        if request.delivered_s is not None and fleet.now > request.delivered_s + 120:
+            break
+    assert seen > 100, "the journey should have produced plenty of screenfuls"
 
 
 def test_arrival_is_announced(fleet):

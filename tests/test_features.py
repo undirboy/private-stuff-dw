@@ -539,3 +539,83 @@ def test_a_staged_chair_goes_home_before_it_goes_flat():
     f.run(duration_s=3600)
     assert find(f, "low_battery")
     assert f.tmap.nodes[chair.node].kind.value == "dock"
+
+
+# -- breaks in the guide line --------------------------------------------
+#
+# Real terminal floors are not continuous: expansion joints, fire-shutter tracks
+# and stainless security thresholds interrupt the line. A chair that stopped
+# dead at every one would be useless, so it may coast across — but only where
+# the survey says there is something to coast across.
+
+
+def test_a_surveyed_joint_is_allowed_and_a_long_one_is_not():
+    from margadarshak.graph import MAX_DEAD_RECKONING_M, Guide, Node, NodeKind, TerminalMap
+
+    def one_segment(**kwargs):
+        tmap = TerminalMap("joint")
+        tmap.add(Node("dock", NodeKind.DOCK, 0, 0, tag_id="D1"))
+        tmap.add(Node("gate", NodeKind.GATE, 8, 0, tag_id="G1"))
+        tmap.connect("dock", "gate", length_m=8.0, **kwargs)
+        return tmap
+
+    assert one_segment(gap_m=0.4).validate() == [], "an expansion joint is normal"
+
+    too_far = one_segment(gap_m=MAX_DEAD_RECKONING_M + 0.5).validate()
+    assert any("beyond" in problem for problem in too_far), (
+        "a break longer than a chair can cross blind has to be caught by the survey, "
+        "not discovered by a passenger"
+    )
+
+
+def test_a_gap_longer_than_its_own_segment_is_refused():
+    from margadarshak.graph import Node, NodeKind, TerminalMap
+
+    tmap = TerminalMap("joint")
+    tmap.add(Node("dock", NodeKind.DOCK, 0, 0, tag_id="D1"))
+    tmap.add(Node("gate", NodeKind.GATE, 1, 0, tag_id="G1"))
+    tmap.connect("dock", "gate", length_m=1.0, gap_m=1.5)
+
+    assert any("no line on it to reacquire" in p for p in tmap.validate())
+
+
+def test_declaring_a_gap_on_an_rfid_segment_is_refused():
+    """Sparse RFID is already dead reckoning; a gap on top double-counts it."""
+    from margadarshak.graph import Guide, Node, NodeKind, TerminalMap
+
+    tmap = TerminalMap("joint")
+    tmap.add(Node("dock", NodeKind.DOCK, 0, 0, tag_id="D1"))
+    tmap.add(Node("gate", NodeKind.GATE, 8, 0, tag_id="G1"))
+    tmap.connect("dock", "gate", length_m=8.0, guide=Guide.RFID, gap_m=0.4)
+
+    assert any("double-counting" in p for p in tmap.validate())
+
+
+def test_a_gap_is_a_property_of_the_floor_not_a_global_timeout():
+    """The distinction the whole design turns on.
+
+    A blanket "coast two metres whenever the line disappears" cannot tell a
+    surveyed expansion joint from a chair that has wandered off the path — and
+    in the second case it coasts two metres further into whatever it wandered
+    towards. So the map says where a gap is, and a chair that loses the line
+    anywhere else has no permission to keep going.
+    """
+    from margadarshak import build_example_terminal
+
+    tmap = build_example_terminal()
+    assert all(not s.may_dead_reckon for s in tmap.segments.values()), (
+        "the example terminal declares no breaks, so no chair on it may coast blind"
+    )
+
+
+def test_a_gap_survives_the_round_trip_through_a_map_file():
+    """The airport edits its own map; a surveyed joint must not be lost in the post."""
+    from margadarshak.graph import Node, NodeKind, TerminalMap
+    from margadarshak.mapfile import from_dict, to_dict
+
+    tmap = TerminalMap("joint")
+    tmap.add(Node("dock", NodeKind.DOCK, 0, 0, tag_id="D1"))
+    tmap.add(Node("gate", NodeKind.GATE, 8, 0, tag_id="G1"))
+    tmap.connect("dock", "gate", length_m=8.0, gap_m=0.45)
+
+    assert from_dict(to_dict(tmap)).segments["dock~gate"].gap_m == 0.45

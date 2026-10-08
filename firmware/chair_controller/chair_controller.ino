@@ -53,6 +53,31 @@ static uint8_t panel_frame[PANEL_BYTES];
 void panel_blit(void);
 
 // ---------------------------------------------------------------------------
+// Coming back from a reset
+// ---------------------------------------------------------------------------
+//
+// Twelve-volt motors starting or reversing under load sag a shared rail, and
+// below about 3 V this chip resets — mid-transit, with somebody in the seat. The
+// capacitors and the star ground belong in the wiring (docs/hardware.md). What
+// belongs here is what happens on the way back up, and there are three rules.
+//
+//   Come up STOPPED. Never resume the command in flight before the reset:
+//   nothing survived to say how far through it the chair had got.
+//
+//   Come up LOST. The odometry is gone and the line may no longer be under the
+//   sensor. The chair has no position until it reads a floor tag, and the
+//   dispatcher will not route it until it reports one.
+//
+//   Come up NOISY. Report the reset reason on the first message, so a chair
+//   resetting twice an hour becomes a fault report instead of a mystery.
+//
+// Do not disable the brownout detector to quieten the symptom. It is what stops
+// this chip executing nonsense while the rail is sagging.
+
+static bool position_known = false;   // false until a floor tag says otherwise
+static bool drive_permitted = false;  // false until the dispatcher says otherwise
+
+// ---------------------------------------------------------------------------
 // Tuning
 // ---------------------------------------------------------------------------
 
