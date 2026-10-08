@@ -173,6 +173,11 @@ body {
 header { margin-bottom: 28px; }
 h1 { font-size: 24px; font-weight: 650; margin: 0 0 4px; letter-spacing: -0.01em; }
 .sub { color: var(--text-secondary); font-size: 14px; margin: 0; }
+.intro { border-left: 3px solid var(--carrying); padding: 2px 0 2px 16px;
+         margin: 24px 0 4px; max-width: 62ch; }
+.intro p { color: var(--text-secondary); font-size: 14.5px; margin: 0 0 10px; }
+.intro p:last-child { margin-bottom: 0; }
+.intro strong { color: var(--text-primary); font-weight: 600; }
 h2 {
   font-size: 13px; font-weight: 650; text-transform: uppercase;
   letter-spacing: 0.06em; color: var(--text-secondary);
@@ -439,8 +444,16 @@ def _chairs_table(fleet: Fleet) -> str:
     )
 
 
-def render(fleet: Fleet, *, title: str = "Shift report") -> str:
-    """Build the dashboard HTML for a completed run."""
+def render(fleet: Fleet, *, title: str = "Shift report", intro: str | None = None) -> str:
+    """Build the dashboard HTML for a completed run.
+
+    ``intro`` is HTML dropped in under the heading, for a copy that will be
+    shared with somebody who has no idea what they are looking at. The report
+    an operator opens needs no such thing — they know what a shift is — but a
+    page sent to a judge or a procurement officer lands cold, and a dashboard
+    that does not say it is a simulation is a dashboard that implies it is not.
+    """
+    intro_block = f'<div class="intro">{intro}</div>' if intro else ""
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -456,6 +469,7 @@ def render(fleet: Fleet, *, title: str = "Shift report") -> str:
   <p class="sub">{_esc(fleet.tmap.name)} &middot; {len(fleet.chairs)} chairs &middot;
      {_elapsed(fleet.now)} elapsed</p>
 </header>
+{intro_block}
 
 <div class="kpis">{_kpis(fleet)}</div>
 
@@ -483,8 +497,14 @@ def render(fleet: Fleet, *, title: str = "Shift report") -> str:
 """
 
 
-def render_dashboard(fleet: Fleet, path: str | pathlib.Path, *, title: str = "Shift report") -> pathlib.Path:
+def render_dashboard(
+    fleet: Fleet,
+    path: str | pathlib.Path,
+    *,
+    title: str = "Shift report",
+    intro: str | None = None,
+) -> pathlib.Path:
     """Render and write the dashboard. Returns the path written."""
     out = pathlib.Path(path)
-    out.write_text(render(fleet, title=title), encoding="utf-8")
+    out.write_text(render(fleet, title=title, intro=intro), encoding="utf-8")
     return out

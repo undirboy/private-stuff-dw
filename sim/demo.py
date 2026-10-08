@@ -42,7 +42,9 @@ from margadarshak.screen import screen_for
 HOUR = 60 * 60
 
 
-def banner(text: str) -> None:
+def banner(text: str, narrate: bool = True) -> None:
+    if not narrate:
+        return
     print()
     print(f"--- {text} " + "-" * max(0, 68 - len(text)))
 
@@ -63,15 +65,26 @@ def boarding_pass(family: str, given: str, title: str, pnr: str, carrier: str, n
     )
 
 
-def main() -> int:
+def run_shift(narrate: bool = True) -> Fleet | None:
+    """Play the scripted shift and hand back the fleet it finished with.
+
+    Separated from :func:`main` so the same scenario can be rendered
+    elsewhere — ``pitch/build_demo_page.py`` wraps it for a reader who has
+    never heard of the project — without a second copy of the script drifting
+    away from this one. Returns None if the map fails validation.
+    """
+    def say(*args, **kwargs):
+        if narrate:
+            print(*args, **kwargs)
+
     tmap = build_example_terminal()
     problems = tmap.validate()
     if problems:
-        print("Map validation failed:")
+        say("Map validation failed:")
         for problem in problems:
-            print(f"  ! {problem}")
-        return 1
-    print(f"Map: {tmap.name} — {len(tmap.nodes)} nodes, {len(tmap.segments)} segments, validated.")
+            say(f"  ! {problem}")
+        return None
+    say(f"Map: {tmap.name} — {len(tmap.nodes)} nodes, {len(tmap.segments)} segments, validated.")
 
     board = FlightBoard()
     board.upsert("AI612", status=FlightStatus.GATE_ASSIGNED, gate="g4",
@@ -92,17 +105,17 @@ def main() -> int:
     fleet.register_call_point("g3", label="Gate 3", default_destination=None)
     fleet.register_call_point("lounge", label="Assistance lounge", default_destination="kerb")
 
-    banner("Before the rush: chairs move towards where the work will be")
+    banner("Before the rush: chairs move towards where the work will be", narrate)
     demand = forecast_demand(board, fleet.now, horizon_s=45 * 60)
     for point in demand:
-        print(f"  forecast {point.expected_requests:.1f} requests at {point.node}")
+        say(f"  forecast {point.expected_requests:.1f} requests at {point.node}")
     moves = plan_staging(fleet, demand, staging_nodes=["sec_q", "sp1"])
     for move in moves:
-        print(f"  {move}")
+        say(f"  {move}")
     fleet.apply_staging(moves)
     fleet.run(duration_s=420)
 
-    banner("Two passengers scan at the kerb. They say nothing and type nothing")
+    banner("Two passengers scan at the kerb. They say nothing and type nothing", narrate)
     fleet.scan_boarding_pass(
         boarding_pass("PEREIRA", "MARIA", "MRS", "ABC123", "AI", "612"), pickup="kerb"
     )
@@ -110,71 +123,79 @@ def main() -> int:
         boarding_pass("NAIK", "SURESH", "MR", "XYZ789", "6E", "204"), pickup="kerb"
     )
 
-    banner("What the chair's screen shows after a scan")
+    banner("What the chair's screen shows after a scan", narrate)
     fleet.run(duration_s=170)  # Mrs Pereira is aboard and under way
     content = screen_for(fleet, fleet.chairs["CH-01"])
     for language in DISPLAY_ORDER:
-        print(f"  [{language:3}] " + "  /  ".join(content.lines(language)))
+        say(f"  [{language:3}] " + "  /  ".join(content.lines(language)))
 
-    banner("A third scans, but her gate has not been announced yet")
+    banner("A third scans, but her gate has not been announced yet", narrate)
     fleet.scan_boarding_pass(
         boarding_pass("FERNANDES", "ANA", "MS", "QQQ111", "SG", "118"), pickup="kerb"
     )
 
-    banner("Someone scans a pass for a flight that is not on today's board")
+    banner("Someone scans a pass for a flight that is not on today's board", narrate)
     try:
         fleet.scan_boarding_pass(
             boarding_pass("KHAN", "IMRAN", "MR", "ZZZ000", "AI", "999"), pickup="kerb"
         )
     except ScanRejected as rejected:
-        print(f"  chair screen: {rejected.message}")
-        print(f"  logged as:    {rejected.reason}")
+        say(f"  chair screen: {rejected.message}")
+        say(f"  logged as:    {rejected.reason}")
 
-    banner("The airline moves a gate while a chair is already carrying someone")
+    banner("The airline moves a gate while a chair is already carrying someone", narrate)
     board.assign_gate("AI612", "g2")
-    print("  screen now reads: " + screen_for(fleet, fleet.chairs["CH-01"]).primary["en"])
+    say("  screen now reads: " + screen_for(fleet, fleet.chairs["CH-01"]).primary["en"])
     fleet.run(duration_s=480)
 
-    banner("SG118 finally gets a gate. A chair goes back to the lounge for her")
+    banner("SG118 finally gets a gate. A chair goes back to the lounge for her", narrate)
     board.assign_gate("SG118", "g5")
     fleet.run(duration_s=900)
 
-    banner("A family of three travels together, as one caravan")
+    banner("A family of three travels together, as one caravan", narrate)
     fleet.request_group(
         ["Mr Shaikh", "Mrs Shaikh", "Master Shaikh"], "UK880", pickup="kerb", gate="g5"
     )
     fleet.run(duration_s=240)
 
-    banner("A spill closes the spine under a chair that is already carrying someone")
+    banner("A spill closes the spine under a chair that is already carrying someone", narrate)
     fleet.block_segment("sp2~sp3", "cleaning in progress")
     fleet.run(duration_s=600)
     fleet.clear_segment("sp2~sp3")
     fleet.run(duration_s=600)
 
-    banner("Someone at Gate 3 presses the call button")
+    banner("Someone at Gate 3 presses the call button", narrate)
     stranded = fleet.press_call_button("g3", passenger="Mr Dias")
     fleet.run(duration_s=600)
-    print("  chair is here, waiting to be told where to go:")
-    print(f"  {announce('welcome', name='Mr Dias')['kok']}")
+    say("  chair is here, waiting to be told where to go:")
+    say(f"  {announce('welcome', name='Mr Dias')['kok']}")
     fleet.set_destination(stranded, "kerb")
     fleet.run(duration_s=1200)
 
-    banner("Timeline")
+    banner("Timeline", narrate)
     for event in fleet.events:
-        print(event)
+        say(event)
 
-    banner("Shift summary")
+    banner("Shift summary", narrate)
     summary = fleet.summary()
-    print(f"  journeys served     {summary['delivered']}/{summary['requests']}")
-    print(f"  mean wait for chair {summary['mean_wait_s']:.0f} s")
-    print(f"  worst wait          {summary['worst_wait_s']:.0f} s")
-    print(f"  attendant call-outs {summary['escalations']}")
-    print()
+    say(f"  journeys served     {summary['delivered']}/{summary['requests']}")
+    say(f"  mean wait for chair {summary['mean_wait_s']:.0f} s")
+    say(f"  worst wait          {summary['worst_wait_s']:.0f} s")
+    say(f"  attendant call-outs {summary['escalations']}")
+    say()
     for chair in fleet.chairs.values():
-        print(
+        say(
             f"  {chair.id}  {chair.state.value:<12} at {chair.node:<8} "
             f"battery {chair.battery_fraction:.0%}"
         )
+
+    return fleet
+
+
+def main() -> int:
+    fleet = run_shift()
+    if fleet is None:
+        return 1
 
     out = render_dashboard(
         fleet,

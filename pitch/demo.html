@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Margadarshak — a shift, as an airport operator would see it</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface:        #fcfcfb;
+  --panel:          #ffffff;
+  --rule:           #e4e3df;
+  --text-primary:   #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted:     #76756f;
+  --carrying:       #1c5cab;
+  --moving:         #3987e5;
+  --available:      #86b6ef;
+  --stopped:        #d03b3b;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --surface:        #1a1a19;
+    --panel:          #232322;
+    --rule:           #383835;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #94938a;
+    --carrying:       #9ec5f4;
+    --moving:         #5598e7;
+    --available:      #184f95;
+    --stopped:        #d03b3b;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface:        #1a1a19;
+  --panel:          #232322;
+  --rule:           #383835;
+  --text-primary:   #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted:     #94938a;
+  --carrying:       #9ec5f4;
+  --moving:         #5598e7;
+  --available:      #184f95;
+  --stopped:        #d03b3b;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text-primary);
+  font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 1040px; margin: 0 auto; padding: 32px 16px 64px; }
+header { margin-bottom: 28px; }
+h1 { font-size: 24px; font-weight: 650; margin: 0 0 4px; letter-spacing: -0.01em; }
+.sub { color: var(--text-secondary); font-size: 14px; margin: 0; }
+.intro { border-left: 3px solid var(--carrying); padding: 2px 0 2px 16px;
+         margin: 24px 0 4px; max-width: 62ch; }
+.intro p { color: var(--text-secondary); font-size: 14.5px; margin: 0 0 10px; }
+.intro p:last-child { margin-bottom: 0; }
+.intro strong { color: var(--text-primary); font-weight: 600; }
+h2 {
+  font-size: 13px; font-weight: 650; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--text-secondary);
+  margin: 36px 0 12px;
+}
+.card {
+  background: var(--panel); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 18px;
+}
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.kpi { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; }
+.kpi .value { font-size: 30px; font-weight: 640; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.kpi .label { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+.kpi .note { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 14px; }
+.legend span { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--text-secondary); }
+.swatch { width: 14px; height: 14px; border-radius: 3px; flex: none; }
+.swatch.carrying  { background: var(--carrying); }
+.swatch.moving    { background: var(--moving); }
+.swatch.available { background: var(--available); }
+.swatch.stopped {
+  background: var(--stopped);
+  background-image: repeating-linear-gradient(45deg,
+    rgba(255,255,255,.55) 0 2px, transparent 2px 5px);
+}
+
+.rows { display: grid; gap: 8px; }
+.row { display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: 12px; }
+.row .name { font-size: 13px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+.track { position: relative; height: 22px; background: var(--surface); border-radius: 4px; }
+.seg {
+  position: absolute; top: 0; bottom: 0;
+  border-right: 2px solid var(--panel);
+  min-width: 2px;
+}
+.seg:first-of-type { border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
+.seg:last-of-type { border-right: 0; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+.seg.carrying  { background: var(--carrying); }
+.seg.moving    { background: var(--moving); }
+.seg.available { background: var(--available); }
+.seg.stopped {
+  background: var(--stopped);
+  background-image: repeating-linear-gradient(45deg,
+    rgba(255,255,255,.55) 0 2px, transparent 2px 5px);
+}
+.axis {
+  display: grid; grid-template-columns: 76px 1fr; gap: 12px;
+  margin-top: 8px; font-size: 12px; color: var(--text-muted);
+}
+.ticks { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; }
+
+.bars { display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 150px 1fr 62px; align-items: center; gap: 12px; font-size: 13px; }
+.bar-row .who { color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track { background: var(--surface); border-radius: 4px; height: 18px; }
+.bar { height: 18px; background: var(--carrying); border-radius: 0 4px 4px 0; min-width: 3px; }
+.bar-row .num { text-align: right; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 520px; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; color: var(--text-secondary); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+
+[data-tip] { cursor: default; }
+#tip {
+  position: fixed; pointer-events: none; opacity: 0; transition: opacity .1s;
+  background: var(--text-primary); color: var(--surface);
+  padding: 6px 9px; border-radius: 6px; font-size: 12px; white-space: nowrap; z-index: 9;
+}
+footer { margin-top: 40px; color: var(--text-muted); font-size: 12px; }
+@media (max-width: 560px) {
+  .wrap { padding: 24px 16px 48px; }
+  .row { grid-template-columns: 52px 1fr; gap: 8px; }
+  .axis { grid-template-columns: 52px 1fr; gap: 8px; }
+  .ticks span:nth-child(even) { display: none; }
+  .bar-row { grid-template-columns: 88px 1fr 48px; gap: 8px; }
+  .card { padding: 14px; }
+  .kpi .value { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Margadarshak — a shift, as an airport operator would see it</h1>
+  <p class="sub">Example Domestic Terminal &middot; 4 chairs &middot;
+     1h 26m elapsed</p>
+</header>
+<div class="intro">
+<p><strong>This is the output of a working dispatcher, not a mock-up.</strong>
+Margadarshak is a wheelchair that takes airport passengers to their gate by
+following a guide line laid into the terminal floor. The chair itself stays
+deliberately simple; everything requiring judgement — which chair, which
+corridor, which gate, whose battery — happens here.</p>
+
+<p>The shift below was produced by running <code>python3 -m sim.demo</code>
+against an example terminal. It covers the situations that are hard to show with
+a model chair on a table: a passenger who scans a boarding pass and says nothing
+else, a gate that has not been announced yet, a gate that <em>moves</em> while
+somebody is being carried to it, a family travelling as one caravan, a call
+button at a gate, chairs moving towards the kerb before a rush, a corridor closed
+under a moving chair, and chairs returning themselves to charge.</p>
+
+<p><strong>Nothing here has carried a real passenger.</strong> The dispatcher is
+built and covered by 214 automated tests. The hardware is designed, drawn to
+4&nbsp;mm MDF and costed at ₹4,759 for two chairs — and not yet cut. It is being
+built for the December exhibition.</p>
+</div>
+
+<div class="kpis"><div class="kpi"><div class="value">8/8</div><div class="label">Journeys completed</div><div class="note">0 still outstanding</div></div>
+<div class="kpi"><div class="value">2:58</div><div class="label">Mean wait for a chair</div><div class="note">from asking to being collected</div></div>
+<div class="kpi"><div class="value">4:04</div><div class="label">Worst wait</div><div class="note">the number an SLA is written against</div></div>
+<div class="kpi"><div class="value">12%</div><div class="label">Fleet time carrying</div><div class="note">9% repositioning empty</div></div>
+<div class="kpi"><div class="value">0</div><div class="label">Attendant call-outs</div><div class="note">no chair needed a human</div></div></div>
+
+<h2>How the fleet spent the shift</h2>
+<div class="card"><div class="legend"><span><i class="swatch carrying"></i>Carrying a passenger</span><span><i class="swatch moving"></i>Repositioning empty</span><span><i class="swatch available"></i>Available</span><span><i class="swatch stopped"></i>Stopped</span></div><div class="rows"><div class="row"><div class="name">CH-01</div><div class="track"><div class="seg available" style="left:0.000%;width:0.250%" data-tip="CH-01 · Available · 0:00–0:01 (0:01)"></div><div class="seg moving" style="left:0.019%;width:2.898%" data-tip="CH-01 · Repositioning empty · 0:01–2:32 (2:31)"></div><div class="seg available" style="left:2.917%;width:5.163%" data-tip="CH-01 · Available · 2:32–7:01 (4:29)"></div><div class="seg moving" style="left:8.081%;width:0.883%" data-tip="CH-01 · Repositioning empty · 7:01–7:47 (0:46)"></div><div class="seg carrying" style="left:8.964%;width:4.299%" data-tip="CH-01 · Carrying a passenger · 7:47–11:31 (3:44)"></div><div class="seg moving" style="left:13.263%;width:1.152%" data-tip="CH-01 · Repositioning empty · 11:31–12:31 (1:00)"></div><div class="seg available" style="left:14.415%;width:6.142%" data-tip="CH-01 · Available · 12:31–17:51 (5:20)"></div><div class="seg moving" style="left:20.557%;width:1.766%" data-tip="CH-01 · Repositioning empty · 17:51–19:23 (1:32)"></div><div class="seg carrying" style="left:22.322%;width:3.090%" data-tip="CH-01 · Carrying a passenger · 19:23–22:04 (2:41)"></div><div class="seg moving" style="left:25.413%;width:0.825%" data-tip="CH-01 · Repositioning empty · 22:04–22:47 (0:43)"></div><div class="seg available" style="left:26.238%;width:11.593%" data-tip="CH-01 · Available · 22:47–32:51 (10:04)"></div><div class="seg moving" style="left:37.831%;width:3.800%" data-tip="CH-01 · Repositioning empty · 32:51–36:09 (3:18)"></div><div class="seg carrying" style="left:41.631%;width:4.856%" data-tip="CH-01 · Carrying a passenger · 36:09–40:22 (4:13)"></div><div class="seg stopped" style="left:46.488%;width:0.250%" data-tip="CH-01 · Stopped · 40:22–40:33 (0:11)"></div><div class="seg carrying" style="left:46.699%;width:0.921%" data-tip="CH-01 · Carrying a passenger · 40:33–41:21 (0:48)"></div><div class="seg moving" style="left:47.620%;width:0.250%" data-tip="CH-01 · Repositioning empty · 41:21–41:22 (0:01)"></div><div class="seg stopped" style="left:47.639%;width:0.365%" data-tip="CH-01 · Stopped · 41:22–41:41 (0:19)"></div><div class="seg moving" style="left:48.004%;width:0.806%" data-tip="CH-01 · Repositioning empty · 41:41–42:23 (0:42)"></div><div class="seg available" style="left:48.810%;width:16.660%" data-tip="CH-01 · Available · 42:23–56:51 (14:28)"></div><div class="seg moving" style="left:65.470%;width:1.382%" data-tip="CH-01 · Repositioning empty · 56:51–58:03 (1:12)"></div><div class="seg carrying" style="left:66.852%;width:13.839%" data-tip="CH-01 · Carrying a passenger · 58:03–70:04 (12:01)"></div><div class="seg moving" style="left:80.691%;width:2.706%" data-tip="CH-01 · Repositioning empty · 70:04–72:25 (2:21)"></div><div class="seg available" style="left:83.397%;width:16.603%" data-tip="CH-01 · Available · 72:25–86:50 (14:25)"></div></div></div><div class="row"><div class="name">CH-02</div><div class="track"><div class="seg available" style="left:0.000%;width:0.250%" data-tip="CH-02 · Available · 0:00–0:01 (0:01)"></div><div class="seg stopped" style="left:0.019%;width:0.250%" data-tip="CH-02 · Stopped · 0:01–0:14 (0:13)"></div><div class="seg moving" style="left:0.269%;width:1.593%" data-tip="CH-02 · Repositioning empty · 0:14–1:37 (1:23)"></div><div class="seg available" style="left:1.862%;width:6.219%" data-tip="CH-02 · Available · 1:37–7:01 (5:24)"></div><div class="seg moving" style="left:8.081%;width:2.188%" data-tip="CH-02 · Repositioning empty · 7:01–8:55 (1:54)"></div><div class="seg carrying" style="left:10.269%;width:4.012%" data-tip="CH-02 · Carrying a passenger · 8:55–12:24 (3:29)"></div><div class="seg moving" style="left:14.280%;width:0.864%" data-tip="CH-02 · Repositioning empty · 12:24–13:09 (0:45)"></div><div class="seg available" style="left:15.144%;width:22.687%" data-tip="CH-02 · Available · 13:09–32:51 (19:42)"></div><div class="seg moving" style="left:37.831%;width:2.687%" data-tip="CH-02 · Repositioning empty · 32:51–35:11 (2:20)"></div><div class="seg carrying" style="left:40.518%;width:5.777%" data-tip="CH-02 · Carrying a passenger · 35:11–40:12 (5:01)"></div><div class="seg moving" style="left:46.296%;width:0.825%" data-tip="CH-02 · Repositioning empty · 40:12–40:55 (0:43)"></div><div class="seg available" style="left:47.121%;width:52.879%" data-tip="CH-02 · Available · 40:55–86:50 (45:55)"></div></div></div><div class="row"><div class="name">CH-03</div><div class="track"><div class="seg available" style="left:0.000%;width:11.344%" data-tip="CH-03 · Available · 0:00–9:51 (9:51)"></div><div class="seg moving" style="left:11.344%;width:3.800%" data-tip="CH-03 · Repositioning empty · 9:51–13:09 (3:18)"></div><div class="seg carrying" style="left:15.144%;width:4.933%" data-tip="CH-03 · Carrying a passenger · 13:09–17:26 (4:17)"></div><div class="seg moving" style="left:20.077%;width:1.747%" data-tip="CH-03 · Repositioning empty · 17:26–18:57 (1:31)"></div><div class="seg available" style="left:21.823%;width:16.008%" data-tip="CH-03 · Available · 18:57–32:51 (13:54)"></div><div class="seg moving" style="left:37.831%;width:3.800%" data-tip="CH-03 · Repositioning empty · 32:51–36:09 (3:18)"></div><div class="seg carrying" style="left:41.631%;width:4.856%" data-tip="CH-03 · Carrying a passenger · 36:09–40:22 (4:13)"></div><div class="seg stopped" style="left:46.488%;width:0.250%" data-tip="CH-03 · Stopped · 40:22–40:32 (0:10)"></div><div class="seg carrying" style="left:46.679%;width:0.921%" data-tip="CH-03 · Carrying a passenger · 40:32–41:20 (0:48)"></div><div class="seg moving" style="left:47.601%;width:0.825%" data-tip="CH-03 · Repositioning empty · 41:20–42:03 (0:43)"></div><div class="seg available" style="left:48.426%;width:51.574%" data-tip="CH-03 · Available · 42:03–86:50 (44:47)"></div></div></div><div class="row"><div class="name">CH-04</div><div class="track"><div class="seg available" style="left:0.000%;width:100.000%" data-tip="CH-04 · Available · 0:00–86:50 (86:50)"></div></div></div></div><div class="axis"><div></div><div class="ticks"><span>0:00</span><span>21:42</span><span>43:25</span><span>65:07</span><span>86:50</span></div></div></div>
+
+<h2>What each passenger waited</h2>
+<div class="card"><div class="bars"><div class="bar-row"><div class="who">Mrs Pereira</div><div class="bar-track"><div class="bar" style="width:37.70%" data-tip="Mrs Pereira waited 1:32 for CH-01"></div></div><div class="num">1:32</div></div><div class="bar-row"><div class="who">Mr Naik</div><div class="bar-track"><div class="bar" style="width:65.57%" data-tip="Mr Naik waited 2:40 for CH-02"></div></div><div class="num">2:40</div></div><div class="bar-row"><div class="who">Ms Fernandes</div><div class="bar-track"><div class="bar" style="width:100.00%" data-tip="Ms Fernandes waited 4:04 for CH-03"></div></div><div class="num">4:04</div></div><div class="bar-row"><div class="who">Ms Fernandes</div><div class="bar-track"><div class="bar" style="width:56.56%" data-tip="Ms Fernandes waited 2:18 for CH-01"></div></div><div class="num">2:18</div></div><div class="bar-row"><div class="who">Mr Shaikh</div><div class="bar-track"><div class="bar" style="width:76.23%" data-tip="Mr Shaikh waited 3:06 for CH-02"></div></div><div class="num">3:06</div></div><div class="bar-row"><div class="who">Mrs Shaikh</div><div class="bar-track"><div class="bar" style="width:100.00%" data-tip="Mrs Shaikh waited 4:04 for CH-01"></div></div><div class="num">4:04</div></div><div class="bar-row"><div class="who">Master Shaikh</div><div class="bar-track"><div class="bar" style="width:100.00%" data-tip="Master Shaikh waited 4:04 for CH-03"></div></div><div class="num">4:04</div></div><div class="bar-row"><div class="who">Mr Dias</div><div class="bar-track"><div class="bar" style="width:48.36%" data-tip="Mr Dias waited 1:58 for CH-01"></div></div><div class="num">1:58</div></div></div></div>
+
+<h2>Chairs</h2>
+<div class="card"><div class="scroll"><table><thead><tr><th>Chair</th><th class='num'>Carrying a passenger</th><th class='num'>Repositioning empty</th><th class='num'>Available</th><th class='num'>Stopped</th><th class='num'>Battery</th><th>Now at</th></tr></thead><tbody><tr><td>CH-01</td><td class="num">27%</td><td class="num">16%</td><td class="num">56%</td><td class="num">1%</td><td class="num">100%</td><td>dock_w</td></tr><tr><td>CH-02</td><td class="num">10%</td><td class="num">8%</td><td class="num">82%</td><td class="num">0%</td><td class="num">100%</td><td>dock_e</td></tr><tr><td>CH-03</td><td class="num">11%</td><td class="num">10%</td><td class="num">79%</td><td class="num">0%</td><td class="num">100%</td><td>dock_e</td></tr><tr><td>CH-04</td><td class="num">0%</td><td class="num">0%</td><td class="num">100%</td><td class="num">0%</td><td class="num">100%</td><td>dock_e</td></tr></tbody></table></div></div>
+
+<h2>Journeys</h2>
+<div class="card"><div class="scroll"><table><thead><tr><th>Ref</th><th>Passenger</th><th>Flight</th><th>Journey</th><th>Chair</th><th class='num'>Waited</th><th class='num'>Delivered</th></tr></thead><tbody><tr><td>R001</td><td>Mrs Pereira</td><td>AI612</td><td>kerb &rarr; g2</td><td>CH-01</td><td class="num">1:32</td><td class="num">11:01</td></tr><tr><td>R002</td><td>Mr Naik</td><td>6E204</td><td>kerb &rarr; g1</td><td>CH-02</td><td class="num">2:40</td><td class="num">11:54</td></tr><tr><td>R003</td><td>Ms Fernandes</td><td>SG118</td><td>kerb &rarr; lounge</td><td>CH-03</td><td class="num">4:04</td><td class="num">16:56</td></tr><tr><td>R004</td><td>Ms Fernandes</td><td>SG118</td><td>lounge &rarr; g5</td><td>CH-01</td><td class="num">2:18</td><td class="num">21:34</td></tr><tr><td>R005</td><td>Mr Shaikh</td><td>UK880</td><td>kerb &rarr; g5</td><td>CH-02</td><td class="num">3:06</td><td class="num">39:42</td></tr><tr><td>R006</td><td>Mrs Shaikh</td><td>UK880</td><td>kerb &rarr; g5</td><td>CH-01</td><td class="num">4:04</td><td class="num">40:51</td></tr><tr><td>R007</td><td>Master Shaikh</td><td>UK880</td><td>kerb &rarr; g5</td><td>CH-03</td><td class="num">4:04</td><td class="num">40:50</td></tr><tr><td>R008</td><td>Mr Dias</td><td>call button</td><td>g3 &rarr; kerb</td><td>CH-01</td><td class="num">1:58</td><td class="num">69:34</td></tr></tbody></table></div></div>
+
+<footer>
+  Generated from a simulated shift. Wait is measured from the passenger asking
+  to the chair reaching them — the number an airport is held to.
+</footer>
+</div>
+<div id="tip"></div>
+<script>
+const tip = document.getElementById('tip');
+addEventListener('pointerover', e => {
+  const el = e.target.closest('[data-tip]');
+  if (!el) return;
+  tip.textContent = el.dataset.tip;
+  tip.style.opacity = '1';
+});
+addEventListener('pointermove', e => {
+  if (tip.style.opacity !== '1') return;
+  const pad = 14;
+  let x = e.clientX + pad, y = e.clientY + pad;
+  const r = tip.getBoundingClientRect();
+  if (x + r.width > innerWidth - 8) x = e.clientX - r.width - pad;
+  if (y + r.height > innerHeight - 8) y = e.clientY - r.height - pad;
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
+});
+addEventListener('pointerout', e => {
+  if (e.target.closest('[data-tip]')) tip.style.opacity = '0';
+});
+</script>
+</body>
+</html>
