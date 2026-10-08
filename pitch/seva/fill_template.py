@@ -52,7 +52,7 @@ TEXT = {
   21: "ESP32 controller, IR line sensors, ultrasonic obstacle stop, 2S lithium pack, 4 mm MDF "
       "chassis. Dispatcher in Python on one laptop — standard library only, no cloud and no "
       "network calls.",
-  24: "₹4,759 for two demonstrator chairs (₹2,721 for one). The production retrofit module is "
+  24: "₹4,679 for two demonstrator chairs (₹2,721 for one). The production retrofit module is "
       "designed at about ₹54,000 per chair. A terminal pilot needs chairs, floor marking and "
       "a survey.",
   27: "3 months: two chairs running a taped guide path at the December exhibition. 6 months: "
@@ -180,8 +180,8 @@ def main():
     frame.word_wrap = True
     for index, (text, colour, bold) in enumerate([
         ("Proof of concept", RGBColor(0xF2, 0x8C, 0x28), True),
-        ("Dispatcher built and tested — 214 automated tests. Demonstrator fleet "
-         "costed at ₹4,759. Nothing has yet carried a passenger.",
+        ("Dispatcher built and tested — 226 automated tests. Demonstrator fleet "
+         "costed at ₹4,679. Nothing has yet carried a passenger.",
          RGBColor(0xC3, 0xCA, 0xE0), False),
     ]):
         para = frame.paragraphs[0] if index == 0 else frame.add_paragraph()

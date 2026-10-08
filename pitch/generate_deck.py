@@ -214,7 +214,7 @@ def slide5() -> Slide:
 
     figures = [
         ("~1,00,000", "assistance journeys a year", "across Goa's two airports (estimated)"),
-        ("₹4,759", "the demonstrator fleet", "two working chairs, built from MDF"),
+        ("₹4,679", "the demonstrator fleet", "two working chairs, built from MDF"),
         ("4", "languages, enforced", "Konkani, Marathi, Hindi, English"),
         ("0", "passenger records kept", "nothing leaves the building"),
     ]
@@ -258,7 +258,7 @@ def slide6() -> Slide:
         "families, call buttons, pre-positioning, battery",
         "reserve, corridor safety, shift reporting.",
         "",
-        "214 automated tests. Runs on a laptop.",
+        "226 automated tests. Runs on a laptop.",
     ], 3.9, MID, 5.2)
 
     s.rect(M + col + 10, 48, col, 52, "#fff5f5", "#f0d8d8", 0.4, rx=1.5)

@@ -188,7 +188,7 @@ def main() -> int:
     draw_chair(s, ox=M + 46, floor_y=146, k=0.56)
     s.text(M, 163, "The demonstrator", 3.6, INK, "bold")
     s.lines(M, 169, [
-        "1:6 scale, 4 mm MDF, two chairs for ₹4,759.",
+        "1:6 scale, 4 mm MDF, two chairs for ₹4,679.",
         "Drive wheels double as the wheelchair's own.",
     ], 3.2)
 
@@ -228,10 +228,10 @@ def main() -> int:
     # ---- footer strip --------------------------------------------------
     s.line(M, 182, PAGE_W - M, 182, RULE, 0.4)
     facts = [
-        ("₹4,759", "two working chairs"),
+        ("₹4,679", "two working chairs"),
         ("4 languages", "Konkani first, English last"),
         ("No cloud", "nothing leaves the airport"),
-        ("214 tests", "the dispatcher runs today"),
+        ("226 tests", "the dispatcher runs today"),
     ]
     step = (PAGE_W - 2 * M) / len(facts)
     for i, (big, small) in enumerate(facts):

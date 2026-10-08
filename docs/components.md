@@ -370,3 +370,14 @@ which is what you want the night before a deadline.
 
 Steps 1 to 4 give you a defensible application on their own. Steps 5 to 7 are
 what turn it into an exhibit.
+
+## Keeping this total honest
+
+The figures above are the only authority for what this costs. Everything that
+quotes a price — the explainer, the poster, the application deck — takes it from
+here by hand, and a hand-copied number drifts: the deck said ₹4,759 for several
+commits while the table said ₹4,679, which is the kind of error a judge finds by
+adding up the parts list.
+
+`tests/test_costs.py` re-adds the tables and fails the build if any file quotes a
+total this page does not support.

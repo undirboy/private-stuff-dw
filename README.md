@@ -71,7 +71,7 @@ unit before putting any multiple in writing.
 ```sh
 python3 -m sim.demo     # a scripted shift, narrated
 python3 -m sim.backtest # does the learned demand forecast help? (measured: barely)
-python3 -m pytest -q    # 214 tests
+python3 -m pytest -q    # 226 tests
 ```
 
 It writes `shift.html` as well — the operator's view of the shift, which is the

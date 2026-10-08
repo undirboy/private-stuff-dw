@@ -59,7 +59,7 @@ def main() -> int:
     s.text(M, 181, "मार्गदर्शक — the one who shows the way", 4.2, MID)
 
     s.line(M, 186.5, SIDE - M, 186.5, RULE, 0.35)
-    s.text(M, 192, "A guided wheelchair for Indian airports, built for ₹4,759.", 4.2, INK)
+    s.text(M, 192, "A guided wheelchair for Indian airports, built for ₹4,679.", 4.2, INK)
     s.text(M, 197, "Prototype — nothing here has carried a passenger yet.", 3.4, MID)
 
     path = OUT / "ad.svg"

@@ -82,7 +82,7 @@ Each of these is a decision, not a gap.
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,
 languages, caravans, pre-positioning, priority and reporting are working code
-with 214 tests behind them. Everything physical is unbuilt, and the regulatory
+with 226 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
 The build that demonstrates this at a table, for ₹4,679 (₹2,721 for one chair), is in
