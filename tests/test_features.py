@@ -437,12 +437,44 @@ def test_a_flat_chair_is_not_sent_across_the_building():
 
 def test_two_demand_points_get_two_different_chairs():
     f = Fleet(build_example_terminal())
-    for chair_id in ("CH-01", "CH-02"):
+    for chair_id in ("CH-01", "CH-02", "CH-03", "CH-04"):
         f.add_chair(chair_id, "dock_e")
 
     moves = plan_staging(f, [DemandPoint("kerb", 8.0), DemandPoint("g1", 5.0)], ["sec_q", "sp1"])
+    assert len(moves) == 2
     assert len({m.chair_id for m in moves}) == len(moves)
     assert len({m.to_node for m in moves}) == len(moves)
+    assert {m.serving for m in moves} == {"kerb", "g1"}, (
+        "a quiet pickup point is not abandoned because a busier one exists"
+    )
+
+
+def test_half_the_fleet_stays_on_charge():
+    """Staging is a bet on a forecast, and this is the size of the bet."""
+    f = Fleet(build_example_terminal())
+    for index in range(8):
+        f.add_chair(f"CH-{index:02d}", "dock_e")
+
+    moves = plan_staging(f, [DemandPoint("kerb", 50.0)], ["sec_q", "sp1", "sp2", "checkin"])
+    assert len(moves) == 4, "no more than half of eight chairs, and no more spots than exist"
+
+
+def test_no_more_chairs_are_sent_out_than_passengers_expected():
+    """The limit that makes the forecast matter at all.
+
+    Without it the fleet sends the same number of chairs out whatever the board
+    says, and a better forecast changes nothing on the floor.
+    """
+    f = Fleet(build_example_terminal())
+    for index in range(8):
+        f.add_chair(f"CH-{index:02d}", "dock_e")
+    nodes = ["sec_q", "sp1", "sp2", "checkin"]
+
+    quiet = plan_staging(f, [DemandPoint("kerb", 1.0)], nodes)
+    busy = plan_staging(f, [DemandPoint("kerb", 9.0)], nodes)
+
+    assert len(quiet) == 1
+    assert len(busy) > len(quiet)
 
 
 def test_an_unknown_staging_node_is_an_error():

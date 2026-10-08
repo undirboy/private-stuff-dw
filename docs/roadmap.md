@@ -50,11 +50,25 @@ the pitch from "here is a robot" into "here is how you would run thirty of
 these", which is the question an airport operator actually has. The data is all
 there in `Fleet.summary()` and the event log.
 
-**6. Predictive pre-positioning. — BUILT**
+**6. Predictive pre-positioning. — BUILT, and measured, and it did not pay**
 Idle chairs drift to where demand is about to appear, from the flight schedule
-and the historic rate of assistance requests per flight. This is real algorithmic
-content, it is honest machine learning rather than decorative machine learning,
-and it attacks the number that matters — the wait.
+and a per-flight assistance rate learned per route (`margadarshak/demand.py`).
+
+It was then measured instead of assumed, which is the part worth telling. The
+learned rate is about a third more accurate per flight than the flat 1.5 it
+replaces, and over twelve paired simulated days that bought 2.2 seconds off the
+mean wait against a 5.1-second spread between days. That is noise. In a terminal
+this size every waiting spot is about as far from the kerb as every other, so the
+forecast has nowhere to spend its accuracy.
+
+Keep it, do not claim it. `python3 -m sim.backtest` prints the verdict; the
+reasoning and the honest script for a judge who asks about AI are in
+[`ai.md`](ai.md). It is built so that a pilot can settle the question with real
+departures, which is the only way it will be settled.
+
+Measuring it earned its keep anyway: it exposed a defect that could stop the
+whole fleet — two repositioning chairs jamming a single-file corridor and waiting
+forever for an attendant. An empty chair now gives way.
 
 **7. Caravan mode. — BUILT**
 Chairs follow one another in a train. A family travels together, and one
@@ -105,6 +119,13 @@ regulation for very little demo value. Not now.
 this system can be built for tens of thousands of rupees rather than lakhs is
 that it does not need to solve navigation. Adding SLAM makes it a worse version
 of a product that already exists at twenty times the price.
+
+**Anything else learned, anywhere near the chair.** Not a reflex against machine
+learning — there is a model in here, and [`ai.md`](ai.md) sets out exactly where
+it is allowed to live and the three it would be worth adding next. It is a
+refusal to put a model in the brake path, in the route, or in the queue order,
+because each of those is something an operator has to be able to explain to a
+passenger afterwards.
 
 **Outdoor and kerbside operation.** Weather, ramps, vehicle traffic, no guide
 path. A different problem wearing the same clothes.

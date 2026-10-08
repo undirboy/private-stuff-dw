@@ -1020,16 +1020,75 @@ class Fleet:
                 chair.state = self._moving_state(chair)
                 return
 
-        if chair.blocked_s >= WAIT_BEFORE_ESCALATION_S and not chair.escalated:
-            # No way round and nobody has moved: two chairs are nose to nose in a
-            # single-file corridor. The fix is a passing bay in the floor plan;
-            # until then an attendant has to intervene, so say so loudly.
+        if chair.blocked_s < WAIT_BEFORE_ESCALATION_S:
+            return
+
+        # No way round and nobody has moved. Before calling anybody: is there
+        # actually a person involved? An empty chair has nothing to lose by
+        # giving up its place, and a jam between two empty chairs needs no
+        # attendant at all — it needs one of them to go away. So it does.
+        #
+        # This matters more than it looks. Without it, one jam between two
+        # chairs repositioning themselves holds a corridor forever, every chair
+        # that arrives behind them joins the queue, and a fleet that was merely
+        # badly placed becomes a fleet that has stopped. Whoever is sitting at
+        # the kerb then waits for a chair that is never coming.
+        if not self._carrying_somebody(chair):
+            self._give_way(chair, segment_id)
+            return
+
+        if not chair.escalated:
+            # Somebody is aboard, so this chair is not the one to move: reversing
+            # a corridor with a passenger in the seat is exactly what the design
+            # refuses to do. Two occupied chairs nose to nose in a single-file
+            # corridor genuinely need a human. The real fix is a passing bay in
+            # the floor plan — see docs/safety.md.
             chair.escalated = True
             self.log(
                 "escalation",
                 f"deadlocked at {chair.node} waiting on {segment_id}; attendant needed",
                 chair.id,
             )
+
+    @staticmethod
+    def _carrying_somebody(chair: Chair) -> bool:
+        """Is there a passenger in the seat right now?
+
+        Not the same as having a job. A chair on its way to collect somebody is
+        empty: the passenger is still at the kerb, and nothing about them is made
+        worse by this chair standing down and another one going instead.
+        """
+        return chair.request is not None and chair.request.picked_up_s is not None
+
+    def _give_way(self, chair: Chair, segment_id: str) -> None:
+        """An empty chair stands down so a blocked corridor clears.
+
+        It drops whatever corridor it is holding, hands back any passenger it had
+        been sent to collect, and goes home. Handing the passenger back matters:
+        they are still waiting, and the dispatcher should be free to send
+        whichever chair can now actually reach them rather than the one that has
+        just proved it cannot.
+        """
+        self.reservations.release_all(chair.reservation_id)
+        chair.held_segment = None
+        chair.blocked_s = 0.0
+        chair.replan_attempts = 0
+        chair.escalated = False
+
+        request = chair.request
+        if request is not None:
+            request.assigned_to = None
+            chair.request = None
+            self.log(
+                "gave_way",
+                f"{segment_id} would not clear; {request.id} back to the queue",
+                chair.id,
+            )
+        else:
+            self.log("gave_way", f"{segment_id} would not clear; standing down", chair.id)
+
+        chair.caravan = None
+        self._send_home(chair)
 
     def _at_node(self, chair: Chair) -> None:
         """Reached a junction. The one place a chair may change its mind."""
@@ -1132,6 +1191,30 @@ class Fleet:
         self.log("returning", f"to {dock} unaccompanied ({home.distance_m:.0f} m)", chair.id)
 
     # -- reporting -------------------------------------------------------
+
+    def assistance_counts(self) -> dict[str, int]:
+        """Requests seen per flight, for the demand forecast to learn from.
+
+        Counts requests raised, not journeys completed: a passenger who asked
+        for a chair and gave up still represents demand, and a forecast trained
+        only on the people the system managed to serve would learn to be exactly
+        as short-staffed as it already is.
+
+        Follow-on legs are excluded. A passenger parked in the lounge because
+        their gate was unannounced generates a second request when the gate
+        appears, but they are one person needing one chair, and counting them
+        twice would inflate every route with early-arriving passengers — which
+        is to say, precisely the routes that need assistance most.
+        """
+        counts: dict[str, int] = {}
+        for request in self.requests:
+            if request.follow_on_of is not None:
+                continue
+            if not request.flight:
+                continue
+            designator = request.flight.upper()
+            counts[designator] = counts.get(designator, 0) + 1
+        return counts
 
     def summary(self) -> dict[str, float | int]:
         delivered = [r for r in self.requests if r.delivered_s is not None]

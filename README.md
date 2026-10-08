@@ -44,6 +44,7 @@ unit before putting any multiple in writing.
 |---|---|
 | `margadarshak/announce.py` | Everything the chair says, in Konkani, Marathi, Hindi and English |
 | `margadarshak/boardingpass.py` | IATA BCBP barcode parser. The passenger scans; nothing else is asked of them |
+| `margadarshak/demand.py` | How many chairs a flight will need, learned per route. The only model in the system |
 | `margadarshak/dashboard.py` | The shift report an operator is held to: waits, utilisation, call-outs |
 | `margadarshak/flights.py` | The flight board — where the gate comes from, and how we hear that it moved |
 | `margadarshak/graph.py` | The terminal path network. Corridor width sets capacity; the floor-marking method is per segment |
@@ -54,6 +55,7 @@ unit before putting any multiple in writing.
 | `margadarshak/fleet.py` | Dispatch, battery reserve, corridor reservations, mid-journey rerouting, unaccompanied return to charge |
 | `margadarshak/terminal.py` | A worked example terminal |
 | `sim/demo.py` | A scripted shift, printed as a timeline |
+| `sim/backtest.py` | Whether the learned forecast actually shortens the wait. It mostly does not, and says so |
 | `firmware/chair_controller/` | On-board reflexes. Skeleton |
 | `hardware/chassis/` | Printable deck, sensor bracket and castor riser, with the generator that makes them |
 | `docs/features.md` | **Everything the system does, and what is built vs. what is not** |
@@ -61,13 +63,15 @@ unit before putting any multiple in writing.
 | `docs/hardware.md` | The full-size production design: retrofit rationale, floor-reading, ~₹54k BOM |
 | `docs/safety.md` | The layered stop, why braking is a passenger problem, failure modes |
 | `docs/privacy.md` | What the barcode contains, what is kept, and what is deliberately never recorded |
+| `docs/ai.md` | **The one model in the system, what it measured, and why nothing learned goes near the brakes** |
 | `docs/roadmap.md` | What to add next, and what to deliberately leave out |
 
 ## Running it
 
 ```sh
 python3 -m sim.demo     # a scripted shift, narrated
-python3 -m pytest -q    # 169 tests
+python3 -m sim.backtest # does the learned demand forecast help? (measured: barely)
+python3 -m pytest -q    # 214 tests
 ```
 
 It writes `shift.html` as well — the operator's view of the shift, which is the
@@ -170,6 +174,32 @@ This is a safety argument as much as an architectural one: the code that can hur
 somebody stays small, fixed, and does not change when an airline renumbers a
 gate. If the network drops, the chair finishes its current segment, stops at the
 next node, and waits. It never improvises a route.
+
+## One model, and it is not driving
+
+There is exactly one piece of machine learning here and it is nowhere near the
+chair: `margadarshak/demand.py` learns how many chairs a flight will need, per
+route, so idle chairs wait in the right place.
+
+It was measured rather than assumed. The learned rate is about a third more
+accurate per flight than the flat guess it replaces — and over twelve paired
+simulated days that bought 2.2 seconds off the mean wait, against a between-day
+spread of 5.1 seconds. In other words, nothing. In a terminal this size every
+waiting spot is about as far from the kerb as every other, so a better forecast
+has nowhere to spend its accuracy.
+
+So it ships built, honest, and unclaimed. `python3 -m sim.backtest` prints the
+verdict itself rather than taking anybody's word for it, and the whole question —
+including where a model would genuinely earn its place, and the four places one
+must never go — is in [`docs/ai.md`](docs/ai.md).
+
+Measuring it was still worth it. The first run reported a 42% improvement, which
+was an artefact of the learned arm delivering almost nobody: a mean wait over
+delivered passengers looks wonderful when most people are left at the kerb. The
+cause was a real defect — two repositioning chairs could jam a single-file
+corridor, escalate to an attendant who never comes, and stop the entire fleet.
+Now an empty chair gives way, and an attendant is called only when somebody is
+actually aboard.
 
 ## Status
 

@@ -299,6 +299,101 @@ def test_a_chair_with_no_way_round_escalates_to_an_attendant():
     assert f.summary()["escalations"] == 1
 
 
+def test_an_empty_chair_gives_way_instead_of_waiting_for_an_attendant():
+    """The jam that stopped a whole fleet, and the reason it no longer can.
+
+    Two chairs repositioning themselves can meet in a single-file corridor with
+    no way round. Nobody is sitting in either of them, so nobody needs to come
+    and sort it out: one of them simply leaves. Before this, both waited for an
+    attendant who never arrived, every chair that came up behind them joined the
+    queue, and a fleet that was merely badly placed stopped completely.
+    """
+    f = Fleet(_two_corridor_map())
+    stalled = f.add_chair("CH-STALL", "dock")
+    stalled.state = ChairState.ESTOP
+    f.reservations.acquire("fork~north", "CH-STALL")
+    f.reservations.acquire("fork~south", "CH-STALL")
+
+    f.add_chair("CH-MOVE", "dock").state = ChairState.IDLE
+    f.send_to_staging("CH-MOVE", "merge")
+    f.run(duration_s=600)
+
+    assert find(f, "gave_way"), "an empty chair with no way round should stand down"
+    assert not find(f, "escalation"), "and should not call an attendant to do it for it"
+
+    chair = f.chairs["CH-MOVE"]
+    assert chair.state in (ChairState.RETURNING, ChairState.CHARGING)
+    assert not any(
+        "CH-MOVE" in f.reservations.holders(segment_id)
+        for segment_id in f.tmap.segments
+    ), "a chair that has given way must not still be holding a corridor"
+
+
+def test_giving_way_hands_the_passenger_back_to_the_queue():
+    """A chair on the way to collect somebody is empty. It can stand down too.
+
+    The passenger is still at the kerb, and what they need is whichever chair can
+    actually reach them — not the one that has just proved it cannot.
+    """
+    f = Fleet(_two_corridor_map())
+    stalled = f.add_chair("CH-STALL", "dock")
+    stalled.state = ChairState.ESTOP
+    f.reservations.acquire("fork~north", "CH-STALL")
+    f.reservations.acquire("fork~south", "CH-STALL")
+
+    f.add_chair("CH-MOVE", "dock").state = ChairState.IDLE
+    # The passenger is waiting past the jam, so the chair cannot reach them.
+    request = f.request_assistance("Mr Dias", "SG-118", pickup="gate", gate="kerb")
+    f.run(duration_s=600)
+
+    handbacks = find(f, "gave_way")
+    assert handbacks, "an empty chair on its way to a passenger can still stand down"
+    assert request.id in handbacks[0].detail
+    assert "back to the queue" in handbacks[0].detail
+
+    # The dispatcher is free to try again — and with one chair and one jam, it
+    # does. What must never happen is the passenger being quietly dropped.
+    assert request.active, "the passenger is still owed a chair"
+    assert request in f.requests
+
+
+def test_a_chair_with_somebody_aboard_does_not_give_way():
+    """The limit, and it is deliberate. A passenger is not reversed out of a jam."""
+    f = Fleet(_two_corridor_map())
+    stalled = f.add_chair("CH-STALL", "dock")
+    stalled.state = ChairState.ESTOP
+    f.reservations.acquire("fork~north", "CH-STALL")
+    f.reservations.acquire("fork~south", "CH-STALL")
+
+    f.add_chair("CH-MOVE", "dock").state = ChairState.IDLE
+    f.request_assistance("Ms Fernandes", "SG-118", pickup="kerb", gate="gate")
+    f.run(duration_s=600)
+
+    assert find(f, "escalation"), "two occupied chairs nose to nose need a human"
+    assert not find(f, "gave_way")
+    assert f.chairs["CH-MOVE"].request is not None, "the passenger is not abandoned"
+
+
+def test_a_jam_between_repositioning_chairs_does_not_strand_the_passengers():
+    """The end-to-end version: the fleet recovers and everybody still gets served."""
+    f = Fleet(_two_corridor_map())
+    stalled = f.add_chair("CH-STALL", "dock")
+    stalled.state = ChairState.ESTOP
+    f.reservations.acquire("fork~north", "CH-STALL")
+
+    for chair_id in ("CH-01", "CH-02", "CH-03"):
+        f.add_chair(chair_id, "dock").state = ChairState.IDLE
+        f.send_to_staging(chair_id, "merge")
+    f.run(duration_s=300)
+
+    f.request_assistance("Mrs Pereira", "AI-612", pickup="kerb", gate="gate")
+    f.run(duration_s=1800)
+
+    assert f.requests[0].delivered_s is not None, (
+        "a jam between empty chairs must not cost a passenger their journey"
+    )
+
+
 # -- reporting -----------------------------------------------------------
 
 

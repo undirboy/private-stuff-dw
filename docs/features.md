@@ -35,9 +35,11 @@ Status words used below mean exactly this:
 | **Shift report** | Built | Waits, worst wait, fleet utilisation, attendant call-outs, every journey. `docs/` has the reasoning; run `python3 -m sim.demo` to produce one. |
 | **Chairs return themselves** | Built | Unaccompanied return to a dock and onto charge. This is the labour saving: nobody walks out to fetch a chair. |
 | **Battery that cannot strand anybody** | Built | A chair refuses a job it cannot finish *and still reach a dock*. Where the destination is not yet known it reserves for the furthest gate on the map. |
-| **Pre-positioning** | Built / needs a measurement | Idle chairs move towards expected demand from the flight schedule. In the demo this halved one passenger's wait. The per-flight assistance rate is a placeholder until a pilot measures it. |
+| **Pre-positioning** | Built / needs a measurement | Idle chairs move towards expected demand from the flight schedule, and no more chairs go out than passengers expected — half the fleet always stays on charge. In the demo this halved one passenger's wait. |
+| **Demand learned per route** | Built / measured, and it did not pay | `margadarshak/demand.py` learns the per-flight assistance rate from departures already flown, instead of assuming 1.5 for everything. A third more accurate; worth 2.2 s off the mean wait against a 5.1 s day-to-day spread, which is noise. Built so a pilot can settle it with real numbers. See [`ai.md`](ai.md). |
 | **Closed corridors** | Built | Take a corridor out of service; chairs already under way reroute at the next junction. |
-| **Deadlock escalation** | Built | Two chairs nose to nose with no way round call an attendant after 90 seconds. An honest mitigation, not a fix — the fix is passing bays in the floor plan. |
+| **An empty chair gives way** | Built | A jam between two chairs with nobody in them needs no attendant — it needs one of them to leave. It drops the corridor, hands back any passenger it was going to collect, and goes home. Without this, one jam between repositioning chairs stopped an entire simulated fleet for a whole day. |
+| **Deadlock escalation** | Built | Only when somebody is actually aboard: a passenger is not reversed out of a corridor. Two occupied chairs nose to nose call an attendant after 90 seconds. An honest mitigation, not a fix — the fix is passing bays in the floor plan. |
 | **A gate off this map is refused** | Built | If a flight boards somewhere the guide path does not reach, the scan is refused there and then. Finding out after the passenger is aboard strands them somewhere they cannot easily walk back from. A gate that moves off-map mid-journey diverts to the lounge and calls an attendant. |
 | **Map validation** | Built | Refuses a map with an unreachable gate or an untagged stopping point, before anybody sits in a chair. |
 | **Service-level export** | Not built | The numbers exist; a scheduled export for compliance reporting does not. |
@@ -80,7 +82,7 @@ Each of these is a decision, not a gap.
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,
 languages, caravans, pre-positioning, priority and reporting are working code
-with 169 tests behind them. Everything physical is unbuilt, and the regulatory
+with 214 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
 The build that demonstrates this at a table, for ₹4,679 (₹2,721 for one chair), is in

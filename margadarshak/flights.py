@@ -48,6 +48,14 @@ class Flight:
     #: Map node of the gate, or None while the gate is unassigned.
     gate: str | None = None
     scheduled_departure_s: float | None = None
+    #: IATA code of where the aircraft is going. Carried because the rate at
+    #: which a flight needs wheelchairs depends enormously on the route, and
+    #: :mod:`margadarshak.demand` learns that rate per route. Optional: the
+    #: dispatcher never needs it, only the forecast does.
+    destination: str | None = None
+    #: Aircraft type, for the same reason — a widebody draws more requests than
+    #: a turboprop, and not only in proportion to its seats.
+    aircraft_type: str | None = None
 
     @property
     def has_gate(self) -> bool:
@@ -77,12 +85,16 @@ class FlightBoard:
         status: FlightStatus = FlightStatus.SCHEDULED,
         gate: str | None = None,
         scheduled_departure_s: float | None = None,
+        destination: str | None = None,
+        aircraft_type: str | None = None,
     ) -> Flight:
         flight = Flight(
             designator=designator.upper(),
             status=status,
             gate=gate,
             scheduled_departure_s=scheduled_departure_s,
+            destination=destination.upper() if destination else None,
+            aircraft_type=aircraft_type,
         )
         self._flights[flight.designator] = flight
         return flight

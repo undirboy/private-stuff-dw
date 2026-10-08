@@ -231,7 +231,7 @@ def main() -> int:
         ("₹4,759", "two working chairs"),
         ("4 languages", "Konkani first, English last"),
         ("No cloud", "nothing leaves the airport"),
-        ("182 tests", "the dispatcher runs today"),
+        ("214 tests", "the dispatcher runs today"),
     ]
     step = (PAGE_W - 2 * M) / len(facts)
     for i, (big, small) in enumerate(facts):
