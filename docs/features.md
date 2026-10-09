@@ -96,6 +96,20 @@ Each of these is a decision, not a gap.
   path — a different problem wearing the same clothes.
 - **Profiling across visits.** No identifier survives the journey.
 
+## Keeping it true
+
+Everything above is checked rather than asserted, because each of these was once
+something somebody was supposed to remember, and remembering failed.
+
+| Check | What it stops |
+|---|---|
+| `tools/build.py --check` | A generated artefact drifting from the source it came from — a deck rebuilt from a generator nobody re-ran. |
+| `tests/test_costs.py` | A price or a test count quoted anywhere that the parts list and the suite do not support. |
+| `tests/test_display.py` | A message that no longer fits the panel, text reaching it unshaped, and the package acquiring a third-party import. |
+| `tests/test_features.py` | A document claiming a language has been reviewed when `NATIVE_REVIEW` says nobody has read it. |
+| `tools/ready.py` | A placeholder left in the deck, a file over the upload limit — and a standing list of what only a person can close. |
+| CI, on every push | All of the above, plus the scripted shift still running end to end. |
+
 ## Honest status
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,

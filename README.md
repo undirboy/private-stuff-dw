@@ -71,10 +71,21 @@ unit before putting any multiple in writing.
 ## Running it
 
 ```sh
-python3 -m sim.demo     # a scripted shift, narrated
-python3 -m sim.backtest # does the learned demand forecast help? (measured: barely)
-python3 -m pytest -q    # the test suite
+python3 -m sim.demo       # a scripted shift, narrated
+python3 -m sim.backtest   # does the learned demand forecast help? (measured: barely)
+python3 -m pytest -q      # the test suite
+
+python3 tools/build.py            # rebuild every generated artefact
+python3 tools/build.py --check    # fail if any of them is stale
+python3 tools/ready.py            # is the submission actually ready to send?
 ```
+
+The last three exist because remembering is not a mechanism. Eleven things here
+are generated from source, and keeping them current was a matter of somebody
+recalling to re-run the right script — which failed twice in one afternoon, once
+sending a build cost eighty rupees out and once a stale test count, both into a
+deck that was about to be submitted. `--check` rebuilds into a scratch copy and
+diffs, and CI runs it on every push along with the tests and the demo.
 
 It writes `shift.html` as well — the operator's view of the shift, which is the
 artefact that answers an airport's real question. Not "does the chair work" but

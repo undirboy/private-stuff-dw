@@ -12,7 +12,12 @@ from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent.parent))
+HERE = pathlib.Path(__file__).resolve().parent
+#: Every path is resolved against this file, never against the working
+#: directory. A generator that only runs from one folder is a generator the
+#: build script cannot call and somebody will eventually run from the wrong
+#: place and not notice.
+sys.path.insert(0, str(HERE.parent.parent))
 from tools.testcount import count as _count  # noqa: E402
 
 #: Asked of pytest at generation time, never typed.
@@ -74,11 +79,11 @@ TEXT = {
 },
 5: {
   8: "~2,000",
-  10: "[assistance journeys in a first-year pilot at one terminal]",
+  10: "assistance journeys in a first-year pilot at one terminal",
   12: "3×",
-  14: "[passengers per attendant using caravan mode — simulated, not yet measured]",
+  14: "passengers per attendant in caravan mode — simulated, not yet measured",
   16: "0",
-  18: "[attendant jobs replaced — these are posts airports cannot fill today]",
+  18: "attendant jobs replaced — these are posts airports cannot fill today",
   21: "Independence for passengers who today must ask a stranger for help and then depend on "
       "them. Konkani and Marathi before English, so the service reaches the people the "
       "current one fails. Nobody is left waiting at a gate to be remembered.",
@@ -92,7 +97,7 @@ TEXT = {
 6: {
   9: "Aatriv Thosar",
   10: "Team Lead",
-  11: "[Your qualification / course]",
+  11: "[Your qualification / course]",  # the one bracket left on purpose
   43: "Certification and a clear regulatory position are what stand between a working "
       "dispatcher and a chair that may legally carry a passenger.",
   44: "Thank you  |  aatriv38@gmail.com",
@@ -128,7 +133,7 @@ def set_text(shape, text):
 
 
 def main():
-    prs = Presentation("template.pptx")
+    prs = Presentation(HERE / "template.pptx")
     slides = list(prs.slides)
 
     for number, slide in enumerate(slides, start=1):
@@ -172,7 +177,7 @@ def main():
     # The art is 1500x840, so height follows width; keep both pictures off the
     # text around them rather than trusting the default placement.
     art = Inches(4.2), Inches(4.2 / 1.786)
-    slides[0].shapes.add_picture("chair.png", Inches(5.20), Inches(2.30),
+    slides[0].shapes.add_picture(str(HERE / "chair.png"), Inches(5.20), Inches(2.30),
                                  width=art[0], height=art[1])
     caption = slides[0].shapes.add_textbox(Inches(5.20), Inches(4.78),
                                            Inches(4.20), Inches(0.30))
@@ -204,11 +209,12 @@ def main():
     # --- slide 6: one card, so widen it and add the prototype picture ----
     card = by_id(slides[5])[6]
     card.width = Inches(4.75)
-    slides[5].shapes.add_picture("chair.png", Inches(0.55), Inches(2.85),
+    slides[5].shapes.add_picture(str(HERE / "chair.png"), Inches(0.55), Inches(2.85),
                                  width=Inches(2.90), height=Inches(2.90 / 1.786))
 
-    prs.save("margadarshak-seva-2026.pptx")
-    print("wrote margadarshak-seva-2026.pptx")
+    out = HERE / "margadarshak-seva-2026.pptx"
+    prs.save(out)
+    print(f"wrote {out}")
 
 
 if __name__ == "__main__":

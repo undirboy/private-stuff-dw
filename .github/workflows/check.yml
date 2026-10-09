@@ -1,0 +1,49 @@
+# Everything that has to be true before this project is shown to anybody.
+#
+# Each of these was, at some point, a thing somebody was supposed to remember.
+# A build cost went out eighty rupees wrong, a test count went stale twice in an
+# afternoon, and a deck was regenerated from a source nobody had re-run. They
+# are checks now because remembering is not a mechanism.
+name: check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install what the build tools need
+        # The dispatcher itself needs none of this — it is standard library
+        # only, and tests/test_display.py fails if that ever stops being true.
+        # These are for the generators: shaping Devanagari, rendering the
+        # sheets, and writing the deck.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libraqm0 fonts-freefont-ttf
+          python -m pip install --quiet pillow cairosvg python-pptx pypdf \
+                                        fonttools trimesh manifold3d pytest
+
+      - name: Tests
+        run: python -m pytest -q
+
+      - name: The scripted shift still runs end to end
+        # A demo that breaks silently is how the laptop demonstration fails in
+        # front of a judge. It has broken this way before.
+        run: python -m sim.demo
+
+      - name: Generated artefacts match their generators
+        run: python tools/build.py --check
+
+      - name: Nothing is left to be filled in
+        run: python tools/ready.py
