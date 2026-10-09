@@ -420,3 +420,132 @@ def test_summary_counts_what_an_operator_would_be_asked_about(fleet):
 def test_a_chair_cannot_be_docked_somewhere_that_is_not_a_dock(fleet):
     with pytest.raises(ValueError):
         fleet.add_chair("CH-99", "g1")
+
+
+# -- coming back from a stop ---------------------------------------------
+#
+# A regression, and the worst one found: the emergency stop had no release.
+# docs/safety.md said only an attendant may clear it, and no attendant could,
+# because no such call existed. A chair that stopped was out of service for
+# good — with whoever was sitting in it still sitting there.
+
+
+def test_an_attendant_can_release_a_latched_stop():
+    f = Fleet(build_example_terminal())
+    f.add_chair("CH-01", "dock_w")
+    f.emergency_stop("CH-01", "passenger pressed it")
+    assert f.chairs["CH-01"].state is ChairState.ESTOP
+
+    f.clear_emergency_stop("CH-01", by="Mr Dias", at_node="dock_w")
+
+    assert f.chairs["CH-01"].state is not ChairState.ESTOP
+    assert find(f, "estop_cleared")
+
+
+def test_a_passenger_stopped_mid_journey_still_gets_where_they_are_going():
+    f = Fleet(build_example_terminal())
+    f.add_chair("CH-01", "dock_w")
+    request = f.request_assistance("Mrs Pereira", "AI-612", pickup="kerb", gate="g4")
+    for _ in range(900):
+        f.step(1.0)
+        if f.chairs["CH-01"].state is ChairState.CARRYING:
+            break
+
+    f.emergency_stop("CH-01", "she pressed the button")
+    f.run(duration_s=120)
+    assert request.delivered_s is None
+
+    f.clear_emergency_stop("CH-01", by="Mr Dias", at_node="sp2")
+    f.run(duration_s=1800)
+    assert request.delivered_s is not None, (
+        "a stop is a pause, not the end of somebody's journey"
+    )
+
+
+def test_clearing_a_stop_without_a_floor_tag_leaves_the_chair_lost():
+    """A stop can latch part way down a corridor, so where it is must be told."""
+    f = Fleet(build_example_terminal())
+    f.add_chair("CH-01", "dock_w")
+    f.emergency_stop("CH-01", "test")
+
+    f.clear_emergency_stop("CH-01", by="Mr Dias")
+
+    chair = f.chairs["CH-01"]
+    assert not chair.position_known
+    assert not chair.available, "it must not be routed from a node it may not be at"
+
+
+def test_clearing_a_stop_that_is_not_latched_does_nothing():
+    f = Fleet(build_example_terminal())
+    f.add_chair("CH-01", "dock_w")
+    f.clear_emergency_stop("CH-01", by="Mr Dias", at_node="dock_w")
+    assert not find(f, "estop_cleared")
+
+
+def test_a_stopped_caravan_is_dissolved_rather_than_half_stopped():
+    """They are no longer nose to tail at a known spacing, so they are not a convoy."""
+    f = Fleet(build_example_terminal())
+    for index in range(3):
+        f.add_chair(f"CH-{index:02d}", "dock_e")
+    f.request_group(["A", "B", "C"], "UK880", pickup="kerb", gate="g5")
+    f.run(duration_s=200)
+    assert any(chair.caravan for chair in f.chairs.values())
+
+    f.emergency_stop("CH-00", "test")
+
+    assert all(chair.caravan is None for chair in f.chairs.values())
+
+
+def test_a_whole_stopped_caravan_can_be_released_and_still_delivers():
+    f = Fleet(build_example_terminal())
+    for index in range(3):
+        f.add_chair(f"CH-{index:02d}", "dock_e")
+    f.request_group(["A", "B", "C"], "UK880", pickup="kerb", gate="g5")
+    f.run(duration_s=200)
+    f.emergency_stop("CH-00", "test")
+
+    for chair_id, chair in f.chairs.items():
+        f.clear_emergency_stop(chair_id, by="Mr Dias", at_node=chair.node)
+    f.run(duration_s=3000)
+
+    assert all(r.delivered_s is not None for r in f.requests)
+
+
+# -- a chair with nothing left in it --------------------------------------
+
+
+def test_a_flat_chair_asks_to_be_pushed_rather_than_driving_on_nothing():
+    """It would otherwise model a journey across a terminal on an empty pack."""
+    f = Fleet(build_example_terminal())
+    chair = f.add_chair("CH-01", "dock_w")
+    chair.node = "sec_q"
+    chair.battery_wh = chair.battery_wh * 0.001
+
+    f._send_home(chair)
+
+    assert chair.state is not ChairState.RETURNING
+    assert any("flat" in event.detail for event in f.events)
+
+
+def test_stopping_a_caravan_frees_the_corridors_it_held_as_a_unit():
+    """A regression, and a sharp one.
+
+    A caravan holds corridors under one shared id (``Chair.reservation_id``).
+    Dissolving the caravan before releasing them changed that id out from under
+    the release, so the convoy's corridors stayed held by nobody — permanently,
+    and invisibly, until the next chair to want one simply waited forever.
+    """
+    f = Fleet(build_example_terminal())
+    for chair_id in ("CH-01", "CH-02", "CH-03"):
+        f.add_chair(chair_id, "dock_e")
+    f.request_group(["A", "B", "C"], "UK880", pickup="kerb", gate="g5")
+    f.run(duration_s=200)
+    assert any(f.reservations.holders(s) for s in f.tmap.segments), (
+        "the caravan should be holding something to make this test meaningful"
+    )
+
+    f.emergency_stop("CH-01", "passenger pressed it")
+
+    held = {s: f.reservations.holders(s) for s in f.tmap.segments
+            if f.reservations.holders(s)}
+    assert not held, f"corridors still held after the caravan stopped: {held}"

@@ -40,6 +40,14 @@ IDLE_W = 5.0
 BATTERY_MARGIN = 1.35
 #: Below this fraction a chair takes no new work and returns to charge.
 BATTERY_RESERVE_FRACTION = 0.20
+#: Below this, the chair cannot move itself at all and needs pushing.
+#:
+#: Not zero. A pack taken to zero is a pack damaged, and more to the point a
+#: chair that computes its last metre on paper has already stopped in reality —
+#: so the dispatcher stops believing it can move while there is still margin,
+#: and says the chair needs an attendant rather than quietly modelling a journey
+#: that is not happening.
+BATTERY_EMPTY_FRACTION = 0.02
 #: Dock charging rate, watts.
 CHARGE_W = 300.0
 #: Charge at which a docked chair is announced as ready for a full day's work.
@@ -689,6 +697,13 @@ class Fleet:
         chair.replan_attempts = 0
         chair.escalated = False
 
+        # Steered out of formation, it is not in the caravan any more. Leaving
+        # it listed would have its siblings holding corridors on behalf of a
+        # chair that is being driven somewhere else entirely.
+        if chair.caravan is not None:
+            self.log("left_caravan", f"driven out of {chair.caravan}", chair_id)
+            chair.caravan = None
+
         chair.manual = ManualControl(
             mode=device.mode, operator=operator, device=device_id,
             last_command_s=self.now, since_s=self.now,
@@ -719,11 +734,17 @@ class Fleet:
         chair.manual.last_command_s = self.now
 
     def release_manual_control(self, chair_id: str, *, at_node: str | None = None) -> None:
-        """Give the chair back to the dispatcher.
+        """Give the chair back to the dispatcher, and put it back to work.
 
         ``at_node`` is the floor tag it is standing on. Without one the chair is
         parked but not dispatchable, because nobody — including the chair — knows
-        where it is. :meth:`confirm_position` is how that gets resolved later.
+        where it is; :meth:`confirm_position` resolves that later.
+
+        A chair handed back does not simply go idle. It may have been part way
+        through a job when somebody took the stick, and the job did not go away
+        while they were steering: there may be a passenger sitting in it, or
+        somebody at the kerb still waiting for it. Dropping either on the floor
+        here is how a journey silently never finishes.
         """
         chair = self.chairs[chair_id]
         if not chair.manual.active:
@@ -735,21 +756,85 @@ class Fleet:
 
         if at_node is not None:
             self.confirm_position(chair_id, at_node)
-            chair.state = ChairState.IDLE
-            self.log(
-                "manual_released",
-                f"{operator} handed it back at {at_node} after {driven_s:.0f}s",
-                chair_id,
-            )
+            where = f" at {at_node}"
         else:
             chair.position_known = False
+            where = ""
+
+        self.log(
+            "manual_released",
+            f"{operator} handed it back{where} after {driven_s:.0f}s",
+            chair_id,
+        )
+        self._resume_after_interruption(chair)
+
+    def _resume_after_interruption(self, chair: Chair) -> None:
+        """Pick the job back up, hand it to somebody else, or ask for help.
+
+        Shared by every way a chair stops being under dispatch — somebody drove
+        it, or somebody stopped it. The job does not go away while either is
+        happening, and dropping it here is how a journey silently never
+        finishes.
+        """
+        request = chair.request
+
+        if request is None:
             chair.state = ChairState.IDLE
-            self.log(
-                "manual_released",
-                f"{operator} handed it back after {driven_s:.0f}s, position unknown "
-                f"— needs a floor tag before it can be dispatched",
-                chair_id,
-            )
+            if chair.position_known:
+                self._send_home(chair)
+            return
+
+        carrying = self._carrying_somebody(chair)
+
+        if not chair.position_known:
+            if not carrying:
+                # Nobody is aboard, so the passenger is better served by a chair
+                # that knows where it is. Hand them back rather than making them
+                # wait for this one to find a floor tag.
+                request.assigned_to = None
+                chair.request = None
+                chair.state = ChairState.IDLE
+                self.log(
+                    "handed_back",
+                    f"{request.id} returned to the queue; this chair does not know "
+                    f"where it is",
+                    chair.id,
+                )
+                return
+            # Somebody is in the seat and the chair is lost. It cannot be routed
+            # and the passenger cannot be handed to another chair, so it stops
+            # where it is and asks for a person. Driving on would mean planning
+            # from a node it is not standing at, with a passenger aboard.
+            chair.state = ChairState.AWAITING_DESTINATION
+            if not chair.escalated:
+                chair.escalated = True
+                self.log(
+                    "escalation",
+                    f"{request.passenger} is aboard and the chair does not know where "
+                    f"it is; attendant needed to confirm a floor tag",
+                    chair.id,
+                )
+            return
+
+        goal = request.gate if carrying else request.pickup
+        if goal is None:
+            chair.state = ChairState.AWAITING_DESTINATION
+            return
+
+        route = self._plan_for(chair, chair.node, goal)
+        if route is None:
+            self.log("unroutable", f"no way to {goal} from {chair.node}", chair.id)
+            chair.state = ChairState.AWAITING_DESTINATION
+            return
+
+        chair.state = ChairState.CARRYING if carrying else ChairState.TO_PICKUP
+        self._set_route(chair, route)
+        self.log(
+            "resumed",
+            f"back under dispatch, {('carrying ' + request.passenger) if carrying else 'collecting ' + request.passenger} "
+            f"to {goal}",
+            chair.id,
+        )
 
     def confirm_position(self, chair_id: str, node: str) -> None:
         """The chair has read a floor tag. It knows where it is again."""
@@ -762,6 +847,11 @@ class Fleet:
         chair.position_known = True
         if was_lost:
             self.log("position_found", f"read the tag at {node}", chair_id)
+            if chair.state is ChairState.AWAITING_DESTINATION and chair.request is not None:
+                # It stopped here because it was lost with somebody aboard. Now a
+                # tag has said where it is, so the journey can finish.
+                chair.escalated = False
+                self._resume_after_interruption(chair)
 
     def emergency_stop(self, chair_id: str, reason: str) -> None:
         """Latch a chair stopped. Only an attendant clears it.
@@ -775,13 +865,57 @@ class Fleet:
         if chair.caravan is not None:
             group = [c for c in self.chairs.values() if c.caravan == chair.caravan]
 
+        # Collect the claims before touching anything: a caravan holds corridors
+        # under one shared id (see Chair.reservation_id), so clearing membership
+        # first would change the id out from under the release and leave the
+        # convoy's corridors held by nobody, forever.
+        claims = {member.reservation_id for member in group}
+
         for member in group:
             member.state = ChairState.ESTOP
             member.route = None
             member.held_segment = None
+            # The caravan is over. They are no longer nose to tail at a known
+            # spacing, so each is released, and re-formed, on its own.
+            member.caravan = None
             self.log("estop", reason if member is chair else "caravan sibling stopped", member.id)
 
-        self.reservations.release_all(chair.reservation_id)
+        for claim in claims:
+            self.reservations.release_all(claim)
+
+    def clear_emergency_stop(
+        self, chair_id: str, *, by: str, at_node: str | None = None
+    ) -> None:
+        """An attendant releases a latched stop and the chair goes back to work.
+
+        Without this the stop is a one-way door: the documentation said only an
+        attendant may clear it, and no attendant could, so a chair that stopped
+        was out of service for good — with whoever was in it still sitting there.
+
+        ``at_node`` is the floor tag the chair is standing at. A stop can latch
+        part way along a corridor, and the dispatcher's idea of where the chair
+        is was only ever "the last node it passed". Re-planning from that node
+        would route it from somewhere it is not, so without a tag the chair is
+        treated as lost, exactly as it is after somebody drives it by hand.
+
+        Clearing a stop on one chair of a caravan clears only that chair. The
+        caravan was dissolved when it stopped, and re-forming it is a dispatch
+        decision, not an attendant's.
+        """
+        chair = self.chairs[chair_id]
+        if chair.state is not ChairState.ESTOP:
+            return
+
+        chair.escalated = False
+        if at_node is not None:
+            self.confirm_position(chair_id, at_node)
+            where = f" at {at_node}"
+        else:
+            chair.position_known = False
+            where = ""
+
+        self.log("estop_cleared", f"released by {by}{where}", chair_id)
+        self._resume_after_interruption(chair)
 
     # -- the clock -------------------------------------------------------
 
@@ -1112,6 +1246,17 @@ class Fleet:
         where it is no longer holds. All that is tracked is the battery it is
         spending and whether the operator is still there.
         """
+        if chair.battery_fraction <= BATTERY_EMPTY_FRACTION:
+            if not chair.escalated:
+                chair.escalated = True
+                chair.manual.command = Command()
+                self.log(
+                    "escalation",
+                    "flat; it cannot drive itself and needs an attendant",
+                    chair.id,
+                )
+            return
+
         speed = abs(chair.manual.velocity_mps(self.now))
         if speed > 0.0:
             chair.position_known = False
@@ -1343,7 +1488,23 @@ class Fleet:
         )
 
     def _send_home(self, chair: Chair) -> None:
-        """Put the chair back on charge by itself. Nobody comes to fetch it."""
+        """Put the chair back on charge by itself. Nobody comes to fetch it.
+
+        Unless it cannot: a chair below :data:`BATTERY_EMPTY_FRACTION` has no
+        journey left in it, and sending it off to find a dock would have the
+        dispatcher modelling a chair gliding across a terminal on an empty pack.
+        """
+        if chair.battery_fraction <= BATTERY_EMPTY_FRACTION:
+            chair.state = ChairState.IDLE
+            if not chair.escalated:
+                chair.escalated = True
+                self.log(
+                    "escalation",
+                    f"flat at {chair.node}; needs pushing to a dock",
+                    chair.id,
+                )
+            return
+
         dock = self._nearest_dock(chair.node)
         home = self._plan_for(chair, chair.node, dock)
         if home is None:

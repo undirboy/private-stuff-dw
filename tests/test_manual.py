@@ -240,14 +240,25 @@ def test_reading_a_floor_tag_puts_it_back_to_work(fleet):
 
 
 def test_handing_back_at_a_known_tag_needs_no_second_step(fleet):
+    """And an idle chair takes itself home rather than standing in a corridor.
+
+    Wherever an attendant finished with it is wherever it was convenient to let
+    go, which is rarely a sensible place to leave a chair. A chair parked in a
+    corridor is an obstacle to every other chair and to everybody walking.
+    """
     fleet.take_manual_control("CH-01", device_id=paired(fleet), operator="Mr Dias")
     drive(fleet, "CH-01", throttle=0.8, seconds=2)
 
     fleet.release_manual_control("CH-01", at_node="sec_q")
 
     chair = fleet.chairs["CH-01"]
-    assert chair.position_known and chair.node == "sec_q"
-    assert chair.state is ChairState.IDLE and chair.available
+    assert chair.position_known and chair.node == "sec_q", (
+        "the tag it was handed back at is where the dispatcher thinks it is"
+    )
+    assert chair.state in (ChairState.RETURNING, ChairState.IDLE, ChairState.CHARGING)
+
+    fleet.run(duration_s=1800)
+    assert fleet.chairs["CH-01"].state is ChairState.CHARGING, "it should have gone home"
 
 
 def test_a_chair_being_driven_takes_no_dispatch_work(fleet):
@@ -266,3 +277,92 @@ def test_a_chair_being_driven_takes_no_dispatch_work(fleet):
 def test_a_command_is_clamped_whatever_the_handset_sends(value, expected):
     assert Command(throttle=value).throttle == expected
     assert Command(steer=value).steer == expected
+
+
+# -- handing the chair back ------------------------------------------------
+#
+# These four are regressions. A chair handed back used to go idle holding
+# whatever job it had, so a passenger on their way somewhere simply stopped
+# arriving and nobody was told. The stress suite never saw it, because nothing
+# was in an invalid state — the journey just never finished.
+
+
+def carry_until_moving(fleet):
+    """Run until somebody is actually in the seat and under way."""
+    for _ in range(900):
+        fleet.step(1.0)
+        if fleet.chairs["CH-01"].state is ChairState.CARRYING:
+            return
+    raise AssertionError("the chair never got under way")
+
+
+def test_a_chair_handed_back_resumes_collecting_its_passenger(fleet):
+    device = paired(fleet)
+    request = fleet.request_assistance("Mrs Pereira", "AI-612", pickup="kerb", gate="g4")
+    fleet.run(duration_s=30)
+
+    fleet.take_manual_control("CH-01", device_id=device, operator="Mr Dias")
+    fleet.release_manual_control("CH-01", at_node="sec_q")
+    fleet.run(duration_s=1800)
+
+    assert request.delivered_s is not None, (
+        "the job did not go away while somebody was steering"
+    )
+
+
+def test_a_chair_handed_back_with_somebody_aboard_finishes_the_journey(fleet):
+    """The worst version: a passenger sitting in a chair that forgot about them."""
+    device = paired(fleet, ControlMode.PASSENGER, "ARMREST")
+    request = fleet.request_assistance("Mrs Pereira", "AI-612", pickup="kerb", gate="g4")
+    carry_until_moving(fleet)
+
+    fleet.take_manual_control("CH-01", device_id=device, operator="Mrs Pereira")
+    fleet.release_manual_control("CH-01", at_node="sp2")
+    fleet.run(duration_s=1800)
+
+    assert request.delivered_s is not None
+
+
+def test_a_lost_chair_hands_its_waiting_passenger_to_another(fleet):
+    """Nobody is aboard, so they are better served by a chair that knows where it is."""
+    fleet.add_chair("CH-02", "dock_e")
+    device = paired(fleet)
+    request = fleet.request_assistance("Mrs Pereira", "AI-612", pickup="kerb", gate="g4")
+    fleet.run(duration_s=30)
+
+    if fleet.chairs["CH-01"].request is not request:
+        pytest.skip("CH-02 took the job; this test is about the chair that has it")
+
+    fleet.take_manual_control("CH-01", device_id=device, operator="Mr Dias")
+    fleet.release_manual_control("CH-01")  # no tag: it does not know where it is
+    assert any(event.kind == "handed_back" for event in fleet.events)
+
+    fleet.run(duration_s=1800)
+    assert request.delivered_s is not None
+    assert request.assigned_to == "CH-02"
+
+
+def test_a_lost_chair_with_somebody_aboard_stops_and_asks_for_help(fleet):
+    """It cannot be routed and the passenger cannot be handed over, so it waits.
+
+    Driving on would mean planning a route from a node it is not standing at,
+    with a person in the seat. So it stops, calls an attendant, and finishes the
+    journey once a floor tag says where it is.
+    """
+    device = paired(fleet, ControlMode.PASSENGER, "ARMREST")
+    request = fleet.request_assistance("Mrs Pereira", "AI-612", pickup="kerb", gate="g4")
+    carry_until_moving(fleet)
+
+    fleet.take_manual_control("CH-01", device_id=device, operator="Mrs Pereira")
+    fleet.release_manual_control("CH-01")
+    fleet.run(duration_s=120)
+
+    chair = fleet.chairs["CH-01"]
+    assert chair.state is ChairState.AWAITING_DESTINATION
+    assert chair.request is request, "the passenger is not handed to anybody; they are aboard"
+    assert any(event.kind == "escalation" for event in fleet.events)
+    assert request.delivered_s is None
+
+    fleet.confirm_position("CH-01", "sp2")
+    fleet.run(duration_s=1800)
+    assert request.delivered_s is not None, "a floor tag should have unstuck it"

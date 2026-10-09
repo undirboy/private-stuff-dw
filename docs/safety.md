@@ -17,7 +17,12 @@ depend on the upper ones working.
 1. **Hardware emergency stop.** A button the passenger can reach and an
    attendant can reach, wired to a safety relay that cuts motor power directly.
    No microcontroller in the path. It latches: only a deliberate attendant
-   action clears it, never a timeout and never the dispatcher.
+   action clears it, never a timeout and never the dispatcher. That release is
+   `Fleet.clear_emergency_stop`, and the attendant tells it which floor tag the
+   chair is standing at — a stop can latch part way down a corridor, and
+   re-planning from the last node the chair passed would route it from somewhere
+   it is not. Without a tag the chair is treated as lost, exactly as it is after
+   somebody drives it by hand.
 2. **Proximity stop.** Close-range ToF and ultrasonic sensors, read on a fixed
    interval by the motion controller, with authority to cut drive independently
    of any route logic.
