@@ -539,12 +539,18 @@ def test_stopping_a_caravan_frees_the_corridors_it_held_as_a_unit():
     for chair_id in ("CH-01", "CH-02", "CH-03"):
         f.add_chair(chair_id, "dock_e")
     f.request_group(["A", "B", "C"], "UK880", pickup="kerb", gate="g5")
-    f.run(duration_s=200)
-    assert any(f.reservations.holders(s) for s in f.tmap.segments), (
-        "the caravan should be holding something to make this test meaningful"
-    )
 
-    f.emergency_stop("CH-01", "passenger pressed it")
+    # Catch them while they are actually in a corridor: a caravan standing at a
+    # node holds nothing, and this test is about what happens to what it holds.
+    for _ in range(2000):
+        f.step(1.0)
+        in_convoy = [c for c in f.chairs.values() if c.caravan is not None]
+        if in_convoy and any(f.reservations.holders(seg) for seg in f.tmap.segments):
+            break
+    else:
+        pytest.fail("the caravan never took a corridor, so there is nothing to test")
+
+    f.emergency_stop(in_convoy[0].id, "passenger pressed it")
 
     held = {s: f.reservations.holders(s) for s in f.tmap.segments
             if f.reservations.holders(s)}
