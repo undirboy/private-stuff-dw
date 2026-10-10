@@ -1,6 +1,6 @@
 # Hardware — the production design
 
-> This is the **full-size retrofit module**, at roughly ₹57,000.
+> This is the **full-size retrofit module**, at roughly ₹58,000.
 > For the ₹4,759 table-top demonstrator built for the application and the
 > exhibition, see [`components.md`](components.md). The two are deliberately
 > different, and `components.md` discloses every difference.
@@ -25,6 +25,22 @@ The reasons are not technical:
   manual chair. Every failure mode ends with "the attendant pushes it", which is
   exactly the fallback the airport has today.
 
+**And that last point needs a mechanism, or it is not true.** A geared hub motor
+with no power on it does not roll freely; it is a brake. An attendant pushing a
+chair with a dead module still clamped on is pushing against a gearbox, and
+"unclip it first" means unclipping 18 kg of drive, battery and wheel and then
+carrying it while pushing a passenger. That is not a recovery procedure.
+
+So the drive has to **disengage mechanically**, not merely be removable: a lever
+an attendant pulls that lifts the drive rollers clear of the tyres in one
+movement, leaving a manual chair with a dead weight bolted to it — heavier than
+it was, but rolling. The thirty-second unclip is for taking the module off at the
+end of a shift. The lever is the answer to a fault.
+
+This favours a friction-roller drive against the tyres over hub motors, and the
+decision belongs before anything is ordered. It is the one change in this
+document that affects the parts list.
+
 The trade-off is real: a retrofit has to tolerate variation between chair models,
 and the geometry is someone else's. Budget for an adjustable clamp and expect to
 support two or three chair models, not all of them.
@@ -47,6 +63,29 @@ overhead lighting. **Do not demonstrate on an IR array and promise it scales.**
 The code models this per segment (`margadarshak.graph.Guide`) because a real terminal
 will be a mix of all three.
 
+**Survey the floor with a magnetometer, not just with a tape measure.** Expansion
+joints, service pits, floor hatches, baggage-conveyor sub-structures and the
+rebar in a post-tensioned slab all distort the field a Hall array is reading, and
+they do it locally and strongly enough to look exactly like a lost line. Those
+stretches are surveyed as sparse RFID with dead reckoning between tags, which is
+what that option is for. Finding them after the tape is laid is the expensive
+order to do this in.
+
+**Price the guide path as a consumable.** Surface-laid adhesive tape in a
+concourse that is wet-scrubbed nightly by a machine with rotating brushes lasts
+weeks, not years. The ways round it are to lay the tape *under* carpet or vinyl
+when the covering is next replaced, which needs no trenching at all, or to set it
+in a 3 mm saw-cut groove and grout — overnight, in sections, with a permit. That
+permit, in a terminal that does not close, is the largest non-technical risk in
+this project, and it is a reason to follow a floor replacement that is already
+scheduled rather than to ask for one.
+
+**No turns on a ramp.** Starting a turn on an incline pivots the front casters
+around their kingpins against a high-friction non-slip coating, and the scrub
+torque can exceed what differential steering can deliver: the chair stalls, or
+skews off the line. Survey a ramp as a straight run with its turns at the top and
+the bottom, on the flat.
+
 Crowds will stand on the line. The chair needs wheel encoders and an IMU so it
 can coast straight through a few metres of lost line and reacquire on the far
 side, rather than stopping dead every time somebody's suitcase covers the tape.
@@ -59,7 +98,7 @@ or a costing claim.
 
 | Item | Indicative ₹ | Notes |
 |---|---|---|
-| 2 × 24 V geared hub motors with wheels | 9,000 | Sized for 120 kg combined load on a 1:12 ramp |
+| 2 × 24 V geared drive units with wheels | 9,000 | Sized for 120 kg combined load on a 1:12 ramp. Must disengage from the tyres by hand — see the retrofit note above; a hub motor that cannot is a brake on a dead chair |
 | Dual motor controller | 2,500 | Needs current limiting and regenerative braking |
 | 24 V 10 Ah LiFePO4 pack with BMS | 8,000 | LiFePO4 over Li-ion: thermal behaviour matters indoors with a passenger |
 | Charger and dock contacts | 2,500 | Blind-mate contacts so the chair docks itself |
@@ -76,7 +115,8 @@ or a costing claim.
 | BLE module for a paired phone | 400 | Short range on purpose; and a pair button wired to the chair itself |
 | E-stop, contactor, safety relay | 2,000 | Must cut motor power in hardware, not in software |
 | Chassis, clamp, enclosure, fasteners | 6,000 | The part that varies most by chair model |
-| **Total** | **≈ 57,100** | Expect 60–70k with wastage and rework |
+| Baggage shelf and hook | 600 | A safety item, not an accessory: a cabin bag on the passenger's lap moves the centre of gravity forward, and forward is the direction a chair tips on a ramp |
+| **Total** | **≈ 57,700** | Expect 60–70k with wastage and rework |
 
 At volume the LiDAR and the sensor bar are where the cost comes out. A cost-down
 version swaps the 2D LiDAR for a fixed array of ToF sensors, which is cheaper and

@@ -8,6 +8,12 @@ Turns carry a penalty. A chair that pivots at a junction has to slow, rotate and
 reacquire the line, which costs real seconds and is unpleasant for the passenger.
 Without the penalty the planner cheerfully returns zig-zag routes that are a
 metre shorter and far worse to ride.
+
+A lift is an edge like any other, costed in the same seconds. That is what makes
+"this gate is nearer but it is upstairs" a decision the planner can actually
+make: a thirty-second lift ride is worth thirty metres of corridor, and the
+planner will take the longer walk to the gate on this floor when it is quicker,
+without anybody writing a rule saying so.
 """
 
 from __future__ import annotations
@@ -56,8 +62,16 @@ class _Candidate:
     segments: list[str] = field(compare=False, default_factory=list)
 
 
-def _heading(tmap: TerminalMap, frm: str, to: str) -> float:
+def _heading(tmap: TerminalMap, frm: str, to: str) -> float | None:
+    """Which way the chair faces going from one node to the next.
+
+    None when the two share a position, which happens between the landings of
+    one lift shaft. There is no heading up a shaft, and ``atan2(0, 0)`` would
+    cheerfully return due east and charge the chair for a turn it never made.
+    """
     a, b = tmap.nodes[frm], tmap.nodes[to]
+    if math.isclose(a.x, b.x) and math.isclose(a.y, b.y):
+        return None
     return math.atan2(b.y - a.y, b.x - a.x)
 
 
@@ -67,6 +81,8 @@ def _turn_cost(tmap: TerminalMap, came_from: str | None, at: str, going_to: str)
         return 0.0
     incoming = _heading(tmap, came_from, at)
     outgoing = _heading(tmap, at, going_to)
+    if incoming is None or outgoing is None:
+        return 0.0
     change = abs(math.atan2(math.sin(outgoing - incoming), math.cos(outgoing - incoming)))
     if change <= TURN_DEADBAND_RAD:
         return 0.0
@@ -75,7 +91,16 @@ def _turn_cost(tmap: TerminalMap, came_from: str | None, at: str, going_to: str)
 
 
 def traverse_time(segment: Segment, speed_cap_mps: float | None = None) -> float:
-    """Seconds to drive a segment end to end."""
+    """Seconds to get from one end of a segment to the other.
+
+    A lift ride is quoted by the car, and ``speed_cap_mps`` does not apply to it:
+    slowing a chair down for a frail passenger does not slow the lift, and
+    pretending otherwise would make every route through a lift look worse than it
+    is for exactly the passengers most likely to need one.
+    """
+    if segment.transit_s is not None:
+        return segment.transit_s
+
     speed = segment.max_speed_mps
     if speed_cap_mps is not None:
         speed = min(speed, speed_cap_mps)
@@ -98,6 +123,12 @@ def plan(
 
     ``speed_cap_mps`` caps the chair's own speed everywhere, used to slow a chair
     carrying a frail passenger without editing the map.
+
+    Screening points are never crossed, and that is not an option this function
+    offers. A chair that has not been inspected and swabbed cannot be airside, so
+    a route from the kerb to a gate does not exist — the journey is two journeys
+    with a person in between, and a planner that returned one route would be
+    describing a security breach as a convenience.
     """
     if start not in tmap.nodes or goal not in tmap.nodes:
         raise ValueError(f"route endpoints must be on the map: {start} -> {goal}")
@@ -108,10 +139,24 @@ def plan(
     if speed_cap_mps is not None:
         top_speed = min(top_speed, speed_cap_mps)
 
+    goal_level = tmap.nodes[goal].level
+    ride_s_per_level = tmap.min_ride_s_per_level
+
     def heuristic(node: str) -> float:
-        # Straight-line time at the best speed available: never an overestimate,
-        # so A* stays optimal.
-        return tmap.distance(node, goal) / top_speed
+        # Straight-line time at the best speed available, plus the least any lift
+        # here takes to cross the floors still to be crossed. Both terms are
+        # lower bounds and they cannot overlap — a lift moves the chair upwards
+        # and not along the floor — so the sum is still a lower bound and A* stays
+        # optimal.
+        #
+        # Without the second term a gate directly above the chair looks nearly
+        # free, and the planner explores the whole of this floor before it thinks
+        # to try the lift.
+        levels_to_cross = abs(tmap.nodes[node].level - goal_level)
+        return (
+            tmap.distance(node, goal) / top_speed
+            + levels_to_cross * ride_s_per_level
+        )
 
     open_set: list[_Candidate] = [
         _Candidate(
@@ -146,6 +191,8 @@ def plan(
         for neighbour, segment in tmap.exits(current.node):
             if segment.id in blocked_segments:
                 continue
+            if segment.screening:
+                continue  # nothing drives through security
             if neighbour == current.came_from:
                 continue  # never immediately reverse down the segment just driven
 

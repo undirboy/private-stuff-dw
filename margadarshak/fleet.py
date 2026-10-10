@@ -119,8 +119,13 @@ class Request:
     #: Keyed digest of the booking reference, kept so that a second scan of the
     #: same pass is recognised. The reference itself is never stored.
     pnr_digest: str | None = None
-    #: Set on the second leg of a journey that began before the gate was known.
+    #: Set on the second leg of a journey that began before the gate was known,
+    #: or of one interrupted by security screening.
     follow_on_of: str | None = None
+    #: Where this passenger is going after the leg they are on now. Set on the
+    #: landside leg of a journey through security, where the chair's destination
+    #: is the archway and the passenger's is a gate on the other side of it.
+    onward_gate: str | None = None
     #: Raised by a button on a wall rather than by a scan at the kerb.
     from_call_point: bool = False
     #: Shared by passengers travelling together, who are dispatched as one
@@ -383,6 +388,88 @@ class Fleet:
             f"{gate if gate is not None else '(to be set)'}",
         )
         return request
+
+    def request_journey(self, passenger: str, flight: str, pickup: str, gate: str) -> Request:
+        """A passenger asks to get from somewhere to their gate.
+
+        Which is one journey or two, depending on whether security is in the way,
+        and the caller does not have to know which. Landside to landside, or
+        airside to airside, this is :meth:`request_assistance`. Across the
+        archway it is the landside leg only, ending at security — because that is
+        where the chair's involvement ends.
+
+        The passenger is then screened: out of the chair, through the metal
+        detector, pat-down, while the chair itself would have to be inspected and
+        swabbed to go any further, and it does not go any further. An airside
+        chair picks them up on the other side, which an attendant asks for with
+        :meth:`cleared_screening`.
+
+        This is a loss and it is worth being plain about which one. The claim is
+        not "kerb to gate with nobody walking". It is that the two long legs
+        either side of the screening hall stop needing a porter each, and that
+        the handover happens at the one place in the building that is already
+        fully staffed.
+        """
+        if gate is not None and self.tmap.zone_of(pickup) is not self.tmap.zone_of(gate):
+            threshold = self._screening_threshold(pickup)
+            if threshold is None:
+                raise ValueError(
+                    f"{pickup} and {gate} are on opposite sides of security and this "
+                    f"map has no screening point between them"
+                )
+            landside_end, airside_end = threshold
+            leg = self.request_assistance(passenger, flight, pickup, landside_end)
+            leg.onward_gate = gate
+            self.log(
+                "screening",
+                f"{leg.id} goes as far as {landside_end}; {gate} is "
+                f"{self.tmap.zone_of(gate).value} and needs a second chair at "
+                f"{airside_end}",
+            )
+            return leg
+        return self.request_assistance(passenger, flight, pickup, gate)
+
+    def cleared_screening(self, request: Request) -> Request:
+        """An attendant says the passenger is through, and asks for the next chair.
+
+        Deliberately a human saying so rather than a timer. Screening takes as
+        long as it takes, a pat-down can turn into a bag search, and a chair sent
+        to meet somebody who is not there yet is a chair standing in a CISF post
+        being treated as an unattended object.
+        """
+        if request.onward_gate is None:
+            raise ValueError(f"{request.id} is not a journey interrupted by screening")
+        if request.delivered_s is None:
+            raise ValueError(f"{request.id} has not reached security yet")
+
+        threshold = self._screening_threshold(request.pickup)
+        if threshold is None:  # pragma: no cover - guarded at request time
+            raise ValueError("no screening point on this map")
+        _, airside_end = threshold
+
+        onward = self.request_assistance(
+            request.passenger, request.flight, airside_end, request.onward_gate
+        )
+        onward.follow_on_of = request.id
+        onward.pnr_digest = request.pnr_digest
+        request.onward_gate = None
+        self.log("screened", f"{request.id} cleared security, onward as {onward.id}")
+        return onward
+
+    def _screening_threshold(self, from_node: str) -> tuple[str, str] | None:
+        """The nearest archway to ``from_node``, as (this side, far side)."""
+        here = self.tmap.zone_of(from_node)
+        best: tuple[float, str, str] | None = None
+        for segment in self.tmap.screening_points():
+            for near, far in ((segment.a, segment.b), (segment.b, segment.a)):
+                if self.tmap.zone_of(near) is not here:
+                    continue
+                reach = self.travel_time(from_node, near)
+                if reach is None:
+                    continue
+                if best is None or reach < best[0]:
+                    best = (reach, near, far)
+        return None if best is None else (best[1], best[2])
 
     def request_group(
         self, passengers: list[str], flight: str, pickup: str, gate: str
@@ -1224,9 +1311,18 @@ class Fleet:
             chair.replan_attempts = 0
             chair.escalated = False
 
-        speed = segment.max_speed_mps
-        if chair.speed_cap_mps is not None:
-            speed = min(speed, chair.speed_cap_mps)
+        if segment.is_lift:
+            # A ride, not a drive. The chair spends the car's quoted seconds
+            # crossing the segment whatever its own speed cap says, and the few
+            # metres in the figure are the landings it drives in and out of. It
+            # holds the segment throughout, which is what keeps a second chair
+            # out of the car, and it is counted as moving rather than blocked,
+            # because it is: it is going up.
+            speed = segment.length_m / segment.transit_s
+        else:
+            speed = segment.max_speed_mps
+            if chair.speed_cap_mps is not None:
+                speed = min(speed, chair.speed_cap_mps)
 
         travelled = speed * dt_s
         chair.progress_m += travelled

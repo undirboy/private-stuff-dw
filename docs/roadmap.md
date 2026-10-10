@@ -97,12 +97,35 @@ Chairs follow one another in a train. A family travels together, and one
 attendant can shepherd three chairs instead of pushing one. The reservation logic
 needs a notion of a convoy holding a corridor as a unit.
 
-**8. A baggage shelf and a hook.**
-Trivial, and the first thing an actual passenger will ask for.
+**8. Divert to a toilet, now. — NOT BUILT, and the next thing to build**
+A passenger halfway down a 400 m pier who needs the washroom is currently held to
+a programmed route to a gate. One button, a reroute to the nearest accessible
+toilet, a wait, and on to the gate with the flight re-checked, because a
+diversion costs minutes and a gate can move in them. Mid-route diversion, dwell
+and follow-on legs all exist; this is assembling them. It is the difference
+between a transport system and a conveyor. See [`objections.md`](objections.md) §10.
+
+**9. A baggage shelf and a hook. — a safety item, not an accessory**
+With nowhere to put a cabin bag it goes on the passenger's lap, which moves the
+centre of gravity forward, and forward is the direction a chair tips on a ramp.
+₹600, and it is in the production parts list.
+
+**10. Say where a chair stopped, and hold that stretch closed.**
+A chair that loses the line stops and calls an attendant — and the next chair
+routed that way finds the same stanchion on the same bit of tape. Reporting where
+it stopped, and holding that stretch closed until somebody clears it, closes the
+loop. The same mechanism puts every stopped chair on the operator's screen, empty
+or not, which is what a security team needs from an unaccompanied vehicle airside.
 
 ## Pilot stage
 
-**9. Passing bays and one-way routing in the survey.**
+**11. A crowding factor per segment, per hour.**
+A chair that yields to everybody gets boxed in by a boarding scrum, and a route
+that is quick at 06:00 is not quick at 18:30. Measured in a pilot, this becomes a
+routing input instead of an anecdote — and it is the honest version of the AI
+question. See [`ai.md`](ai.md) and [`objections.md`](objections.md) §11.
+
+**12. Passing bays and one-way routing in the survey.**
 The deadlock escalation in `fleet.py` is an honest mitigation, not a fix. The fix
 is in the floor plan. See `docs/safety.md`.
 
@@ -112,13 +135,13 @@ one chair leaving collides with its siblings still arriving, and they queue. A
 passing bay at each gate spur removes it. This is a floor-plan decision that the
 simulation can now price before any tape is laid.
 
-**10. Service-level reporting.**
+**13. Service-level reporting.**
 Wait times, journeys completed, SLA breaches, exportable. This is what gets the
 system renewed after the pilot, and what lets an operator evidence compliance
 with assistance obligations. Boring, and probably the highest-value item on this
 page commercially.
 
-**11. Automatic docking and charging.**
+**14. Automatic docking and charging.**
 Modelled already; needs blind-mate contacts and a short alignment routine.
 
 ## Adjacent markets — say in the application, do not build
@@ -130,6 +153,16 @@ convinces nobody about any of them.
 
 A **guide mode for blind and low-vision passengers** — the same chassis, walked
 behind rather than sat in — is the most natural extension and worth one line.
+
+## Settled, and not coming back
+
+**The aerobridge.** It articulates, elevates and vibrates, its joints are uneven,
+and transfer into the cabin uses an aisle chair or an ambulift operated by
+trained staff. The chair reaches the gate. That boundary is permanent.
+
+**Driving through security.** An unscreened vehicle cannot be airside. This was
+once modelled wrongly and is now modelled correctly, which cost the project its
+"kerb to gate" claim and gained it a true one. [`objections.md`](objections.md) §7.
 
 ## Deliberately not doing
 

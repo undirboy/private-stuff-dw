@@ -5,7 +5,7 @@ floor tags, stops for obstacles and is driven by the real dispatcher — built f
 under ₹5,000.
 
 This is **not** the production design. That is `hardware.md`, which is a
-full-size retrofit module at around ₹57,000. Keeping the two documents separate
+full-size retrofit module at around ₹58,000. Keeping the two documents separate
 is deliberate: the differences between them are disclosed below, because a judge
 who finds an undisclosed shortcut stops believing the rest.
 

@@ -25,6 +25,8 @@ Status words used below mean exactly this:
 | **Devanagari on the panel** | Built | The chair never handles a character. Konkani, Marathi and Hindi need a shaping engine for matras and conjuncts, which a microcontroller font library does not have; so shaping happens once at build time and the chair is sent finished pixels it blits. That also means a chair physically cannot display text the atlas has no glyphs for. |
 | **Lines that fit** | Built | Messages wrap at spaces — the only place a Devanagari line may be broken — and the test suite fails if any message in any language overruns the panel. This is what chose a 128×64 module over the cheaper 128×32: 15 of the 88 message-and-language combinations need three lines and one needs four. |
 | **Four languages** | Built / Marathi reviewed, Konkani and Hindi not | Konkani, Marathi, Hindi, English, with the local languages shown *before* English. The build fails if a message is added in English alone. Marathi has been read in full by a native speaker on the team; Konkani and Hindi are still a working draft, and `NATIVE_REVIEW` in `announce.py` is the record. |
+| **Security is a handover, not a drive-through** | Built | Nothing crosses the archway: an unscreened vehicle cannot be airside. The passenger is screened on foot, and an airside chair meets them when an attendant says they are through — never on a timer, because a pat-down can become a bag search. Two fleets, two long legs, one handover at the one place in the terminal that is already fully staffed. See [`objections.md`](objections.md) §7. |
+| **The gates are upstairs** | Built | Levels and lifts are in the map. A lift is an edge costed in seconds — call, doors, ride — so "the near gate is upstairs, the far one is not" is a decision the planner makes rather than a rule somebody wrote. A survey that joins two floors without a lift, or gives a gated level only one, is refused. |
 | **Families travel together** | Built | A group is dispatched as one caravan, moves as one unit, and is never split across separate trips. |
 | **A gentler chair** | Built | Per-chair speed cap, for a frail passenger, without editing the map. |
 | **Stop button** | Built / needs hardware | Latches. Only an attendant clears it. In a caravan it stops every chair, because they travel nose to tail. The stop outranks every control, including a joystick. |
@@ -51,7 +53,7 @@ Status words used below mean exactly this:
 | **An empty chair gives way** | Built | A jam between two chairs with nobody in them needs no attendant — it needs one of them to leave. It drops the corridor, hands back any passenger it was going to collect, and goes home. Without this, one jam between repositioning chairs stopped an entire simulated fleet for a whole day. |
 | **Deadlock escalation** | Built | Only when somebody is actually aboard: a passenger is not reversed out of a corridor. Two occupied chairs nose to nose call an attendant after 90 seconds. An honest mitigation, not a fix — the fix is passing bays in the floor plan. |
 | **A gate off this map is refused** | Built | If a flight boards somewhere the guide path does not reach, the scan is refused there and then. Finding out after the passenger is aboard strands them somewhere they cannot easily walk back from. A gate that moves off-map mid-journey diverts to the lounge and calls an attendant. |
-| **Map validation** | Built | Refuses a map with an unreachable gate or an untagged stopping point, before anybody sits in a chair. |
+| **Map validation** | Built | Refuses a map with an unreachable gate or an untagged stopping point, before anybody sits in a chair. Also: a guide line that climbs between floors, a lift landing with no floor tag, a gated level with a single lift, an unmarked crossing of the security line, and a zone with no dock of its own. |
 | **Service-level export** | Not built | The numbers exist; a scheduled export for compliance reporting does not. |
 
 ## What makes it different
@@ -114,7 +116,7 @@ something somebody was supposed to remember, and remembering failed.
 
 Nothing here has carried a passenger. The dispatcher, routing, scanning,
 languages, caravans, pre-positioning, priority and reporting are working code
-with 292 tests behind them. Everything physical is unbuilt, and the regulatory
+with 338 tests behind them. Everything physical is unbuilt, and the regulatory
 position needs a competent authority rather than an opinion from this repository.
 
 The build that demonstrates this at a table, for ₹4,759 (₹2,801 for one chair), is in

@@ -62,7 +62,7 @@ unit before putting any multiple in writing.
 | `hardware/chassis/` | Printable deck, sensor bracket and castor riser, with the generator that makes them |
 | `docs/features.md` | **Everything the system does, and what is built vs. what is not** |
 | `docs/components.md` | **The ₹4,759 two-chair demonstrator: parts, disclosed shortcuts, build order** |
-| `docs/hardware.md` | The full-size production design: retrofit rationale, floor-reading, ~₹57k BOM |
+| `docs/hardware.md` | The full-size production design: retrofit rationale, floor-reading, ~₹58k BOM |
 | `docs/safety.md` | The layered stop, why braking is a passenger problem, failure modes |
 | `docs/privacy.md` | What the barcode contains, what is kept, and what is deliberately never recorded |
 | `docs/ai.md` | **The one model in the system, what it measured, and why nothing learned goes near the brakes** |

@@ -95,7 +95,7 @@ def test_the_total_is_stated_as_the_parts_add_up():
 #: The production retrofit module's indicative BOM in docs/hardware.md. Planning
 #: estimates rather than quotes, but they still have to add up and still have to
 #: match everywhere they are quoted.
-PRODUCTION_MODULE = 57100
+PRODUCTION_MODULE = 57700
 
 
 def test_the_production_bill_of_materials_adds_up():

@@ -185,7 +185,7 @@ def test_the_file_is_something_a_person_can_read_and_edit():
     assert {"version", "name", "nodes", "segments"} <= set(data)
     # Plain keys, no encoded blobs, no identifiers only this software understands.
     assert set(data["nodes"][0]) == {
-        "id", "kind", "x", "y", "label", "tag", "code", "terminal"
+        "id", "kind", "x", "y", "label", "tag", "code", "terminal", "level", "zone"
     }
 
 

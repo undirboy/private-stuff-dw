@@ -24,10 +24,14 @@ import json
 import pathlib
 import sys
 
-from .graph import Guide, Node, NodeKind, TerminalMap
+from .graph import Guide, Lift, Node, NodeKind, TerminalMap, Zone
 
 #: Bumped when the on-disk shape changes in a way older files would not survive.
-FORMAT_VERSION = 1
+#:
+#: Version 2 added ``level`` and ``zone`` on a node, and ``lift`` and
+#: ``screening`` on a segment. A version 1 file still loads: it describes one
+#: flat landside floor, which is what it always meant.
+FORMAT_VERSION = 2
 
 
 class MapFileError(ValueError):
@@ -50,6 +54,8 @@ def to_dict(tmap: TerminalMap) -> dict:
                 "tag": node.tag_id,
                 "code": node.code,
                 "terminal": node.terminal,
+                "level": node.level,
+                "zone": node.zone.value,
             }
             for node in tmap.nodes.values()
         ],
@@ -62,6 +68,20 @@ def to_dict(tmap: TerminalMap) -> dict:
                 "width_m": segment.width_m,
                 "guide": segment.guide.value,
                 "gap_m": segment.gap_m,
+                "screening": segment.screening,
+                **(
+                    {
+                        "lift": {
+                            "id": segment.lift.id,
+                            "call_s": segment.lift.call_s,
+                            "door_s": segment.lift.door_s,
+                            "ride_s_per_level": segment.lift.ride_s_per_level,
+                            "capacity_chairs": segment.lift.capacity_chairs,
+                        }
+                    }
+                    if segment.lift is not None
+                    else {}
+                ),
             }
             for segment in tmap.segments.values()
         ],
@@ -71,6 +91,18 @@ def to_dict(tmap: TerminalMap) -> dict:
 def dumps(tmap: TerminalMap) -> str:
     """Serialise, formatted to be read and diffed by a person."""
     return json.dumps(to_dict(tmap), indent=2, ensure_ascii=False) + "\n"
+
+
+def _zone(name, node_id: str) -> Zone:
+    if name is None:
+        return Zone.LANDSIDE
+    try:
+        return Zone(name)
+    except ValueError:
+        valid = ", ".join(z.value for z in Zone)
+        raise MapFileError(
+            f"node {node_id!r} is in zone {name!r}; expected one of: {valid}"
+        ) from None
 
 
 def _require(mapping: dict, key: str, where: str):
@@ -125,6 +157,8 @@ def from_dict(data: dict) -> TerminalMap:
                     tag_id=entry.get("tag"),
                     code=entry.get("code"),
                     terminal=entry.get("terminal"),
+                    level=int(entry.get("level", 0)),
+                    zone=_zone(entry.get("zone"), node_id),
                 )
             )
         except (TypeError, ValueError) as exc:
@@ -146,6 +180,30 @@ def from_dict(data: dict) -> TerminalMap:
             raise MapFileError(
                 f"segment {a}-{b} has guide {guide_name!r}; expected one of: {valid}"
             ) from None
+        lift = None
+        if "lift" in entry:
+            spec = entry["lift"]
+            if not isinstance(spec, dict):
+                raise MapFileError(
+                    f"segment {a}-{b}: 'lift' must be an object describing the car"
+                )
+            try:
+                lift = Lift(
+                    id=str(_require(spec, "id", f"the lift on segment {a}-{b}")),
+                    **{
+                        key: float(spec[key])
+                        for key in ("call_s", "door_s", "ride_s_per_level")
+                        if key in spec
+                    },
+                    **(
+                        {"capacity_chairs": int(spec["capacity_chairs"])}
+                        if "capacity_chairs" in spec
+                        else {}
+                    ),
+                )
+            except (TypeError, ValueError) as exc:
+                raise MapFileError(f"segment {a}-{b}: lift: {exc}") from exc
+
         try:
             tmap.connect(
                 a,
@@ -155,6 +213,8 @@ def from_dict(data: dict) -> TerminalMap:
                 width_m=float(entry.get("width_m", 1.8)),
                 guide=guide,
                 gap_m=float(entry.get("gap_m", 0.0)),
+                screening=bool(entry.get("screening", False)),
+                lift=lift,
             )
         except ValueError as exc:
             raise MapFileError(f"segment {a}-{b}: {exc}") from exc
@@ -214,7 +274,10 @@ def main(argv: list[str] | None = None) -> int:
             for problem in problems:
                 print(f"  ! {problem}")
             return 1
-        print("map is valid: every gate reachable, every stop tagged")
+        print(
+            "map is valid: every gate reachable, every stop tagged, "
+            "every change of level by lift"
+        )
     return 0
 
 

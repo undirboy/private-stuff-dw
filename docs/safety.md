@@ -138,6 +138,12 @@ renumbered.
 Every path ends in "stop" or "an attendant pushes it". That is the whole point of
 the retrofit approach: the fallback is the service the airport runs today.
 
+**That fallback is mechanical, and it has to be designed for.** A geared drive
+with no power on it is a brake, so "the attendant pushes it" is only true if the
+drive can be disengaged from the tyres by hand, in one movement, by somebody who
+has not been trained. See the retrofit note in [`hardware.md`](hardware.md); it
+changed the drive choice.
+
 ## The deadlock that the floor plan has to solve
 
 Two chairs meeting head-on in a single-file corridor cannot resolve it between
@@ -158,3 +164,12 @@ laid.
   call for help. They cannot send it somewhere.
 - **No remote drive.** The dispatcher issues destinations, never throttle or
   steering. There is no path by which a network intrusion becomes a moving chair.
+- **Nothing through security.** A vehicle that has not been inspected and swabbed
+  cannot be airside, so no route is ever planned across a screening point and
+  landside and airside are two fleets. The passenger is screened on foot and met
+  on the other side when an attendant says they are through. See
+  [`objections.md`](objections.md) §7.
+- **No aerobridge, and no aircraft door.** An aerobridge articulates, elevates
+  and vibrates, its joints are uneven, and transfer into the cabin uses an aisle
+  chair or an ambulift operated by trained staff. The chair reaches the gate.
+  That boundary is permanent, not a limitation of this version.

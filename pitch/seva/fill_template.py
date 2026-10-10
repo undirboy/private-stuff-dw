@@ -68,7 +68,7 @@ TEXT = {
       "chassis. Dispatcher in Python on one laptop — standard library only, no cloud and no "
       "network calls.",
   24: "₹4,759 for two demonstrator chairs (₹2,801 for one). The production retrofit module is "
-      "designed at about ₹57,000 per chair. A terminal pilot needs chairs, floor marking and "
+      "designed at about ₹58,000 per chair. A terminal pilot needs chairs, floor marking and "
       "a survey.",
   27: "3 months: two chairs running a taped guide path at the December exhibition. 6 months: "
       "a supervised trial in one terminal zone. 12 months: a measured pilot with an airport "
@@ -160,7 +160,7 @@ def main():
     # --- slide 3: the comparison table -----------------------------------
     table = next(sh for sh in slides[2].shapes if sh.has_table).table
     rows = [
-        ("Cost", "Attendant per trip", "₹57,000 per chair"),
+        ("Cost", "Attendant per trip", "₹58,000 per chair"),
         ("Speed / time", "Unpredictable wait", "Pre-positioned; wait reported"),
         ("Reach / access", "English signage", "4 languages, Konkani first"),
         ("Ease of use", "Ask, then depend", "Scan, then sit"),
