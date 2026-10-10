@@ -1,7 +1,29 @@
 # What to add, and in what order
 
-The hard constraint is not ideas, it is scope. The application closes on
-17 October. Four additions built properly beat twelve described in a slide.
+The hard constraint is not ideas, it is scope. Four additions built properly
+beat twelve described in a slide.
+
+## The schedule this is built against
+
+| | Dates | What it actually wants |
+|---|---|---|
+| Application | closes **17 Oct 2026** | The written case, the six-slide deck, a demo link. |
+| Assessment | 18–29 Oct | Nothing from us. Shortlisting happens here. |
+| **Online Presentation** | **16–25 Nov** | A presentation, over a screen share. |
+| **Final Expo** | **7 Dec** | One day, in person, at a stand. |
+
+The two rounds want different things, and that is the useful part.
+
+**November is online.** A physical chair shows badly over a screen share — it is
+a small MDF model on a desk, and the camera flattens it. What shows *well* is the
+dispatcher: a narrated shift, a gate moving mid-journey, four languages on the
+panel, the operator's report at the end. That exists today and runs on a laptop.
+
+**December is in person.** A judge at a stand wants to watch something move. That
+is the one date the chair has to exist for, and it is the only date that depends
+on parts being ordered.
+
+So the chair does not gate November. It gates December, and nothing else does.
 
 Everything below is ranked by what it is worth to a judge or an airport operator,
 divided by what it costs to build.

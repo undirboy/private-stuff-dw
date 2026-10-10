@@ -37,7 +37,7 @@ HUMAN = [
     ("A Konkani speaker's review of the copy",
      "the target airports are in Goa; Marathi has been read, Konkani has not"),
     ("Order the IR line sensor and the battery",
-     "the two parts without which there is nothing to show in December"),
+     "the two parts without which there is nothing moving at the expo on 7 December"),
     ("Fill in the qualification line on slide 6",
      "the one placeholder left in the deck"),
 ]
