@@ -67,6 +67,8 @@ unit before putting any multiple in writing.
 | `docs/privacy.md` | What the barcode contains, what is kept, and what is deliberately never recorded |
 | `docs/ai.md` | **The one model in the system, what it measured, and why nothing learned goes near the brakes** |
 | `docs/roadmap.md` | What to add next, and what to deliberately leave out |
+| `docs/objections.md` | **A stress-test of this proposal from the outside, with a verdict on each objection — three of them changed code** |
+| `docs/chat-log.md` | The entire conversation that built this, unedited |
 
 ## Running it
 

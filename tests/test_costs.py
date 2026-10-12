@@ -162,13 +162,23 @@ def test_nothing_quotes_a_total_the_parts_list_does_not_support(relative):
     )
 
 
+#: Files that quote prices but must not be held to the current ones.
+#:
+#: ``docs/chat-log.md`` is the conversation that built this, kept unedited. It
+#: contains every figure the project ever had, including the ones that were
+#: wrong and the turn where each was corrected. Making a historical record agree
+#: with today's parts list would delete the history, which is the only thing it
+#: is for.
+NOT_CURRENT_FIGURES = {"docs/components.md", "docs/chat-log.md"}
+
+
 def test_every_file_that_quotes_a_cost_is_in_the_checked_list():
     """A new file quoting a price must be added above, or this check is a fiction."""
     missed = []
     for path in list(ROOT.glob("*.md")) + list(ROOT.glob("docs/*.md")) + \
             list(ROOT.glob("explainer/*.py")) + list(ROOT.glob("pitch/**/*.py")):
         relative = path.relative_to(ROOT).as_posix()
-        if relative in QUOTING_FILES or relative == "docs/components.md":
+        if relative in QUOTING_FILES or relative in NOT_CURRENT_FIGURES:
             continue
         if rupee_totals(path.read_text(encoding="utf-8")):
             missed.append(relative)
